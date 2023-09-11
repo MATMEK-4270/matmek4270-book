@@ -1,0 +1,1373 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 4 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lecture 5" href="lecture5.html" />
+    <link rel="prev" title="Lecture 3" href="lecture3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 4</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-finite-difference-method">The Finite difference method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-approach">Matrix approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-vibration-problem">The vibration problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differentiation-matrices">Finite differentiation matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-derivative">First derivative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-equations-using-fd-matrices">Solve equations using FD matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-finite-difference-stencils">Generic finite difference stencils</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-4">
+<h1>Lecture 4<a class="headerlink" href="#lecture-4" title="Permalink to this heading">#</a></h1>
+<div class="section" id="the-finite-difference-method">
+<h2>The Finite difference method<a class="headerlink" href="#the-finite-difference-method" title="Permalink to this heading">#</a></h2>
+<p>The finite difference method divides (in 1D) the line into a mesh and solves equations only for specific locations (nodes) in the mesh. A mesh is created with <span class="math notranslate nohighlight">\(t = (0, \Delta t, 2\Delta t, \ldots, N \Delta t)\)</span>, where <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span> and <span class="math notranslate nohighlight">\(T=t_N = N \Delta t\)</span>.</p>
+<p><img alt="tikz" src="_images/line.png" /></p>
+<p>Up until now we have solved equations by using a recursive approach. This is very easy to implement intuitively using for-loops. However, the most common and general use of finite difference methods is through explicit assembling of matrices.</p>
+<p>Consider the decay model first</p>
+<div class="math notranslate nohighlight">
+\[ u' + au = 0, u(0)=I, t \in [0, T] \]</div>
+<p>We create a solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^0, u^1, \ldots, u^{N_t})\)</span></p>
+<p>To solve recursively, we start by setting <span class="math notranslate nohighlight">\(u^0=I\)</span>, and then recursively solve</p>
+<div class="math notranslate nohighlight">
+\[ \frac{u^{n+1}-u^n}{\Delta t} = -a (\theta u^{n+1} + (1-\theta) u^n) \]</div>
+<p>Rearranged</p>
+<div class="math notranslate nohighlight">
+\[ u^{n+1} = \frac{1 - (1-\theta) a \Delta t}{1 + \theta a \Delta t} u^n \]</div>
+<p>Recursive algorithm:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u^0 = I\)</span></p></li>
+<li><p>for  n = 0, 1, … , N-1</p>
+<ul>
+<li><p>Compute <span class="math notranslate nohighlight">\(u^{n+1} = \frac{1 - (1-\theta) a \Delta t}{1 + \theta a \Delta t} u^n\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">I</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">N</span><span class="o">*</span><span class="n">dt</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">theta</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="n">te</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b+&#39;</span><span class="p">,</span> <span class="n">te</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">te</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Numerical&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;$u^0$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;$u^1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.82</span><span class="p">,</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;$u^2$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5321fad456f7f17550c65ec2ec74bf67939a436c98676af87119e11236f44c99.png" src="_images/5321fad456f7f17550c65ec2ec74bf67939a436c98676af87119e11236f44c99.png" />
+</div>
+</div>
+</div>
+<div class="section" id="matrix-approach">
+<h2>Matrix approach<a class="headerlink" href="#matrix-approach" title="Permalink to this heading">#</a></h2>
+<p>The recursive approach never assembles the <span class="math notranslate nohighlight">\(N+1\)</span> linear equations, it just steps forward, solving <span class="math notranslate nohighlight">\(u^{n+1}\)</span> from <span class="math notranslate nohighlight">\(u^n\)</span>. The matrix approach is simply an approach where all the linear equations are assembled first as a matrix problem. The matrix formulation for the generic problem is</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{u} = \boldsymbol{b}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} \in \mathbb{R}^{N+1}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{b} \in \mathbb{R}^{N+1}\)</span> and  the matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(N+1) \times (N+1)}\)</span> is the coefficient matrix, that for the decay problem is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix} 
+ 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ -C  &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1  
+\end{bmatrix}
+\end{split}\]</div>
+<p>We have a linear algebra problem</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{u} = \boldsymbol{b}
+\]</div>
+<p>which is trivially solved by Gaussian elimination or simply a forward elimination.</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u} = A^{-1} \boldsymbol{b}
+\]</div>
+<p>The system to solve looks like</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \underbrace{
+ \begin{bmatrix} 
+ 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ -C  &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -C &amp; 1  
+\end{bmatrix}}_{A}
+\underbrace{\begin{bmatrix}
+u^0 \\
+u^1 \\
+u^2 \\
+u^3 \\
+u^4 \\
+u^5 \\
+u^6 \\
+u^7 \\
+u^8 \\
+u^9
+\end{bmatrix}}_{\boldsymbol{u}} = 
+\underbrace{\begin{bmatrix}
+I \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 
+\end{bmatrix}}_{\boldsymbol{b}}
+\end{split}\]</div>
+<p>Notice the boundary condition in row 0. The remaining <span class="math notranslate nohighlight">\(N\)</span> rows (equations) use the same stencil.</p>
+<p>We can assemble the matrix <span class="math notranslate nohighlight">\(A\)</span> using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.html">scipy.sparse</a> package</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="n">C</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+<span class="n">A</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,
+         0.   ],
+       [-0.333,  1.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,
+         0.   ],
+       [ 0.   , -0.333,  1.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,
+         0.   ],
+       [ 0.   ,  0.   , -0.333,  1.   ,  0.   ,  0.   ,  0.   ,  0.   ,
+         0.   ],
+       [ 0.   ,  0.   ,  0.   , -0.333,  1.   ,  0.   ,  0.   ,  0.   ,
+         0.   ],
+       [ 0.   ,  0.   ,  0.   ,  0.   , -0.333,  1.   ,  0.   ,  0.   ,
+         0.   ],
+       [ 0.   ,  0.   ,  0.   ,  0.   ,  0.   , -0.333,  1.   ,  0.   ,
+         0.   ],
+       [ 0.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   , -0.333,  1.   ,
+         0.   ],
+       [ 0.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   ,  0.   , -0.333,
+         1.   ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+<span class="n">un</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve_triangular</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unit_diagonal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">un</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.000e+00, 3.333e-01, 1.111e-01, 3.704e-02, 1.235e-02, 4.115e-03,
+       1.372e-03, 4.572e-04, 1.524e-04])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution is the same as before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">un</span><span class="o">-</span><span class="n">u</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., 0., 0., 0., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-vibration-problem">
+<h2>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Permalink to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+u'' + \omega^2 u = 0, \quad u(0) = I, u'(0) = 0, t \in [0, T]
+\]</div>
+<p>is solved using a central difference for <span class="math notranslate nohighlight">\(n=1, 2, \ldots, N-1\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^n = 0
+\]</div>
+<p>The recursive algorithm is</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u^0 = I\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u^1 = u^0(1 - 0.5 \omega^2 \Delta t^2)\)</span></p></li>
+<li><p>for n = 1, 2, … , N-1</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(u^{n+1} = (2-\omega^2 \Delta t^2 ) u^n - u^{n-1}\)</span></p></li>
+</ul>
+</li>
+</ul>
+<p>The algebraic problem</p>
+<div class="math notranslate nohighlight">
+\[ A \boldsymbol{u} = \boldsymbol{b} \]</div>
+<p>is now, using <span class="math notranslate nohighlight">\(C = 2-\omega^2 \Delta t^2\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 
+ 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ -{C}/{2} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 1  &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 1 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 1 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 1 &amp; -C &amp; 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -C &amp; 1 &amp; 0 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -C &amp; 1 &amp; 0  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -C &amp; 1  
+\end{bmatrix}
+\begin{bmatrix}
+u^0 \\
+u^1 \\
+u^2 \\
+u^3 \\
+u^4 \\
+u^5 \\
+u^6 \\
+u^7 \\
+u^8 \\
+u^9
+\end{bmatrix}
+=
+\begin{bmatrix}
+I \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0
+\end{bmatrix}
+\end{split}\]</div>
+<div class="alert alert-block alert-info">
+Notice that the matrix is lower triangular. Matrices that are lower or upper triangular are especially quick to solve for using forward or backward substitution.
+</div>
+<div class="alert alert-block alert-success">
+The matrices are here lower triangular because the 2 boundary conditions are specified at one end of the domain. The scheme is explicit, the unknown $u^{n+1}$ is not used in computing the source term.
+</div></div>
+<div class="section" id="finite-differentiation-matrices">
+<h2>Finite differentiation matrices<a class="headerlink" href="#finite-differentiation-matrices" title="Permalink to this heading">#</a></h2>
+<p>We will now use Taylor expansions more orderly to obtain differentiation matrices. To this end let us first use the following expansions, three which are forward, and one backward:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+(-1)\quad u^{n-1} &amp;= u^n - h u' + \frac{h^2}{2}u'' - \frac{h^3}{6}u''' + \frac{h^4}{24}u'''' - \cdots \\
+(1)\quad u^{n+1} &amp;= u^n + h u' + \frac{h^2}{2}u'' + \frac{h^3}{6}u''' + \frac{h^4}{24}u'''' + \cdots \\
+(2)\quad u^{n+2} &amp;= u^n + 2h u' + \frac{2 h^2}{1}u'' + \frac{4 h^3}{3}u''' + \frac{2 h^4}{3}u'''' + \cdots \\
+(3)\quad u^{n+3} &amp;= u^n + 3h u' + \frac{9 h^2}{2}u'' + \frac{9 h^3}{2}u''' + \frac{27 h^4}{8}u'''' + \cdots \\
+\end{align*}
+\end{split}\]</div>
+<p>Remember, <span class="math notranslate nohighlight">\(u^{n+a} = u(t_{n+a})\)</span> and <span class="math notranslate nohighlight">\(t_{n+a} = (n+a)h\)</span> and we use <span class="math notranslate nohighlight">\(h=\Delta t\)</span> for simplicity.</p>
+<p>Consider now the central second order finite difference operator <span class="math notranslate nohighlight">\(u''(t_n)\)</span>. We can obtain an expression for this by adding equations (-1) and (1)</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
+u''(t_n) = \frac{u^{n+1}-2u^n + u^{n-1}}{h^2}  + \frac{h^2}{12}u'''' + 
+\end{equation*}
+\]</div>
+<p>The operation can be set up for all <span class="math notranslate nohighlight">\(n\)</span> as a matrix-vector product</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u}^{(2)} = D^{(2)} \boldsymbol{u}
+\]</div>
+<p>where we use <span class="math notranslate nohighlight">\(\boldsymbol{u}^{(2)}=\{u''(t_n)\}_{n=0}^{N}\)</span> to represent the finite difference approximation to the second derivative at the <span class="math notranslate nohighlight">\(N+1\)</span> mesh points. The finite difference differentiation matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
+? &amp; ? &amp; ? &amp; ?  &amp; ? &amp; ? &amp; ? &amp; ?  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+? &amp; ? &amp; ? &amp; ?  &amp; ? &amp; ? &amp; ? &amp; ? \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>where the first and last rows are open because the stencil in row 0 requires <span class="math notranslate nohighlight">\(u^{-1}\)</span> and for the row <span class="math notranslate nohighlight">\(N\)</span> it requires <span class="math notranslate nohighlight">\(u^{N+1}\)</span>. For these two rows we need to use a different stencil.</p>
+<p>A first order accurate expression for <span class="math notranslate nohighlight">\(u''\)</span> can be obtained by subtracting 2 times Eq. (1) from Eq. (2), i.e., <span class="math notranslate nohighlight">\((2)-2(1)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+(2)-2(1): \, u^{n+2} - 2u^{n+1} = -u^n + \frac{h^2}{1}u'' + h^3 u''' + \frac{7 h^4}{12}u'''' +
+\]</div>
+<p>Isolate <span class="math notranslate nohighlight">\(u''\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' + 
+\]</div>
+<p>The error is first order as the first error term is <span class="math notranslate nohighlight">\(-h u'''\)</span>.</p>
+<p>Can we do better? Yes, of course, just add one more point to the finite difference stencil using Eq. (3). Now to eliminate both <span class="math notranslate nohighlight">\(u'\)</span> and <span class="math notranslate nohighlight">\(u'''\)</span> terms add the three equations as <span class="math notranslate nohighlight">\(-(3) + 4(2) - 5(1)\)</span> (don’t worry about how I know this yet)</p>
+<div class="math notranslate nohighlight">
+\[
+-(3)+4(2)-5(1): \, -u^{n+3}+4u^{n+2}-5u^{n+1} = -2 u^n + h^2 u'' - \frac{11 h^4}{12}u'''' +   
+\]</div>
+<p>which leads to the second order accurate</p>
+<div class="math notranslate nohighlight">
+\[
+u'' = \frac{-u^{n+3} + 4u^{n+2} - 5u^{n+1} + 2u^n}{h^2} + \frac{11 h^2}{12} u'''' +
+\]</div>
+<p>We can now modify our differentiation matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> using this one sided (forward) difference for row 0. For the last row, we can derive the same expression, only using points backward in time:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
+2 &amp; -5 &amp; 4 &amp; -1  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; -1 &amp; 4 &amp; -5 &amp; 2 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>Let us assemble this matrix in Python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 1., -2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  1., -2.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  1., -2.,  1.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  1., -2.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  1., -2.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  1., -2.,  1.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -2.,  1.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  1., -2.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fix the first and last rows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># don&#39;t forget h</span>
+<span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2., -5.,  4., -1.,  0.,  0.,  0.,  0.,  0.],
+       [ 1., -2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  1., -2.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  1., -2.,  1.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  1., -2.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  1., -2.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  1., -2.,  1.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -2.,  1.],
+       [ 0.,  0.,  0.,  0.,  0., -1.,  4., -5.,  2.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we apply <span class="math notranslate nohighlight">\(D^{(2)}\)</span> to a vector (mesh function) <span class="math notranslate nohighlight">\(\boldsymbol{f} = \{f(t_n)\}_{n=0}^{N}\)</span>, the we get the second derivative with second order accuracy. Let us try this first with <span class="math notranslate nohighlight">\(f=t^2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.  ,  0.25,  1.  ,  2.25,  4.  ,  6.25,  9.  , 12.25, 16.  ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2f</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span>
+<span class="n">d2f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2., 2., 2., 2., 2.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Try the same, but with only first order accurate edges</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2e</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="n">D2e</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">D2e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">D2e</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">D2e</span> <span class="o">@</span> <span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2., 2., 2., 2., 2.])
+</pre></div>
+</div>
+</div>
+</div>
+<p>What happened? Why is it still perfect?</p>
+<p>The reason is that the error in the stencil</p>
+<div class="math notranslate nohighlight">
+\[
+u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' + 
+\]</div>
+<p>is proportional to <span class="math notranslate nohighlight">\(u'''\)</span>, which is 0. Hence we still get no error even though the order is only one. A more complex function would show the error better. Let us try <span class="math notranslate nohighlight">\(f=\sin (\pi t/T)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">d2fe</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f</span>
+<span class="n">d2f</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span>
+<span class="n">d2f1</span> <span class="o">=</span> <span class="n">D2e</span> <span class="o">@</span> <span class="n">f</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">d2fe</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">d2f</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">d2f1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd order&#39;</span><span class="p">,</span> <span class="s1">&#39;1st order&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1183c55d0&gt;
+</pre></div>
+</div>
+<img alt="_images/c6b993903b7d812c679558047bd13fdcb641fa826cedca29bfc937a10dbbb9c2.png" src="_images/c6b993903b7d812c679558047bd13fdcb641fa826cedca29bfc937a10dbbb9c2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="first-derivative">
+<h2>First derivative<a class="headerlink" href="#first-derivative" title="Permalink to this heading">#</a></h2>
+<p>Let us create a similar matrix for a first order derivative. We use a central stencil for <span class="math notranslate nohighlight">\(n=1, 2, \ldots N-1\)</span> and skewed stencils for the first and last rows. Again, we need the following Taylor expansions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+(-1)\quad u^{n-1} &amp;= u^n - h u' + \frac{h^2}{2}u'' - \frac{h^3}{6}u''' + \frac{h^4}{24}u'''' + \cdots \\
+(1)\quad u^{n+1} &amp;= u^n + h u' + \frac{h^2}{2}u'' + \frac{h^3}{6}u''' + \frac{h^4}{24}u'''' + \cdots \\
+(2)\quad u^{n+2} &amp;= u^n + 2h u' + \frac{2 h^2}{1}u'' + \frac{4 h^3}{3}u''' + \frac{2 h^4}{3}u'''' + \cdots 
+\end{align}
+\end{split}\]</div>
+<p>(1) - (-1) leads to</p>
+<div class="math notranslate nohighlight">
+\[
+u'(t_n) = \frac{u^{n+1}-u^{n-1}}{2 h} + \frac{h^2}{6} u''' +
+\]</div>
+<p>We get a first order approximation for <span class="math notranslate nohighlight">\(u'\)</span> using merely Eq. (1):</p>
+<div class="math notranslate nohighlight">
+\[
+u'(t_n) = \frac{u^{n+1}-u^n}{h} - \frac{h}{2}u'' - 
+\]</div>
+<p>Adding one more equation (Eq. (2)) we get second order: (2)-4(1)</p>
+<div class="math notranslate nohighlight">
+\[
+u'(t_n) = \frac{-u^{n+2}+4u^{n+1}-3u^n}{2h} + \frac{h^2}{3}u''' +
+\]</div>
+<p>Hence a second order accurate first differentiation matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
+-3 &amp; 4 &amp; -1 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+-1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  -1&amp; 0&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; -1&amp; 0&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 1 &amp; -4 &amp; 3 \\
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="n">D1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">D1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">D1</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+<span class="n">D1</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-3.,  4., -1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [-1.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0., -1.,  0.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0., -1.,  0.,  1.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0., -1.,  0.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0., -1.,  0.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0., -1.,  0.,  1.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0., -1.,  0.,  1.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -4.,  3.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">t</span>
+<span class="n">D1</span> <span class="o">@</span> <span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">d1fe</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+<span class="n">d1f</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">@</span> <span class="n">f</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">d1fe</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">d1f</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd order&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x118422050&gt;
+</pre></div>
+</div>
+<img alt="_images/c5eac90d947cf2d2018fb7e0bee93f25914e6a44b3c6bbd9c9066a3437553ffd.png" src="_images/c5eac90d947cf2d2018fb7e0bee93f25914e6a44b3c6bbd9c9066a3437553ffd.png" />
+</div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">D2</span></code> is not equal to <code class="docutils literal notranslate"><span class="pre">(D1)^2</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2n</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">@</span> <span class="n">D1</span>
+<span class="n">D2n</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.25, -2.75,  1.75, -0.25,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],
+       [ 0.75, -1.25,  0.25,  0.25,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],
+       [ 0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ,  0.  ,  0.  ,  0.  ],
+       [ 0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ,  0.  ,  0.  ],
+       [ 0.  ,  0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ,  0.  ],
+       [ 0.  ,  0.  ,  0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ],
+       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25],
+       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.25,  0.25, -1.25,  0.75],
+       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  , -0.25,  1.75, -2.75,  1.25]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span>
+<span class="n">d2fe</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">f</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span> <span class="o">-</span> <span class="n">d2fe</span>
+<span class="n">en</span> <span class="o">=</span> <span class="n">D2n</span> <span class="o">@</span> <span class="n">f</span> <span class="o">-</span> <span class="n">d2fe</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">e2</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">en</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.16216463185914665, 0.37045090252771984)
+</pre></div>
+</div>
+</div>
+</div>
+<p>It can be shown that the matrix that is D2n =<span class="math notranslate nohighlight">\(D^{(1)} D^{(1)}\)</span> (matrix product of <span class="math notranslate nohighlight">\(D^{(1)}\)</span> with itself) is only first order accurate.</p>
+</div>
+<div class="section" id="solve-equations-using-fd-matrices">
+<h2>Solve equations using FD matrices<a class="headerlink" href="#solve-equations-using-fd-matrices" title="Permalink to this heading">#</a></h2>
+<p>The FD matrices are great because they depend only on <span class="math notranslate nohighlight">\(h\)</span> and may be implemented once and reused. They only need to be modified in accordance with boundary conditions.</p>
+<p>Let’s do the decay equation first and assemble the system</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{u} = \boldsymbol{b}
+\]</div>
+<p>for the equation</p>
+<div class="math notranslate nohighlight">
+\[
+u' + au = 0, u(0)=I, t \in [0, T] 
+\]</div>
+<p>Before boundary conditions we can assemble this as</p>
+<div class="math notranslate nohighlight">
+\[
+(D^{(1)} + a \mathbb{I})\boldsymbol{u} = \boldsymbol{b}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> is the identity matrix and the only non-zero item in <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span> is the boundary condition for <span class="math notranslate nohighlight">\(n=0\)</span>. We get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}-u^{n-1}}{2 h} + a u^n = 0
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="n">D1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span> <span class="c1"># Fix boundaries with second order accurate stencil</span>
+<span class="n">D1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">D1</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+<span class="n">Id</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">Id</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="c1"># boundary condition</span>
+<span class="n">A</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [-1.,  2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
+       [ 0., -1.,  2.,  1.,  0.,  0.,  0.,  0.,  0.],
+       [ 0.,  0., -1.,  2.,  1.,  0.,  0.,  0.,  0.],
+       [ 0.,  0.,  0., -1.,  2.,  1.,  0.,  0.,  0.],
+       [ 0.,  0.,  0.,  0., -1.,  2.,  1.,  0.,  0.],
+       [ 0.,  0.,  0.,  0.,  0., -1.,  2.,  1.,  0.],
+       [ 0.,  0.,  0.,  0.,  0.,  0., -1.,  2.,  1.],
+       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -4.,  5.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x119678090&gt;,
+ &lt;matplotlib.lines.Line2D at 0x119727b90&gt;,
+ &lt;matplotlib.lines.Line2D at 0x1197331d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/1ff4bd3610ee4c5e32448f16610af7ad700e24134d82d7fd0aad06a7207e9a05.png" src="_images/1ff4bd3610ee4c5e32448f16610af7ad700e24134d82d7fd0aad06a7207e9a05.png" />
+</div>
+</div>
+<p>The scheme is not fully implicit in the source term. However, it is using three neighbouring points for every equation, which is more stable than using merely two.</p>
+</div>
+<div class="section" id="generic-finite-difference-stencils">
+<h2>Generic finite difference stencils<a class="headerlink" href="#generic-finite-difference-stencils" title="Permalink to this heading">#</a></h2>
+<p>It is possible to derive finite difference stencils of any order from the Taylor expansions around a point in both positive and negative directions. The generic Taylor expansion around <span class="math notranslate nohighlight">\(x=x_0\)</span> reads</p>
+<div class="math notranslate nohighlight">
+\[
+u(x) = \sum_{i=0}^{N} \frac{(x-x_0)^i}{i!} u^{(i)}(x_0) + \mathcal{O}((x-x_0)^{N+1})
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(u^{(i)}(x_0) = \frac{d^{i}u}{dx^{i}}|_{x=x_0}\)</span>.</p>
+<p>With the finite difference method we only evaluate this expansion for certain points around <span class="math notranslate nohighlight">\(x_0\)</span>. That is, we use only <span class="math notranslate nohighlight">\(x=x_0+mh\)</span>, where <span class="math notranslate nohighlight">\(m\)</span> is an integer and <span class="math notranslate nohighlight">\(h\)</span> is a constant (time step or mesh size). We get</p>
+<div class="math notranslate nohighlight">
+\[
+u(x_0+mh) = \sum_{i=0}^{N} \frac{(mh)^i}{i!} u^{(i)}(x_0) + \mathcal{O}(h^{N+1})
+\]</div>
+<p>where we usually use the finite difference notation <span class="math notranslate nohighlight">\(u^{n+m} = u(x_0+mh)\)</span>. Note that the equation above is a matrix vector product, because <span class="math notranslate nohighlight">\(\frac{(mh)^i}{i!}\)</span> has two indices <span class="math notranslate nohighlight">\(m, i\)</span> like a matrix and <span class="math notranslate nohighlight">\(u^{(i)}(x_0)\)</span> and <span class="math notranslate nohighlight">\(u(x_0+mh)\)</span> have both only one (<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(m\)</span>, respectively). With <span class="math notranslate nohighlight">\(c_{mi} = \frac{(mh)^i}{i!}\)</span> and <span class="math notranslate nohighlight">\(du_i = u^{(i)}(x_0)\)</span> and neglecting the <span class="math notranslate nohighlight">\(\mathcal{O}(h^{N+1})\)</span> terms we get</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+m} = \sum_{i=0}^N c_{mi} du_i
+\]</div>
+<p>or on matrix notation</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u} = C \boldsymbol{du}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} = \{u^{n+m}\}_{m=m_0}^{N-m_0}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{du}=\{du_i\}_{i=0}^N\)</span>.</p>
+<p>We can set up a system of equations for <span class="math notranslate nohighlight">\(m=-2, -1, 0, 1, 2\)</span> and <span class="math notranslate nohighlight">\(N=4\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u^{n-2} &amp;= \sum_{i=0}^{N} \frac{(-2h)^i}{i!} du_i  \\
+u^{n-1} &amp;= \sum_{i=0}^{N} \frac{(-h)^i}{i!} du_i  \\
+u^{n} &amp;= u^{n} \\
+u^{n+1} &amp;= \sum_{i=0}^{N} \frac{(h)^i}{i!} du_i  \\
+u^{n+2} &amp;= \sum_{i=0}^{N} \frac{(2h)^i}{i!} du_i  \\
+\end{align*}
+\end{split}\]</div>
+<p>These 5 equations can be written on matrix form as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+u^{n-2}\\
+u^{n-1}\\
+u^{n}\\
+u^{n+1}\\
+u^{n+2}\\
+\end{bmatrix}
+= \begin{bmatrix}
+\frac{(-2h)^0}{0!} &amp; \frac{(-2h)^1}{1!} &amp; \frac{(-2h)^2}{2!} &amp; \frac{(-2h)^3}{3!} &amp; \frac{(-2h)^4}{4!}  \\
+\frac{(-h)^0}{0!} &amp; \frac{(-h)^1}{1!} &amp; \frac{(-h)^2}{2!} &amp; \frac{(-h)^3}{3!} &amp; \frac{(-h)^4}{4!} \\
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\frac{(h)^0}{0!} &amp; \frac{(h)^1}{1!} &amp; \frac{(h)^2}{2!} &amp; \frac{(h)^3}{3!} &amp; \frac{(h)^4}{4!} \\
+\frac{(2h)^0}{0!} &amp; \frac{(2h)^1}{1!} &amp; \frac{(2h)^2}{2!} &amp; \frac{(2h)^3}{3!} &amp; \frac{(2h)^4}{4!} \\
+\end{bmatrix}
+\begin{bmatrix}
+du_{0} \\
+du_1 \\
+du_2 \\
+du_3 \\
+du_4
+\end{bmatrix}
+\end{split}\]</div>
+<p>or more easily as</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u} = C \boldsymbol{du}
+\]</div>
+<p>Remember that the derivatives <span class="math notranslate nohighlight">\(du_i = u^{(i)}(x_0)\)</span> are what we’re normally interested in. And by assembling the matrix <span class="math notranslate nohighlight">\(C\)</span> we can compute any finite difference scheme (!!) simply through:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{du} = C^{-1} \boldsymbol{u}
+\]</div>
+<p>For example, for a second order accurate scheme (with <span class="math notranslate nohighlight">\(m=-1, 0, 1\)</span>) we should have</p>
+<div class="math notranslate nohighlight">
+\[
+du_2 = u^{(2)}(x_0) = \frac{u^{n+1}-2u^n+u^{n-1}}{h^2}
+\]</div>
+<p>Let’s derive this with the approach above. The scheme is central so we use <span class="math notranslate nohighlight">\(m=(-1, 0, 1)\)</span> and second order so use <span class="math notranslate nohighlight">\(N=2\)</span>. The <span class="math notranslate nohighlight">\(C\)</span> matrix is then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = \begin{bmatrix}
+1 &amp; -h &amp; \frac{h^2}{2} \\
+1 &amp; 0 &amp; 0 \\
+1 &amp; h &amp; \frac{h^2}{2}
+\end{bmatrix}
+\end{split}\]</div>
+<p>In Python using Sympy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,h&#39;</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">C</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; - h &amp; \frac{h^{2}}{2}\\1 &amp; 0 &amp; 0\\1 &amp; h &amp; \frac{h^{2}}{2}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>Take the inverse</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 0\\- \frac{1}{2 h} &amp; 0 &amp; \frac{1}{2 h}\\\frac{1}{h^{2}} &amp; - \frac{2}{h^{2}} &amp; \frac{1}{h^{2}}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<p>The second order central schemes are found in the last two rows. Row 1 is the first derivative, row 2 the second derivative (i.e., row one is <span class="math notranslate nohighlight">\(du_1\)</span> and row 2 <span class="math notranslate nohighlight">\(du_2\)</span>). We can also print out the scheme by computing</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{du} = C^{-1} \boldsymbol{u}
+\]</div>
+<p>For given order 2 we get</p>
+<div class="math notranslate nohighlight">
+\[
+du_2 = \sum_{i=0}^N c_{2i} u^{n-i-1}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">)</span>
+<span class="n">coef</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)])</span>
+<span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[\begin{matrix}- \frac{2 u{\left(x \right)}}{h^{2}} + \frac{u{\left(- h + x \right)}}{h^{2}} + \frac{u{\left(h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
+</div>
+</div>
+<p>We can get any finite difference scheme using all the points that we like. For example, to create a forward difference of the second derivative using inly <span class="math notranslate nohighlight">\(u^n, u^{n+1}\)</span> and <span class="math notranslate nohighlight">\(u^{n+2}\)</span> we can use <span class="math notranslate nohighlight">\(m=0, 1, 2\)</span> and <span class="math notranslate nohighlight">\(N=2\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+1 &amp; h &amp; \frac{h^2}{2} \\
+1 &amp; 2h &amp; {2 h^2}
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">coef</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)])</span>
+<span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[\begin{matrix}\frac{u{\left(x \right)}}{h^{2}} - \frac{2 u{\left(h + x \right)}}{h^{2}} + \frac{u{\left(2 h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
+</div>
+</div>
+<p>However, this scheme will only be first order accurate, because it is not central. A second order scheme needs to use one more point, and thus <span class="math notranslate nohighlight">\(m=0,1,2,3\)</span> and <span class="math notranslate nohighlight">\(N=3\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; h &amp; \frac{h^2}{2} &amp; \frac{h^3}{6} \\
+1 &amp; 2h &amp; {2 h^2} &amp; \frac{8 h^3}{6} \\
+1 &amp; 3h &amp; \frac{9 h^2}{2} &amp; \frac{27 h^3}{6} \\
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">9</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">27</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0\\- \frac{11}{6 h} &amp; \frac{3}{h} &amp; - \frac{3}{2 h} &amp; \frac{1}{3 h}\\\frac{2}{h^{2}} &amp; - \frac{5}{h^{2}} &amp; \frac{4}{h^{2}} &amp; - \frac{1}{h^{2}}\\- \frac{1}{h^{3}} &amp; \frac{3}{h^{3}} &amp; - \frac{3}{h^{3}} &amp; \frac{1}{h^{3}}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coef</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">)])</span>
+<span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[\begin{matrix}\frac{2 u{\left(x \right)}}{h^{2}} - \frac{5 u{\left(h + x \right)}}{h^{2}} + \frac{4 u{\left(2 h + x \right)}}{h^{2}} - \frac{u{\left(3 h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">9</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">27</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 1\\- \frac{1}{3 h} &amp; \frac{3}{2 h} &amp; - \frac{3}{h} &amp; \frac{11}{6 h}\\- \frac{1}{h^{2}} &amp; \frac{4}{h^{2}} &amp; - \frac{5}{h^{2}} &amp; \frac{2}{h^{2}}\\- \frac{1}{h^{3}} &amp; \frac{3}{h^{3}} &amp; - \frac{3}{h^{3}} &amp; \frac{1}{h^{3}}\end{matrix}\right]\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coef</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span>
+<span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[\begin{matrix}\frac{11 u{\left(x \right)}}{6 h} - \frac{u{\left(- 3 h + x \right)}}{3 h} + \frac{3 u{\left(- 2 h + x \right)}}{2 h} - \frac{3 u{\left(- h + x \right)}}{h}\end{matrix}\right]\]</div>
+</div>
+</div>
+<p>This is the stencil used for the first and last row of the second derivative matrix for the vibration problem.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "matmek4270"
+        },
+        kernelOptions: {
+            name: "matmek4270",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'matmek4270'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 3</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lecture5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 5</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-finite-difference-method">The Finite difference method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-approach">Matrix approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-vibration-problem">The vibration problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differentiation-matrices">Finite differentiation matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-derivative">First derivative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-equations-using-fd-matrices">Solve equations using FD matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generic-finite-difference-stencils">Generic finite difference stencils</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

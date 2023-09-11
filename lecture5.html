@@ -1,0 +1,1250 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 5 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 4" href="lecture4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 5</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 5</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-methods-for-the-wave-equation">Finite difference methods for the wave equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-fixed-end">Dirichlet (Fixed end)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-loose-end">Neumann (Loose end)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-boundary-no-end">Open boundary (No end)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remaining-complications">Remaining complications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet">Dirichlet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann">Neumann</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-boundaries">Open boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-boundaries">Periodic boundaries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wave-equation-solver">Wave equation solver</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-5">
+<h1>Lecture 5<a class="headerlink" href="#lecture-5" title="Permalink to this heading">#</a></h1>
+<div class="section" id="finite-difference-methods-for-the-wave-equation">
+<h2>Finite difference methods for the wave equation<a class="headerlink" href="#finite-difference-methods-for-the-wave-equation" title="Permalink to this heading">#</a></h2>
+<p>The wave equation is a partial differential equation (PDE):</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}
+\]</div>
+<p>We will consider the time and space domains:
+<span class="math notranslate nohighlight">\(t\in[0, T]\)</span>, <span class="math notranslate nohighlight">\(x \in [0, L]\)</span>.</p>
+<ul class="simple">
+<li><p>The wave equation is a hyperbolic PDE, so recursive methods are ok.</p></li>
+<li><p>The solutions are waves that can be written as <span class="math notranslate nohighlight">\(u(x+ct)\)</span> and <span class="math notranslate nohighlight">\(u(x-ct)\)</span>.</p></li>
+</ul>
+<p>The two derivatives in space require two boundary conditions</p>
+<div class="section" id="dirichlet-fixed-end">
+<h3>Dirichlet (Fixed end)<a class="headerlink" href="#dirichlet-fixed-end" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+u(0, t) = u(L, t) = 0
+\]</div>
+<p>The wave will be reflected, but <span class="math notranslate nohighlight">\(u\)</span> will change sign. A nonzero Dirichlet condition is also possible, but will not be considered here.</p>
+</div>
+<div class="section" id="neumann-loose-end">
+<h3>Neumann (Loose end)<a class="headerlink" href="#neumann-loose-end" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial x}(0, t) = \frac{\partial u}{\partial x}(L, t) = 0
+\]</div>
+<p>The wave will be reflected without change in sign. A nonzero Neumann condition is also possible, but will not be considered here.</p>
+</div>
+<div class="section" id="open-boundary-no-end">
+<h3>Open boundary (No end)<a class="headerlink" href="#open-boundary-no-end" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u(0, t)}{\partial t} - c \frac{\partial u(0, t)}{\partial x}=0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u(L, t)}{\partial t} + c \frac{\partial u(L, t)}{\partial x}=0
+\]</div>
+<p>The wave will simply pass undisturbed and unreflected through an open boundary.</p>
+<p>The following example illustrates nicely. Turn on Pulse, and turn off damping. Specify one of the three boundary conditions and press the green pulse button.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="600"
+            height="400"
+            src="https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<p>The two derivatives in time also require two conditions, but these are both set at <span class="math notranslate nohighlight">\(t=0\)</span> since the PDE is hyperbolic</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t=0) = I(x) \quad \text{and} \quad
+\frac{\partial u}{\partial t}(x, t=0) = V(x)
+\]</div>
+<p>for some functions <span class="math notranslate nohighlight">\(I(x)\)</span> and <span class="math notranslate nohighlight">\(V(x)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="discretization">
+<h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
+<p>The simplest possible discretization is uniform in time and space</p>
+<div class="math notranslate nohighlight">
+\[
+t_n = n \Delta t, \quad n = 0, 1, \ldots, N_t
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+x_j = j \Delta x, \quad j = 0, 1, \ldots, N
+\]</div>
+<p>Hence the computational mesh is a grid like shown below</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">2.15</span><span class="p">,</span> <span class="mf">3.15</span><span class="p">,</span> <span class="s1">&#39;$(x_2, t_3)$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/6c0961710fa878b8b3fea292c4152a3defdc4228838df974a58eb2b922d8f8f3.png" src="_images/6c0961710fa878b8b3fea292c4152a3defdc4228838df974a58eb2b922d8f8f3.png" />
+</div>
+</div>
+<p>A mesh function is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+u^n_j = u(x_j, t_n)
+\]</div>
+<p>and the mesh function has one value at each node in the mesh. For simplicity in later algorithms we will use the vectors</p>
+<div class="math notranslate nohighlight">
+\[
+u^n = \{u^n_0, u^n_1, \ldots, u^n_N\}
+\]</div>
+<p>which is the solution vector at time <span class="math notranslate nohighlight">\(t_n\)</span>.</p>
+<p>A second order accurate discretization of the wave equation is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}_j - u^n_j + u^{n-1}_j}{\Delta x^2} = c^2 \frac{u^n_{j+1}-2 u^{n}_j + u^n_{j-1}}{\Delta t^2}
+\]</div>
+<p>This stencil makes use of 5 neighbouring points</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="c1">#ax.get_xaxis().set_visible(False)</span>
+<span class="c1">#ax.get_yaxis().set_visible(False)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$j-1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$j$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$j+1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;$n-1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;$n$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;$n+1$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;$time$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$space$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/722eb147ed3da24b3565da0da72391769da2e8286d2b2b906015c0bcb1f60cc1.png" src="_images/722eb147ed3da24b3565da0da72391769da2e8286d2b2b906015c0bcb1f60cc1.png" />
+</div>
+</div>
+<p>The recursive solution algorithm is basically to solve the discrete PDE for all <span class="math notranslate nohighlight">\(u^{n+1}_j\)</span></p>
+<ol class="arabic simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(u^0\)</span> and <span class="math notranslate nohighlight">\(u^1\)</span></p></li>
+<li><p>for n in range(1, <span class="math notranslate nohighlight">\(N_t-1\)</span>):</p>
+<ul class="simple">
+<li><p>for j in range(1, N-1):</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(u^{n+1}_j = 2u^n_j - u^{n-1}_j + \left(\frac{c \Delta t}{ \Delta x}\right)^2 (u^{n}_{j+1}-2u^n_{j} + u^n_{j-1})\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>and apply the chosen boundary conditions.</p>
+<p>Since the solution algorithm is recursive we only need to store the solution at three time steps,</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}, u^n, u^{n-1}
+\]</div>
+<p>Each vector requires storage of <span class="math notranslate nohighlight">\(N+1\)</span> number, so the total storage requirement for the method is merely <span class="math notranslate nohighlight">\(3(N+1)\)</span>.</p>
+<p>The unknown vector is <span class="math notranslate nohighlight">\(u^{n+1}\)</span>, whereas <span class="math notranslate nohighlight">\(u^n\)</span> and <span class="math notranslate nohighlight">\(u^{n-1}\)</span> are always known.</p>
+<p>The number</p>
+<div class="math notranslate nohighlight">
+\[
+\underline{c} = \frac{c \Delta t}{\Delta x}
+\]</div>
+<p>is the Courant number. The value of the Courant number is very important for the stability of the numerical scheme.</p>
+<p>We may now use the second differentiation matrix to simplify the notation. We use</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D^{(2)} = \begin{bmatrix}
+-2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>which does not include <span class="math notranslate nohighlight">\(\Delta x\)</span>. We may now simply write the recursive formula as</p>
+<p>For <span class="math notranslate nohighlight">\(n=(1, 2, \ldots, N_t-1)\)</span> compute</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n
+\]</div>
+<p>Note how the <span class="math notranslate nohighlight">\(j\)</span>’th row of the matrix vector product <span class="math notranslate nohighlight">\(D^{(2)} u^{n}\)</span> is given as</p>
+<div class="math notranslate nohighlight">
+\[
+(D^{(2)} u^n)_j = \sum_{i=0}^N d^{(2)}_{ji} u^n_{i} = u^n_{j+1}-2u^n_j+u^n_{j-1}
+\]</div>
+<p>except for the first and last rows where <span class="math notranslate nohighlight">\(j=0\)</span> and <span class="math notranslate nohighlight">\(j=N\)</span>, respectively. However, these rows will be used for boundary conditions and will as such always require modification. For all inner points the above recursive equation is ok.</p>
+<p>Note how the algorithm now basically can be written with merely one single for loop</p>
+<ol class="arabic simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(u^0, u^1\)</span></p></li>
+<li><p>For <span class="math notranslate nohighlight">\(n = 1, 2, \ldots N_t-1\)</span> compute</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n
+\]</div>
+<p>Hence the use of matrix and vector notation simplifies the algorithm and as such also the implementation. However, in addition to the two simple steps above there is also boundary conditions. Boundary conditions are usually the most tricky part of numerical PDE solvers.</p>
+<p>The complete algorithm will also need to update vectors as we move the solution forward:</p>
+<ol class="arabic simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(u^0, u^1\)</span></p></li>
+<li><p>For <span class="math notranslate nohighlight">\(n = 1, 2, \ldots N_t-1\)</span> compute</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u^{n+1} &amp;= 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n \\
+\text{Apply} &amp;\text{ boundary conditions} \\
+u^{n-1} &amp;\leftarrow u^n\\
+u^{n} &amp;\leftarrow u^{n+1}
+\end{align*}
+\end{split}\]</div>
+<p>We swap <span class="math notranslate nohighlight">\(u^{n-1} \leftarrow u^n\)</span> and <span class="math notranslate nohighlight">\(u^{n} \leftarrow u^{n+1}\)</span> to get ready for the next time step.</p>
+</div>
+<div class="section" id="remaining-complications">
+<h2>Remaining complications<a class="headerlink" href="#remaining-complications" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>How to fix initial conditions in time?</p></li>
+<li><p>How to set boundary conditions in space?</p></li>
+<li><p>Implementation</p></li>
+</ol>
+<p>At the end of the notebook there is implemented a class <code class="docutils literal notranslate"><span class="pre">Wave1D</span></code> that will be used to solve the wave equation. The solver has implemented only the simplest Dirichlet boundary condition and it is an assignment to implement the other possibilities. The reader is advised to study the details of the class.</p>
+<p>For the implementation we define three vectors in Python to hold the solutions at <span class="math notranslate nohighlight">\(u^{n+1}, u^n\)</span> and <span class="math notranslate nohighlight">\(u^{n-1}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># The spatial discretization</span>
+<span class="n">unp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">un</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">unm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="initial-conditions">
+<h2>Initial conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this heading">#</a></h2>
+<p>Initial conditions will need to fix <code class="docutils literal notranslate"><span class="pre">un</span></code> and <code class="docutils literal notranslate"><span class="pre">unm1</span></code>. There are basically two options. If a time dependent function is given for initial conditions, then this function may be used for not only one, but two time steps, at</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t=0) \quad \text{and} \quad u(x, t=\Delta t)
+\]</div>
+<p>We will in the implementation then set <code class="docutils literal notranslate"><span class="pre">unm1</span></code>=<span class="math notranslate nohighlight">\(u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code>=<span class="math notranslate nohighlight">\(u(x, \Delta t)\)</span> simply by evaluation.</p>
+<p>The other alternative is to use the actual condition <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}=V(x)\)</span>. In order to implement this with a central scheme and second order accuracy, we use</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial t} = \frac{u^1-u^{-1}}{2 \Delta t} = V
+\]</div>
+<p>and then we use this equation to solve for the “unknown” <span class="math notranslate nohighlight">\(u^{-1}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+u^{-1} = u^1 - 2 V \Delta t
+\]</div>
+<p>This can further be used in the wave PDE at initial time step <span class="math notranslate nohighlight">\(n=0\)</span>, which is</p>
+<div class="math notranslate nohighlight">
+\[
+u^1 = 2u^0 - u^{-1} + \underline{c}^2 D^{(2)}u^0
+\]</div>
+<p>Insert for <span class="math notranslate nohighlight">\(u^{-1}\)</span> and obtain a modified equation for <span class="math notranslate nohighlight">\(u^1\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u^1 = u^0 + \frac{\underline{c}^2}{2}D^{(2)}u^0 + V \Delta t
+\]</div>
+<p>So with Neumann boundary conditions we initialize <code class="docutils literal notranslate"><span class="pre">unm1</span></code><span class="math notranslate nohighlight">\(=u^0=u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code><span class="math notranslate nohighlight">\(=u^1=u(x, \Delta t)\)</span> and solve first for <code class="docutils literal notranslate"><span class="pre">unp1</span></code><span class="math notranslate nohighlight">\(=u^2=u(x, 2\Delta t)\)</span>.</p>
+<p>The implementation in <code class="docutils literal notranslate"><span class="pre">Wave1D</span></code> simply evaluates a Sympy function for the initial condition. See the initial part of <code class="docutils literal notranslate"><span class="pre">Wave1D.__call__</span></code>.</p>
+</div>
+<div class="section" id="boundary-conditions">
+<h2>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h2>
+<p>There are several options for the boundary conditions to the spatial domain.</p>
+<ol class="arabic simple">
+<li><p>Dirichlet</p></li>
+<li><p>Neumann</p></li>
+<li><p>Open boundaries</p></li>
+<li><p>Periodic boundaries</p></li>
+</ol>
+<p>We have seen the first three initially in these notes. We will now look at the implementation details.</p>
+<p>We will implement the entire solver using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">unp1</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">un</span> <span class="o">-</span> <span class="n">unm1</span> <span class="o">+</span> <span class="n">C</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="n">un</span><span class="p">)</span>
+    <span class="n">apply_bcs</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span>
+    <span class="n">unm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">un</span>
+    <span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">unp1</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">C</span></code> is the Courant number, <code class="docutils literal notranslate"><span class="pre">D</span></code> is the <span class="math notranslate nohighlight">\(D^{(2)}\)</span> matrix (without scaling) and <code class="docutils literal notranslate"><span class="pre">apply_bcs</span></code> is a function used to fix the boundary values after solving.</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">D</span> <span class="pre">&#64;</span> <span class="pre">un</span></code> represents the matrix vector product</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+-2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+\end{bmatrix}
+\begin{bmatrix}
+u^n_0 \\
+u^n_1 \\
+u^n_2 \\
+\vdots \\
+u^{n}_{N-2} \\
+u^n_{N-1} \\
+u^n_{N}
+\end{bmatrix}
+\end{split}\]</div>
+<p>and the result is multiplied by the scalar value <span class="math notranslate nohighlight">\(C^2\)</span>.</p>
+<div class="section" id="dirichlet">
+<h3>Dirichlet<a class="headerlink" href="#dirichlet" title="Permalink to this heading">#</a></h3>
+<p>Dirichlet boundary conditions specifies fixed values at the edges of the domain. If both are zero, then we fix</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0 = 0 \quad u^{n+1}_{N} = 0
+\]</div>
+<p>which is implemented in the function <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> at each time step as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unp1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">unp1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that since we specify <span class="math notranslate nohighlight">\(u^{n+1}_0\)</span> and <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> after solving for all the internal nodes, it does not matter what is in the first and last row of <span class="math notranslate nohighlight">\(D^{(2)}\)</span>. Whatever is computed for <span class="math notranslate nohighlight">\(j=0\)</span> and <span class="math notranslate nohighlight">\(j=N\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n
+\]</div>
+<p>will be overwritten by specifying <span class="math notranslate nohighlight">\(u^{n+1}_0 = u^{n+1}_{N} = 0\)</span>.</p>
+<p>For Dirichlet the algorithm is</p>
+<ol class="arabic simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(u^0, u^1\)</span></p></li>
+<li><p>For <span class="math notranslate nohighlight">\(n = 1, 2, \ldots N_t-1\)</span> compute</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u^{n+1} &amp;= 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n \\
+u^{n+1}_0 &amp;= u^{n+1}_N = 0 \\
+u^{n-1} &amp;\leftarrow u^n\\
+u^{n} &amp;\leftarrow u^{n+1}
+\end{align*}
+\end{split}\]</div>
+<p>If the PDE is only used for initial points <span class="math notranslate nohighlight">\(j=1, 2, \ldots, N-1\)</span>, then it is not necessary to set <span class="math notranslate nohighlight">\(u^{n+1}_0 = u^{n+1}_N = 0\)</span> every time step. It is sufficient to fix them at the start of the simulation.</p>
+</div>
+<div class="section" id="neumann">
+<h3>Neumann<a class="headerlink" href="#neumann" title="Permalink to this heading">#</a></h3>
+<p>Neumann is a bit more tricky. For simplicity we assume homogeneous conditions, such that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial x}(0, t) = \frac{\partial u}{\partial x}(L, t) = 0 
+\]</div>
+<p>If we now apply central differences of second order, then the stencil is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial x} = \frac{u^{n}_{j+1}-u^{n}_{j-1}}{2 \Delta x}
+\]</div>
+<p>for any time step <span class="math notranslate nohighlight">\(n \in (0, 1, \ldots, N)\)</span>. At the left boundary <span class="math notranslate nohighlight">\(j=0\)</span> and we get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial x} = \frac{u^{n}_{1}-u^{n}_{-1}}{2 \Delta x} = 0
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(u^{n}_{-1}\)</span> is not known, or it is outside the mesh. However, we get from the above equation that</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n}_{-1} = u^{n}_{1}
+\]</div>
+<p>and this can be used together with the PDE for the wave equation</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_j = 2u^n_j - u^{n-1}_j + \underline{c}^2 (u^{n}_{j+1}-2u^n_{j} + u^n_{j-1})
+\]</div>
+<p>This equation at node 0 is</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^{n}_{1}-2 u^{n}_0 + u^{n}_{-1})
+\]</div>
+<p>where we can insert for <span class="math notranslate nohighlight">\(u^{n}_{-1} = u^{n}_{1}\)</span> and get</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (2u^{n}_{1}-2 u^{n}_0)
+\]</div>
+<p>Similarily, at the last node <span class="math notranslate nohighlight">\(j=N\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_N= 2u^{n}_N - u^{n-1}_N + \underline{c}^2 (2u^{n}_{N-1}-2 u^{n}_N)
+\]</div>
+<p>In order to get this into a vector notation we can modify the first and last rows of the matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D^{(2)}_N = \begin{bmatrix}
+-2 &amp; 2 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 2 &amp; -2 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>Now the following equation will be valid for all nodes, and not just the internal:</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D_N^{(2)} u^n
+\]</div>
+<p>There is in other words no need to do anything for these Neumann conditions in the <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> method. Modifying the matrix is all that it takes.</p>
+</div>
+<div class="section" id="open-boundaries">
+<h3>Open boundaries<a class="headerlink" href="#open-boundaries" title="Permalink to this heading">#</a></h3>
+<p>At the left boundary we have the open condition</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial t} - c \frac{\partial u}{\partial x} =0
+\]</div>
+<p>A simple solution here is to use first order accurate forward differences</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}_0 - u^n_0}{\Delta t} - c \frac{u^n_1-u^n_0}{\Delta x} = 0
+\]</div>
+<p>This equation can be solved for <span class="math notranslate nohighlight">\(u^{n+1}_0\)</span>, which is exactly what we need at the boundary. Hence we directly have an equation to use</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0 = u^n_0 + \underline{c} (u^n_1-u^n_0)
+\]</div>
+<p>Similarily at the other boundary we have</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} =0
+\]</div>
+<p>and the same first order approach gives us</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_N = u^n_N + \underline{c} (u^n_{N-1}-u^n_N)
+\]</div>
+<p>Unfortunately the accuracy is only first order. Like for Neumann conditions we can also here use the wave PDE in order to get better accuracy. Using central second order stencils we get for <span class="math notranslate nohighlight">\(j=0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}_0 - u^{n-1}_0}{ 2\Delta t} - c \frac{u^n_1-u^n_{-1}}{ 2 \Delta x} = 0
+\]</div>
+<p>This equation can be solved for the unknown <span class="math notranslate nohighlight">\(u^n_{-1}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u^n_{-1} = u^n_1 - \frac{1}{\underline{c}}(u^{n+1}_0-u^{n-1}_0)
+\]</div>
+<p>which can be used in the PDE for node <span class="math notranslate nohighlight">\(j=0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^{n}_{1}-2 u^{n}_0 + u^{n}_{-1})
+\]</div>
+<p>Some algebra leads to</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0 = 2(1-\overline{c})u^n_0 - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_0 + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_1
+\]</div>
+<p>A similar approach for <span class="math notranslate nohighlight">\(j=N\)</span> leads to</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_N + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_{N-1}
+\]</div>
+<p>These two equations should be implemented in the <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> method.</p>
+</div>
+<div class="section" id="periodic-boundaries">
+<h3>Periodic boundaries<a class="headerlink" href="#periodic-boundaries" title="Permalink to this heading">#</a></h3>
+<p>If a domain is periodic, this simply means that a solution is repeating itself indefinitely. For example, a sine wave is periodic. The wave <span class="math notranslate nohighlight">\(\sin(2 x \pi)\)</span> is repeating itself every <span class="math notranslate nohighlight">\(x=1, 2, 3, \ldots\)</span> as shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+<span class="n">fi</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ca4aae252836dbd9b5dba313491f1c776460a6ec0b0a2ed14b35a4db949edc40.png" src="_images/ca4aae252836dbd9b5dba313491f1c776460a6ec0b0a2ed14b35a4db949edc40.png" />
+</div>
+</div>
+<p><img alt="tikz" src="_images/periodic.png" /></p>
+<p>Periodic boundary conditions simply mean that <span class="math notranslate nohighlight">\(u(0, t) = u(L, t)\)</span>. This means the two red dots above are the same and as such</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n}_0 = u^n_{N}
+\]</div>
+<p>However, there is more. Because of the above, this means that <span class="math notranslate nohighlight">\(u^n_{-1}\)</span>, which earlier has been outside of the domain, now is simply <span class="math notranslate nohighlight">\(u^n_{N-1}\)</span>. The mesh wraps around. And as a consequence there is nothing out of the ordinary with <span class="math notranslate nohighlight">\(j=0\)</span>. We can use the central PDE stencil wrapped around. For <span class="math notranslate nohighlight">\(j=0\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_0 = 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^n_1-2 u^n_0 + u^n_{N-1})
+\]</div>
+<p>So the matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> can be modified as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D_p^{(2)} = \begin{bmatrix}
+-2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>and we can use the vector approach for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span> and then in addition we can set <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span>.</p>
+<p>Note that the last row in the matrix <span class="math notranslate nohighlight">\(D^{(2)}_p\)</span> is not used, because we solve the PDE for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span>.</p>
+<p>The condition <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span> should be set in <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code>.</p>
+</div>
+</div>
+<div class="section" id="wave-equation-solver">
+<h2>Wave equation solver<a class="headerlink" href="#wave-equation-solver" title="Permalink to this heading">#</a></h2>
+<p>A basic solver implemented with Dirichlet boundary conditions is given below. The solver should be modified with Neumann, open and periodic boundary conditions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,t,c,L&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Wave1D</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for solving the wave equation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    N : int</span>
+<span class="sd">        Number of uniform spatial intervals</span>
+<span class="sd">    L0 : number</span>
+<span class="sd">        The extent of the domain, which is [0, L]</span>
+<span class="sd">    c0 : number, optional</span>
+<span class="sd">        The wavespeed</span>
+<span class="sd">    cfl : number, optional</span>
+<span class="sd">        CFL number</span>
+<span class="sd">    u0 : Sympy function of x, t, c and L</span>
+<span class="sd">        Used for specifying initial condition</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cfl</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfl</span> <span class="o">=</span> <span class="n">cfl</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">L0</span> <span class="o">/</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">un</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">D2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bc</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return second order differentiation matrix</span>
+
+<span class="sd">        Paramters</span>
+<span class="sd">        ---------</span>
+<span class="sd">        bc : int</span>
+<span class="sd">            Boundary condition</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">        The returned matrix is not divided by dx**2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">bc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># Neumann condition is baked into stencil</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+        <span class="k">elif</span> <span class="n">bc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="c1"># periodic (Note u[0] = u[-1])</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+        <span class="k">return</span> <span class="n">D</span>
+
+    <span class="k">def</span> <span class="nf">apply_bcs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply boundary conditions to solution vector</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bc : int</span>
+<span class="sd">            Boundary condition in space</span>
+<span class="sd">            - 0 Dirichlet</span>
+<span class="sd">            - 1 Neumann</span>
+<span class="sd">            - 2 Open boundary</span>
+<span class="sd">            - 3 periodic</span>
+<span class="sd">        u : array, optional</span>
+<span class="sd">            The solution array to fix at boundaries</span>
+<span class="sd">            If not provided, use self.unp1</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="k">if</span> <span class="n">u</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span>
+        <span class="k">if</span> <span class="n">bc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Dirichlet condition</span>
+            <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">elif</span> <span class="n">bc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># Neumann condition</span>
+            <span class="k">pass</span>
+
+        <span class="k">elif</span> <span class="n">bc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># Open boundary</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+        <span class="k">elif</span> <span class="n">bc</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span> <span class="c1"># Periodic</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wrong bc = </span><span class="si">{</span><span class="n">bc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfl</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dx</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">cfl</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve wave equation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Nt : int</span>
+<span class="sd">            Number of time steps</span>
+<span class="sd">        cfl : number</span>
+<span class="sd">            Courant number</span>
+<span class="sd">        bc : int, optional</span>
+<span class="sd">            Boundary condition in space</span>
+<span class="sd">            - 0 Dirichlet</span>
+<span class="sd">            - 1 Neumann</span>
+<span class="sd">            - 2 Open boundary</span>
+<span class="sd">            - 3 periodic</span>
+<span class="sd">        ic : int, optional</span>
+<span class="sd">            Initial conditions</span>
+<span class="sd">            - 0 Specify un = u(x, t=0) and unm1 = u(x, t=-dt)</span>
+<span class="sd">            - 1 Specify un = u(x, t=0) and u_t(x, t=0) = 0</span>
+<span class="sd">        save_step : int, optional</span>
+<span class="sd">            Save solution every save_step time step</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dictionary with key, values as timestep, array of solution</span>
+<span class="sd">        The number of items in the dictionary is Nt/save_step, and</span>
+<span class="sd">        each value is an array of length N+1</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">D2</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfl</span> <span class="o">=</span> <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfl</span> <span class="k">if</span> <span class="n">cfl</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cfl</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
+        
+        <span class="c1"># Initialize</span>
+        <span class="n">u0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="mi">0</span><span class="p">}))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="c1"># unm1 = u(x, 0)</span>
+        <span class="n">plotdata</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="o">.</span><span class="n">copy</span><span class="p">()}</span>
+        <span class="k">if</span> <span class="n">ic</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># use sympy function for un = u(x, dt)</span>
+            <span class="n">u0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">dt</span><span class="p">}))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">C</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_bcs</span><span class="p">(</span><span class="n">bc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">plotdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="c1"># Solve </span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">un</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span> <span class="o">+</span> <span class="n">C</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_bcs</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># save every save_step timestep</span>
+                <span class="n">plotdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">plotdata</span>
+    
+    <span class="k">def</span> <span class="nf">plot_with_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">Nd</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">v0</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">v0</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">v0</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span> <span class="n">i</span><span class="o">*</span><span class="n">v0</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us try the solver for an initial pulse <span class="math notranslate nohighlight">\(u(x, t) = \exp(-200(x-L/2+ct)^2)\)</span>. We choose 100 time steps with a Courant (CFL) number of unity. Also, we store the result of the simulation avery 10’th time step and plot 10 solutions with offset in the same figure. Notice that the solution flips sign when it reaches the boundaries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">Wave1D</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">cfl</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">cfl</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sol</span><span class="o">.</span><span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bfbc37c6431c6b46109ba1b0454057bf7a0ad5a6f37401c26ac78aec531eb25a.png" src="_images/bfbc37c6431c6b46109ba1b0454057bf7a0ad5a6f37401c26ac78aec531eb25a.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bookmatmek4270"
+        },
+        kernelOptions: {
+            name: "bookmatmek4270",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bookmatmek4270'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 4</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-methods-for-the-wave-equation">Finite difference methods for the wave equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-fixed-end">Dirichlet (Fixed end)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-loose-end">Neumann (Loose end)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-boundary-no-end">Open boundary (No end)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remaining-complications">Remaining complications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-conditions">Initial conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet">Dirichlet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann">Neumann</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-boundaries">Open boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic-boundaries">Periodic boundaries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wave-equation-solver">Wave equation solver</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
