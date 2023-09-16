@@ -769,8 +769,7 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 </div>
 </div>
 </div>
-<p>This is row-major storage. First the first row, then the second row and finally the third.</p>
-<p>We can easily get individual rows of <code class="docutils literal notranslate"><span class="pre">A</span></code> as, e.g.,</p>
+<p>This is row-major storage. First the first row, then the second row and finally the third. We can easily get individual rows of <code class="docutils literal notranslate"><span class="pre">A</span></code> as, e.g.,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -934,8 +933,7 @@ D^{(2)} U = \sum_{k=0}^{N_x} d^{(2)}_{ik} u_{k,j}
 </div>
 </div>
 <p>So we see that the second derivative of <span class="math notranslate nohighlight">\(u\)</span> equals 2 in all nodes of the mesh. This means that our code is working:-)</p>
-<p>How about the other derivative <span class="math notranslate nohighlight">\(\partial^2 u / \partial y^2\)</span>?</p>
-<p>Let us create a mesh function</p>
+<p>How about the other derivative <span class="math notranslate nohighlight">\(\partial^2 u / \partial y^2\)</span>? Let us create a mesh function</p>
 <div class="math notranslate nohighlight">
 \[
 u(x, y) = y^2
@@ -1220,8 +1218,7 @@ of dimension <span class="math notranslate nohighlight">\(pr \times qs\)</span>,
 </div>
 <div class="section" id="partial-derivatives">
 <h2>Partial derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>
-<p>Let us try this new theory for partial derivatives.</p>
-<p>Create first a mesh using meshgrid, then define a function</p>
+<p>Let us try this new theory for partial derivatives. Create first a mesh using meshgrid, then define a function</p>
 <div class="math notranslate nohighlight">
 \[
 u(x, y) = x^2
@@ -1325,7 +1322,7 @@ D^{(2)} U
 </div>
 <div class="section" id="the-laplace-operator">
 <h2>The Laplace operator<a class="headerlink" href="#the-laplace-operator" title="Permalink to this heading">#</a></h2>
-<p>The Laplace operator for 2D problems in Cartesian coordinates is</p>
+<p>The Laplace operator <span class="math notranslate nohighlight">\(\nabla^2\)</span> applied to a two-dimensional field <span class="math notranslate nohighlight">\(u(x, y)\)</span> in Cartesian coordinates is</p>
 <div class="math notranslate nohighlight">
 \[
 \nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}
@@ -1411,11 +1408,8 @@ u_{i, N_y} = 0 \quad i \in (0, 1, \ldots, N_x)
 <p>We can do this by identing all rows of <code class="docutils literal notranslate"><span class="pre">A</span></code> corresponding to a boundary point. But which indices in <code class="docutils literal notranslate"><span class="pre">A</span></code> correspond to boundaries? We can find this easily with a little slicing and trickery. Lets create a mesh function <code class="docutils literal notranslate"><span class="pre">B</span></code> that is zero on the boundary and one elsewhere</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">B</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">B</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">B</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
@@ -1493,7 +1487,7 @@ Ax = b
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x19cd8ea60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x1a944f5b0&gt;
 </pre></div>
 </div>
 <img alt="_images/bc063ca0859bdd3a285003ea22d125a57dce1436c5e1101fcdfe62f588e4db70.png" src="_images/bc063ca0859bdd3a285003ea22d125a57dce1436c5e1101fcdfe62f588e4db70.png" />
