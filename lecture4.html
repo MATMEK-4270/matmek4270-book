@@ -162,6 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
 </ul>
 
     </div>
@@ -627,12 +628,15 @@ I \\
 0
 \end{bmatrix}
 \end{split}\]</div>
-<div class="alert alert-block alert-info">
-Notice that the matrix is lower triangular. Matrices that are lower or upper triangular are especially quick to solve for using forward or backward substitution.
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice that the matrix is lower triangular. Matrices that are lower or upper triangular are especially quick to solve for using forward or backward substitution.</p>
 </div>
-<div class="alert alert-block alert-success">
-The matrices are here lower triangular because the 2 boundary conditions are specified at one end of the domain. The scheme is explicit, the unknown $u^{n+1}$ is not used in computing the source term.
-</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The matrices are here lower triangular because the 2 boundary conditions are specified at one end of the domain. The scheme is explicit, the unknown <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is not used in computing the source term.</p>
+</div>
+</div>
 <div class="section" id="finite-differentiation-matrices">
 <h2>Finite differentiation matrices<a class="headerlink" href="#finite-differentiation-matrices" title="Permalink to this heading">#</a></h2>
 <p>We will now use Taylor expansions more orderly to obtain differentiation matrices. To this end let us first use the following expansions, three which are forward, and one backward:</p>
@@ -815,7 +819,7 @@ u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' +
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1183c55d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11c278fd0&gt;
 </pre></div>
 </div>
 <img alt="_images/c6b993903b7d812c679558047bd13fdcb641fa826cedca29bfc937a10dbbb9c2.png" src="_images/c6b993903b7d812c679558047bd13fdcb641fa826cedca29bfc937a10dbbb9c2.png" />
@@ -909,7 +913,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x118422050&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11b227090&gt;
 </pre></div>
 </div>
 <img alt="_images/c5eac90d947cf2d2018fb7e0bee93f25914e6a44b3c6bbd9c9066a3437553ffd.png" src="_images/c5eac90d947cf2d2018fb7e0bee93f25914e6a44b3c6bbd9c9066a3437553ffd.png" />
@@ -1015,9 +1019,9 @@ u' + au = 0, u(0)=I, t \in [0, T]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x119678090&gt;,
- &lt;matplotlib.lines.Line2D at 0x119727b90&gt;,
- &lt;matplotlib.lines.Line2D at 0x1197331d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11b35c6d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x11c7788d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x11c77bc10&gt;]
 </pre></div>
 </div>
 <img alt="_images/1ff4bd3610ee4c5e32448f16610af7ad700e24134d82d7fd0aad06a7207e9a05.png" src="_images/1ff4bd3610ee4c5e32448f16610af7ad700e24134d82d7fd0aad06a7207e9a05.png" />

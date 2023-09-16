@@ -1,0 +1,1651 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 6 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 5" href="lecture5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 6</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 6</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-spatial-domain">Two-dimensional spatial domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartesian-products">Cartesian products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meshgrid">meshgrid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-mesh-function">Two-dimensional mesh function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#row-major-computer-storage">Row-major computer storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences-in-2d">Finite differences in 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-form-of-poisson-s-equation">Matrix form of Poisson’s equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization-the-vec-trick">Vectorization (the vec-trick)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kronecker-product">The Kronecker product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives">Partial derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-operator">The Laplace operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-problem">Solve the problem</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-6">
+<h1>Lecture 6<a class="headerlink" href="#lecture-6" title="Permalink to this heading">#</a></h1>
+<div class="section" id="two-dimensional-spatial-domain">
+<h2>Two-dimensional spatial domain<a class="headerlink" href="#two-dimensional-spatial-domain" title="Permalink to this heading">#</a></h2>
+<p>We will now consider equations within a simple two-dimensional spatial domain. To get started we will look at the Poisson equation</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^2 u = f
+\]</div>
+<p>which in two-dimensional Cartesian coordinates is</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f
+\]</div>
+<p>We consider the equation for a rectangular domain</p>
+<div class="math notranslate nohighlight">
+\[(x, y) \in [0, L_x] \times [0, L_y]\]</div>
+<p>and Dirichlet boundary conditions. A Dirichlet boundary condition means that the solution is known (or fixed) at the boundary. There are now 4 sides to a rectangle and the solutions needs to be fixed at all these boundaries since there are two derivatives in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. We need to fix:</p>
+<div class="math notranslate nohighlight">
+\[\color{red}{ u(x=0, y)}, \quad \color{green}{u(x=L_x, y)}\]</div>
+<div class="math notranslate nohighlight">
+\[\color{blue}{u(x, y=0)}, \quad \color{magenta}{u(x, y=L_y)}\]</div>
+<p>In the figure below the location of these Dirichlet conditions are plotted in color.</p>
+<p>Note that the conditions at the two sides <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=L_x\)</span> can be functions of the other coordinate <span class="math notranslate nohighlight">\(y\)</span>. Likewise, for the two boundaries with constant <span class="math notranslate nohighlight">\(y\)</span> the condition may be a function of <span class="math notranslate nohighlight">\(x\)</span>. Also note that the boundary conditions need to be consistent in the corners, because each corner belongs to two sides.</p>
+<p>We will at first simply use a constant value 0 along all boundaries since this is easiest. In that case</p>
+<div class="math notranslate nohighlight">
+\[u(x=0, y) = u(x=L_x, y) = u(x, y=0) = u(x, y=L_y) = 0\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$0$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="s2">&quot;$L_x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;$L_y$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.2</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;${u(x=L_x, y)}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;${u(x=0, y)}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="s2">&quot;${u(x, y=0)}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;${u(x, y=L_y)}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/f4d9051f59e126085391f8b4c040e5c441cb44fbaf04632fe7a773d91829fa4b.png" src="_images/f4d9051f59e126085391f8b4c040e5c441cb44fbaf04632fe7a773d91829fa4b.png" />
+</div>
+</div>
+</div>
+<div class="section" id="discretization">
+<h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
+<p>We discretize the mesh using two lines, one in the <span class="math notranslate nohighlight">\(x\)</span>-direction and one in the <span class="math notranslate nohighlight">\(y\)</span>-direction:</p>
+<div class="math notranslate nohighlight">
+\[
+x_i = i \Delta x, \quad i = 0, 1, \ldots, N_x
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta x = L_x/N_x\)</span> and <span class="math notranslate nohighlight">\(\Delta y = L_y/N_y\)</span>. The mesh is plotted above for <span class="math notranslate nohighlight">\(N_x=N_y = 8\)</span>. We will use vector notation for the mesh, with</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x} = \{x_0, x_1, \ldots, x_{N_x}\}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{y} = \{y_0, y_1, \ldots, y_{N_y}\}
+\]</div>
+<div class="section" id="cartesian-products">
+<h3>Cartesian products<a class="headerlink" href="#cartesian-products" title="Permalink to this heading">#</a></h3>
+<p>In order to create a two-dimensional mesh, like the one seen above, we use a Cartesian product. The Cartesian product is most easily explained through an example. Consider the two arrays <span class="math notranslate nohighlight">\(\boldsymbol{u}=[1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{v}=[4, 5]\)</span>. We can compute the Cartesian product of these two arrays using the Python package <a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">uxv</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">uxv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(1, 4), (1, 5), (2, 4), (2, 5), (3, 4), (3, 5)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we get a list containing all possible pairs of items, one from <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and one from <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>. Since there are 3 items in <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and 2 in <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> we get a total of <span class="math notranslate nohighlight">\(2 \cdot 3 = 6\)</span> pairs of numbers.</p>
+<p>The Cartesian product <span class="math notranslate nohighlight">\(\boldsymbol{u} \times \boldsymbol{v}\)</span> can be described mathematically as</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u} \times \boldsymbol{v} = \{ (u, v) \, | \,  u \in \boldsymbol{u} \text{ and } v \in \boldsymbol{v} \} 
+\]</div>
+<p>which reads all the pairs <span class="math notranslate nohighlight">\((u, v)\)</span> such that <span class="math notranslate nohighlight">\(u\)</span> is in the set <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and <span class="math notranslate nohighlight">\(v\)</span> in the set <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>.</p>
+<p>What does this have to do with a discretization of a computational mesh? Well the computational mesh is a combination of all pairs <span class="math notranslate nohighlight">\((x, y)\)</span> such that <span class="math notranslate nohighlight">\(x\)</span> is in the 1D mesh along the <span class="math notranslate nohighlight">\(x\)</span>-direction (<span class="math notranslate nohighlight">\(0, \Delta x, 2 \Delta x, \ldots\)</span>) and <span class="math notranslate nohighlight">\(y\)</span> is in the 1D mesh along the <span class="math notranslate nohighlight">\(y\)</span>-direction (<span class="math notranslate nohighlight">\(0, \Delta y, 2 \Delta y, \ldots\)</span>). We have already defined these two meshes above in the vectors <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>. So the computational mesh is really</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x} \times \boldsymbol{y} = \{(x, y) \, | \, x \in \boldsymbol{x} \text{ and } y \in \boldsymbol{y} \}
+\]</div>
+<p>all pairs <span class="math notranslate nohighlight">\((x, y)\)</span> such that <span class="math notranslate nohighlight">\(x\)</span> is in <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is in <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>.</p>
+<p>If the meshes are simply</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x} = \{0, \Delta x, 2\Delta x, 3\Delta x\}  \text{ and } \boldsymbol{y} = \{0, \Delta y, 2\Delta y\}
+\]</div>
+<p>then a two-dimensional mesh would be all possible combinations of these arrays, as shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="n">Dx</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;$\Delta x$&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;$2 \Delta x$&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;$3\Delta x$&#39;</span> <span class="p">}</span>
+<span class="n">Dy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;$\Delta y$&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;$2 \Delta y$&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;$3\Delta y$&#39;</span> <span class="p">}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mf">0.07</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">Dx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">Dy</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/25c9f3642461cb8e07b8d447147f7e2b5ee799d662d6f4c68065cb06574c0a64.png" src="_images/25c9f3642461cb8e07b8d447147f7e2b5ee799d662d6f4c68065cb06574c0a64.png" />
+</div>
+</div>
+<p>Note that there are <span class="math notranslate nohighlight">\(4 \cdot 3 = 12\)</span> pairs of numbers. If we drop <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span> from the pairs and use only the integers in front of them, we get with itertools:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xy</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (3, 2)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that itertools (or the Cartesian product) presents the result as an array of pairs of length <span class="math notranslate nohighlight">\(12\)</span> (12 pairs). It does not shape the product in a Cartesian two-dimensional mesh.</p>
+<p>However, when we illustrate these numbers in a Cartesian mesh, then we see that it is only natural to use two-dimensional arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">xy</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+        
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/09a9cd4fca481f613a4234552a4186a2497485aac2cae11ecb5b85ba6a97c98c.png" src="_images/09a9cd4fca481f613a4234552a4186a2497485aac2cae11ecb5b85ba6a97c98c.png" />
+</div>
+</div>
+<p>Note that if this mesh was a two-dimensional matrix, then <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((i, j)\)</span> would represent column and row, respectively, which is counterintuitive. We normally think about a matrix <span class="math notranslate nohighlight">\(A\)</span> with items <span class="math notranslate nohighlight">\(a_{ij}\)</span>, where the first index <span class="math notranslate nohighlight">\(i\)</span> represents row and the second index <span class="math notranslate nohighlight">\(j\)</span> represents column. This is a complicating factor for the Cartesian mesh that is important to be aware of. But it is not a mistake. The numbers in the plot above are not indices of a matrix, they represent <span class="math notranslate nohighlight">\((x, y)\)</span> in a Cartesian mesh.</p>
+</div>
+<div class="section" id="meshgrid">
+<h3>meshgrid<a class="headerlink" href="#meshgrid" title="Permalink to this heading">#</a></h3>
+<p>The Cartesian mesh gives both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> coordinates for the entire two-dimensional mesh and it is created from a Cartesian product of one-dimensional meshes along <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Luckily for us Numpy has a function that computes this mesh for us and we do not have to use itertools directly.</p>
+<p>Let us now compute the Cartesian mesh for</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x} = [0, 1, 2, 3] \quad \text{ and } \quad
+\boldsymbol{y} = [0, 1, 2]
+\]</div>
+<p>where we have chosen <span class="math notranslate nohighlight">\(\Delta x = \Delta y = 1\)</span> just for simplicity.</p>
+<p>We create this 2D mesh using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html">numpy.meshgrid</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Lx</span> <span class="o">=</span> <span class="n">Nx</span>
+<span class="n">Ly</span> <span class="o">=</span> <span class="n">Ny</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At this point <code class="docutils literal notranslate"><span class="pre">mesh</span></code> will actually contain two arrays and we extract them by</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span> <span class="o">=</span> <span class="n">mesh</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now <code class="docutils literal notranslate"><span class="pre">xij</span></code> will contain the <span class="math notranslate nohighlight">\(x\)</span>-coordinates of all nodes in the mesh, and <code class="docutils literal notranslate"><span class="pre">yij</span></code> will contain all <span class="math notranslate nohighlight">\(y\)</span>-coordinates. Numpy has split up the coordinate pair for all points and put the result into these two arrays. Let us take a look at <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xij</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0.],
+       [1., 1., 1.],
+       [2., 2., 2.],
+       [3., 3., 3.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yij</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 1., 2.],
+       [0., 1., 2.],
+       [0., 1., 2.],
+       [0., 1., 2.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hmmm. These arrays seem to be aligned very differently from the mesh that we have been looking at so far. <code class="docutils literal notranslate"><span class="pre">xij</span></code> has shape <span class="math notranslate nohighlight">\(4 \times 3\)</span> and the <span class="math notranslate nohighlight">\(x\)</span> value increases along a column. Likewise, the <code class="docutils literal notranslate"><span class="pre">yij</span></code> array has also shape <span class="math notranslate nohighlight">\(4 \times 3\)</span>, and the <span class="math notranslate nohighlight">\(y\)</span>-value increases along a row. So the ordering is as the following arrows show</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/47fdceea6c7001457187850233d1ed0eaa0cce39588ea85249ab383d2c436329.png" src="_images/47fdceea6c7001457187850233d1ed0eaa0cce39588ea85249ab383d2c436329.png" />
+</div>
+</div>
+<p>This is opposite to a Cartesian mesh that has <span class="math notranslate nohighlight">\(x\)</span> varying along the horizontal direction and <span class="math notranslate nohighlight">\(y\)</span> varying along the vertical direction:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">);</span><span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/15c7349866b9d70849c71a2cb4d2e7dff5fc6e28f45b538da3f35e2c8ea77d78.png" src="_images/15c7349866b9d70849c71a2cb4d2e7dff5fc6e28f45b538da3f35e2c8ea77d78.png" />
+</div>
+</div>
+<p>However, there is no mistake. This is how matrices are stored, with the first index <span class="math notranslate nohighlight">\(i\)</span> representing <span class="math notranslate nohighlight">\(x\)</span> and the second index <span class="math notranslate nohighlight">\(j\)</span> representing <span class="math notranslate nohighlight">\(y\)</span>. And if we make contour plots using the meshes <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code> it all comes out in a Cartesian plot exactly as expected. Below we create contour plots of both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and we notice that <span class="math notranslate nohighlight">\(x\)</span> increases along the horizontal axis, whereas <span class="math notranslate nohighlight">\(y\)</span> increases in the vertical direction. Just as expected:-)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax0</span><span class="p">,</span> <span class="n">ax1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">c0</span> <span class="o">=</span> <span class="n">ax0</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">,</span> <span class="n">xij</span><span class="p">)</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">,</span> <span class="n">yij</span><span class="p">)</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">);</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">);</span>
+<span class="n">ax0</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c0</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c1388a7cb7f0cf6c1afd02b43335ed7defc06ed4722b3951e0d725a5a0a50a56.png" src="_images/c1388a7cb7f0cf6c1afd02b43335ed7defc06ed4722b3951e0d725a5a0a50a56.png" />
+</div>
+</div>
+</div>
+<div class="section" id="two-dimensional-mesh-function">
+<h3>Two-dimensional mesh function<a class="headerlink" href="#two-dimensional-mesh-function" title="Permalink to this heading">#</a></h3>
+<p>A mesh function on the two-dimensional domain will now be denoted as</p>
+<div class="math notranslate nohighlight">
+\[
+u_{ij} = u(x_i, y_j)
+\]</div>
+<p>The mesh function is a dense two-dimensional array of shape <span class="math notranslate nohighlight">\({(N_x+1)\times (N_y+1)}\)</span> and we will write <span class="math notranslate nohighlight">\(U = (u_{ij})_{i,j=0}^{N_x, N_y}\)</span>. It may also be considered a matrix.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+u_{0, 0} &amp; u_{0, 1} &amp; \cdots &amp; u_{0, N_y} \\
+u_{1, 0} &amp; u_{1, 1} &amp; \cdots &amp; u_{1, N_y} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>We note that the mesh function <span class="math notranslate nohighlight">\(U\)</span> is a matrix, like <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code>, and in the component <span class="math notranslate nohighlight">\(u_{ij}\)</span> <span class="math notranslate nohighlight">\(i\)</span> represents row and <span class="math notranslate nohighlight">\(j\)</span> represents column.</p>
+<p>Also note that sometimes (like above) it makes sense to add a comma between <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. This has no further significance than to more clearly seperate <span class="math notranslate nohighlight">\(i\)</span> from <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice that both <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code> are mesh functions! They are the coordinates <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> evaluated on the computational mesh.</p>
+</div>
+</div>
+<div class="section" id="row-major-computer-storage">
+<h3>Row-major computer storage<a class="headerlink" href="#row-major-computer-storage" title="Permalink to this heading">#</a></h3>
+<p>In Python (which is written in C) a matrix is row-major. This means that the matrix is stored in memory with a long sequence of numbers row by row like</p>
+<div class="math notranslate nohighlight">
+\[
+\Big( \underbrace{u_{0, 0}, u_{0, 1}, \cdots, u_{0, N_y}}_{\text{First row}}, \underbrace{u_{1, 0}, u_{1, 1}, \cdots, u_{1, N_y}}_{\text{Second row}}, \cdots \cdots, \underbrace{u_{N_y, 0}, u_{N_y, 1}, \cdots, u_{N_y, N_y}}_{\text{Last row}} \Big)
+\]</div>
+<p>So the computer memory does not know anything about these numbers belonging to a two-dimensional array. The computer only knows that <span class="math notranslate nohighlight">\((N_x+1)(N_y+1)\)</span> numbers are stored side by side.</p>
+<p>We can get the single row <span class="math notranslate nohighlight">\(i\)</span> of the <span class="math notranslate nohighlight">\(U\)</span> matrix as <span class="math notranslate nohighlight">\(u_i = (u_{i,0}, u_{i,1}, \ldots, u_{i, N_y})\)</span>. For example, lets create a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix  in Python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
+       [3, 4, 5],
+       [6, 7, 8]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> is laid out in computer memory as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="c1"># alternative: A.flatten()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 6, 7, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is row-major storage. First the first row, then the second row and finally the third.</p>
+<p>We can easily get individual rows of <code class="docutils literal notranslate"><span class="pre">A</span></code> as, e.g.,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 7, 8])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We get the rows easily because the memory is row-major and all the items in a row are side by side in computer memory. However, in order to get a column we need to skip over items. The first column of <code class="docutils literal notranslate"><span class="pre">A</span></code> contains the numbers <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">3,</span> <span class="pre">6]</span></code>. These numbers are stored in the flattened memory as items 0, 3 and 6. We can look it up as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3, 6])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="finite-differences-in-2d">
+<h2>Finite differences in 2D<a class="headerlink" href="#finite-differences-in-2d" title="Permalink to this heading">#</a></h2>
+<p>Let us move back to the Poisson equation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f
+\]</div>
+<p>If we now use second order central differences in both directions we get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u_{i+1,j} - 2u_{i,j} + u_{i-1, j}}{\Delta x^2} + \frac{u_{i,j+1} - 2u_{i,j} + u_{i, j-1}}{\Delta y^2} = f_{i,j}
+\]</div>
+<p>We have already learned that a second differentiation matrix in one dimension can be written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+D_x^{(2)} = \frac{1}{\Delta x^2}\begin{bmatrix}
+2 &amp; -5 &amp; 4 &amp; -1  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; -1 &amp; 4 &amp; -5 &amp; 2 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>For the <span class="math notranslate nohighlight">\(y\)</span>-direction we will use <span class="math notranslate nohighlight">\( \Delta y\)</span> instead of <span class="math notranslate nohighlight">\(\Delta x\)</span> and we will then write <span class="math notranslate nohighlight">\(D^{(2)}_y\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We will denote the unscaled second derivative matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span>. This is the matrix you get with <span class="math notranslate nohighlight">\(\Delta x = \Delta y = 1\)</span>.</p>
+</div>
+<p>We compute the unscaled matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+
+<span class="k">def</span> <span class="nf">D2</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">D</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D2</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 2. -5.  4. -1.  0.  0.  0.  0.  0.]
+ [ 1. -2.  1.  0.  0.  0.  0.  0.  0.]
+ [ 0.  1. -2.  1.  0.  0.  0.  0.  0.]
+ [ 0.  0.  1. -2.  1.  0.  0.  0.  0.]
+ [ 0.  0.  0.  1. -2.  1.  0.  0.  0.]
+ [ 0.  0.  0.  0.  1. -2.  1.  0.  0.]
+ [ 0.  0.  0.  0.  0.  1. -2.  1.  0.]
+ [ 0.  0.  0.  0.  0.  0.  1. -2.  1.]
+ [ 0.  0.  0.  0.  0. -1.  4. -5.  2.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let us consider a very simple function in 2D</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, y) = x^2
+\]</div>
+<p>such that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u}{\partial x^2} = 2
+\]</div>
+<p>Let the domain now be <span class="math notranslate nohighlight">\([0, 4]\times [0, 4]\)</span> and choose <span class="math notranslate nohighlight">\(\Delta x = \Delta y = 1\)</span>. We create the Cartesian product mesh as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">Lx</span> <span class="o">=</span> <span class="n">Nx</span>
+<span class="n">Ly</span> <span class="o">=</span> <span class="n">Ny</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xij</span><span class="p">,</span> <span class="n">yij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this mesh we can create the mesh function <span class="math notranslate nohighlight">\(u(x, y) = x^2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">xij</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.  0.  0.  0.  0.]
+ [ 1.  1.  1.  1.  1.]
+ [ 4.  4.  4.  4.  4.]
+ [ 9.  9.  9.  9.  9.]
+ [16. 16. 16. 16. 16.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to compute <span class="math notranslate nohighlight">\(\partial^2 u/\partial x^2\)</span> we can use the one-dimensional derivative matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> along the first axis of <span class="math notranslate nohighlight">\(U=(u_{i,j})_{i,j=0}^{N_x, N_y}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+D^{(2)} U = \sum_{k=0}^{N_x} d^{(2)}_{ik} u_{k,j}
+\]</div>
+<p>So <span class="math notranslate nohighlight">\(D^{(2)} U \)</span> is a matrix-matrix product between the two matrices <span class="math notranslate nohighlight">\(D^{(2)}\in \mathbb{R}^{(N_x+1)\times (N_x+1)}\)</span> and <span class="math notranslate nohighlight">\(U \in \mathbb{R}^{(N_x+1) \times (N_y+1)}\)</span>, such that <span class="math notranslate nohighlight">\(D^{(2)}U \in \mathbb{R}^{(N_x+1) \times (N_y+1)}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">D2</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we see that the second derivative of <span class="math notranslate nohighlight">\(u\)</span> equals 2 in all nodes of the mesh. This means that our code is working:-)</p>
+<p>How about the other derivative <span class="math notranslate nohighlight">\(\partial^2 u / \partial y^2\)</span>?</p>
+<p>Let us create a mesh function</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, y) = y^2
+\]</div>
+<p>such that again the second derivative <span class="math notranslate nohighlight">\(\partial^2 u / \partial y^2\)</span> should be 2. Create first <span class="math notranslate nohighlight">\(u\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">yij</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 0.  1.  4.  9. 16.]
+ [ 0.  1.  4.  9. 16.]
+ [ 0.  1.  4.  9. 16.]
+ [ 0.  1.  4.  9. 16.]
+ [ 0.  1.  4.  9. 16.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now since the derivative is along the second axis (the <span class="math notranslate nohighlight">\(y\)</span>-axis), we cannot simply do <span class="math notranslate nohighlight">\(D^{(2)} U\)</span> anymore. If we do we get zero</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>because this is <span class="math notranslate nohighlight">\(\partial ^2 u/ \partial x^2\)</span>, which should be zero. To get a derivative along the second axis we need to apply the matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> along the second axis of <span class="math notranslate nohighlight">\(U\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k=0}^{N_y} u_{i, k} d^{(2)}_{j, k}
+\]</div>
+<p>On matrix form this can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+U (D^{(2)})^T
+\]</div>
+<p>which we can verify as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">u</span> <span class="o">@</span> <span class="n">D</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]
+ [2. 2. 2. 2. 2.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again we get the correct result across the entire mesh.</p>
+</div>
+<div class="section" id="matrix-form-of-poisson-s-equation">
+<h2>Matrix form of Poisson’s equation<a class="headerlink" href="#matrix-form-of-poisson-s-equation" title="Permalink to this heading">#</a></h2>
+<p>Using now that <span class="math notranslate nohighlight">\(\partial^2 u/\partial x^2 = D_x^{(2)}U\)</span> and <span class="math notranslate nohighlight">\(\partial^2 u/\partial y^2 = U(D_y^{(2)})^T\)</span> we can write Poisson’s equation on discretized (and matrix) form as</p>
+<div class="math notranslate nohighlight" id="equation-mat-equation">
+<span class="eqno">(4)<a class="headerlink" href="#equation-mat-equation" title="Permalink to this equation">#</a></span>\[
+D_x^{(2)} U + U (D_y^{(2)})^T = F
+\]</div>
+<p>where the mesh function <span class="math notranslate nohighlight">\(F = (f(x_i, y_j))_{i,j=0}^{N_x, N_y}\)</span>.</p>
+<p>However, how can we solve this equation for the unknown <span class="math notranslate nohighlight">\(U\)</span>?</p>
+<p>The problem now is that we cannot (apparently) write Eq. <a class="reference internal" href="#equation-mat-equation">(4)</a> as we normally do for a linear algebra problem</p>
+<div class="math notranslate nohighlight" id="equation-axb">
+<span class="eqno">(5)<a class="headerlink" href="#equation-axb" title="Permalink to this equation">#</a></span>\[
+Ax = b
+\]</div>
+<p>or on index form</p>
+<div class="math notranslate nohighlight" id="equation-axbindex">
+<span class="eqno">(6)<a class="headerlink" href="#equation-axbindex" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^{N}a_{ij} x_j = b_i
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is the coefficient matrix, <span class="math notranslate nohighlight">\(x\)</span> is the unknown vector and <span class="math notranslate nohighlight">\(b\)</span> is the right hand side vector.</p>
+<p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(4)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(5)</a>. This operation is called vectorization, or the vec-trick.</p>
+</div>
+<div class="section" id="vectorization-the-vec-trick">
+<h2>Vectorization (the vec-trick)<a class="headerlink" href="#vectorization-the-vec-trick" title="Permalink to this heading">#</a></h2>
+<p>Consider first for simplicity a  <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = 
+\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+\end{split}\]</div>
+<p>In general, a row-major vectorization transforms the matrix into a vector as follows</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix}
+\longrightarrow
+\begin{bmatrix}
+a &amp; b &amp; c &amp; d
+\end{bmatrix}
+\end{split}\]</div>
+<p>This operation is referred to as <code class="docutils literal notranslate"><span class="pre">vec(A)</span></code> and thus</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}(A) = \begin{bmatrix}
+a &amp; b &amp; c &amp; d
+\end{bmatrix}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Notice that it is possible to define a column-major vectorization as well. In that case <span class="math notranslate nohighlight">\(\text{vec}(A) = [a \, c \, b \, d]\)</span>. However, since Python is written in C and C is row-major, we will use the first, row-major, alternative.</p>
+</div>
+<p>Vectorization of our Poisson equation (vectorization applied to both left and right hand side) leads to</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}\left(D_x^{(2)}U + U (D_y^{(2)})^T \right) = \text{vec}(F)
+\]</div>
+<p>and since vectorization is a linear process</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}\left(D_x^{(2)}U\right) + \text{vec}\left(U (D_y^{(2)})^T \right) = \text{vec}(F)
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\text{vec}(F)\)</span> is simply the ravelling (or flattening) of the matrix as described above. This leaves the left hand side, which contains matrix-matrix products, and these require a special trick for vectorization. But first we will write the equation as</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}\left(D_x^{(2)}U I_{y}\right) + \text{vec}\left(I_{x} U (D_y^{(2)})^T \right) = \text{vec}(F)
+\]</div>
+<p>where the diagonal identity matrix <span class="math notranslate nohighlight">\(I_{i} \in \mathbb{R}^{(N_i+1) \times (N_i+1)}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+I_{i} = \begin{bmatrix} 
+1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots \\
+\vdots &amp; &amp; \ddots &amp;  &amp; \cdots \\
+\vdots &amp; 0 &amp; 0  &amp; 1 &amp; 0 \\
+\vdots &amp; 0 &amp; 0 &amp; 0  &amp; 1
+\end{bmatrix}
+\end{split}\]</div>
+<p>is not really doing anything. However, it will help us soon in applying a well known vectorization formula for triple matrix products.
+It turns out that for any valid triple matrix product of matrices <span class="math notranslate nohighlight">\(A, B\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, vectorization is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}(A B C^T) = (A \otimes C) \text{vec} (B)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A \otimes B\)</span> is the Kronecker product of matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. We will get back to the Kronecker product soon. Meanwhile we get that</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}(D_x^{(2)}U I_{y}) = (D_x^{(2)} \otimes I_{y}) \text{vec}(U)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}(I_{x} U (D_y^{(2)})^T) = (I_{x} \otimes D_y^{(2)}) \text{vec}(U)
+\]</div>
+<p>and the equation we need to solve is thus</p>
+<div class="math notranslate nohighlight">
+\[
+\left(D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)} \right) \text{vec}(U) = \text{vec}(F)
+\]</div>
+<p>This is a linear equations of type <span class="math notranslate nohighlight">\(Ax=b\)</span>, where <span class="math notranslate nohighlight">\(A = D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)}\)</span>, <span class="math notranslate nohighlight">\(x = \text{vec}(U)\)</span> and <span class="math notranslate nohighlight">\(b = \text{vec}(F)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vectorization is a linear process that allows us to transform a matrix into a vector. Through vectorization we can express matrix-multiplication through a larger matrix using the Kronecker product.</p>
+</div>
+</div>
+<div class="section" id="the-kronecker-product">
+<h2>The Kronecker product<a class="headerlink" href="#the-kronecker-product" title="Permalink to this heading">#</a></h2>
+<p>In general, if <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are matrices of dimensions <span class="math notranslate nohighlight">\(p \times q\)</span> and <span class="math notranslate nohighlight">\(r \times s\)</span>, respectively, then <span class="math notranslate nohighlight">\(A \otimes B\)</span> is the matrix
+of dimension <span class="math notranslate nohighlight">\(pr \times qs\)</span>, with <span class="math notranslate nohighlight">\(p \times q\)</span> block form, where the <span class="math notranslate nohighlight">\(i, j\)</span> block is <span class="math notranslate nohighlight">\(a_{ij}B\)</span>. The Kronecker product is most simply illustrated for two small matrices of shape <span class="math notranslate nohighlight">\(2 \times 2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+  1 &amp; 2 \\
+  3 &amp; 4
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{bmatrix}
+=
+\left(\begin{array}{&#64;{}c|c&#64;{}}
+  \begin{matrix}
+  a &amp; b \\
+  c &amp; d
+  \end{matrix}
+  &amp;  \begin{matrix}
+  2a &amp; 2b \\
+  2c &amp; 2d
+  \end{matrix} \\
+\hline
+  \begin{matrix}
+  3a &amp; 3b \\
+  3c &amp; 3d
+  \end{matrix} &amp;
+  \begin{matrix}
+  4a &amp; 4b \\
+  4c &amp; 4d
+  \end{matrix}
+\end{array}\right)
+\end{split}\]</div>
+<p>Notice that if one of the matrices is the identity matrix, the picture becomes even simpler</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+  1 &amp; 0 \\
+  0 &amp; 1
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{bmatrix}
+=
+\left(\begin{array}{&#64;{}c|c&#64;{}}
+  \begin{matrix}
+  a &amp; b \\
+  c &amp; d
+  \end{matrix}
+  &amp;  
+  \begin{matrix}
+   0 &amp; 0 \\
+   0 &amp; 0 
+   \end{matrix}
+   \\
+\hline
+  \begin{matrix}
+   0 &amp; 0 \\
+   0 &amp; 0 
+   \end{matrix} &amp;
+  \begin{matrix}
+  a &amp; b \\
+  c &amp; d
+  \end{matrix}
+\end{array}\right)
+\end{split}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+  1 &amp; 0 \\
+  0 &amp; 1
+\end{bmatrix}
+=
+\left(\begin{array}{&#64;{}c|c&#64;{}}
+  \begin{matrix}
+  a &amp; 0 \\
+  0 &amp; a
+  \end{matrix}
+  &amp;  \begin{matrix}
+  b &amp; 0 \\
+  0 &amp; b
+  \end{matrix} \\
+\hline
+  \begin{matrix}
+  c &amp; 0 \\
+  0 &amp; c
+  \end{matrix} &amp;
+  \begin{matrix}
+  d &amp; 0 \\
+  0 &amp; d
+  \end{matrix}
+\end{array}\right)
+\end{split}\]</div>
+</div>
+<div class="section" id="partial-derivatives">
+<h2>Partial derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>
+<p>Let us try this new theory for partial derivatives.</p>
+<p>Create first a mesh using meshgrid, then define a function</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, y) = x^2
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">Lx</span> <span class="o">=</span> <span class="n">Nx</span>
+<span class="n">Ly</span> <span class="o">=</span> <span class="n">Ny</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xij</span><span class="p">,</span> <span class="n">yij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">xij</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compute the derivative of <span class="math notranslate nohighlight">\(u\)</span> using first</p>
+<div class="math notranslate nohighlight">
+\[
+D^{(2)} U
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="n">D2</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">@</span> <span class="n">U</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2., 2., 2., 2.],
+       [2., 2., 2., 2.],
+       [2., 2., 2., 2.],
+       [2., 2., 2., 2.],
+       [2., 2., 2., 2.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The differentiation works, because the second derivative of <span class="math notranslate nohighlight">\(x^2\)</span> is 2. Now lets use vectorization to compute the same</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}(D^{(2)}U) = (D^{(2)} \otimes I) \text{vec}(U)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2X</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">d2u</span> <span class="o">=</span> <span class="n">D2X</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d2u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2. 2. 2. 2.]
+ [2. 2. 2. 2.]
+ [2. 2. 2. 2.]
+ [2. 2. 2. 2.]
+ [2. 2. 2. 2.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Works!</p>
+<p>How about <span class="math notranslate nohighlight">\(\partial^2 u /\partial y^2\)</span>? Define first <span class="math notranslate nohighlight">\(u=y^2\)</span> such that <span class="math notranslate nohighlight">\(\partial^2 u /\partial y^2 = 2\)</span>. And compute</p>
+<div class="math notranslate nohighlight">
+\[
+\text{vec}(U (D^{(2)})^T) = (I \otimes D^{(2)}) \text{vec}(U)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">yij</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">D2Y</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">D2</span><span class="p">(</span><span class="n">Ny</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D2Y</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2. 2.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Works! But the result should be reshaped into a two-dimensional array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="n">D2Y</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2. 2. 2. 2.]
+ [2. 2. 2. 2.]
+ [2. 2. 2. 2.]
+ [2. 2. 2. 2.]
+ [2. 2. 2. 2.]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-laplace-operator">
+<h2>The Laplace operator<a class="headerlink" href="#the-laplace-operator" title="Permalink to this heading">#</a></h2>
+<p>The Laplace operator for 2D problems in Cartesian coordinates is</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}
+\]</div>
+<p>Discretized on a structured Cartesian mesh we get</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^2 u = \left(D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)} \right) \text{vec}(U)
+\]</div>
+<p>We implement the operator as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">):</span>
+    <span class="n">D2x</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">D2</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>
+    <span class="n">D2y</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">D2</span><span class="p">(</span><span class="n">Ny</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">D2x</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> 
+            <span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">D2y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are now ready to solve the Poisson equation. Lets use the method of manufactured solutions and guess a solution</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y))
+\]</div>
+<p>and use a computational domain <span class="math notranslate nohighlight">\(\Omega = [0, 1] \times [0, 1]\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
+<span class="n">ue</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compute the right hand side function <span class="math notranslate nohighlight">\(f\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create the Cartesian 2D mesh using a function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mesh2D</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assemble the problem</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nx</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">Ny</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">Lx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Ly</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">xij</span><span class="p">,</span> <span class="n">yij</span> <span class="o">=</span> <span class="n">mesh2D</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">f</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">laplace</span><span class="p">(</span><span class="n">Lx</span><span class="o">/</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ly</span><span class="o">/</span><span class="n">Ny</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="boundary-conditions">
+<h3>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h3>
+<p>We need to fix the solution at all boundary points. But where are all the boundary points? How do we manipulate A in order to fix Dirichlet boundary conditions?</p>
+<p>In order to set Dirichlet boundary conditions we need to set the value of <span class="math notranslate nohighlight">\(U\)</span> to zero on all four boundaries:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u_{0, j} = 0 \quad j \in (0, 1, \ldots, N_y) \\
+u_{N_x, j} = 0 \quad j \in (0, 1, \ldots, N_y)\\
+u_{i, 0} = 0 \quad i \in (0, 1, \ldots, N_x)\\
+u_{i, N_y} = 0 \quad i \in (0, 1, \ldots, N_x)
+\end{align*}
+\end{split}\]</div>
+<p>We can do this by identing all rows of <code class="docutils literal notranslate"><span class="pre">A</span></code> corresponding to a boundary point. But which indices in <code class="docutils literal notranslate"><span class="pre">A</span></code> correspond to boundaries? We can find this easily with a little slicing and trickery. Lets create a mesh function <code class="docutils literal notranslate"><span class="pre">B</span></code> that is zero on the boundary and one elsewhere</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">B</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">B</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">B</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bcb5225889e63d167042ff6ac417412f8048760acadb1968ef02b062fc35272e.png" src="_images/bcb5225889e63d167042ff6ac417412f8048760acadb1968ef02b062fc35272e.png" />
+</div>
+</div>
+<p>Now find all the indices in the ravelled (vectorized) array <code class="docutils literal notranslate"><span class="pre">vec(B)</span></code> that equals 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bnds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bnds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17
+  18  19  20  21  22  23  24  25  26  27  28  29  30  31  61  62  92  93
+ 123 124 154 155 185 186 216 217 247 248 278 279 309 310 340 341 371 372
+ 402 403 433 434 464 465 495 496 526 527 557 558 588 589 619 620 650 651
+ 681 682 712 713 743 744 774 775 805 806 836 837 867 868 898 899 929 930
+ 931 932 933 934 935 936 937 938 939 940 941 942 943 944 945 946 947 948
+ 949 950 951 952 953 954 955 956 957 958 959 960]
+</pre></div>
+</div>
+</div>
+</div>
+<p>These are all the indices into <code class="docutils literal notranslate"><span class="pre">vec(U)</span></code> that correspond to a boundary. We need to set the value of <span class="math notranslate nohighlight">\(U\)</span> to zero at all these indices. We do that by identing <code class="docutils literal notranslate"><span class="pre">A</span></code> such that each row with an index in <code class="docutils literal notranslate"><span class="pre">bnds</span></code> contains only zeros except the main diagonal which is set to 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tolil</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">bnds</span><span class="p">:</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also need to modify the right hand side <span class="math notranslate nohighlight">\(F\)</span> such that <span class="math notranslate nohighlight">\(f_{ij}\)</span> is zero for all points on the boundary. This is easy when <code class="docutils literal notranslate"><span class="pre">bnds</span></code> is available</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">b</span><span class="p">[</span><span class="n">bnds</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="solve-the-problem">
+<h3>Solve the problem<a class="headerlink" href="#solve-the-problem" title="Permalink to this heading">#</a></h3>
+<p>We have now set up the problem as</p>
+<div class="math notranslate nohighlight">
+\[
+Ax = b
+\]</div>
+<p>and all that is left is to solve the assembled problem using a sparse linear algebra solver</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="p">(</span><span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the result</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x19cd8ea60&gt;
+</pre></div>
+</div>
+<img alt="_images/bc063ca0859bdd3a285003ea22d125a57dce1436c5e1101fcdfe62f588e4db70.png" src="_images/bc063ca0859bdd3a285003ea22d125a57dce1436c5e1101fcdfe62f588e4db70.png" />
+</div>
+</div>
+<p>and check that the solution is close to the exact analytical solution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="n">Lx</span><span class="o">/</span><span class="n">Nx</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">Ly</span><span class="o">/</span><span class="n">Ny</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="n">dy</span><span class="o">*</span><span class="p">(</span><span class="n">U</span> <span class="o">-</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.2935685467683658e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Voilà! The solution is correct. You should also verify that the solver works for a variety of spatial discretizations, especially when <span class="math notranslate nohighlight">\(N_x \ne N_y\)</span>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bookmatmek4270"
+        },
+        kernelOptions: {
+            name: "bookmatmek4270",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bookmatmek4270'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 5</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-spatial-domain">Two-dimensional spatial domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretization">Discretization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartesian-products">Cartesian products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meshgrid">meshgrid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-mesh-function">Two-dimensional mesh function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#row-major-computer-storage">Row-major computer storage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differences-in-2d">Finite differences in 2D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-form-of-poisson-s-equation">Matrix form of Poisson’s equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorization-the-vec-trick">Vectorization (the vec-trick)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kronecker-product">The Kronecker product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-derivatives">Partial derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-operator">The Laplace operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-problem">Solve the problem</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
