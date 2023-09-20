@@ -5,7 +5,6 @@ help:
 	@echo "  book        to build the book"
 	@echo "  clean       to clean out site build files"
 	@echo "  commit      to build the book and commit to gh-pages online"
-	@echo "  pdf         to build the sites PDF"
 
 clear:
 	find ./content/ -name "*.ipynb" -exec jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace {} +
