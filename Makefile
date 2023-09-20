@@ -4,7 +4,7 @@ help:
 	@echo "Please use 'make <target>' where <target> is one of:"
 	@echo "  book        to build the book"
 	@echo "  clean       to clean out site build files"
-	@echo "  commit      to build the book and commit to gh-pages online"
+	@echo "  publish     to build the book and commit to gh-pages online"
 
 clear:
 	find ./content/ -name "*.ipynb" -exec jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace {} +
