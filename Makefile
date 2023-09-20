@@ -1,4 +1,4 @@
-.PHONY: help book clean serve
+.PHONY: help book clean
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of:"
