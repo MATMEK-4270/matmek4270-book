@@ -66,6 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'mandatory1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lecture 7" href="lecture7.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -156,12 +157,13 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mandatory assignment 1</a></li>
 </ul>
 
     </div>
@@ -382,7 +384,7 @@ document.write(`
 <h2>1) Stationary waves<a class="headerlink" href="#stationary-waves" title="Permalink to this heading">#</a></h2>
 <p>Consider the wave equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-wave">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-wave" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-wave" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u
 \end{equation}
@@ -401,7 +403,7 @@ u^n_{ij} = u(t_n, x_i, y_j)
 <p>All internal points in the computational domain can be discretized using
 central differences in both time and space</p>
 <div class="math notranslate nohighlight" id="equation-eq-wave-disc">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-wave-disc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-wave-disc" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 \frac{u^{n+1}_{i,j} - 2u^n_{i,j} + u^{n-1}_{i-1, j}}{\Delta t^2} =
  c^2 \left(\frac{u^n_{i+1,j} - 2u^n_{i,j} + u^n_{i-1, j}}{h^2} + \frac{u^n_{i,j+1} - 2u^n_{i,j} + u^n_{i, j-1}}{h^2}\right)
@@ -411,7 +413,7 @@ central differences in both time and space</p>
 <div class="section" id="dirichlet-problem">
 <h3>Dirichlet problem<a class="headerlink" href="#dirichlet-problem" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight" id="equation-eq-cos">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-cos" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-cos" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u(t, x, y) = \cos(k_x x) \cos(k_y y) \cos(\omega t)
 \end{equation}
@@ -420,34 +422,25 @@ u(t, x, y) = \cos(k_x x) \cos(k_y y) \cos(\omega t)
 <div class="section" id="neumann-problem">
 <h3>Neumann problem<a class="headerlink" href="#neumann-problem" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight" id="equation-eq-sin">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-sin" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-sin" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u(t, x, y) = \sin(k_x x) \sin(k_y y) \cos(\omega t)
 \end{equation}
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(k_x=m_x\pi/L\)</span> and <span class="math notranslate nohighlight">\(k_y=m_y\pi/L\)</span>, where <span class="math notranslate nohighlight">\(m_x\)</span> and <span class="math notranslate nohighlight">\(m_y\)</span> are arbitrary integers, and <span class="math notranslate nohighlight">\(\omega\)</span> is a model parameter.</p>
-<p>1a) Use either <a class="reference internal" href="#equation-eq-cos">()</a> or <a class="reference internal" href="#equation-eq-sin">()</a> as an exact solution of <a class="reference internal" href="#equation-eq-wave">()</a> and find <span class="math notranslate nohighlight">\(\omega\)</span> as a function of <span class="math notranslate nohighlight">\(c, k_x\)</span> and <span class="math notranslate nohighlight">\(k_y\)</span>.</p>
-<p>1b) A solver for the Dirichlet problem was implemented in <span class="xref myst">lecture 7</span>. Start from this solver and implement a class <code class="docutils literal notranslate"><span class="pre">Wave2D</span></code> that solves the wave equation for the standing wave in <a class="reference internal" href="#equation-eq-sin">()</a>.</p>
+<p>1a) Use either <a class="reference internal" href="#equation-eq-cos">(12)</a> or <a class="reference internal" href="#equation-eq-sin">(13)</a> as an exact solution of <a class="reference internal" href="#equation-eq-wave">(10)</a> and find <span class="math notranslate nohighlight">\(\omega\)</span> as a function of <span class="math notranslate nohighlight">\(c, k_x\)</span> and <span class="math notranslate nohighlight">\(k_y\)</span>.</p>
+<p>1b) A solver for the Dirichlet problem was implemented in <span class="xref myst">lecture 7</span>. Start from this solver and implement a class <code class="docutils literal notranslate"><span class="pre">Wave2D</span></code> that solves the wave equation for the standing wave in <a class="reference internal" href="#equation-eq-sin">(13)</a>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>Since you have the analytical solution available you can use this to initialize both <span class="math notranslate nohighlight">\(U^0\)</span> and <span class="math notranslate nohighlight">\(U^1\)</span>. As such, there is no need to directly use the initial condition <span class="math notranslate nohighlight">\(\partial u(0, x, y)/\partial t = 0\)</span>. Note that the analytical solution satisfies this initial condition as well.</p>
 </div>
-<p>Verify the implementation using the analytical solution in <a class="reference internal" href="#equation-eq-cos">()</a>. Compute the error using the <span class="math notranslate nohighlight">\(\ell^{2}\)</span> norm</p>
+<p>Verify the implementation using the analytical solution in <a class="reference internal" href="#equation-eq-cos">(12)</a>. Compute the error using the <span class="math notranslate nohighlight">\(\ell^{2}\)</span> norm</p>
 <div class="math notranslate nohighlight">
 \[
 E = \|e^n\|_{\ell^2} = \sqrt{h^2 \sum_{i=0}^N \sum_{j=0}^N (e_{ij}^{n})^2}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(e^n = U^n - U^n_e\)</span>, <span class="math notranslate nohighlight">\(U^n\)</span> is the solution at time <span class="math notranslate nohighlight">\(n \Delta t\)</span> and <span class="math notranslate nohighlight">\(U^n_e\)</span> here is the analytical solution Eq. <a class="reference internal" href="#equation-eq-sin">()</a> at the mesh at the same time. Describe the verification, both how it is done and the results that you obtain. Set a constant CFL number <span class="math notranslate nohighlight">\(C=0.1\)</span> and use 5 levels of discretizations, <span class="math notranslate nohighlight">\(\gamma \in (0, 1, 2, 3, 4)\)</span>, such that the number of grid cells on level <span class="math notranslate nohighlight">\(\gamma\)</span> is <span class="math notranslate nohighlight">\(N(\gamma) = 2^{\gamma+3}\)</span> and the mesh size <span class="math notranslate nohighlight">\(h(\gamma) = 1/N(\gamma)\)</span>. The error on the mesh with level <span class="math notranslate nohighlight">\(\gamma\)</span> can be written as</p>
-<div class="math notranslate nohighlight">
-\[E_{\gamma} = A (h(\gamma))^r, \]</div>
-<p>where <span class="math notranslate nohighlight">\(A\)</span> is a constant. This way, if we have the error on two levels, then we can compute</p>
-<div class="math notranslate nohighlight">
-\[ \frac{E_{\gamma-1}}{E_{\gamma}} = \frac{ (h(\gamma-1))^r}{(h(\gamma))^r} = \left( \frac{h(\gamma-1)}{h(\gamma)} \right)^r  \]</div>
-<p>and isolate <span class="math notranslate nohighlight">\(r\)</span> by computing</p>
-<div class="math notranslate nohighlight">
-\[ r = \frac{\log {\frac{E_{\gamma-1}}{E_{\gamma}}}}{\log {\frac{h(\gamma-1)}{h(\gamma)}}} \]</div>
-<p>So by computing the error on two different levels we can find the order of the convergence!</p>
-<p>1c) Make a subclass of the solver from 1b) and implement here a solver for the wave equation with Neumann boundary conditions. This solver should use the standing wave in Eq. <a class="reference internal" href="#equation-eq-cos">()</a> as initial condition and exact solution.</p>
+<p>where <span class="math notranslate nohighlight">\(e^n = U^n - U^n_e\)</span>, <span class="math notranslate nohighlight">\(U^n\)</span> is the solution at time <span class="math notranslate nohighlight">\(n \Delta t\)</span> and <span class="math notranslate nohighlight">\(U^n_e\)</span> here is the analytical solution Eq. <a class="reference internal" href="#equation-eq-sin">(13)</a> at the mesh at the same time. Describe the verification, both how it is done and the results that you obtain. Set a constant CFL number <span class="math notranslate nohighlight">\(C=0.1\)</span> and use 5 levels of discretizations, <span class="math notranslate nohighlight">\(\gamma \in (0, 1, 2, 3, 4)\)</span>, such that the number of grid cells on level <span class="math notranslate nohighlight">\(\gamma\)</span> is <span class="math notranslate nohighlight">\(N(\gamma) = 2^{\gamma+3}\)</span> and the mesh size <span class="math notranslate nohighlight">\(h(\gamma) = 1/N(\gamma)\)</span>. Compute the order of the error as described in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture3.html#vibration-equation">lecture 3</a></p>
+<p>1c) Make a subclass of the solver from 1b) and implement here a solver for the wave equation with Neumann boundary conditions. This solver should use the standing wave in Eq. <a class="reference internal" href="#equation-eq-cos">(12)</a> as initial condition and exact solution.</p>
 <p>Verify the solver and describe carefully how the Neumann boundary condition is implemented.</p>
 <p>1d) Use <span class="math notranslate nohighlight">\(m_x = m_y\)</span> and the CFL number</p>
 <div class="math notranslate nohighlight">
@@ -457,21 +450,21 @@ C = \frac{c \Delta t}{h}
 <p>Set CFL = <span class="math notranslate nohighlight">\(1/\sqrt{2}\)</span> and verify that you now exactly (or at least to machine precision) can reproduce the analytical solution with both Dirichlet and Neumann solvers.</p>
 <p>1e) The two stationary solutions to the wave equations are real and imaginary components of the waves</p>
 <div class="math notranslate nohighlight" id="equation-eq-exp">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-exp" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-exp" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u(t,x,y) = e^{\imath (k_x x + k_y y - \omega t)}
 \end{equation}
 \]</div>
-<p>where the imaginary unit <span class="math notranslate nohighlight">\(\imath = \sqrt{-1}\)</span>. Show that Eq. <a class="reference internal" href="#equation-eq-exp">()</a> satisfies the wave equation.</p>
-<p>1f) Assume still that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> such that <span class="math notranslate nohighlight">\(k_x=k_y=k\)</span>. A discrete version of Eq. <a class="reference internal" href="#equation-eq-exp">()</a> will then read</p>
+<p>where the imaginary unit <span class="math notranslate nohighlight">\(\imath = \sqrt{-1}\)</span>. Show that Eq. <a class="reference internal" href="#equation-eq-exp">(14)</a> satisfies the wave equation.</p>
+<p>1f) Assume still that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> such that <span class="math notranslate nohighlight">\(k_x=k_y=k\)</span>. A discrete version of Eq. <a class="reference internal" href="#equation-eq-exp">(14)</a> will then read</p>
 <div class="math notranslate nohighlight" id="equation-eq-exp-disc">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-exp-disc" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-exp-disc" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 u^n_{ij} = e^{\imath (kh(i+j) - \tilde{\omega} n\Delta t)}
 \end{equation}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> is a numerical dispersion coefficient, i.e., the numerical approximation of the exact <span class="math notranslate nohighlight">\(\omega\)</span>.
-Insert Eq. <a class="reference internal" href="#equation-eq-exp-disc">()</a> into the discretized Eq. <a class="reference internal" href="#equation-eq-wave-disc">()</a> and show that for CFL number <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> we get that <span class="math notranslate nohighlight">\(\tilde{\omega} = \omega\)</span>.</p>
+Insert Eq. <a class="reference internal" href="#equation-eq-exp-disc">(15)</a> into the discretized Eq. <a class="reference internal" href="#equation-eq-wave-disc">(11)</a> and show that for CFL number <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> we get that <span class="math notranslate nohighlight">\(\tilde{\omega} = \omega\)</span>.</p>
 </div>
 </div>
 </div>
@@ -507,6 +500,15 @@ Insert Eq. <a class="reference internal" href="#equation-eq-exp-disc">()</a> int
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 7</p>
+      </div>
+    </a>
 </div></div>
   
 </div>
