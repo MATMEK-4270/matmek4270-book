@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mandatory assignment 1 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mandatory1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book/issues/new?title=Issue%20on%20page%20%2Fmandatory1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/mandatory1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mandatory assignment 1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-waves">1) Stationary waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-problem">Dirichlet problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-problem">Neumann problem</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="mandatory-assignment-1">
+<h1>Mandatory assignment 1<a class="headerlink" href="#mandatory-assignment-1" title="Permalink to this heading">#</a></h1>
+<p>General information</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* Collaboration/discussion among students is encouraged, but each student should submit a set of files, including a project report, which are programmed/written by her/himself.
+* 
+</pre></div>
+</div>
+<div class="section" id="stationary-waves">
+<h2>1) Stationary waves<a class="headerlink" href="#stationary-waves" title="Permalink to this heading">#</a></h2>
+<p>Consider the wave equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-wave">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-wave" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u
+\end{equation}
+\]</div>
+<p>in a two-dimensional spatial domain <span class="math notranslate nohighlight">\(\Omega = [0, 1]^2\)</span> and in time <span class="math notranslate nohighlight">\(t \in [0, T]\)</span>. We will solve the wave equation using the finite difference method on a uniform mesh in both space and time. We will use the same spatial discretization in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions, such that the mesh can be described as <span class="math notranslate nohighlight">\( \boldsymbol{x} \times \boldsymbol{y}\)</span>, where <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_i)_{i=0}^N\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{y} = (y_j)_{j=0}^N\)</span>, <span class="math notranslate nohighlight">\(x_i = i h\)</span>, <span class="math notranslate nohighlight">\(y_j = j h\)</span> and  <span class="math notranslate nohighlight">\(h = 1/N\)</span>. Time is discretized as <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span> for <span class="math notranslate nohighlight">\(n \in 0, 1, \ldots, N_t\)</span>, and <span class="math notranslate nohighlight">\(\Delta t = T/N_t\)</span>. The CFL number <span class="math notranslate nohighlight">\(C\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+C = \frac{c \Delta t}{h}
+\]</div>
+<p>A mesh function will be denoted as</p>
+<div class="math notranslate nohighlight">
+\[
+u^n_{ij} = u(t_n, x_i, y_j)
+\]</div>
+<p>and for a given timestep <span class="math notranslate nohighlight">\(n\)</span> it is useful to use matrix notation for the mesh function: <span class="math notranslate nohighlight">\(U^n = (u^n_{ij})_{i,j=0}^N\)</span>.</p>
+<p>All internal points in the computational domain can be discretized using
+central differences in both time and space</p>
+<div class="math notranslate nohighlight" id="equation-eq-wave-disc">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-wave-disc" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+\frac{u^{n+1}_{i,j} - 2u^n_{i,j} + u^{n-1}_{i-1, j}}{\Delta t^2} =
+ c^2 \left(\frac{u^n_{i+1,j} - 2u^n_{i,j} + u^n_{i-1, j}}{h^2} + \frac{u^n_{i,j+1} - 2u^n_{i,j} + u^n_{i, j-1}}{h^2}\right)
+\end{equation}
+\]</div>
+<p>The wave equation admits two real stationary waves as solutions:</p>
+<div class="section" id="dirichlet-problem">
+<h3>Dirichlet problem<a class="headerlink" href="#dirichlet-problem" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-eq-cos">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-cos" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+u(t, x, y) = \cos(k_x x) \cos(k_y y) \cos(\omega t)
+\end{equation}
+\]</div>
+</div>
+<div class="section" id="neumann-problem">
+<h3>Neumann problem<a class="headerlink" href="#neumann-problem" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-eq-sin">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-sin" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+u(t, x, y) = \sin(k_x x) \sin(k_y y) \cos(\omega t)
+\end{equation}
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(k_x=m_x\pi/L\)</span> and <span class="math notranslate nohighlight">\(k_y=m_y\pi/L\)</span>, where <span class="math notranslate nohighlight">\(m_x\)</span> and <span class="math notranslate nohighlight">\(m_y\)</span> are arbitrary integers, and <span class="math notranslate nohighlight">\(\omega\)</span> is a model parameter.</p>
+<p>1a) Use either <a class="reference internal" href="#equation-eq-cos">()</a> or <a class="reference internal" href="#equation-eq-sin">()</a> as an exact solution of <a class="reference internal" href="#equation-eq-wave">()</a> and find <span class="math notranslate nohighlight">\(\omega\)</span> as a function of <span class="math notranslate nohighlight">\(c, k_x\)</span> and <span class="math notranslate nohighlight">\(k_y\)</span>.</p>
+<p>1b) A solver for the Dirichlet problem was implemented in <span class="xref myst">lecture 7</span>. Start from this solver and implement a class <code class="docutils literal notranslate"><span class="pre">Wave2D</span></code> that solves the wave equation for the standing wave in <a class="reference internal" href="#equation-eq-sin">()</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Since you have the analytical solution available you can use this to initialize both <span class="math notranslate nohighlight">\(U^0\)</span> and <span class="math notranslate nohighlight">\(U^1\)</span>. As such, there is no need to directly use the initial condition <span class="math notranslate nohighlight">\(\partial u(0, x, y)/\partial t = 0\)</span>. Note that the analytical solution satisfies this initial condition as well.</p>
+</div>
+<p>Verify the implementation using the analytical solution in <a class="reference internal" href="#equation-eq-cos">()</a>. Compute the error using the <span class="math notranslate nohighlight">\(\ell^{2}\)</span> norm</p>
+<div class="math notranslate nohighlight">
+\[
+E = \|e^n\|_{\ell^2} = \sqrt{h^2 \sum_{i=0}^N \sum_{j=0}^N (e_{ij}^{n})^2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(e^n = U^n - U^n_e\)</span>, <span class="math notranslate nohighlight">\(U^n\)</span> is the solution at time <span class="math notranslate nohighlight">\(n \Delta t\)</span> and <span class="math notranslate nohighlight">\(U^n_e\)</span> here is the analytical solution Eq. <a class="reference internal" href="#equation-eq-sin">()</a> at the mesh at the same time. Describe the verification, both how it is done and the results that you obtain. Set a constant CFL number <span class="math notranslate nohighlight">\(C=0.1\)</span> and use 5 levels of discretizations, <span class="math notranslate nohighlight">\(\gamma \in (0, 1, 2, 3, 4)\)</span>, such that the number of grid cells on level <span class="math notranslate nohighlight">\(\gamma\)</span> is <span class="math notranslate nohighlight">\(N(\gamma) = 2^{\gamma+3}\)</span> and the mesh size <span class="math notranslate nohighlight">\(h(\gamma) = 1/N(\gamma)\)</span>. The error on the mesh with level <span class="math notranslate nohighlight">\(\gamma\)</span> can be written as</p>
+<div class="math notranslate nohighlight">
+\[E_{\gamma} = A (h(\gamma))^r, \]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is a constant. This way, if we have the error on two levels, then we can compute</p>
+<div class="math notranslate nohighlight">
+\[ \frac{E_{\gamma-1}}{E_{\gamma}} = \frac{ (h(\gamma-1))^r}{(h(\gamma))^r} = \left( \frac{h(\gamma-1)}{h(\gamma)} \right)^r  \]</div>
+<p>and isolate <span class="math notranslate nohighlight">\(r\)</span> by computing</p>
+<div class="math notranslate nohighlight">
+\[ r = \frac{\log {\frac{E_{\gamma-1}}{E_{\gamma}}}}{\log {\frac{h(\gamma-1)}{h(\gamma)}}} \]</div>
+<p>So by computing the error on two different levels we can find the order of the convergence!</p>
+<p>1c) Make a subclass of the solver from 1b) and implement here a solver for the wave equation with Neumann boundary conditions. This solver should use the standing wave in Eq. <a class="reference internal" href="#equation-eq-cos">()</a> as initial condition and exact solution.</p>
+<p>Verify the solver and describe carefully how the Neumann boundary condition is implemented.</p>
+<p>1d) Use <span class="math notranslate nohighlight">\(m_x = m_y\)</span> and the CFL number</p>
+<div class="math notranslate nohighlight">
+\[
+C = \frac{c \Delta t}{h}
+\]</div>
+<p>Set CFL = <span class="math notranslate nohighlight">\(1/\sqrt{2}\)</span> and verify that you now exactly (or at least to machine precision) can reproduce the analytical solution with both Dirichlet and Neumann solvers.</p>
+<p>1e) The two stationary solutions to the wave equations are real and imaginary components of the waves</p>
+<div class="math notranslate nohighlight" id="equation-eq-exp">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-exp" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+u(t,x,y) = e^{\imath (k_x x + k_y y - \omega t)}
+\end{equation}
+\]</div>
+<p>where the imaginary unit <span class="math notranslate nohighlight">\(\imath = \sqrt{-1}\)</span>. Show that Eq. <a class="reference internal" href="#equation-eq-exp">()</a> satisfies the wave equation.</p>
+<p>1f) Assume still that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> such that <span class="math notranslate nohighlight">\(k_x=k_y=k\)</span>. A discrete version of Eq. <a class="reference internal" href="#equation-eq-exp">()</a> will then read</p>
+<div class="math notranslate nohighlight" id="equation-eq-exp-disc">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-exp-disc" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+u^n_{ij} = e^{\imath (kh(i+j) - \tilde{\omega} n\Delta t)}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> is a numerical dispersion coefficient, i.e., the numerical approximation of the exact <span class="math notranslate nohighlight">\(\omega\)</span>.
+Insert Eq. <a class="reference internal" href="#equation-eq-exp-disc">()</a> into the discretized Eq. <a class="reference internal" href="#equation-eq-wave-disc">()</a> and show that for CFL number <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> we get that <span class="math notranslate nohighlight">\(\tilde{\omega} = \omega\)</span>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bookmatmek4270"
+        },
+        kernelOptions: {
+            name: "bookmatmek4270",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bookmatmek4270'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-waves">1) Stationary waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dirichlet-problem">Dirichlet problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-problem">Neumann problem</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
