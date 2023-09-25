@@ -8,12 +8,12 @@ help:
 
 
 clear:
-	find ./content/ -name "*.ipynb" -exec jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace {} +
+	find ./ -name "*.ipynb" -exec jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace {} +
 
 book:
 	jupyter-book build ./
 
-publish: book
+publish: clear book
 	ghp-import -n -p -f _build/html
 
 cleanall:
