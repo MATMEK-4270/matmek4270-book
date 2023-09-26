@@ -3,9 +3,15 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: lecture3
-- file: lecture4
-- file: lecture5
-- file: lecture6
-- file: lecture7
+parts:
+- caption: The Finite Difference Method
+  chapters:
+  - file: lecture3
+  - file: lecture4
+  - file: lecture5
+  - file: lecture6
+  - file: lecture7
+- caption: Mandatory assignments
+  numbered: true
+  chapters:
+  - file: mandatory1
