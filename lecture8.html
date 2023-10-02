@@ -370,6 +370,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-method">The least squares method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-galerkin-method">The Galerkin method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-collocation-method">The collocation method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-issues">Boundary issues</a></li>
 </ul>
 </li>
 </ul>
@@ -485,7 +486,7 @@ E = (e, e).
 \[
 \frac{\partial E}{\partial \hat{u}_j} = 0, \quad j \in (0, 1, \ldots, N).
 \]</div>
-<p>This gives us <span class="math notranslate nohighlight">\(N+1\)</span> equations for the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^{N}\)</span>. For our example, this is a lot of work, but easily achieved using Sympy.</p>
+<p>This gives us <span class="math notranslate nohighlight">\(N+1\)</span> equations for the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^{N}\)</span>. For our example, this is a lot of work by hand, but easily achieved using Sympy.</p>
 <p>Find and display the two equations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -525,13 +526,13 @@ E = (e, e).
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">uhat</span><span class="p">[</span><span class="n">u0</span><span class="p">]</span><span class="o">+</span><span class="n">uhat</span><span class="p">[</span><span class="n">u1</span><span class="p">]</span><span class="o">*</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">uhat</span><span class="p">[</span><span class="n">u0</span><span class="p">]</span><span class="o">+</span><span class="n">uhat</span><span class="p">[</span><span class="n">u1</span><span class="p">]</span><span class="o">*</span><span class="n">xj</span><span class="p">,</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$u_</span><span class="si">{N}</span><span class="s1">(x)$&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e57cd44ae3838b49209d5826d704c0f6682cb3a83fea8e574e62a6d839e34a8b.png" src="_images/e57cd44ae3838b49209d5826d704c0f6682cb3a83fea8e574e62a6d839e34a8b.png" />
+<img alt="_images/13ed90fdcece7d364fd7f56d56c7b000c6bed63fde134b41d6e148f035a1846a.png" src="_images/13ed90fdcece7d364fd7f56d56c7b000c6bed63fde134b41d6e148f035a1846a.png" />
 </div>
 </div>
 </div>
@@ -808,7 +809,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that we have not used any mesh points when computing the Legendre coefficients <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>.</p>
+<p>Note that we have not used any mesh points when computing the Legendre coefficients <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>, only exact integrals.</p>
 </div>
 <p>In the computations above we have used Sympy and computed the inner product integral exactly. For some functions this may be impossible, or take a very long time. Hence, the inner products are often computed with numerical integration. We can rewrite the inner product above to use numerical integration (from scipy). The results are now almost identical, but no longer exact. See the difference below:</p>
 <div class="cell docutils container">
@@ -844,7 +845,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 \[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 \]</div>
-<p>The collocation method requires that for some <span class="math notranslate nohighlight">\(N+1\)</span> chosen mesh points <span class="math notranslate nohighlight">\(x_j\)</span> the following <span class="math notranslate nohighlight">\(N+1\)</span> equations need to be satisfied</p>
+<p>The collocation method requires that for some <span class="math notranslate nohighlight">\(N+1\)</span> chosen mesh points <span class="math notranslate nohighlight">\(x_j\)</span> the following <span class="math notranslate nohighlight">\(N+1\)</span> equations are satisfied</p>
 <div class="math notranslate nohighlight">
 \[
 u(x_j) - u_N(x_j) = 0, \quad j \in (0, 1, \ldots, N).
@@ -877,7 +878,7 @@ u(x_j) - u_N(x_j) = 0, \quad j \in (0, 1, \ldots, N).
 \[
 \hat{u}_j = u(x_j).
 \]</div>
-<p>There is no integration and the method is often favoured for its simplicity. There is a problem though. How do you choose the collocation points!</p>
+<p>There is no integration and the method is often favoured for its simplicity. There is a problem though. How do you choose the collocation points?!</p>
 <p>Lets return to the example with <span class="math notranslate nohighlight">\(u(x)=10(x-1)^2-1\)</span> and <span class="math notranslate nohighlight">\(x \in [1, 2]\)</span>. The approximation using two collocation points (linear function) is now</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1064,6 +1065,146 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 </div>
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
 </div>
+<div class="section" id="boundary-issues">
+<h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Permalink to this heading">#</a></h3>
+<p>Lets consider a slightly different problem</p>
+<div class="math notranslate nohighlight">
+\[
+u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
+\]</div>
+<p>and attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N = \text{span}\{\sin((j+1)\pi x)\}_{j=0}^N\)</span> with the Galerkin method.</p>
+<p>The sines are orthogonal such that the mass matrix becomes diagonal</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^1 \sin((j+1) \pi x) \sin((i + 1) \pi x) dx = \frac{1}{2} \delta_{ij}.
+\]</div>
+<p>Hence we can easily get the coefficients with the Galerkin method</p>
+<div class="math notranslate nohighlight" id="equation-eq-hatusin">
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-hatusin" title="Permalink to this equation">#</a></span>\[
+\hat{u}_i = 2 \left( u(x),  \sin((i+1) \pi x) \right)_{L^2([0, 1])}.
+\]</div>
+<p>Lets implement and check the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ul</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
+
+<span class="n">ul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uN</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">xj</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="n">uj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ui</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">uh</span><span class="p">):</span>
+        <span class="n">uj</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">xj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uj</span>
+
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uN</span><span class="p">(</span><span class="n">ul</span><span class="p">[:(</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;g:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uN</span><span class="p">(</span><span class="n">ul</span><span class="p">[:(</span><span class="mi">12</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;N=3&#39;</span><span class="p">,</span> <span class="s1">&#39;N=12&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/efd2f8a49768186908bca9eeca16ef60b54c02995442f5f8be41a7c0ee7ab05c.png" src="_images/efd2f8a49768186908bca9eeca16ef60b54c02995442f5f8be41a7c0ee7ab05c.png" />
+</div>
+</div>
+<p>Evidently, we get large oscillations and the solution does not seem to converge. The problem is that the basis functions are all such that</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_j(0) = \psi_j(1) = 1
+\]</div>
+<p>since <span class="math notranslate nohighlight">\(\sin((j+1) \pi x) = 0\)</span> for <span class="math notranslate nohighlight">\(x =0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span>.  So no matter how many basis functions and unknown we’re adding, the sum</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
+\]</div>
+<p>will allways lead to <span class="math notranslate nohighlight">\(u_N(0) = 0\)</span> and <span class="math notranslate nohighlight">\(u_N(1) = 0\)</span>. We have a problem with the basis functions having the wrong values at the boundaries.</p>
+<p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns, only new basis functions.</p>
+<p>If we now define the slightly modified trial space: <span class="math notranslate nohighlight">\(W_N = \text{span}\{b(x)+\sin((j+1)\pi x)\}_{j=0}^N\)</span>, we get the variational problem: find <span class="math notranslate nohighlight">\(u_N \in W_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(u-u_N, v) = 0, \quad \forall \, v \in V_N
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_N = \{\sin((j+1)\pi x)\}_{j=0}^N\)</span>. We get</p>
+<div class="math notranslate nohighlight">
+\[
+\left(u- \sum_{j=0}^N b(x)+\sin((j+1)\pi x), \sin((i+1)\pi x) \right) = 0, \quad i \in (0, 1, \ldots, N)
+\]</div>
+<p>and using the orthogonality of the sines we get</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \left(u(x)-b(x), \sin((i+1)\pi x) \right) \quad i \in (0, 1, \ldots, N).
+\]</div>
+<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(13)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="n">uc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="o">-</span><span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
+
+<span class="n">uc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uc</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uNc</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">xj</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="n">uj</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">xj</span><span class="p">)</span> <span class="o">+</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">xj</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ui</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">uh</span><span class="p">):</span>
+        <span class="n">uj</span><span class="p">[:]</span> <span class="o">+=</span> <span class="n">ui</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">xj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uj</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uNc</span><span class="p">(</span><span class="n">uc</span><span class="p">[:(</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;g:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uNc</span><span class="p">(</span><span class="n">uc</span><span class="p">[:(</span><span class="mi">12</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;N=3&#39;</span><span class="p">,</span> <span class="s1">&#39;N=12&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/553836f3412880bf1fe00f22a7871a2df5f89893c0d4f00a1ffa54afcabde6a5.png" src="_images/553836f3412880bf1fe00f22a7871a2df5f89893c0d4f00a1ffa54afcabde6a5.png" />
+</div>
+</div>
+<p>Notice the very good agreement. The expansion coefficients are now converging, which we can see by printing out the 15 computed values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">uc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.58012275e+00  0.00000000e+00 -9.55601020e-02  0.00000000e+00
+ -2.06409820e-02  0.00000000e+00 -7.52222377e-03  0.00000000e+00
+ -3.53926304e-03  0.00000000e+00 -1.93848441e-03  0.00000000e+00
+ -1.17438450e-03  0.00000000e+00 -7.64480816e-04]
+</pre></div>
+</div>
+</div>
+</div>
+<p>These should be compared with the expansion coefficients without the boundary adjustment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ul</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.51283542 3.18309886 1.60209262 1.59154943 0.99795065 1.06103295
+ 0.72004323 0.79577472 0.56234498 0.63661977 0.46105771 0.53051648
+ 0.39059163 0.45472841 0.33876606]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -1138,6 +1279,7 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-method">The least squares method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-galerkin-method">The Galerkin method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-collocation-method">The collocation method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-issues">Boundary issues</a></li>
 </ul>
 </li>
 </ul>
