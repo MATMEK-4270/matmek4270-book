@@ -1,0 +1,1196 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 8 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture8';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="prev" title="Lecture 7" href="lecture7.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 8</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book/issues/new?title=Issue%20on%20page%20%2Flecture8.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture8.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 8</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-with-global-functions">Function approximation with global functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-method">The least squares method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-galerkin-method">The Galerkin method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-collocation-method">The collocation method</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-8">
+<h1>Lecture 8<a class="headerlink" href="#lecture-8" title="Permalink to this heading">#</a></h1>
+<div class="section" id="function-approximation-with-global-functions">
+<h2>Function approximation with global functions<a class="headerlink" href="#function-approximation-with-global-functions" title="Permalink to this heading">#</a></h2>
+<p>Consider a generic function in one dimension <span class="math notranslate nohighlight">\(u(x)\)</span>. <span class="math notranslate nohighlight">\(u(x)\)</span> can be anything, a polynomial, harmonic, exponential, etc., and it can be defined on the entire real line <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> or simply a part of it <span class="math notranslate nohighlight">\(x \in [a, b]\)</span> for some real numbers <span class="math notranslate nohighlight">\(a &lt; b\)</span>. Sometimes you will see a notation like <span class="math notranslate nohighlight">\(u(x): [a, b] \rightarrow \mathbb{R}\)</span>. This means that the function <span class="math notranslate nohighlight">\(u(x)\)</span> is defined on the domain <span class="math notranslate nohighlight">\(x\in[a,b]\)</span> and outputs a real number.</p>
+<p>We now want to approximate this function <span class="math notranslate nohighlight">\(u(x)\)</span> using other functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+u(x) = \sum_{k=0}^N \hat{u}_k \psi_k(x).
+\]</div>
+<p>The other functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are called basis functions. The basis functions can also be anything, but they need to output the same kind of number as <span class="math notranslate nohighlight">\(u(x)\)</span>. That is, if <span class="math notranslate nohighlight">\(u(x)\)</span> is a complex function, then <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> better be  a complex function as well.</p>
+<p>A basis is a collection (or set) of basis functions</p>
+<div class="math notranslate nohighlight">
+\[
+\{\psi_j(x)\}_{j=0}^N.
+\]</div>
+<p>A functionspace <span class="math notranslate nohighlight">\(V_N\)</span> can be defined as the span of a this set of basis functions</p>
+<div class="math notranslate nohighlight">
+\[
+V_N = \text{span}\{\psi_j\}_{j=0}^N.
+\]</div>
+<p>For example, <span class="math notranslate nohighlight">\(V_N = \text{span}\{x^j\}_{j=0}^{N}\)</span> is the space of all polynomials of order less than or equal to <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>If we say that the function <span class="math notranslate nohighlight">\(u_N \in V_N\)</span>, this means that we can write</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
+\]</div>
+<p>The set <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}} = \{\hat{u}_j\}_{j=0}^N\)</span> contains the expansion coefficients. These coefficients are the unknown when we are working with function approximation, or later, the finite element method.</p>
+<p>Consider a very simple example. Let <span class="math notranslate nohighlight">\(u(x) = 10(x-1)^2-1\)</span> for <span class="math notranslate nohighlight">\(x\in [1,2]\)</span>. We can create the function in Sympy and plot it</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/68bc623731ac132af15b698a92b7534ec2706ce23277f4984dee4d987a7c4ab3.png" src="_images/68bc623731ac132af15b698a92b7534ec2706ce23277f4984dee4d987a7c4ab3.png" />
+</div>
+</div>
+<p>Now create a functionspace consisting of all straight lines</p>
+<div class="math notranslate nohighlight">
+\[
+V = \text{span}\{1, x\}
+\]</div>
+<p>and try to find the approximation <span class="math notranslate nohighlight">\(u_N \in V\)</span> that is the best approximation of <span class="math notranslate nohighlight">\(u(x)\)</span>. How can we do this? All we know is that</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = \hat{u}_0 + \hat{u}_1 x.
+\]</div>
+<p>How do we find <span class="math notranslate nohighlight">\(\{\hat{u}_0, \hat{u}_1\}\)</span> such that <span class="math notranslate nohighlight">\(u_N(x)\)</span> is the best possible approximation to <span class="math notranslate nohighlight">\(u(x)\)</span>?</p>
+<p>There are several possible approaches. The three approaches considered in the <a class="reference external" href="https://link-springer-com.ezproxy.uio.no/book/10.1007/978-3-030-23788-2">book</a> are</p>
+<ul class="simple">
+<li><p>The least squares method</p></li>
+<li><p>The Galerkin method</p></li>
+<li><p>The collocation method (interpolation)</p></li>
+</ul>
+<p>We will briefly mention the least squares method and focus on the last two. All methods will allow us to find the best possible <span class="math notranslate nohighlight">\(u_N(x)\)</span>, but with slightly different approaches. All methods will provide us with <span class="math notranslate nohighlight">\(N+1\)</span> equations that can be used to find the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>.</p>
+<p>For the first two methods we need to define the <span class="math notranslate nohighlight">\(L^2\)</span> inner product</p>
+<div class="math notranslate nohighlight">
+\[
+\left(f, g \right) = \int_{\Omega} f(x)g(x) dx,
+\]</div>
+<p>for two real functions <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(g(x)\)</span> (complex functions have a slightly different inner product). The symbol <span class="math notranslate nohighlight">\(\Omega\)</span> here represents the domain of interest. For our first example <span class="math notranslate nohighlight">\(\Omega = [1, 2]\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes the inner product is written as <span class="math notranslate nohighlight">\(\left(f, g \right)_{L^2(\Omega)}\)</span>, in order to clarify that it is the <span class="math notranslate nohighlight">\(L^2\)</span> inner product on a certain domain. Sometimes the inner product is also called the scalar product.</p>
+</div>
+<p>The inner product is used in defining the <span class="math notranslate nohighlight">\(L^2\)</span> error norm. If we define the error in the approximation as</p>
+<div class="math notranslate nohighlight">
+\[
+e(x) = u(x)-u_N(x),
+\]</div>
+<p>then the <span class="math notranslate nohighlight">\(L^2\)</span> error norm is <span class="math notranslate nohighlight">\(\sqrt{(e, e)} = |e|\)</span>, or sometimes <span class="math notranslate nohighlight">\(|e|_{L^2}\)</span>. We will also use</p>
+<div class="math notranslate nohighlight">
+\[
+E = (e, e).
+\]</div>
+<p>For convenience we define a Python function for the inner product of Sympy functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-least-squares-method">
+<h3>The least squares method<a class="headerlink" href="#the-least-squares-method" title="Permalink to this heading">#</a></h3>
+<p>The least squares method requires that we solve</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial E}{\partial \hat{u}_j} = 0, \quad j \in (0, 1, \ldots, N).
+\]</div>
+<p>This gives us <span class="math notranslate nohighlight">\(N+1\)</span> equations for the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^{N}\)</span>. For our example, this is a lot of work, but easily achieved using Sympy.</p>
+<p>Find and display the two equations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">u0</span><span class="p">,</span> <span class="n">u1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;u0,u1&#39;</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="n">u</span><span class="o">-</span><span class="p">(</span><span class="n">u0</span><span class="o">+</span><span class="n">u1</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">eq1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">u0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">eq2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 2 u_{0} + 3 u_{1} - \frac{14}{3} = 0\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle 3 u_{0} + \frac{14 u_{1}}{3} - \frac{26}{3} = 0\]</div>
+</div>
+</div>
+<p>Solve the two equations for the two unknown <code class="docutils literal notranslate"><span class="pre">u0</span></code> and <code class="docutils literal notranslate"><span class="pre">u1</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">eq1</span><span class="p">,</span> <span class="n">eq2</span><span class="p">),</span> <span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">))</span>
+<span class="n">uhat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{u0: -38/3, u1: 10}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, plot the function <span class="math notranslate nohighlight">\(u(x)=10(x-1)^2-1\)</span> and the best approximation <span class="math notranslate nohighlight">\(u_N(x) \in \text{span}\{1, x\}\)</span> according to the least squares method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">uhat</span><span class="p">[</span><span class="n">u0</span><span class="p">]</span><span class="o">+</span><span class="n">uhat</span><span class="p">[</span><span class="n">u1</span><span class="p">]</span><span class="o">*</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$u_</span><span class="si">{N}</span><span class="s1">(x)$&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e57cd44ae3838b49209d5826d704c0f6682cb3a83fea8e574e62a6d839e34a8b.png" src="_images/e57cd44ae3838b49209d5826d704c0f6682cb3a83fea8e574e62a6d839e34a8b.png" />
+</div>
+</div>
+</div>
+<div class="section" id="the-galerkin-method">
+<h3>The Galerkin method<a class="headerlink" href="#the-galerkin-method" title="Permalink to this heading">#</a></h3>
+<p>The Galerkin method requires that the error is orthogonal to the basis functions (for the <span class="math notranslate nohighlight">\(L^2\)</span> inner product). That is</p>
+<div class="math notranslate nohighlight">
+\[
+(e, \psi_j) = 0, \quad \forall \, j \in (0, 1, \ldots, N).
+\]</div>
+<p>This is not as much work as the least squares method, and even easier to implement in Sympy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">eq2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - u_{0} - \frac{3 u_{1}}{2} + \frac{7}{3} = 0\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{3 u_{0}}{2} - \frac{7 u_{1}}{3} + \frac{13}{3} = 0\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">eq1</span><span class="p">,</span> <span class="n">eq2</span><span class="p">),</span> <span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{u0: -38/3, u1: 10}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For function approximations the Galerkin method always gives the same result as the least squares method. However, the same does not apply when solving PDEs.</p>
+</div>
+<p>The Galerkin method can be formulated as:</p>
+<p>Find <span class="math notranslate nohighlight">\(u_N \in V\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(e, v) = 0, \quad \forall \, v \in V,
+\]</div>
+<p>which means exactly the same as:</p>
+<p>Find <span class="math notranslate nohighlight">\(u_N \in V\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(e, \psi_i) = 0, \quad \forall \, i \in (0, 1, \ldots, N).
+\]</div>
+<p>Inserting for <span class="math notranslate nohighlight">\(e=u-u_N\)</span> and <span class="math notranslate nohighlight">\(u_N=\sum_{j=0}^N \hat{u}_j \psi_j\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+(u - \sum_{j=0}^N \hat{u}_j \psi_j, \psi_i) = 0, \quad \forall \, i \in (0, 1, \ldots, N),
+\]</div>
+<p>and thus</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N (\psi_j, \psi_i) \, \hat{u}_j = (u, \psi_i), \quad \forall \, i \in (0, 1, \ldots, N).
+\]</div>
+<p>This is a linear algebra system,</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{x} = \boldsymbol{b},
+\]</div>
+<p>where the matrix <span class="math notranslate nohighlight">\(A = (a_{ij})_{i,j=0}^N, a_{ij} = (\psi_j, \psi_i)\)</span> and the vectors <span class="math notranslate nohighlight">\(\boldsymbol{x} = \{\hat{u}_i\}_{i=0}^N\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{b}  = \{b_i\}_{i=0}^N, b_i = (u, \psi_i)\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The matrix <span class="math notranslate nohighlight">\(A\)</span>, including only the basis functions and no derivatives, is often called the <em>mass matrix</em>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the Galerkin literature, the basis function containing the row index (i.e., <span class="math notranslate nohighlight">\(\psi_i\)</span>) is usually referred to as the <em>test</em> function, whereas the basis function containing the column index (i.e., <span class="math notranslate nohighlight">\(\psi_j\)</span>) is referred to as the <em>trial</em> function. Sometimes the entire <span class="math notranslate nohighlight">\(u_N(x)\)</span> is called the trial function. The function <span class="math notranslate nohighlight">\(v\)</span> above is a test function.</p>
+</div>
+<p>If the basis functions are chosen as orthonormal to each other, then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(\psi_j, \psi_i) = \delta_{ij} = \begin{cases}
+1 \text{ if } i = j, \\
+0 \text{ if } i \ne j.
+\end{cases}
+\end{split}\]</div>
+<p>In that case we simply get</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{x} = \boldsymbol{b} \quad \text{or} \quad \hat{u}_i = (u, \psi_i) \quad \forall \, i \in (0, 1, \ldots, N).
+\]</div>
+<p>It is more common that the basis functions are <em>orthogonal</em>. In this case the mass matrix becomes</p>
+<div class="math notranslate nohighlight">
+\[
+(\psi_j, \psi_i) = |\psi_i|^2 \delta_{ij}.
+\]</div>
+<p>We can still easily solve the linear algebra system (because <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix)</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{(u, \psi_i)}{|\psi_i|^2} \quad \forall \, i \in (0, 1, \ldots, N).
+\]</div>
+<p>The monomial basis</p>
+<div class="math notranslate nohighlight">
+\[
+\{x^n | n \in \mathbb{N} \}
+\]</div>
+<p>is a basis for the space of all polynomials. However, it is not a good basis. This is because the basis functions are not orthogonal and the mass matrix <span class="math notranslate nohighlight">\(A\)</span> is ill conditioned.</p>
+<p>A much better polynomial basis are the Legendre polynomials that are defined on the domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+P_0(x) &amp;= 1, \\
+P_1(x) &amp;= x, \\
+P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
+&amp;\vdots \\
+(j+1)P_{j+1} &amp;= (2j+1)xP_{j} - j P_{j-1}
+\end{align*}
+\end{split}\]</div>
+<p>The first 5 Legendre polynomials are plotted below</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">legend</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">legend</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$P_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">(x)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/858fa8ea843ac67e0e6ed64502783b9c63bf51f7f0c6ce5e19953d452798f879.png" src="_images/858fa8ea843ac67e0e6ed64502783b9c63bf51f7f0c6ce5e19953d452798f879.png" />
+</div>
+</div>
+<p>The Legendre polynomials are <span class="math notranslate nohighlight">\(L^2\)</span> orthogonal on <span class="math notranslate nohighlight">\(\Omega=[-1, 1]\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-legortho">
+<span class="eqno">(10)<a class="headerlink" href="#equation-eq-legortho" title="Permalink to this equation">#</a></span>\[
+(P_j, P_i) =  \frac{2}{2j+1}\delta_{ij}.
+\]</div>
+<p>A slightly complicating factor, though, is that the computational domain needs to be <span class="math notranslate nohighlight">\([-1, 1]\)</span>. So if the actual domain of <span class="math notranslate nohighlight">\(u(x)\)</span> is <span class="math notranslate nohighlight">\([a, b]\)</span>, then this needs to be mapped to the computational domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mapping from a physical to a computational (reference) domain is very common and it is best to get used to it sooner rather than later. With the finite element method this mapping is used all the time and it is described as one of the first topics for the method in Sec 3.1.8 of <a class="reference external" href="https://link-springer-com.ezproxy.uio.no/book/10.1007/978-3-030-23788-2">Introduction to Numerical Methods for Variational Problems</a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Legendre polynomials are not the only basis functions that require a mapping. The Bernstein polynomials (see, Sec. 2.4.3 in the <a class="reference external" href="https://link-springer-com.ezproxy.uio.no/book/10.1007/978-3-030-23788-2">book</a>) use a computational domain <span class="math notranslate nohighlight">\([0, 1]\)</span>. The computational domain depends on the chosen basis function.</p>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be the coordinate in the computational (reference) domain <span class="math notranslate nohighlight">\([A, B]\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are real numbers. A linear (affine) mapping, from the computational coordinate <span class="math notranslate nohighlight">\(X\)</span> to the physical coordinate <span class="math notranslate nohighlight">\(x\)</span> is then</p>
+<div class="math notranslate nohighlight" id="equation-eq-x">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-x" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+x = a + \frac{b-a}{B-A}(X-A).
+\end{equation}
+\]</div>
+<p>The reverse mapping is</p>
+<div class="math notranslate nohighlight" id="equation-eq-xmap">
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-xmap" title="Permalink to this equation">#</a></span>\[
+\begin{equation}
+X = A + \frac{B-A}{b-a}(x-a).
+\end{equation}
+\]</div>
+<p>These mappings are valid for any basis function.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using a basis function like <span class="math notranslate nohighlight">\(\psi_k(x) = \sin((k+1) \pi x), x \in [0, 1]\)</span>, you are implicitly mapping the physical domain <span class="math notranslate nohighlight">\([0, 1]\)</span> to an integer <span class="math notranslate nohighlight">\(k+1\)</span> times a computational domain <span class="math notranslate nohighlight">\([0, \pi]\)</span>.</p>
+</div>
+<p>For Legendre basis functions we use the computational domain <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span>, so <span class="math notranslate nohighlight">\(A=-1\)</span> and <span class="math notranslate nohighlight">\(B=1\)</span>. With this mapping we then simply use the basis functions</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_j(x) = P_{j}(X(x)).
+\]</div>
+<p>We need to be careful with defining the <span class="math notranslate nohighlight">\(L^2\)</span> inner product though, since this requires integration with a change of variables. Consider the Galerkin method on the domain <span class="math notranslate nohighlight">\([a, b]\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+(u(x)-u_N(x), \psi_i(x)) = \int_{a}^b (u(x)-u_N(x)) \psi_i(x) dx = 0, \quad \forall i \in (0, 1, \ldots, N). 
+\]</div>
+<p>Insert for <span class="math notranslate nohighlight">\(u_N(x)=\sum_{j=0}^N \hat{u}_j \psi_j(x)\)</span>  and rearrange into</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N \int_{a}^b \psi_j(x)  \psi_i(x) \, dx \, \hat{u}_j =  \int_{a}^b u(x) \psi_i(x) dx, \quad \forall i \in (0, 1, \ldots, N)
+\]</div>
+<p>This is just the regular Galerkin method. But now we introduce <span class="math notranslate nohighlight">\(\psi_j(x) = P_j(X)\)</span> and a change of variables for the integration. This leads to</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N \int_{-1}^1 P_j(X)  P_i(X)\, \frac{dx}{dX} \, dX \, \hat{u}_j =  \int_{-1}^1 u(x(X)) P_i(X) \, \frac{dx}{dX} \, dX, \quad \forall i \in (0, 1, \ldots, N)
+\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\frac{dx}{dX}\)</span> is a constant and since it appears on both sides it cancels out. We can thus write this as</p>
+<div class="math notranslate nohighlight">
+\[
+(P_j(X), P_i(X))_{L^2([-1,1])} \, \hat{u}_j = (u(x(X)), P_i(X))_{L^2([-1,1])}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> is written out to highlight that this inner product is over the domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Since <span class="math notranslate nohighlight">\((P_j, P_i)_{L^2([-1,1])} = \frac{2}{2i+1}\delta_{ij}\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{2i+1}{2} \left( u(x(X)), P_i(X) \right)_{L^2([-1,1])} \quad \forall \, i \in (0, 1, \ldots, N).
+\]</div>
+<p>For example, for our <span class="math notranslate nohighlight">\(u(x)=10(x-1)^2-1\)</span> in the domain <span class="math notranslate nohighlight">\(\Omega = [a, b] = [1, 2]\)</span> we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">inner</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> 
+                                    <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> 
+                                    <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now compute any Legendre coefficient from the above lambda function. For <span class="math notranslate nohighlight">\(u(x)=10(x-1)^2-1\)</span> and <span class="math notranslate nohighlight">\(j=0\)</span> and <span class="math notranslate nohighlight">\(j=1\)</span> we get</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can thus plot the function</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
+\]</div>
+<p>and compare with the exact <span class="math notranslate nohighlight">\(u(x)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">Xj</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">Xj</span><span class="p">,</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$10(x-1)^2-1$&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Legendre</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7439150a378e276cd0adc4d150fa8700fe9a5d213eadad4ac3b5aa7c47d330ee.png" src="_images/7439150a378e276cd0adc4d150fa8700fe9a5d213eadad4ac3b5aa7c47d330ee.png" />
+</div>
+</div>
+<p>We see that the result is exactly as before, which is not so strange since the span of this Legendre basis is still the space of all linear functions. But add one more Legendre coefficient and the approximation becomes exact because <span class="math notranslate nohighlight">\(u(x)\)</span> is a second order polynomial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l2</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">Xj</span> <span class="o">+</span> <span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">l2</span><span class="p">(</span><span class="n">Xj</span><span class="p">),</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$10(x-1)^2-1$&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Legendre</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/29f37a2d854c140b4a3235d03764e86e1e2868885379e4927be0f2fd608837e5.png" src="_images/29f37a2d854c140b4a3235d03764e86e1e2868885379e4927be0f2fd608837e5.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Adding one more Legendre coefficient does not change the first two.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that we have not used any mesh points when computing the Legendre coefficients <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>.</p>
+</div>
+<p>In the computations above we have used Sympy and computed the inner product integral exactly. For some functions this may be impossible, or take a very long time. Hence, the inner products are often computed with numerical integration. We can rewrite the inner product above to use numerical integration (from scipy). The results are now almost identical, but no longer exact. See the difference below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ninner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quadrature</span>
+    <span class="n">uv</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">quadrature</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">uhatn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ninner</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> 
+                                      <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> 
+                                      <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">display</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">uhatn</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">uhatn</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 2.3333333333333335)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 5.000000000000002)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The numerical integration routine <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quadrature.html">quadrature</a> is using adaptive quadrature in order to solve the integral. This adaptive integration routine is using a gradually finer mesh until the results of the integration are no longer improving more than a certain tolerance. The default tolerances (both relative and absolute) are <span class="math notranslate nohighlight">\(1.49 \cdot 10^{-8}\)</span>, but may also be set by the user.</p>
+</div>
+<div class="section" id="the-collocation-method">
+<h3>The collocation method<a class="headerlink" href="#the-collocation-method" title="Permalink to this heading">#</a></h3>
+<p>The collocation method takes a very different approach, but the objective is still to find <span class="math notranslate nohighlight">\(u_N(x) \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
+\]</div>
+<p>The collocation method requires that for some <span class="math notranslate nohighlight">\(N+1\)</span> chosen mesh points <span class="math notranslate nohighlight">\(x_j\)</span> the following <span class="math notranslate nohighlight">\(N+1\)</span> equations need to be satisfied</p>
+<div class="math notranslate nohighlight">
+\[
+u(x_j) - u_N(x_j) = 0, \quad j \in (0, 1, \ldots, N).
+\]</div>
+<p>Inserting for <span class="math notranslate nohighlight">\(u_N(x)\)</span> we get the <span class="math notranslate nohighlight">\(N+1\)</span> equations</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N \hat{u}_j \psi_{j}(x_i) = u(x_i), \quad i \in (0, 1, \ldots, N),
+\]</div>
+<p>which can be written as the linear algebra system</p>
+<div class="math notranslate nohighlight">
+\[
+ \sum_{j} a_{ij} \hat{u}_j = u_i,
+\]</div>
+<p>where the matrix components <span class="math notranslate nohighlight">\(a_{ij} = \psi_j(x_i)\)</span> and <span class="math notranslate nohighlight">\(u_i = u(x_i)\)</span>.</p>
+<p>The Lagrange interpolation method described in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#lagrange-interpolation-polynomials">lecture 7</a> is a collocation method. The Lagrange basis functions</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ell_j(x) = \prod_{\substack{0 \le m \le N \\ m \ne j}} \frac{x-x_m}{x_j-x_m},
+\end{split}\]</div>
+<p>are defined such that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ell_j(x_i) = \delta_{ij} = \begin{cases} 1 \text{ for } i=j \\
+0 \text{ for }  i\ne j.
+\end{cases}
+\end{split}\]</div>
+<p>Hence for the Lagrange interpolation method the matrix <span class="math notranslate nohighlight">\(A\)</span> is the identity matrix and we can simply use the coefficients</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_j = u(x_j).
+\]</div>
+<p>There is no integration and the method is often favoured for its simplicity. There is a problem though. How do you choose the collocation points!</p>
+<p>Lets return to the example with <span class="math notranslate nohighlight">\(u(x)=10(x-1)^2-1\)</span> and <span class="math notranslate nohighlight">\(x \in [1, 2]\)</span>. The approximation using two collocation points (linear function) is now</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = \hat{u}_0 \ell_0(x) + \hat{u}_1 \ell_1(x),
+\]</div>
+<p>or more simply</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
+\]</div>
+<p>We can choose the end points <span class="math notranslate nohighlight">\([x_0, x_1] = [1, 2]\)</span> and reuse the two functions <code class="docutils literal notranslate"><span class="pre">Lagrangebasis</span></code> and <code class="docutils literal notranslate"><span class="pre">Lagrangefunction</span></code> from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#lagrange-interpolation-polynomials">lecture 7</a>. The result is then as shown below.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Lagrangebasis</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct Lagrange basis function for points in xj</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    xj : array</span>
+<span class="sd">        Interpolation points</span>
+<span class="sd">    x : Sympy Symbol</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Lagrange basis functions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Mul</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="n">ell</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">numert</span> <span class="o">=</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">xj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">numer</span> <span class="o">=</span> <span class="n">numert</span><span class="o">/</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">xj</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">denom</span> <span class="o">=</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">xj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">])</span>
+        <span class="n">ell</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numer</span><span class="o">/</span><span class="n">denom</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ell</span>
+
+<span class="k">def</span> <span class="nf">Lagrangefunction</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">basis</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Lagrange polynomial</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : array</span>
+<span class="sd">        Mesh function values</span>
+<span class="sd">    basis : tuple of Lagrange basis functions</span>
+<span class="sd">        Output from Lagrangebasis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">uj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">+=</span> <span class="n">basis</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">uj</span>
+    <span class="k">return</span> <span class="n">f</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">ell</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">Lagrangefunction</span><span class="p">([</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">ell</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$(x_0, x_1) = (1, 2)$&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/456e564d23c2e744b1d4977e4f79a651ba983f8887fb1ec27b41a2728fcd031e.png" src="_images/456e564d23c2e744b1d4977e4f79a651ba983f8887fb1ec27b41a2728fcd031e.png" />
+</div>
+</div>
+<p>So this seems to be less accurate than the Galerkin method or the least squares method. However, we have not done any integration, and the lower accuracy has come very easily. We can also very easily use one more point and end up with a perfect approximation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ell</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">Lagrangefunction</span><span class="p">([</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">ell</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$(x_0, x_1, x_2) = (1, 1.5, 2)$&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a52110bdf2291eea6d0687bb308a1983937a2068ba1ee69098912f2ebea3698f.png" src="_images/a52110bdf2291eea6d0687bb308a1983937a2068ba1ee69098912f2ebea3698f.png" />
+</div>
+</div>
+<p>Lets consider a more difficult function</p>
+<div class="math notranslate nohighlight">
+\[
+u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
+\]</div>
+<p>and attempt to approximate this function with Lagrange polynomials on a uniform grid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">uj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">ell</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">Lagrangefunction</span><span class="p">(</span><span class="n">uj</span><span class="p">,</span> <span class="n">ell</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot on a fine grid to plot in between mesh points. We know the Lagrange polynomial is exact on the mesh points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uj</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">yj</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">)(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cb4f58b13b22ed1ffa35d95c34d44ab9bf6e81bca6a36e35e486d203572e6cad.png" src="_images/cb4f58b13b22ed1ffa35d95c34d44ab9bf6e81bca6a36e35e486d203572e6cad.png" />
+</div>
+</div>
+<p>Ok, so that did not work out well! Large over and under-shoots in between the mesh points. So Lagrange polynomials are bad, right?</p>
+<p>It turns out that due to something called <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Runge’s phenomenon</a> it is a very bad idea to interpolate on a uniform mesh.</p>
+<p>Lets try something else and use a clustering of points near the two edges. Chebyshev points are defined as</p>
+<div class="math notranslate nohighlight">
+\[
+x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
+\]</div>
+<p>Use these mesh points for the Lagrange polynomials and plot the results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<span class="n">uj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">ell</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">Lagrangefunction</span><span class="p">(</span><span class="n">uj</span><span class="p">,</span> <span class="n">ell</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uj</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">yj</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">)(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;r:&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/63635e37e7d4a42003d79daffdce3b86b890f20ac6960ddc27b38d2025538da5.png" src="_images/63635e37e7d4a42003d79daffdce3b86b890f20ac6960ddc27b38d2025538da5.png" />
+</div>
+</div>
+<p>The agreement is now much better. And the agreement will become better and better the more points you use. Whereas for a uniform grid the agreement will become worse and worse the more points you use.</p>
+<p>How about Legendre polynomials? The domain is <span class="math notranslate nohighlight">\([-1, 1]\)</span> so we can get the Legendre coefficients simply as</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{2i+1}{2}(u(x), P_i).
+\]</div>
+<p>Compute the first 40 Legendre coefficients and plot them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">inner</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">u</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">ul</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">):</span>
+    <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uj</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ca29a7a669eeba82f3fd414cbc4483b7fb586a3f50fb6ec1d966b1ac48c1246a.png" src="_images/ca29a7a669eeba82f3fd414cbc4483b7fb586a3f50fb6ec1d966b1ac48c1246a.png" />
+</div>
+</div>
+<p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bookmatmek4270"
+        },
+        kernelOptions: {
+            name: "bookmatmek4270",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bookmatmek4270'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 7</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mandatory1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-with-global-functions">Function approximation with global functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-method">The least squares method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-galerkin-method">The Galerkin method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-collocation-method">The collocation method</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
