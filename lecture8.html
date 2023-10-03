@@ -373,6 +373,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-issues">Boundary issues</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
             </nav>
         </div>
@@ -405,7 +406,7 @@ u(x) = \sum_{k=0}^N \hat{u}_k \psi_k(x).
 \[
 V_N = \text{span}\{\psi_j\}_{j=0}^N.
 \]</div>
-<p>For example, <span class="math notranslate nohighlight">\(V_N = \text{span}\{x^j\}_{j=0}^{N}\)</span> is the space of all polynomials of order less than or equal to <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>For example, <span class="math notranslate nohighlight">\(\text{span}\{x^j\}_{j=0}^{N}\)</span> is the space of all polynomials of order less than or equal to <span class="math notranslate nohighlight">\(N\)</span>.</p>
 <p>If we say that the function <span class="math notranslate nohighlight">\(u_N \in V_N\)</span>, this means that we can write</p>
 <div class="math notranslate nohighlight">
 \[
@@ -435,7 +436,7 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 <p>Now create a functionspace consisting of all straight lines</p>
 <div class="math notranslate nohighlight">
 \[
-V = \text{span}\{1, x\}
+V = \text{span}\{1, x\},
 \]</div>
 <p>and try to find the approximation <span class="math notranslate nohighlight">\(u_N \in V\)</span> that is the best approximation of <span class="math notranslate nohighlight">\(u(x)\)</span>. How can we do this? All we know is that</p>
 <div class="math notranslate nohighlight">
@@ -445,11 +446,11 @@ u_N(x) = \hat{u}_0 + \hat{u}_1 x.
 <p>How do we find <span class="math notranslate nohighlight">\(\{\hat{u}_0, \hat{u}_1\}\)</span> such that <span class="math notranslate nohighlight">\(u_N(x)\)</span> is the best possible approximation to <span class="math notranslate nohighlight">\(u(x)\)</span>?</p>
 <p>There are several possible approaches. The three approaches considered in the <a class="reference external" href="https://link-springer-com.ezproxy.uio.no/book/10.1007/978-3-030-23788-2">book</a> are</p>
 <ul class="simple">
-<li><p>The least squares method</p></li>
-<li><p>The Galerkin method</p></li>
+<li><p>The least squares method (variational)</p></li>
+<li><p>The Galerkin method (variational)</p></li>
 <li><p>The collocation method (interpolation)</p></li>
 </ul>
-<p>We will briefly mention the least squares method and focus on the last two. All methods will allow us to find the best possible <span class="math notranslate nohighlight">\(u_N(x)\)</span>, but with slightly different approaches. All methods will provide us with <span class="math notranslate nohighlight">\(N+1\)</span> equations that can be used to find the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>.</p>
+<p>where the first two are variational methods and the last is an interpolation method. We will briefly mention the least squares method and focus on the last two. All methods will allow us to find the best possible <span class="math notranslate nohighlight">\(u_N(x)\)</span>, but with slightly different approaches. All methods will provide us with <span class="math notranslate nohighlight">\(N+1\)</span> equations that can be used to find the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>.</p>
 <p>For the first two methods we need to define the <span class="math notranslate nohighlight">\(L^2\)</span> inner product</p>
 <div class="math notranslate nohighlight">
 \[
@@ -588,6 +589,10 @@ E = (e, e).
 \[
 (e, \psi_i) = 0, \quad \forall \, i \in (0, 1, \ldots, N).
 \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Galerkin method described above is sometimes referred to as a projection method and may be formulated as: find <span class="math notranslate nohighlight">\(u_N\)</span>(x) as the projection of <span class="math notranslate nohighlight">\(u(x)\)</span> into <span class="math notranslate nohighlight">\(V\)</span>.</p>
+</div>
 <p>Inserting for <span class="math notranslate nohighlight">\(e=u-u_N\)</span> and <span class="math notranslate nohighlight">\(u_N=\sum_{j=0}^N \hat{u}_j \psi_j\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
@@ -690,7 +695,7 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The Legendre polynomials are not the only basis functions that require a mapping. The Bernstein polynomials (see, Sec. 2.4.3 in the <a class="reference external" href="https://link-springer-com.ezproxy.uio.no/book/10.1007/978-3-030-23788-2">book</a>) use a computational domain <span class="math notranslate nohighlight">\([0, 1]\)</span>. The computational domain depends on the chosen basis function.</p>
+<p>The Legendre polynomials are not the only basis functions that require a mapping. For example, the Bernstein polynomials (see, Sec. 2.4.3 in the <a class="reference external" href="https://link-springer-com.ezproxy.uio.no/book/10.1007/978-3-030-23788-2">book</a>) use a computational domain <span class="math notranslate nohighlight">\([0, 1]\)</span>. The computational domain depends on the chosen basis function.</p>
 </div>
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be the coordinate in the computational (reference) domain <span class="math notranslate nohighlight">\([A, B]\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are real numbers. A linear (affine) mapping, from the computational coordinate <span class="math notranslate nohighlight">\(X\)</span> to the physical coordinate <span class="math notranslate nohighlight">\(x\)</span> is then</p>
 <div class="math notranslate nohighlight" id="equation-eq-x">
@@ -711,7 +716,7 @@ X = A + \frac{B-A}{b-a}(x-a).
 <p class="admonition-title">Note</p>
 <p>When using a basis function like <span class="math notranslate nohighlight">\(\psi_k(x) = \sin((k+1) \pi x), x \in [0, 1]\)</span>, you are implicitly mapping the physical domain <span class="math notranslate nohighlight">\([0, 1]\)</span> to an integer <span class="math notranslate nohighlight">\(k+1\)</span> times a computational domain <span class="math notranslate nohighlight">\([0, \pi]\)</span>.</p>
 </div>
-<p>For Legendre basis functions we use the computational domain <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span>, so <span class="math notranslate nohighlight">\(A=-1\)</span> and <span class="math notranslate nohighlight">\(B=1\)</span>. With this mapping we then simply use the basis functions</p>
+<p>For Legendre basis functions we use the computational domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>, so <span class="math notranslate nohighlight">\(A=-1\)</span> and <span class="math notranslate nohighlight">\(B=1\)</span>. With this mapping we then simply use the basis functions</p>
 <div class="math notranslate nohighlight">
 \[
 \psi_j(x) = P_{j}(X(x)).
@@ -1036,10 +1041,10 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 </div>
 </div>
 <p>The agreement is now much better. And the agreement will become better and better the more points you use. Whereas for a uniform grid the agreement will become worse and worse the more points you use.</p>
-<p>How about Legendre polynomials? The domain is <span class="math notranslate nohighlight">\([-1, 1]\)</span> so we can get the Legendre coefficients simply as</p>
+<p>How about Legendre polynomials? The domain is <span class="math notranslate nohighlight">\([-1, 1]\)</span> so we can get the Legendre coefficients without any mapping simply as</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{u}_i = \frac{2i+1}{2}(u(x), P_i).
+\hat{u}_i = \frac{2i+1}{2}(u, P_i).
 \]</div>
 <p>Compute the first 40 Legendre coefficients and plot them</p>
 <div class="cell docutils container">
@@ -1116,9 +1121,9 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 <p>Evidently, we get large oscillations and the solution does not seem to converge. The problem is that the basis functions are all such that</p>
 <div class="math notranslate nohighlight">
 \[
-\psi_j(0) = \psi_j(1) = 1
+\psi_j(0) = \psi_j(1) = 1,
 \]</div>
-<p>since <span class="math notranslate nohighlight">\(\sin((j+1) \pi x) = 0\)</span> for <span class="math notranslate nohighlight">\(x =0\)</span> and <span class="math notranslate nohighlight">\(x=1\)</span>.  So no matter how many basis functions and unknown we’re adding, the sum</p>
+<p>since <span class="math notranslate nohighlight">\(\sin((j+1) \pi x) = 0\)</span> for all <span class="math notranslate nohighlight">\(j\in \mathbb{N}\)</span> and <span class="math notranslate nohighlight">\(x =0\)</span> or <span class="math notranslate nohighlight">\(x=1\)</span>.  So no matter how many basis functions and unknown we’re adding, the sum</p>
 <div class="math notranslate nohighlight">
 \[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
@@ -1127,9 +1132,13 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 <p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
 <div class="math notranslate nohighlight">
 \[
-u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
+u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns, only new basis functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function <span class="math notranslate nohighlight">\(b(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
+</div>
 <p>If we now define the slightly modified trial space: <span class="math notranslate nohighlight">\(W_N = \text{span}\{b(x)+\sin((j+1)\pi x)\}_{j=0}^N\)</span>, we get the variational problem: find <span class="math notranslate nohighlight">\(u_N \in W_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1204,7 +1213,46 @@ u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 </div>
 </div>
 </div>
+<p>The sine basis functions need modification because they are are all zero on the boundary.
+Legendre polynomials, on the other hand, can be used without any boundary adjustments since</p>
+<div class="math notranslate nohighlight">
+\[
+P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
+\]</div>
+<p>We get a minor modification to the Legendre coefficients because of the new physical domain, but otherwise there is no issue and again we get a perfect approximation using three Legendre polynomials:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">inner</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">X</span><span class="p">),</span> 
+                                    <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> 
+                                    <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">uL</span> <span class="o">=</span> <span class="p">[]</span> 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">uL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uL</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7/3, -5, 5/3, 0, 0, 0]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="weekly-assignments">
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<p>Experiment with the Galerkin and collocation methods and approximate the global functions</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(u(x) = |x|, \quad x \in [-1, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(\sin(x)), \quad x \in [0, 2]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = x^{10}, \quad x \in [0, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the <span class="xref myst">Bessel function</span> of the first kind. The Bessel function is available both in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.jv.html#scipy.special.jv">Scipy</a> and <a class="reference external" href="https://docs.sympy.org/latest/modules/functions/special.html#sympy.functions.special.bessel.besselj">Sympy</a>.</p>
+<p>Experiment using either Legendre polynomials or sines as basis functions for the Galerkin method and Lagrange polynomials for the collocation method. Use both exact and numerical integration for the Galerkin method.</p>
 </div>
 </div>
 
@@ -1282,6 +1330,7 @@ u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-issues">Boundary issues</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
   </nav></div>
 
