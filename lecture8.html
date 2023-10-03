@@ -1134,25 +1134,25 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 \[
 u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns, only new basis functions.</p>
+<p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The function <span class="math notranslate nohighlight">\(b(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
 </div>
-<p>If we now define the slightly modified trial space: <span class="math notranslate nohighlight">\(W_N = \text{span}\{b(x)+\sin((j+1)\pi x)\}_{j=0}^N\)</span>, we get the variational problem: find <span class="math notranslate nohighlight">\(u_N \in W_N\)</span> such that</p>
+<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-(u-u_N, v) = 0, \quad \forall \, v \in V_N
+(u-(u_N+b), v) = 0, \quad \forall \, v \in V_N
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(V_N = \{\sin((j+1)\pi x)\}_{j=0}^N\)</span>. We get</p>
 <div class="math notranslate nohighlight">
 \[
-\left(u- \sum_{j=0}^N b(x)+\sin((j+1)\pi x), \sin((i+1)\pi x) \right) = 0, \quad i \in (0, 1, \ldots, N)
+\left(u- b -\sum_{j=0}^N \hat{u}_j \sin((j+1)\pi x), \sin((i+1)\pi x) \right) = 0, \quad i \in (0, 1, \ldots, N)
 \]</div>
 <p>and using the orthogonality of the sines we get</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{u}_i = \left(u(x)-b(x), \sin((i+1)\pi x) \right) \quad i \in (0, 1, \ldots, N).
+\hat{u}_i = 2 \left(u(x)-b(x), \sin((i+1)\pi x) \right) \quad i \in (0, 1, \ldots, N).
 \]</div>
 <p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(13)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
 <div class="cell docutils container">
