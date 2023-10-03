@@ -1253,6 +1253,12 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 </ol>
 <p>where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the <span class="xref myst">Bessel function</span> of the first kind. The Bessel function is available both in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.jv.html#scipy.special.jv">Scipy</a> and <a class="reference external" href="https://docs.sympy.org/latest/modules/functions/special.html#sympy.functions.special.bessel.besselj">Sympy</a>.</p>
 <p>Experiment using either Legendre polynomials or sines as basis functions for the Galerkin method and Lagrange polynomials for the collocation method. Use both exact and numerical integration for the Galerkin method. Measure the error as a function of <span class="math notranslate nohighlight">\(N\)</span> by computing an <span class="math notranslate nohighlight">\(L^2\)</span> error norm.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Number 5 is difficult because of several factors. i) The Bessel function is expensive to integrate exactly and you need to use numerical integration. ii) It requires approximately 80 Legendre coefficients to completely converge. The Legendre polynomials returned by Sympy are such that when simply lambdified and evaluated, they will lead to severe roundoff errors. As such, it is better to use <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.polynomials.legendre.html">Numpy’s Legendre class</a> for evaluation in the numerical integral.</p>
+</div>
+<p>The approximation of the Bessel function with Legendre polynomials is shown below for <span class="math notranslate nohighlight">\(N=(20, 40, 60)\)</span>. For <span class="math notranslate nohighlight">\(N=60\)</span> there is no visible difference from the exact solution.</p>
+<p><img alt="Approximation of the Bessel function" src="_images/Bessel.png" /></p>
 </div>
 </div>
 
