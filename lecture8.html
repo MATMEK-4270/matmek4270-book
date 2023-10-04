@@ -654,7 +654,7 @@ P_0(x) &amp;= 1, \\
 P_1(x) &amp;= x, \\
 P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 &amp;\vdots \\
-(j+1)P_{j+1} &amp;= (2j+1)xP_{j} - j P_{j-1}
+(j+1)P_{j+1}(x) &amp;= (2j+1)xP_{j}(x) - j P_{j-1}(x)
 \end{align*}
 \end{split}\]</div>
 <p>The first 5 Legendre polynomials are plotted below</p>
@@ -739,9 +739,9 @@ X = A + \frac{B-A}{b-a}(x-a).
 <p>Note that <span class="math notranslate nohighlight">\(\frac{dx}{dX}\)</span> is a constant and since it appears on both sides it cancels out. We can thus write this as</p>
 <div class="math notranslate nohighlight">
 \[
-(P_j(X), P_i(X))_{L^2([-1,1])} \, \hat{u}_j = (u(x(X)), P_i(X))_{L^2([-1,1])}
+\sum_{j=0}^N  (P_j(X), P_i(X))_{L^2([-1,1])} \, \hat{u}_j = (u(x(X)), P_i(X))_{L^2([-1,1])}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> is written out to highlight that this inner product is over the domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Since <span class="math notranslate nohighlight">\((P_j, P_i)_{L^2([-1,1])} = \frac{2}{2i+1}\delta_{ij}\)</span> we get</p>
+<p>where <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> is written out to highlight that this inner product is over the domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Since <span class="math notranslate nohighlight">\((P_j, P_i)_{L^2([-1,1])} = \frac{2}{2j+1}\delta_{ij}\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = \frac{2i+1}{2} \left( u(x(X)), P_i(X) \right)_{L^2([-1,1])} \quad \forall \, i \in (0, 1, \ldots, N).
@@ -1130,8 +1130,8 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 \]</div>
 <p>will allways lead to <span class="math notranslate nohighlight">\(u_N(0) = 0\)</span> and <span class="math notranslate nohighlight">\(u_N(1) = 0\)</span>. We have a problem with the basis functions having the wrong values at the boundaries.</p>
 <p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-un0">
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-un0" title="Permalink to this equation">#</a></span>\[
 u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
@@ -1139,10 +1139,10 @@ u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 <p class="admonition-title">Note</p>
 <p>The function <span class="math notranslate nohighlight">\(b(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
 </div>
-<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(14)</a>)</p>
 <div class="math notranslate nohighlight">
 \[
-(u-(u_N+b), v) = 0, \quad \forall \, v \in V_N
+(u-(b+u_N), v) = 0, \quad \forall \, v \in V_N
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(V_N = \{\sin((j+1)\pi x)\}_{j=0}^N\)</span>. We get</p>
 <div class="math notranslate nohighlight">
