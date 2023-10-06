@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import shenfun as sf
+
+ue = 1 / (1+16*x**2)
+N = 20
+L = sf.FunctionSpace(N, 'Legendre', domain=(-1, 1))
+v = sf.TestFunction(L)
+uh = (2*np.arange(N)+1)/2*sf.inner(ue, v, assemble='exact')
+#uh = sf.project(ue, L) # or just this
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[21], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mshenfun[39;00m [38;5;28;01mas[39;00m [38;5;21;01msf[39;00m
+[1;32m      3[0m ue [38;5;241m=[39m [38;5;241m1[39m [38;5;241m/[39m ([38;5;241m1[39m[38;5;241m+[39m[38;5;241m16[39m[38;5;241m*[39mx[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m)
+[1;32m      4[0m N [38;5;241m=[39m [38;5;241m20[39m
+
+File [0;32m~/MySoftware/shenfun/shenfun/__init__.py:38[0m
+[1;32m     36[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmpi4py[39;00m [38;5;28;01mimport[39;00m MPI
+[1;32m     37[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mconfig[39;00m [38;5;28;01mimport[39;00m config, dumpconfig
+[0;32m---> 38[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m chebyshev
+[1;32m     39[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m chebyshevu
+[1;32m     40[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m legendre
+
+File [0;32m~/MySoftware/shenfun/shenfun/chebyshev/__init__.py:2[0m
+[1;32m      1[0m [38;5;124;03m"""Functionality for working with Chebyshev bases"""[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m la
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mbases[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mmatrices[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+
+File [0;32m~/MySoftware/shenfun/shenfun/chebyshev/la.py:5[0m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mcopy[39;00m [38;5;28;01mimport[39;00m copy
+[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m----> 5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01moptimization[39;00m [38;5;28;01mimport[39;00m runtimeoptimizer
+[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mla[39;00m [38;5;28;01mimport[39;00m SparseMatrixSolver
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmatrixbase[39;00m [38;5;28;01mimport[39;00m TPMatrix, SpectralMatrix, extract_bc_matrices,\
+[1;32m      8[0m     get_simplified_tpmatrices
+
+File [0;32m~/MySoftware/shenfun/shenfun/optimization/__init__.py:11[0m
+[1;32m      9[0m [38;5;28;01mimport[39;00m [38;5;21;01mimportlib[39;00m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mfunctools[39;00m [38;5;28;01mimport[39;00m wraps
+[0;32m---> 11[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m cython
+[1;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mconfig[39;00m [38;5;28;01mimport[39;00m config
+[1;32m     14[0m [38;5;28;01mtry[39;00m:
+
+File [0;32m~/MySoftware/shenfun/shenfun/optimization/cython/__init__.py:1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mla[39;00m [38;5;28;01mimport[39;00m TDMA_LU, TDMA_Solve, PDMA_LU, PDMA_Solve, \
+[1;32m      2[0m     LU_Helmholtz, Solve_Helmholtz, LU_Biharmonic, Biharmonic_factor_pr, \
+[1;32m      3[0m     Biharmonic_Solve, TDMA_O_Solve, TDMA_O_LU, Poisson_Solve_ADD, \
+[1;32m      4[0m     FDMA_Solve, TwoDMA_Solve, ThreeDMA_Solve, FDMA_LU, DiagMA_Solve, \
+[1;32m      5[0m     TDMA_inner_solve, TDMA_O_inner_solve, DiagMA_inner_solve, \
+[1;32m      6[0m     PDMA_inner_solve, FDMA_inner_solve, TwoDMA_inner_solve, \
+[1;32m      7[0m     ThreeDMA_inner_solve, HeptaDMA_inner_solve, HeptaDMA_Solve, HeptaDMA_LU, \
+[1;32m      8[0m     SolverGeneric1ND_solve_data
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mMatvec[39;00m [38;5;28;01mimport[39;00m Helmholtz_matvec, Helmholtz_Neumann_matvec, Biharmonic_matvec
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mouter[39;00m [38;5;28;01mimport[39;00m outer2D, outer3D
+
+[0;31mImportError[0m: cannot import name 'HeptaDMA_inner_solve' from 'shenfun.optimization.cython.la' (/Users/mikaelmortensen/MySoftware/shenfun/shenfun/optimization/cython/la.cpython-39-darwin.so)
+
