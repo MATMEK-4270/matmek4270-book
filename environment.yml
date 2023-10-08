@@ -1,0 +1,10 @@
+name: matmek4270
+channels:
+  - conda-forge
+dependencies:
+  - shenfun
+  - jupyter
+  - numpy
+  - scipy
+  - cython
+  - ipykernel
