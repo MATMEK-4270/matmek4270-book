@@ -367,7 +367,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-with-global-functions-ii">Function approximation with global functions II</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-with-global-functions-continued">Function approximation with global functions continued</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chebyshev-polynomials">Chebyshev polynomials</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-functions">Two-dimensional functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-software">External software</a></li>
@@ -387,8 +387,8 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="lecture-9">
 <h1>Lecture 9<a class="headerlink" href="#lecture-9" title="Permalink to this heading">#</a></h1>
-<div class="section" id="function-approximation-with-global-functions-ii">
-<h2>Function approximation with global functions II<a class="headerlink" href="#function-approximation-with-global-functions-ii" title="Permalink to this heading">#</a></h2>
+<div class="section" id="function-approximation-with-global-functions-continued">
+<h2>Function approximation with global functions continued<a class="headerlink" href="#function-approximation-with-global-functions-continued" title="Permalink to this heading">#</a></h2>
 <p>Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j(x)\}_{j=0}^N, x \in [-1, 1]\)</span> form a basis for the space of all polynomials with order smaller than or equal to <span class="math notranslate nohighlight">\(N\)</span>. This space is normally denoted as <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. The Galerkin method for approximating <span class="math notranslate nohighlight">\(u(x)\)</span> in the space of polynomials <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> would normally be formulated as: find <span class="math notranslate nohighlight">\(u_N \in \mathbb{P}_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-project">
 <span class="eqno">(18)<a class="headerlink" href="#equation-eq-project" title="Permalink to this equation">#</a></span>\[
@@ -400,15 +400,19 @@ document.write(`
 \left(P_i, P_j\right)_{L^2([-1,1])} = \frac{2}{2i+1}\delta_{ij}
 \]</div>
 <p>and very well suited for approximating other smooth functions. However, the Legendre polynomials are not the only possible basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. We can just as easily choose the <span class="math notranslate nohighlight">\(\{x^j\}_{j=0}^N\)</span> and use this basis to solve Eq. <a class="reference internal" href="#equation-eq-project">(18)</a>. But the basis functions <span class="math notranslate nohighlight">\(x^j\)</span> are not orthogonal and the approach is less efficient even though we get exactly the same result. The choice of basis functions is actually very important for the efficiency!</p>
-<p>We will now introduce yet another polynomial basis that is generally considered to be even better than Legendre: The Chebyshev polynomials!</p>
+<div class="admonition-nodal-vs-modal-basis admonition">
+<p class="admonition-title">Nodal vs modal basis</p>
+<p>The Legendre polynomials are often classified as a <strong>modal</strong> basis. A modal basis is not connected in any way to mesh points. The Lagrange polynomials, on the other hand, are often referred to as a <strong>nodal</strong> basis because they rely on mesh points.</p>
+</div>
+<p>We will now introduce yet another modal polynomial basis that is generally considered to be even better than Legendre: The Chebyshev polynomials!</p>
 <div class="section" id="chebyshev-polynomials">
 <h3>Chebyshev polynomials<a class="headerlink" href="#chebyshev-polynomials" title="Permalink to this heading">#</a></h3>
 <p>The Chebyshev polynomials can be defined in their most simple and useful form as</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebt">
 <span class="eqno">(19)<a class="headerlink" href="#equation-eq-chebt" title="Permalink to this equation">#</a></span>\[
-T_k(x) = \cos(k \cos^{-1}(x)), \quad k \in (0, 1, \ldots, N).
+T_k(x) = \cos(k \cos^{-1}(x)), \quad k \in (0, 1, \ldots, N),
 \]</div>
-<p>Now this does not look like polynomials at all, it looks like cosine functions! However, an alternative definition is the recursive form</p>
+<p>for <span class="math notranslate nohighlight">\(x \in [-1, 1]\)</span>. Admittedly, this does not look like polynomials at all, it looks like cosine functions! However, an alternative definition is the recursive form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -447,7 +451,7 @@ T_{j+1}(x) &amp;= 2xT_{j}(x) - T_{j-1}(x).
 <img alt="_images/afc8ee1a8c9a2daab10aab916b0979f0f559beb606afd520e82077c938e6fcbb.png" src="_images/afc8ee1a8c9a2daab10aab916b0979f0f559beb606afd520e82077c938e6fcbb.png" />
 </div>
 </div>
-<p>It is noteworthy that all polynomials oscillate between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. And all polynomials (<span class="math notranslate nohighlight">\(j&gt;0\)</span>) have maximum and minimum values of exactly 1 and -1. In fact, all the <span class="math notranslate nohighlight">\(N+1\)</span> extrema points of <span class="math notranslate nohighlight">\(T_N(x)\)</span> are</p>
+<p>It is noteworthy that all polynomials oscillate between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. And all polynomials (<span class="math notranslate nohighlight">\(j&gt;0\)</span>) have maximum and minimum values of exactly 1 and -1. All the <span class="math notranslate nohighlight">\(N+1\)</span> extrema points of <span class="math notranslate nohighlight">\(T_N(x)\)</span> are</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebpoints">
 <span class="eqno">(20)<a class="headerlink" href="#equation-eq-chebpoints" title="Permalink to this equation">#</a></span>\[
 x_j = \cos\left(\frac{j \pi}{N}\right), \quad j \in (0, 1, \ldots, N),
@@ -473,14 +477,14 @@ T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right)
 \[
 (f, g)_{L^2_{w}(\Omega)} = \int_{\Omega} f(x)g(x)\omega(x)dx,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\omega(x)\)</span> is a special weight function. For Chebyshev polynomials defined in <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> we use the weight function <span class="math notranslate nohighlight">\(\omega(x) = 1/\sqrt{1-x^2}\)</span>. For simplicity we will write the weighted inner product as <span class="math notranslate nohighlight">\((f, g)_{\omega}\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\omega(x)\)</span> is a special weight function. For Chebyshev polynomials defined in <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> the weight function <span class="math notranslate nohighlight">\(\omega(x) = 1/\sqrt{1-x^2}\)</span>. For simplicity we will write the weighted inner product as <span class="math notranslate nohighlight">\((f, g)_{\omega}\)</span>.</p>
 <p>The Chebyshev polynomials are orthogonal in <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> and we can easily get</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebortho">
 <span class="eqno">(22)<a class="headerlink" href="#equation-eq-chebortho" title="Permalink to this equation">#</a></span>\[
 \left(T_j, T_i \right)_{\omega} = \frac{c_i \pi}{2}\delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_0=2\)</span> and <span class="math notranslate nohighlight">\(c_i = 1\)</span> for <span class="math notranslate nohighlight">\(i &gt; 0\)</span>.</p>
-<p>For Chebyshev polynomials we now solve the Galerkin problem in the <span class="math notranslate nohighlight">\(L^2_{\omega}\)</span> space: find <span class="math notranslate nohighlight">\(u(x) \in \mathbb{P}_N\)</span> such that</p>
+<p>For Chebyshev polynomials the approximation problem is now solved with the Galerkin method in the <span class="math notranslate nohighlight">\(L^2_{\omega}\)</span> space: find <span class="math notranslate nohighlight">\(u(x) \in \mathbb{P}_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebproject">
 <span class="eqno">(23)<a class="headerlink" href="#equation-eq-chebproject" title="Permalink to this equation">#</a></span>\[
 (u-u_N, v)_{\omega} = 0, \quad \forall \, v \in \mathbb{P}_N.
@@ -491,7 +495,7 @@ T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right)
 <span class="eqno">(24)<a class="headerlink" href="#equation-eq-weightedgalerkin" title="Permalink to this equation">#</a></span>\[
 (u(x)-u_N(x), \psi_i(x))_{\omega} = \int_{a}^b (u(x)-u_N(x)) \psi_i(x) \omega(x) dx = 0, \quad \forall i \in (0, 1, \ldots, N)
 \]</div>
-<p>which is just a regular Galerkin method using a weighted inner product. Like for Legendre, we use the basis functions in the reference domain, <span class="math notranslate nohighlight">\(\psi_j(x) = T_j(X)\)</span> and the function <span class="math notranslate nohighlight">\(u(x)\)</span> needs mapping <span class="math notranslate nohighlight">\(u(x(X))\)</span>. The only new thing is the weight function and this weight function is defined for the reference domain: <span class="math notranslate nohighlight">\(\omega(X(x))\)</span>. Naturally, the Chebyshev weight <span class="math notranslate nohighlight">\(\omega(X) = 1/\sqrt{1-X^2}\)</span> only makes sense for the domain <span class="math notranslate nohighlight">\(X \in (-1, 1)\)</span> because the denominator <span class="math notranslate nohighlight">\(1-X^2\)</span> approaches zero for these two edges.</p>
+<p>which is just a regular Galerkin method using a weighted inner product. Like for Legendre, we use the basis functions in the reference domain, <span class="math notranslate nohighlight">\(\psi_j(x) = T_j(X)\)</span> and the function <span class="math notranslate nohighlight">\(u(x)\)</span> needs a mapping <span class="math notranslate nohighlight">\(u(x(X))\)</span>, where <span class="math notranslate nohighlight">\(x(X)\)</span> means that we compute the physical coordinate <span class="math notranslate nohighlight">\(x\)</span> from the reference <span class="math notranslate nohighlight">\(X\)</span>. The only new thing is the weight function and this weight function is defined for the reference domain: <span class="math notranslate nohighlight">\(\omega(X(x))\)</span>. Naturally, the Chebyshev weight <span class="math notranslate nohighlight">\(\omega(X) = 1/\sqrt{1-X^2}\)</span> only makes sense for the domain <span class="math notranslate nohighlight">\(X \in (-1, 1)\)</span> because the denominator <span class="math notranslate nohighlight">\(1-X^2\)</span> approaches zero for these two edges.</p>
 <p>With this in mind we perform a change of variables for <a class="reference internal" href="#equation-eq-weightedgalerkin">(24)</a> where only the function <span class="math notranslate nohighlight">\(u(x(X))\)</span> is written with a mapped argument. The remaining functions are all defined for the reference coordinate <span class="math notranslate nohighlight">\(X\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -553,7 +557,7 @@ T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right)
 <span class="k">def</span> <span class="nf">innerw</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">ref_domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
     <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">ref_domain</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">domain</span>
-    <span class="c1"># map u(x) to use reference coordinate X. </span>
+    <span class="c1"># map u(x(X)) to use reference coordinate X. </span>
     <span class="c1"># Note that x is here ref coord.</span>
     <span class="n">us</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">A</span><span class="p">))</span> 
     <span class="c1"># Change variables x=cos(theta)</span>
@@ -619,7 +623,7 @@ u(x(X)) = 10\left(a+\frac{b-a}{B-A}(X-A) -1 \right)^2-1
 <p>Lets try the more difficult function</p>
 <div class="math notranslate nohighlight">
 \[
-u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1].
+u(x) = \exp(\cos x), \quad x \in [-1, 1].
 \]</div>
 <p>Since the weighted inner product now becomes difficult (at least timeconsuming) for Sympy to integrate exactly, we create a numerical weighted inner product as well.</p>
 <div class="cell docutils container">
@@ -633,7 +637,8 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1].
     <span class="n">vs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="o">*</span><span class="n">vs</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="n">u</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1">#u = 1 / (1+16*x**2)</span>
 <span class="c1">#uhat = lambda u, j: 2 / (cj(j) * sp.pi) * innerw(u, Tk(j, x), (-1, 1)) # slow</span>
 <span class="n">uhatn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">cj</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">innerwn</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">Tk</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 </pre></div>
@@ -649,15 +654,27 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1].
     <span class="n">uc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhatn</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 
 <span class="c1"># For Legendre:</span>
-<span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">uj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+<span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span>
+<span class="k">def</span> <span class="nf">innern</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="n">uj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">xj</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">uj</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">uj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">innern</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">Legendre</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
 <span class="n">ul</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-    <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uj</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
+    <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uj</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note the numerical implementation of the Legendre inner product. Here we could have used simply</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def innern(u, v):
+    return quad(sp.lambdify(x, u*v), -1, 1)[0]
+uj = lambda u, j: (2*j+1) * inner(u, sp.legendre(j, x))/2
+</pre></div>
+</div>
+<p>However, this is much more susceptible to roundoff errors. Just try it!</p>
 </div>
 <p>Plot both Chebyshev and Legendre coefficients in a semilogarithmic plot. Since all the odd coefficients are zero for both Chebyshev and Legendre, we plot only the even coefficients. The odd coefficients are zero because <span class="math notranslate nohighlight">\(u(x)\)</span> is an even function. The Chebyshev and Legendre polynomials are all such that <span class="math notranslate nohighlight">\(\psi_{2i}(x)\)</span> are even, whereas <span class="math notranslate nohighlight">\(\psi_{2i+1}(x)\)</span> are odd. See the <a class="reference internal" href="#fig-chebyshev"><span class="std std-ref">Chebyshev basis functions</span></a>.</p>
 <div class="cell docutils container">
@@ -670,7 +687,7 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1].
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f447bce33a39f8a2b77260892c00dfeb8d0208a7fe53b3f01c2799698de1d46f.png" src="_images/f447bce33a39f8a2b77260892c00dfeb8d0208a7fe53b3f01c2799698de1d46f.png" />
+<img alt="_images/52e2743af9f642481c4f35ee140fc3faccd4575f3260cdb770c891d8305f8928.png" src="_images/52e2743af9f642481c4f35ee140fc3faccd4575f3260cdb770c891d8305f8928.png" />
 </div>
 </div>
 <p>We note that the Chebyshev coefficients are smaller than the Legendre. This is an indication that the Chebyshev polynomials are performing better. However, to say something about the true accuracy we really need to compute the <span class="math notranslate nohighlight">\(L^2\)</span> error norm. Below we compute the <span class="math notranslate nohighlight">\(L^2\)</span> error norm (note, not a weighted norm) for both Legendre and Chebyshev as a function of <span class="math notranslate nohighlight">\(N\)</span>.</p>
@@ -696,17 +713,21 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1].
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">errc</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> 
-             <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">errl</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">errc</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">,</span> 
+           <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">errl</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Legendre&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/063ef798d31e402e11a0d2fb1b4cc9192cb922675f5668bfa84313061445cb3b.png" src="_images/063ef798d31e402e11a0d2fb1b4cc9192cb922675f5668bfa84313061445cb3b.png" />
+<img alt="_images/4e456ec9692ea19ffdf99dc10353a21defe5bc72090864c6da5d9ad362a90243.png" src="_images/4e456ec9692ea19ffdf99dc10353a21defe5bc72090864c6da5d9ad362a90243.png" />
 </div>
 </div>
 <p>So there is hardly any difference at all in accuracy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This very fast convergence down to machine precision is often referred to as spectral accuracy. It is actually faster than <strong>any</strong> finite difference method, which always leads to linear decay in the loglog plot above, since the error in the finite difference method can be written as som integer order <span class="math notranslate nohighlight">\(r\)</span>, such that the error is <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x^r)\)</span>.</p>
+</div>
 </div>
 <div class="section" id="two-dimensional-functions">
 <h3>Two-dimensional functions<a class="headerlink" href="#two-dimensional-functions" title="Permalink to this heading">#</a></h3>
@@ -1241,8 +1262,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.07 times longer than the fastest. This could mean that an intermediate result is being cached.
-54.6 µs ± 36.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52.4 µs ± 26.1 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1254,7 +1274,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101 µs ± 42.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.1 µs ± 36.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1331,7 +1351,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-with-global-functions-ii">Function approximation with global functions II</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-with-global-functions-continued">Function approximation with global functions continued</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#chebyshev-polynomials">Chebyshev polynomials</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-functions">Two-dimensional functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#external-software">External software</a></li>
