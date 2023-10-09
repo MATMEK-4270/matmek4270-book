@@ -672,7 +672,7 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
 <p>Note the numerical implementation of the Legendre inner product. Here we could have used simply</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def innern(u, v):
     return quad(sp.lambdify(x, u*v), -1, 1)[0]
-uj = lambda u, j: (2*j+1) * inner(u, sp.legendre(j, x))/2
+uj = lambda u, j: (2*j+1) * innern(u, sp.legendre(j, x))/2
 </pre></div>
 </div>
 <p>However, this is much more susceptible to roundoff errors. Just try it!</p>
@@ -1263,7 +1263,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59.6 µs ± 33.3 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57.1 µs ± 28.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1275,7 +1275,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>99.3 µs ± 46.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104 µs ± 36.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
