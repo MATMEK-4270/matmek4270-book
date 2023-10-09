@@ -374,6 +374,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-chebyshev-transforms-optional">Fast Chebyshev transforms - (optional)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
             </nav>
         </div>
@@ -1262,7 +1263,8 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>52.4 µs ± 26.1 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.67 times longer than the fastest. This could mean that an intermediate result is being cached.
+61.3 µs ± 46.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1274,13 +1276,24 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.1 µs ± 36.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104 µs ± 41.6 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <p>Not a big difference, but this difference will become larger for larger arrays, because the cost of the fast transform is only <span class="math notranslate nohighlight">\(\mathcal{O}(N \log_2 N)\)</span>. Also, the DCT from scipy is not very efficient. Faster versions are available from <a class="reference external" href="https://www.fftw.org">FFTW</a>, wrapped for usage in Python through <a class="reference external" href="https://github.com/mpi4py/mpi4py-fft">mpi4py-fft</a>.</p>
 </div>
+</div>
+<div class="section" id="weekly-assignments">
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<p>Experiment with the Chebyshev Galerkin method and approximate the same global functions that was considered with Legendre and collocation last week.</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(u(x) = |x|, \quad x \in [-1, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(\sin(x)), \quad x \in [0, 2]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = x^{10}, \quad x \in [0, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
+</ol>
 </div>
 </div>
 
@@ -1358,6 +1371,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fast-chebyshev-transforms-optional">Fast Chebyshev transforms - (optional)</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
   </nav></div>
 
