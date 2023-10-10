@@ -707,6 +707,7 @@ uj = lambda u, j: (2*j+1) * innern(u, sp.legendre(j, x))/2
 
 <span class="n">errc</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">uc</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">Chebyshev</span><span class="p">)</span>
 <span class="n">errl</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">Legendre</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;./err_u&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">errc</span><span class="p">,</span> <span class="n">errl</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -1263,7 +1264,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57.1 µs ± 28.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62.6 µs ± 38.5 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1275,7 +1276,8 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104 µs ± 36.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.76 times longer than the fastest. This could mean that an intermediate result is being cached.
+242 µs ± 164 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
