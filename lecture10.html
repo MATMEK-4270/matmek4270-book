@@ -389,8 +389,65 @@ document.write(`
 \[
 u(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 \]</div>
-<p>And we have seen how the least squares, Galerkin an collocation methods can be used to find the unknown <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}} = \{\hat{u}_j\}_{j=0}^N\)</span>.</p>
-<p>Up until now we have used global basis functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> defined on the entire domain <span class="math notranslate nohighlight">\(\Omega\)</span>. For example, the Chebyshev polynomials are all functions that are changing within the entire domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span></p>
+<p>And we have seen how the least squares, Galerkin and collocation methods can be used to find the unknown <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}} = \{\hat{u}_j\}_{j=0}^N\)</span>. Up until now we have used global basis functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> defined on the entire domain <span class="math notranslate nohighlight">\(\Omega\)</span>. For example, the Chebyshev or Legendre polynomials are all functions that are changing within the entire domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span></p>
+<p>The global aspect of the basis functions is an advantage when it comes to both accuracy and efficiency. However, we are not always interested in solving equations on a simple line interval, or a rectangle for two dimensions. Normally we are more interested in domains that contain some physical obstructions</p>
+<div class="figure align-left" id="dolfin-mesh">
+<a class="reference internal image-reference" href="_images/dolfin_mesh.png"><img alt="_images/dolfin_mesh.png" src="_images/dolfin_mesh.png" style="width: 300px;" /></a>
+</div>
+<p>For such domains it is not possible to use basis functions that are defined everywhere. It is also very difficult, if not impossible, to use finite difference methods. Just imagine, how would you implement a Laplacian, like</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{\Delta x^2} + \frac{u_{i,j+1}-2u_{i,j}+u_{i,j-1}}{\Delta y^2} 
+\]</div>
+<p>on a 2D dolfin mesh?</p>
+<p>The finite element methods, on the other hand, are designed to work on such triangulated and unstructured meshes in complex domains. But in order to present the method it makes sense to first stick to simple one-dimensional domains also here.</p>
+<p>The finite element method (FEM) starts by splitting the domain <span class="math notranslate nohighlight">\(\Omega\)</span> into <span class="math notranslate nohighlight">\(N_e\)</span> smaller, non-overlapping, subdomains <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+\Omega = \bigcup_{e\in \mathcal{I}_{N_e}} \Omega^{(e)}.
+\]</div>
+<p>For example, the domain <span class="math notranslate nohighlight">\(\Omega = [0, 5]\)</span> can be split up into 5 smaller subdomains <span class="math notranslate nohighlight">\(\Omega^{(e)} = [e, e+1], e \in (0, 1, 2, 3, 4)\)</span> using 6 uniformly distributed nodes:</p>
+<div class="figure align-left" id="fem-1d-mesh-p1">
+<a class="reference internal image-reference" href="_images/fe_mesh1D_P1.png"><img alt="_images/fe_mesh1D_P1.png" src="_images/fe_mesh1D_P1.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Finite element mesh with 5 elements and 6 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p1" title="Permalink to this image">#</a></p>
+</div>
+<p>These smaller subdomains are now referred to as <strong>elements</strong>.
+Note that an element here is located in between two blue vertical bars.</p>
+<p>The mesh seen in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> is the simplest possible FEM mesh, where each element contains 2 <em>nodes</em>. These elements can at best make use of linear piecewise polynomials since there are only 2 nodes in each element.</p>
+<p>A slightly more complicated mesh is shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P2</span></code>, which is non-uniform and contains only 2 elements and 5 nodes. Each of the elements contains 3 nodes, and as such these elements can make use of second order polynomials.</p>
+<div class="figure align-left" id="fem-1d-mesh-p2">
+<a class="reference internal image-reference" href="_images/fe_mesh1D_P2.png"><img alt="_images/fe_mesh1D_P2.png" src="_images/fe_mesh1D_P2.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Permalink to this image">#</a></p>
+</div>
+<p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear (or even constant) over an element. For example, for the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> we plot two of the 6 basis functions below:</p>
+<div class="figure align-left" id="fem-1d-mesh-phi">
+<a class="reference internal image-reference" href="_images/fe_mesh1D_phi_2_3.png"><img alt="_images/fe_mesh1D_phi_2_3.png" src="_images/fe_mesh1D_phi_2_3.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Permalink to this image">#</a></p>
+</div>
+<div class="section" id="finite-element-basis-functions">
+<h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Permalink to this heading">#</a></h3>
+<p>Other than the fact that the basis functions are piecewise polynomials with only local support, there is nothing new from the previous chapters. It is only much more complicated to work with piecewise polynomials than continuous and it requires much more effort to implement</p>
+<p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> we get a funciton space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
+(u-u_N, v) = 0 \quad \forall \, v \in V_N.
+\]</div>
+<p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with piecewise polynomial basis functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Galerkin formulation is the same whether you use a global approach with Legendre polynomials or a local FEM with piecewise polynomials. The difference lies all in the function spaces and the choice of basis.</p>
+</div>
+<p>We will reuse even more of the theory from the global approximation, because we will in this class only make use of Lagrange polynomials as basis functions! But not global Lagrange polynomials, only local. Local to an element. Each element in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> contains <span class="math notranslate nohighlight">\(N_e = 2\)</span> nodes. These nodes will locally be denoted as <span class="math notranslate nohighlight">\((x^0, x^1)\)</span> no matter which element we are in, and the Lagrange formula is then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ell_j(x) = \prod_{\substack{0 \le m &lt; 2 \\ m \ne j}} \frac{x-x^m}{x^j-x^m}, \quad j \in (0, 1).
+\end{split}\]</div>
+<p>There are exactly two linear Lagrange polynomials on each element, and these are locally computed as</p>
+<div class="math notranslate nohighlight">
+\[
+\ell_0(x) = \frac{x-x^1}{x^0-x^1} \quad \text{and} \quad \ell_1(x) = \frac{x-x^0}{x^1-x^0}.
+\]</div>
+<p>We can plot all these basis functions with one color for each basis function <span class="math notranslate nohighlight">\(\psi_j(x)\)</span></p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -401,118 +458,16 @@ u(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span> 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
-
 <span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">legend</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">xj</span><span class="p">)))</span>
-    <span class="n">legend</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$P_</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">(x)$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<img alt="_images/9a9d1c9f9ae2f1eaac7656eeac0d23ac77ca591fe5200bcf31b2718313b9cc53.png" src="_images/9a9d1c9f9ae2f1eaac7656eeac0d23ac77ca591fe5200bcf31b2718313b9cc53.png" />
-</div>
-</div>
-<p>The global aspect of the basis functions is an advantage when it comes to both accuracy and efficiency. However, we are not always interested in solving equations on a simple line interval, or a rectangle for two dimensions. Normally you are more interested in domains that contains some physical obstructions</p>
-<div class="figure align-left" id="dolfin-mesh">
-<a class="reference internal image-reference" href="_images/dolfin_mesh.png"><img alt="_images/dolfin_mesh.png" src="_images/dolfin_mesh.png" style="width: 300px;" /></a>
-</div>
-<p>For such domains it is not possible to use basis functions that are defined everywhere. It is also very difficult, if not impossible, to use finite difference methods. Just imagine, how would you implement a Laplacian, like</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{\Delta x^2} + \frac{u_{i,j+1}-2u_{i,j}+u_{i,j-1}}{\Delta y^2} 
-\]</div>
-<p>on a 2D dolfin mesh?</p>
-<p>But finite element methods are designed to work on such triangulated elements!</p>
-<p>The finite element method (FEM) starts by splitting the domain <span class="math notranslate nohighlight">\(\Omega\)</span> into smaller, non-overlapping, elements <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span>, such that</p>
-<div class="math notranslate nohighlight">
-\[
-\Omega = \bigcup_{e\in \mathcal{I}_{N_e}} \Omega^{(e)}.
-\]</div>
-<p>For example, the domain <span class="math notranslate nohighlight">\(\Omega = [0, 5]\)</span> can be split up into 5 smaller domains <span class="math notranslate nohighlight">\(\Omega^{(e)} = [e, e+1], e \in (0, 1, 2, 3, 4)\)</span> using 6 uniformly distributed nodes:</p>
-<div class="figure align-left" id="fem-1d-mesh-p1">
-<a class="reference internal image-reference" href="_images/fe_mesh1D_P1.png"><img alt="_images/fe_mesh1D_P1.png" src="_images/fe_mesh1D_P1.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Finite element mesh with 5 elements and 6 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p1" title="Permalink to this image">#</a></p>
-</div>
-<p>These smaller domains are now referred to as elements.
-Note that an element here is located in between two blue vertical bars.</p>
-<p>The mesh seen in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> is the simplest possible FEM mesh, where each element contains 2 <em>nodes</em>. These elements can at best make use of linear piecewise polynomials since there are only 2 nodes in each element.</p>
-<p>A slightly more complicated mesh is shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P2</span></code>, which is non-uniform and contains only 2 elements and 5 nodes. Each of the elements contains 3 nodes, and as such these elements can make use of second order polynomials.</p>
-<div class="figure align-left" id="fem-1d-mesh-p2">
-<a class="reference internal image-reference" href="_images/fe_mesh1D_P2.png"><img alt="_images/fe_mesh1D_P2.png" src="_images/fe_mesh1D_P2.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Permalink to this image">#</a></p>
-</div>
-<p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear (or even constant) over an element. For example, if the domain is the part of the real line <span class="math notranslate nohighlight">\(\Omega = [0, 5]\)</span> and we make use of a uniform discretization with 5 elements, then we get the 5 elements <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span> as shown below, and 6 piecewise linear basis functions. However, we only plot two of the 6 basis functions below for simplicity.</p>
-<div class="figure align-left" id="fem-1d-mesh-phi">
-<a class="reference internal image-reference" href="_images/fe_mesh1D_phi_2_3.png"><img alt="_images/fe_mesh1D_phi_2_3.png" src="_images/fe_mesh1D_phi_2_3.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Permalink to this image">#</a></p>
-</div>
-<div class="section" id="finite-element-basis-functions">
-<h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Permalink to this heading">#</a></h3>
-<p>Other than the fact that the basis functions are piecewise polynomials with only local support, there is nothing new from the previous chapters. It is only much more complicated to work with piecewise polynomials than continuous and it requires much more effort to implement!</p>
-<p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. We may then divide this interval into <span class="math notranslate nohighlight">\(5\)</span> nonoverlapping elements (like shown above) and use the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. This would be the 6 basis functions that all would look like the 2 we have plotted above. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
-<div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
-(u-u_N, v) = 0 \quad \forall \, v \in V_N.
-\]</div>
-<p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with piecewise polynomial basis functions.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The Galerkin formulation is the same whether you use a global approach with Legendre polynomials or a local FEM with piecewise polynomials. The difference lies all in the function spaces and the choice of basis.</p>
-</div>
-<p>We will reuse even more of the theory from the global approximation, because we will make use of Lagrange polynomials as basis functions! But not global Lagrange polynomials, only local. Local to an element. Each element in the <span class="xref std std-ref">1D fem mesh</span> contains <span class="math notranslate nohighlight">\(N_e = 2\)</span> nodes. These nodes will locally be denoted as <span class="math notranslate nohighlight">\((x^0, x^1)\)</span> no matter which element we are in, and the Lagrange formula is then</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\ell_j(x) = \prod_{\substack{0 \le m &lt; 2 \\ m \ne j}} \frac{x-x^m}{x^j-x^m}, \quad j \in (0, 1).
-\end{split}\]</div>
-<p>There are exactly two linear Lagrange polynomials on each element, and these are locally computed as</p>
-<div class="math notranslate nohighlight">
-\[
-\ell_0(x) = \frac{x-x^1}{x^0-x^1} \quad \text{and} \quad \ell_1(x) = \frac{x-x^0}{x^1-x^0}.
-\]</div>
-<p>Since the mesh is uniform <span class="math notranslate nohighlight">\(x^{1}-x^0 = 1\)</span>. As such,</p>
-<div class="math notranslate nohighlight">
-\[
-\ell_0(x) = x^1-x \quad \text{and} \quad \ell_1(x) = x-x^0.
-\]</div>
-<p>Element 0 contains mesh points <span class="math notranslate nohighlight">\((x^0, x^1) = (x_0, x_1) = (0, 1)\)</span> and as such</p>
-<div class="math notranslate nohighlight">
-\[
-\psi_0(x) = \ell_0(x) = 1-x \quad \text{and} \quad \psi_1(x)= \ell_1(x) = x \quad x \in [0, 1].
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> is the basis function for node <span class="math notranslate nohighlight">\(j\)</span>. It is one on node j and 0 on all the remaining nodes in the mesh.</p>
-<p>Element 1 contains mesh points <span class="math notranslate nohighlight">\((x^0, x^1) = (x_1, x_2) = (1, 2)\)</span>. We get</p>
-<div class="math notranslate nohighlight">
-\[
-\psi_1(x) = \ell_0(x) = 2-x \quad \text{and} \quad \psi_2(x) = \ell_1(x) = x-1 \quad x \in [1, 2].
-\]</div>
-<p>Note that <span class="math notranslate nohighlight">\(\psi_1(x)\)</span> is nonzero in both element 0 and 1. This is because the basis function is piecewise linear, with one slope on element 0 and another on element 1.</p>
-<p>It should be obvious that element <span class="math notranslate nohighlight">\(j\)</span> for <span class="math notranslate nohighlight">\(j=2, 3, 4\)</span> contains basis functions</p>
-<div class="math notranslate nohighlight">
-\[
-\psi_j(x) = j+1-x \quad \text{and} \quad \psi_{j+1}(x) = x-j, \quad x \in [j, j+1].
-\]</div>
-<p>We can plot all these basis functions with one color for each basis function <span class="math notranslate nohighlight">\(\psi_j(x)\)</span></p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)))</span>
 <span class="n">c</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>  <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span>  <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">xj</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>  <span class="n">x</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span>  <span class="n">xj</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -525,11 +480,11 @@ Note that an element here is located in between two blue vertical bars.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \psi_j(x_i) = \delta_{ij} = \begin{cases}
-1 \quad i=j, \\
-0 \quad i\ne j,
+1 \quad i=j \\
+0 \quad i\ne j
 \end{cases}
 \end{split}\]</div>
-<p>since we are using Lagrange polynomials. This applies not only for uniform meshes, but for any collection of mesh points. Assume that the mesh points use Chebyshev points instead. This is no problem for the elements of the Lagrange polynomials and the basis funcitons become:</p>
+<p>since we are using Lagrange polynomials. This applies not only for uniform meshes, but for any collection of mesh points. Assume that the mesh points use Chebyshev points instead. This is no problem for the elements of the Lagrange polynomials.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -563,58 +518,98 @@ Note that an element here is located in between two blue vertical bars.</p>
 \frac{x-x_{j+1}}{x_{j}-x_{j+1}} \quad x \in [x_{j}, x_{j+1}]. \\
 \end{cases}
 \end{split}\]</div>
-<p>Lets use these basis functions for the Galerkin method in order to approximate <span class="math notranslate nohighlight">\(u(x) = 10(x-1)^2-1, x \in [1, 2]\)</span>. We have the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and look for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<p>We have the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and with the Galerkin method <a class="reference internal" href="#equation-eq-galerkin-fem">()</a> we approximate any function <span class="math notranslate nohighlight">\(u(x)\)</span> by looking for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 (u-\sum_{j=0}^N \hat{u}_j \psi_j, \psi_i) = 0 \quad \forall \, i \in (0, 1, \ldots, N).
 \]</div>
-<p>In other words, we need to solve</p>
+<p>In other words, we need to solve the follow linear algebra problem</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{j=0}^N(\psi_j, \psi_i) \hat{u}_j = (u, \psi_i), \quad \forall\,  i \in (0, 1, \ldots, N)
+\sum_{j=0}^N(\psi_j, \psi_i) \hat{u}_j = (u, \psi_i), \quad \forall\,  i \in (0, 1, \ldots, N).
 \]</div>
-<p>Unfortunately, the mass matrix <span class="math notranslate nohighlight">\(a_{ij} = (\psi_j, \psi_i)\)</span> is not diagonal, because the basis functions are not orthogonal. However, since the basis functions are local the matrix will still be highly sparse.</p>
+<p>Unfortunately, the finite element mass matrix <span class="math notranslate nohighlight">\(A = (a_{ij})_{i,j=0}^N\)</span>, with</p>
+<div class="math notranslate nohighlight">
+\[
+a_{ij} = (\psi_j, \psi_i) = \int_{\Omega} \psi_j \psi_i d\Omega,
+\]</div>
+<p>is not diagonal, because the basis functions are not orthogonal. However, since the basis functions are local the matrix will still be highly sparse.</p>
+<p>Since the basis functions are piecewise polynomials and only some of the basis fucntions are nonzero on each element, we usually assemble the matrix elementwise as</p>
+<div class="math notranslate nohighlight">
+\[
+a_{ij} = \sum_{e=0}^{N_e} \int_{\Omega^{(e)}} \psi_j \psi_i d\Omega 
+\]</div>
+<p>Here we will use the element matrix <span class="math notranslate nohighlight">\(a_{ij}^{(e)} = \int_{\Omega^{(e)}} \psi_j \psi_i d\Omega\)</span>. Note that this matrix is still of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span>, but for any given element it will only consist of a few nonzero items. We have</p>
+<div class="math notranslate nohighlight">
+\[
+A = \sum_{e=0}^{N_e-1} A^{(e)}.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(A^{(e)}\)</span> is so sparse (it is only nonzero for indices <span class="math notranslate nohighlight">\(i, j\)</span> in the element <span class="math notranslate nohighlight">\(e\)</span>) it makes sense to reduce its size. If there are <span class="math notranslate nohighlight">\(d+1\)</span> nonzero basis functions on each element, then there can be at most <span class="math notranslate nohighlight">\((d+1)^2\)</span> combinations of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((\psi_i, \psi_j)\)</span> and the element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> can as such be represented as a dense <span class="math notranslate nohighlight">\((d+1)\times (d+1)\)</span> matrix</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{A}^{(e)} = (a_{rs}^{(e)})_{r,s=0}^{d} \in \mathbb{R}^{(d+1)\times (d+1)}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+a_{rs}^{(e)} = \int_{\Omega^{(e)}} \psi_{q(e,r)} \psi_{q(e,s)} d\Omega
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For an element with <span class="math notranslate nohighlight">\(d+1\)</span> nodes we get</p>
+<div class="math notranslate nohighlight">
+\[
+q(e, r) = de+r.
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> contains the same nonzero items as <span class="math notranslate nohighlight">\(A^{(e)}\)</span>, but <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\in \mathbb{R}^{(d+1) \times (d+1)}\)</span> is dense, whereas <span class="math notranslate nohighlight">\(A^{(e)} \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> is highly sparse.</p>
+</div>
+<p>In order to use the local (and small) element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> we assemble for each element into the global matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+a_{q(e,r),q(e, s)} \mathop{+}= a^{(e)}_{r,s}, \quad (r, s) \in \mathcal{I}_d^2.
+\]</div>
+<p>The whole global matrix <span class="math notranslate nohighlight">\(A\)</span> can as such be assembled by looping over all elements, like</p>
+<div class="math notranslate nohighlight">
+\[
+A = \sum_{e=0}^{N_e-1} \sum_{r=0}^{d}\sum_{s=0}^{d} a^{(e)}_{r,s}.
+\]</div>
+<p>This process can be illustrated as shown below, where 4 small element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> of shape <span class="math notranslate nohighlight">\(2 \times 2\)</span> are inserted into the global matrix <span class="math notranslate nohighlight">\(A\)</span> of shape <span class="math notranslate nohighlight">\(5 \times 5\)</span>. For this linear case <span class="math notranslate nohighlight">\(d=1\)</span>. Note that there is overlap between the 4 element matrices in the global <span class="math notranslate nohighlight">\(A\)</span>, because all the internal (linear) basis functions are nonzero in 2 elements each.</p>
+<a class="reference internal image-reference" href="_images/movie.gif"><img alt="assemble" class="align-center" src="_images/movie.gif" style="width: 400px;" /></a>
+<p>Lets use these basis functions for the Galerkin method in order to approximate <span class="math notranslate nohighlight">\(u(x) = 10(x-1)^2-1, x \in [1, 2]\)</span>.</p>
 <p>Lets create a uniform mesh and assemble the mass matrix. We assemble element by element and we know that on each element there are only two nonzero basis functions</p>
 <div class="math notranslate nohighlight">
 \[
 \ell_0(x) = \frac{x-x^1}{x^0-x^1} \quad \text{and} \quad \ell_1(x) = \frac{x-x^0}{x^1-x^0}.
 \]</div>
-<p>These two functions are simply (locally on any element <span class="math notranslate nohighlight">\(i\)</span>):</p>
-<div class="cell tag_ihde-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;$\ell_1(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;$\ell_0(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;$i$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;$i+1$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/77cda73dbb27a936b4201500a96149216614c287a3e9db54973bc53f477d198f.png" src="_images/77cda73dbb27a936b4201500a96149216614c287a3e9db54973bc53f477d198f.png" />
-</div>
-</div>
+<p>Since the mesh is uniform, we have <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+\ell_0(x) = \frac{x^1-x}{h} \quad \text{and} \quad \ell_1(x) = \frac{x-x^0}{h}.
+\]</div>
+<p>For any element</p>
+<div class="math notranslate nohighlight">
+\[
+x^{e}_0 = eh \quad x^{e}_1 = (e+1)h
+\]</div>
 <p>On element <span class="math notranslate nohighlight">\(i\)</span> we have that <span class="math notranslate nohighlight">\(\psi_i = \ell_0(x)\)</span> and <span class="math notranslate nohighlight">\(\psi_{i+1} = \ell_1(x)\)</span>. On each element we get the nonzero terms of the mass matrix</p>
 <div class="math notranslate nohighlight">
-\[
-a_{ii} \mathrel{+}= \int_{\Omega^{(i)}} \psi_i^2 dx,
-\]</div>
+\[\begin{split}
+\tilde{A}^{(e)} = \begin{bmatrix} 
+\int_{\Omega^{(e)}} \psi_{q(e, 0)} \psi_{q(e, 0)} dx &amp;
+\int_{\Omega^{(e)}} \psi_{q(e, 0)} \psi_{q(e, 1)} dx \\
+\int_{\Omega^{(e)}} \psi_{q(e, 1)} \psi_{q(e, 0)} dx &amp;
+\int_{\Omega^{(e)}} \psi_{q(e, 1)} \psi_{q(e, 1)} dx
+\end{bmatrix}
+\end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[
-a_{i+1,i+1} \mathrel{+}= \int_{\Omega^{(i)}} \psi_{i+1}^2 dx,
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-a_{i, i+1} \mathrel{+}= \int_{\Omega^{(i)}} \psi_i \psi_{i+1} dx,
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-a_{i+1, i} \mathrel{+}= \int_{\Omega^{(i)}} \psi_{i+1} \psi_{i} dx.
-\]</div>
+\[\begin{split}
+\tilde{A}^{(e)} = \begin{bmatrix} 
+\int_{\Omega^{(e)}} \psi_{q(e, 0)} \psi_{q(e, 0)} dx &amp;
+\int_{\Omega^{(e)}} \psi_{q(e, 0)} \psi_{q(e, 1)} dx \\
+\int_{\Omega^{(e)}} \psi_{q(e, 1)} \psi_{q(e, 0)} dx &amp;
+\int_{\Omega^{(e)}} \psi_{q(e, 1)} \psi_{q(e, 1)} dx
+\end{bmatrix}
+\end{split}\]</div>
 <p>Note the addition, which is there because each basis function is nonzero on two elements. Also note that the last two integrals are equal due to symmetry.</p>
 <p>We can compute this as below</p>
 <div class="cell docutils container">

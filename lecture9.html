@@ -929,7 +929,7 @@ A \hat{U} A = U,
 \hat{U} = A^{-1} U A^{-1}.
 \]</div>
 <p>Lets implement this and verify that the approximation is close to the exact solution. To this end we will now need to use the double integral functions <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.dblquad.html">dblquad</a>. The rest is fairly straight forward:</p>
-<div class="cell docutils container">
+<div class="cell docutils container" id="impl-dblquad">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">dblquad</span>
@@ -1264,7 +1264,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62.6 µs ± 38.5 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>57 µs ± 34.3 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1276,8 +1276,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.76 times longer than the fastest. This could mean that an intermediate result is being cached.
-242 µs ± 164 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>104 µs ± 43.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1287,7 +1286,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 <div class="section" id="weekly-assignments">
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
-<p>Experiment with the Chebyshev Galerkin method and approximate the same global functions that was considered with Legendre and collocation last week.</p>
+<p>Experiment with the Chebyshev Galerkin method and approximate the same global functions that was considered with Legendre and collocation last week:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(u(x) = |x|, \quad x \in [-1, 1]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(u(x) = \exp(\sin(x)), \quad x \in [0, 2]\)</span></p></li>
@@ -1295,6 +1294,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 <li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
 </ol>
+<p>Approximate the function <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2))\)</span> with Chebyshev polynomials in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Try both to implement it yourself, as done for Legendre  <span class="xref std std-ref">impl-dblquad</span>, and by using Shenfun.</p>
 </div>
 </div>
 
