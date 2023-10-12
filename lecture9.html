@@ -1264,8 +1264,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.18 times longer than the fastest. This could mean that an intermediate result is being cached.
-57.9 µs ± 37.5 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55.8 µs ± 35.5 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1277,7 +1276,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>105 µs ± 42.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>108 µs ± 43.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1295,7 +1294,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 <li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
 </ol>
-<p>Approximate the function <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2))\)</span> with Chebyshev polynomials in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Try both to implement it yourself, as done for <a class="reference internal" href="#impl-dblquad"><span class="std std-ref">Legendre</span></a>, and by using Shenfun.</p>
+<p>Approximate the function <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2))\)</span> in the domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]^2\)</span> with Chebyshev polynomials in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Try both to implement it yourself, as done for <a class="reference internal" href="#impl-dblquad"><span class="std std-ref">Legendre</span></a>, and by using Shenfun.</p>
 </div>
 </div>
 

@@ -15,33 +15,14 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-N = 2*10
-u = 10*(x-1)**2-1
-xj = np.linspace(1, 2, N+1)
-A, b = assemble_fem2(u, xj)
-uh2 = np.linalg.inv(A) @ b
-plt.figure(figsize=(5, 3))
-yj = np.linspace(1, 2, 100)
-plt.plot(xj, uh2, 'b', yj, 10*(yj-1)**2-1, 'r--')
-plt.legend(['FEM', 'Exact']);
+raise RuntimeError
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[12], line 4[0m
-[1;32m      2[0m u [38;5;241m=[39m [38;5;241m10[39m[38;5;241m*[39m(x[38;5;241m-[39m[38;5;241m1[39m)[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m[38;5;241m-[39m[38;5;241m1[39m
-[1;32m      3[0m xj [38;5;241m=[39m np[38;5;241m.[39mlinspace([38;5;241m1[39m, [38;5;241m2[39m, N[38;5;241m+[39m[38;5;241m1[39m)
-[0;32m----> 4[0m A, b [38;5;241m=[39m [43massemble_fem2[49m[43m([49m[43mu[49m[43m,[49m[43m [49m[43mxj[49m[43m)[49m
-[1;32m      5[0m uh2 [38;5;241m=[39m np[38;5;241m.[39mlinalg[38;5;241m.[39minv(A) [38;5;241m@[39m b
-[1;32m      6[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m5[39m, [38;5;241m3[39m))
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+Cell [0;32mIn[19], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m
 
-Cell [0;32mIn[11], line 10[0m, in [0;36massemble_fem2[0;34m(u, xj)[0m
-[1;32m      8[0m ll [38;5;241m=[39m Lagrangebasis(xj[j0:(j0[38;5;241m+[39m[38;5;241m3[39m)])
-[1;32m      9[0m [38;5;66;03m# Leftmost nodes[39;00m
-[0;32m---> 10[0m A[j0, j0] [38;5;241m+[39m[38;5;241m=[39m [43mquad[49m(sp[38;5;241m.[39mlambdify(x, ll[[38;5;241m0[39m][38;5;241m*[39mll[[38;5;241m0[39m]), xj[j0], xj[j0[38;5;241m+[39m[38;5;241m2[39m])[[38;5;241m0[39m]
-[1;32m     11[0m A[j0, j0[38;5;241m+[39m[38;5;241m1[39m] [38;5;241m+[39m[38;5;241m=[39m quad(sp[38;5;241m.[39mlambdify(x, ll[[38;5;241m0[39m][38;5;241m*[39mll[[38;5;241m1[39m]), xj[j0], xj[j0[38;5;241m+[39m[38;5;241m2[39m])[[38;5;241m0[39m]
-[1;32m     12[0m A[j0, j0[38;5;241m+[39m[38;5;241m2[39m] [38;5;241m+[39m[38;5;241m=[39m quad(sp[38;5;241m.[39mlambdify(x, ll[[38;5;241m0[39m][38;5;241m*[39mll[[38;5;241m2[39m]), xj[j0], xj[j0[38;5;241m+[39m[38;5;241m2[39m])[[38;5;241m0[39m]
-
-[0;31mNameError[0m: name 'quad' is not defined
+[0;31mRuntimeError[0m: 
 
