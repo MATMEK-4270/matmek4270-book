@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 4 &#8212; Lecture notes MATMEK-4270</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -170,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -329,10 +340,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -340,7 +351,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -385,9 +396,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-4">
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-4">
 <h1>Lecture 4<a class="headerlink" href="#lecture-4" title="Permalink to this heading">#</a></h1>
-<div class="section" id="the-finite-difference-method">
+<section id="the-finite-difference-method">
 <h2>The Finite difference method<a class="headerlink" href="#the-finite-difference-method" title="Permalink to this heading">#</a></h2>
 <p>The finite difference method divides (in 1D) the line into a mesh and solves equations only for specific locations (nodes) in the mesh. A mesh is created with <span class="math notranslate nohighlight">\(t = (0, \Delta t, 2\Delta t, \ldots, N \Delta t)\)</span>, where <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span> and <span class="math notranslate nohighlight">\(T=t_N = N \Delta t\)</span>.</p>
 <p><img alt="tikz" src="_images/line.png" /></p>
@@ -441,8 +452,8 @@ document.write(`
 <img alt="_images/5321fad456f7f17550c65ec2ec74bf67939a436c98676af87119e11236f44c99.png" src="_images/5321fad456f7f17550c65ec2ec74bf67939a436c98676af87119e11236f44c99.png" />
 </div>
 </div>
-</div>
-<div class="section" id="matrix-approach">
+</section>
+<section id="matrix-approach">
 <h2>Matrix approach<a class="headerlink" href="#matrix-approach" title="Permalink to this heading">#</a></h2>
 <p>The recursive approach never assembles the <span class="math notranslate nohighlight">\(N+1\)</span> linear equations, it just steps forward, solving <span class="math notranslate nohighlight">\(u^{n+1}\)</span> from <span class="math notranslate nohighlight">\(u^n\)</span>. The matrix approach is simply an approach where all the linear equations are assembled first as a matrix problem. The matrix formulation for the generic problem is</p>
 <div class="math notranslate nohighlight">
@@ -575,8 +586,8 @@ I \\
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="the-vibration-problem">
+</section>
+<section id="the-vibration-problem">
 <h2>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Permalink to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
@@ -647,8 +658,8 @@ I \\
 <p class="admonition-title">Note</p>
 <p>The matrices are here lower triangular because the 2 boundary conditions are specified at one end of the domain. The scheme is explicit, the unknown <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is not used in computing the source term.</p>
 </div>
-</div>
-<div class="section" id="finite-differentiation-matrices">
+</section>
+<section id="finite-differentiation-matrices">
 <h2>Finite differentiation matrices<a class="headerlink" href="#finite-differentiation-matrices" title="Permalink to this heading">#</a></h2>
 <p>We will now use Taylor expansions more orderly to obtain differentiation matrices. To this end let us first use the following expansions, three which are forward, and one backward:</p>
 <div class="math notranslate nohighlight">
@@ -830,14 +841,14 @@ u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' +
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x110c0d550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x106b27a10&gt;
 </pre></div>
 </div>
 <img alt="_images/c6b993903b7d812c679558047bd13fdcb641fa826cedca29bfc937a10dbbb9c2.png" src="_images/c6b993903b7d812c679558047bd13fdcb641fa826cedca29bfc937a10dbbb9c2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="first-derivative">
+</section>
+<section id="first-derivative">
 <h2>First derivative<a class="headerlink" href="#first-derivative" title="Permalink to this heading">#</a></h2>
 <p>Let us create a similar matrix for a first order derivative. We use a central stencil for <span class="math notranslate nohighlight">\(n=1, 2, \ldots N-1\)</span> and skewed stencils for the first and last rows. Again, we need the following Taylor expansions</p>
 <div class="math notranslate nohighlight">
@@ -924,7 +935,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x110aa0b10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x112096ed0&gt;
 </pre></div>
 </div>
 <img alt="_images/c5eac90d947cf2d2018fb7e0bee93f25914e6a44b3c6bbd9c9066a3437553ffd.png" src="_images/c5eac90d947cf2d2018fb7e0bee93f25914e6a44b3c6bbd9c9066a3437553ffd.png" />
@@ -969,8 +980,8 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <p>It can be shown that the matrix that is D2n =<span class="math notranslate nohighlight">\(D^{(1)} D^{(1)}\)</span> (matrix product of <span class="math notranslate nohighlight">\(D^{(1)}\)</span> with itself) is only first order accurate.</p>
-</div>
-<div class="section" id="solve-equations-using-fd-matrices">
+</section>
+<section id="solve-equations-using-fd-matrices">
 <h2>Solve equations using FD matrices<a class="headerlink" href="#solve-equations-using-fd-matrices" title="Permalink to this heading">#</a></h2>
 <p>The FD matrices are great because they depend only on <span class="math notranslate nohighlight">\(h\)</span> and may be implemented once and reused. They only need to be modified in accordance with boundary conditions.</p>
 <p>Let’s do the decay equation first and assemble the system</p>
@@ -1030,17 +1041,17 @@ u' + au = 0, u(0)=I, t \in [0, T]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x111ee0c50&gt;,
- &lt;matplotlib.lines.Line2D at 0x111eb6dd0&gt;,
- &lt;matplotlib.lines.Line2D at 0x111dde050&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x112498990&gt;,
+ &lt;matplotlib.lines.Line2D at 0x1124c79d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x1124be050&gt;]
 </pre></div>
 </div>
 <img alt="_images/1ff4bd3610ee4c5e32448f16610af7ad700e24134d82d7fd0aad06a7207e9a05.png" src="_images/1ff4bd3610ee4c5e32448f16610af7ad700e24134d82d7fd0aad06a7207e9a05.png" />
 </div>
 </div>
 <p>The scheme is not fully implicit in the source term. However, it is using three neighbouring points for every equation, which is more stable than using merely two.</p>
-</div>
-<div class="section" id="generic-finite-difference-stencils">
+</section>
+<section id="generic-finite-difference-stencils">
 <h2>Generic finite difference stencils<a class="headerlink" href="#generic-finite-difference-stencils" title="Permalink to this heading">#</a></h2>
 <p>It is possible to derive finite difference stencils of any order from the Taylor expansions around a point in both positive and negative directions. The generic Taylor expansion around <span class="math notranslate nohighlight">\(x=x_0\)</span> reads</p>
 <div class="math notranslate nohighlight">
@@ -1255,8 +1266,8 @@ C = \begin{bmatrix}
 </div>
 </div>
 <p>This is the stencil used for the first and last row of the second derivative matrix for the vibration problem.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1283,11 +1294,10 @@ C = \begin{bmatrix}
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture3.html"
@@ -1307,10 +1317,7 @@ C = \begin{bmatrix}
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1379,8 +1386,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>

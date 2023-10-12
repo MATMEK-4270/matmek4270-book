@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 10 &#8212; Lecture notes MATMEK-4270</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -66,6 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture10';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="prev" title="Lecture 9" href="lecture9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -76,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -165,9 +177,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -327,10 +340,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -338,7 +351,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -382,9 +395,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-10">
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-10">
 <h1>Lecture 10<a class="headerlink" href="#lecture-10" title="Permalink to this heading">#</a></h1>
-<div class="section" id="function-approximation-by-the-finite-element-method">
+<section id="function-approximation-by-the-finite-element-method">
 <h2>Function approximation by the finite element method<a class="headerlink" href="#function-approximation-by-the-finite-element-method" title="Permalink to this heading">#</a></h2>
 <p>We have seen that a function <span class="math notranslate nohighlight">\(u(x)\)</span> can be approximated as</p>
 <div class="math notranslate nohighlight">
@@ -393,9 +406,9 @@ u(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 \]</div>
 <p>And we have seen how the least squares, Galerkin and collocation methods can be used to find the unknown <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}} = \{\hat{u}_j\}_{j=0}^N\)</span>. Up until now we have used global basis functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> defined on the entire domain <span class="math notranslate nohighlight">\(\Omega\)</span>. For example, the Chebyshev or Legendre polynomials are all functions that are changing within the entire domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span></p>
 <p>The global aspect of the basis functions is an advantage when it comes to both accuracy and efficiency. However, we are not always interested in solving equations on a simple line interval, or a rectangle for two dimensions. Normally we are more interested in domains that contain some physical obstructions</p>
-<div class="figure align-left" id="dolfin-mesh">
+<figure class="align-left" id="dolfin-mesh">
 <a class="reference internal image-reference" href="_images/dolfin_mesh.png"><img alt="_images/dolfin_mesh.png" src="_images/dolfin_mesh.png" style="width: 300px;" /></a>
-</div>
+</figure>
 <p>For such domains it is not possible to use basis functions that are defined everywhere. It is also very difficult, if not impossible, to use finite difference methods. Just imagine, how would you implement a Laplacian, like</p>
 <div class="math notranslate nohighlight">
 \[
@@ -409,41 +422,48 @@ u(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 \Omega = \bigcup_{e=0}^{N_e-1} \Omega^{(e)}.
 \]</div>
 <p>For example, the domain <span class="math notranslate nohighlight">\(\Omega = [0, 5]\)</span> can be split up into 5 smaller subdomains <span class="math notranslate nohighlight">\(\Omega^{(e)} = [e, e+1], e \in (0, 1, 2, 3, 4)\)</span> using 6 uniformly distributed nodes:</p>
-<div class="figure align-left" id="fem-1d-mesh-p1">
+<figure class="align-left" id="fem-1d-mesh-p1">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_P1.png"><img alt="_images/fe_mesh1D_P1.png" src="_images/fe_mesh1D_P1.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Finite element mesh with 5 elements and 6 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p1" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Finite element mesh with 5 elements and 6 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>These smaller subdomains are now referred to as <strong>elements</strong>.
 Note that an element here is located in between two blue vertical bars.</p>
-<p>The mesh seen in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> is the simplest possible FEM mesh, where each element contains 2 <em>nodes</em>. These elements can at best make use of linear piecewise polynomials since there are only 2 nodes in each element.</p>
-<p>A slightly more complicated mesh is shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P2</span></code>, which is non-uniform and contains only 2 elements and 5 nodes. Each of the elements contains 3 nodes, and as such these elements can make use of second order polynomials.</p>
-<div class="figure align-left" id="fem-1d-mesh-p2">
+<p>The mesh seen in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 1</span></a> is the simplest possible FEM mesh, where each element contains 2 <em>nodes</em>. These elements can at best make use of linear piecewise polynomials since there are only 2 nodes in each element.</p>
+<p>A slightly more complicated mesh is shown in <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 2</span></a>, which is non-uniform and contains only 2 elements and 5 nodes. Each of the elements contains 3 nodes, and as such these elements can make use of second order polynomials.</p>
+<figure class="align-left" id="fem-1d-mesh-p2">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_P2.png"><img alt="_images/fe_mesh1D_P2.png" src="_images/fe_mesh1D_P2.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Permalink to this image">#</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>The <a class="reference internal" href="#dolfin-mesh"><span class="std std-ref">dolfin mesh</span></a> of course is a more complicated triangulation, where every triangle represents an element. It is also quite common to use rectangles in 2D. For 3D problems a finite element is usually in the shape of a tetrahedron.</p>
-<div class="section" id="finite-element-basis-functions">
+<section id="finite-element-basis-functions">
 <h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Permalink to this heading">#</a></h3>
-<p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear (or even constant) over an element. For example, for the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> we plot two of the 6 basis functions below:</p>
-<div class="figure align-left" id="fem-1d-mesh-phi">
+<p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are continuous piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear over an element. For example, for the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 1</span></a> two of the 6 basis functions will be as shown below:</p>
+<figure class="align-left" id="fem-1d-mesh-phi">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_phi_2_3.png"><img alt="_images/fe_mesh1D_phi_2_3.png" src="_images/fe_mesh1D_phi_2_3.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Permalink to this image">#</a></p>
-</div>
-<p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 1</span></a> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
 (u-u_N, v) = 0 \quad \forall \, v \in V_N.
 \]</div>
-<p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with piecewise polynomial basis functions.</p>
+<p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with continuous piecewise polynomial basis functions.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The Galerkin formulation is the same whether you use a global approach with Legendre polynomials or a local FEM with piecewise polynomials. The difference lies all in the function spaces and the choice of basis.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Other than the fact that the basis functions are piecewise polynomials with only local support, there is nothing new from the previous chapters. It is only much more complicated to work with piecewise polynomials than continuous and it requires much more effort to implement.</p>
+<p>Other than the fact that the basis functions are piecewise polynomials with only local support, there is nothing new from the previous chapters. It is only *<em>much more complicated</em> to work with local functions than global and it requires <strong>much more effort</strong> to implement.</p>
 </div>
-<p>We will reuse even more of the theory from the global approximation, because Lagrange polynomials will be used as basis functions. But not global Lagrange polynomials, only local. Local to an element. Each element in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> contains 2 nodes. These nodes will locally be denoted as <span class="math notranslate nohighlight">\((x^0, x^1)\)</span> no matter which element we are in, and the Lagrange formula is then</p>
+<p>In this class we will use Lagrange polynomials as basis functions for the finite element method. But not global Lagrange polynomials, only local; local to elements. In this way it is similar to using Lagrange polynomials for <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#lagrange-interpolation-polynomials">interpolation on a finite difference grid</a>.</p>
+<p>Each element in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 1</span></a> contains 2 nodes. These nodes will locally be denoted as <span class="math notranslate nohighlight">\((x^0, x^1)\)</span> no matter which element we are in, and the Lagrange formula is then</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \ell_j(x) = \prod_{\substack{0 \le m &lt; 2 \\ m \ne j}} \frac{x-x^m}{x^j-x^m}, \quad j \in (0, 1).
@@ -477,15 +497,12 @@ Note that an element here is located in between two blue vertical bars.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span>  <span class="n">xj</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$\Omega^</span><span class="se">{{</span><span class="s1">(</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">)</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(5, 0.75, &#39;$\\psi_5(x)$&#39;)
-</pre></div>
-</div>
 <img alt="_images/6d397c6e133327b19f6543677c19e5ae6beb0f16ecdfa258337ad2b30181aef6.png" src="_images/6d397c6e133327b19f6543677c19e5ae6beb0f16ecdfa258337ad2b30181aef6.png" />
 </div>
 </div>
@@ -537,16 +554,17 @@ Note that an element here is located in between two blue vertical bars.</p>
 \frac{x-x_{j+1}}{x_{j}-x_{j+1}} \quad x \in [x_{j}, x_{j+1}]. \\
 \end{cases}
 \end{split}\]</div>
-<p>A function space for the piecewise linear polynomials can be defined as <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and with the Galerkin method <a class="reference internal" href="#equation-eq-galerkin-fem">()</a> we approximate any function <span class="math notranslate nohighlight">\(u(x)\)</span> by looking for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<p>A function space for the piecewise linear polynomials can be defined as <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and with the Galerkin method <a class="reference internal" href="#equation-eq-galerkin-fem">(33)</a> we approximate any function <span class="math notranslate nohighlight">\(u(x)\)</span> by looking for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 (u-\sum_{j=0}^N \hat{u}_j \psi_j, \psi_i) = 0 \quad \forall \, i \in (0, 1, \ldots, N).
 \]</div>
 <p>In other words, we need to solve the follow linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-femmat">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}_j = (u, \psi_i), \quad \forall\,  i \in (0, 1, \ldots, N).
 \]</div>
+<p>This is identical to the Galerkin problem already presented in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html#the-galerkin-method">lecture 8</a>. Again, the only difference is the choice of function spaces and basis.</p>
 <p>Unfortunately, the finite element mass matrix <span class="math notranslate nohighlight">\(A = (a_{ij})_{i,j=0}^N\)</span>, with</p>
 <div class="math notranslate nohighlight">
 \[
@@ -558,12 +576,17 @@ a_{ij} = (\psi_j, \psi_i) = \int_{\Omega} \psi_j \psi_i d\Omega,
 \[
 a_{ij} = \sum_{e=0}^{N_e-1} \int_{\Omega^{(e)}} \psi_j \psi_i d\Omega.
 \]</div>
-<p>Here we will make use of the element matrix <span class="math notranslate nohighlight">\(a_{ij}^{(e)} = \int_{\Omega^{(e)}} \psi_j \psi_i d\Omega\)</span>. Note that this matrix is still of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span>, but for any given element it will only consist of a few nonzero items. We have</p>
+<p>Here we will identify</p>
+<div class="math notranslate nohighlight">
+\[
+a_{ij}^{(e)} = \int_{\Omega^{(e)}} \psi_j \psi_i d\Omega
+\]</div>
+<p>as the <strong>element matrix</strong>, and note that this matrix is still of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span>, even though for any given element it will only consist of a few nonzero items. The full mass matrix can now be written as</p>
 <div class="math notranslate nohighlight">
 \[
 A = \sum_{e=0}^{N_e-1} A^{(e)}.
 \]</div>
-<p>The matrix <span class="math notranslate nohighlight">\(A^{(e)}=(a^{(e)}_{ij})_{i,j=0}^N\)</span> is very sparse since it only has nonzero items for indices <span class="math notranslate nohighlight">\(i, j\)</span> corresponding to nonzero basis functions in the element <span class="math notranslate nohighlight">\(e\)</span>. Hence it makes sense to reduce its size. If there are <span class="math notranslate nohighlight">\(d+1\)</span> nonzero basis functions on each element, then there can be at most <span class="math notranslate nohighlight">\((d+1)^2\)</span> nonzero combinations of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((\psi_i, \psi_j)\)</span> and the element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> can as such be represented as a dense <span class="math notranslate nohighlight">\((d+1)\times (d+1)\)</span> matrix</p>
+<p>The element matrix <span class="math notranslate nohighlight">\(A^{(e)}=(a^{(e)}_{ij})_{i,j=0}^N\)</span> is very sparse since it only has nonzero items for indices <span class="math notranslate nohighlight">\(i, j\)</span> corresponding to nonzero basis functions in the element <span class="math notranslate nohighlight">\(e\)</span>. Hence it makes sense to reduce its size. If there are <span class="math notranslate nohighlight">\(d+1\)</span> nonzero basis functions on each element, then there can be at most <span class="math notranslate nohighlight">\((d+1)^2\)</span> nonzero combinations of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((\psi_i, \psi_j)\)</span> and the element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> can as such be represented as a dense <span class="math notranslate nohighlight">\((d+1)\times (d+1)\)</span> matrix</p>
 <div class="math notranslate nohighlight">
 \[
 \tilde{A}^{(e)} = (a_{rs}^{(e)})_{r,s=0}^{d} \in \mathbb{R}^{(d+1)\times (d+1)},
@@ -573,14 +596,14 @@ A = \sum_{e=0}^{N_e-1} A^{(e)}.
 \[
 a_{rs}^{(e)} = \int_{\Omega^{(e)}} \psi_{q(e,r)} \psi_{q(e,s)} d\Omega
 \]</div>
-<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> and <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P2</span></code>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
+<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 1</span></a> and <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 2</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
 <div class="math notranslate nohighlight">
 \[
 q(e, r) = de+r.
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> contains the same nonzero items as <span class="math notranslate nohighlight">\(A^{(e)}\)</span>, but <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\in \mathbb{R}^{(d+1) \times (d+1)}\)</span> is dense, whereas <span class="math notranslate nohighlight">\(A^{(e)} \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> is highly sparse. The small matrices in <code class="xref std std-numref docutils literal notranslate"><span class="pre">mov-assemble-mass</span></code> represent <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> contains the same nonzero items as <span class="math notranslate nohighlight">\(A^{(e)}\)</span>, but <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\in \mathbb{R}^{(d+1) \times (d+1)}\)</span> is dense, whereas <span class="math notranslate nohighlight">\(A^{(e)} \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> is highly sparse. The small matrices in <a class="reference internal" href="#mov-assemble-mass"><span class="std std-numref">Fig. 4</span></a> represent <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span>.</p>
 </div>
 <p>In order to use the local (and small) element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> we assemble for each element into the global matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
 <div class="math notranslate nohighlight">
@@ -588,12 +611,14 @@ q(e, r) = de+r.
 a_{q(e,r),q(e, s)} \mathop{+}= a^{(e)}_{r,s}, \quad (r, s) \in \mathcal{I}_d^2.
 \]</div>
 <p>This process, which is termed <em>finite element assembly</em>, can be illustrated as shown below, where 4 small element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> of shape <span class="math notranslate nohighlight">\(2 \times 2\)</span> are inserted into the global matrix <span class="math notranslate nohighlight">\(A\)</span> of shape <span class="math notranslate nohighlight">\(5 \times 5\)</span>. For this linear case <span class="math notranslate nohighlight">\(d=1\)</span>. Note that there is overlap between the 4 element matrices in the global <span class="math notranslate nohighlight">\(A\)</span>, because all the internal (linear) basis functions are nonzero in 2 elements each.</p>
-<div class="figure align-center" id="mov-assemble-mass">
+<figure class="align-center" id="mov-assemble-mass">
 <a class="reference internal image-reference" href="_images/movie.gif"><img alt="assemble" src="_images/movie.gif" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Finite element assembly of the local element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> into the global matrix <span class="math notranslate nohighlight">\(A\)</span>. Note the mapping of local to global indices above the matrix <span class="math notranslate nohighlight">\(A\)</span>.</span><a class="headerlink" href="#mov-assemble-mass" title="Permalink to this image">#</a></p>
-</div>
-</div>
-<div class="section" id="mapping-to-reference-domain">
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Finite element assembly of the local element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> into the global matrix <span class="math notranslate nohighlight">\(A\)</span>. Note the mapping of local to global indices above the matrix <span class="math notranslate nohighlight">\(A\)</span>.</span><a class="headerlink" href="#mov-assemble-mass" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="mapping-to-reference-domain">
 <h3>Mapping to reference domain<a class="headerlink" href="#mapping-to-reference-domain" title="Permalink to this heading">#</a></h3>
 <p>In assembling the matrix <span class="math notranslate nohighlight">\(A\)</span> we need to compute the element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> many times. Is this really necessary? The integrals</p>
 <div class="math notranslate nohighlight">
@@ -735,7 +760,7 @@ a_{rs}^{(e)} = \frac{h}{2}\int_{-1}^1 \ell_{r}(X) \ell_{s}(X) dX.
 \int_{-1}^1 \ell_{1} \ell_{1} dX
 \end{bmatrix}.
 \end{split}\]</div>
-<p>The four integrals can be evaluated once and for all, and reused for any mesh, uniform or nonuniform, simply by scaling with the element length <span class="math notranslate nohighlight">\(h\)</span>. We can compute this element matrix easily using sympy</p>
+<p>The four integrals can be evaluated once and for all, and reused for all elements and any mesh, uniform or nonuniform, simply by scaling the matrix with the element length <span class="math notranslate nohighlight">\(h\)</span>. We can also compute this element matrix easily using Sympy</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
@@ -768,21 +793,30 @@ a_{rs}^{(e)} = \frac{h}{2}\int_{-1}^1 \ell_{r}(X) \ell_{s}(X) dX.
 \[\begin{split}\displaystyle \left[\begin{matrix}\frac{2 h}{15} &amp; \frac{h}{15} &amp; - \frac{h}{30}\\\frac{h}{15} &amp; \frac{8 h}{15} &amp; \frac{h}{15}\\- \frac{h}{30} &amp; \frac{h}{15} &amp; \frac{2 h}{15}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>Since we know how to compute the element matrix, we also know how to compute the full mass matrix. The following function sums over all elements and adds the contribution from each to the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>Since we know how to compute the element matrix, we also know how to compute the full mass matrix. The following function <code class="docutils literal notranslate"><span class="pre">assemble_mass</span></code> sums over all elements and adds the contribution from each to the matrix <span class="math notranslate nohighlight">\(A\)</span>. We also create a few helper functions <code class="docutils literal notranslate"><span class="pre">get_element_boundaries</span></code> and <code class="docutils literal notranslate"><span class="pre">get_element_length</span></code> with obvious purpose and the local to global map <span class="math notranslate nohighlight">\(q(e, r)\)</span>. Note that if <span class="math notranslate nohighlight">\(r\)</span> is not provided, then <code class="docutils literal notranslate"><span class="pre">local_to_global_map</span></code> returns a slice representing the global indices <span class="math notranslate nohighlight">\(\{q(e, r)\}_{r=0}^{d}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ae</span> <span class="o">=</span> <span class="p">[</span><span class="n">A1e</span><span class="p">,</span> <span class="n">A2e</span><span class="p">]</span> <span class="c1"># previously computed</span>
+
+<span class="k">def</span> <span class="nf">get_element_boundaries</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">e</span><span class="p">],</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="k">def</span> <span class="nf">get_element_length</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">xL</span><span class="p">,</span> <span class="n">xR</span> <span class="o">=</span> <span class="n">get_element_boundaries</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">xR</span><span class="o">-</span><span class="n">xL</span>
+
+<span class="k">def</span> <span class="nf">local_to_global_map</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># q(e, r)</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">slice</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">*</span><span class="n">e</span><span class="o">+</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">d</span><span class="o">*</span><span class="n">e</span><span class="o">+</span><span class="n">r</span>
 
 <span class="k">def</span> <span class="nf">assemble_mass</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">Ne</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="n">d</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ne</span><span class="p">):</span>
-        <span class="n">xL</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">elem</span><span class="p">]</span>
-        <span class="n">xR</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">elem</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-        <span class="n">hj</span> <span class="o">=</span> <span class="n">xR</span><span class="o">-</span><span class="n">xL</span>
-        <span class="n">i0</span> <span class="o">=</span> <span class="n">d</span><span class="o">*</span><span class="n">elem</span>
-        <span class="n">s0</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">i0</span><span class="p">,</span> <span class="n">i0</span><span class="o">+</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">hj</span> <span class="o">=</span> <span class="n">get_element_length</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">s0</span> <span class="o">=</span> <span class="n">local_to_global_map</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
         <span class="n">A</span><span class="p">[</span><span class="n">s0</span><span class="p">,</span> <span class="n">s0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Ae</span><span class="p">[</span><span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">hj</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">A</span>
 </pre></div>
@@ -835,7 +869,7 @@ a_{rs}^{(e)} = \frac{h}{2}\int_{-1}^1 \ell_{r}(X) \ell_{s}(X) dX.
 <p class="admonition-title">Note</p>
 <p>For the matrices computed above we have used a uniform mesh such that <span class="math notranslate nohighlight">\(h\)</span> is constant. A non-uniform mesh needs to take into account the different element sizes <span class="math notranslate nohighlight">\(h\)</span>, but this is only a matter of scaling the element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span>. <code class="docutils literal notranslate"><span class="pre">assemble_mass</span></code> works also for a non-uniform mesh, because the size of each element is taken into account.</p>
 </div>
-<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">()</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i \in (0, 1, \ldots, N)\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
+<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">(34)</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i \in (0, 1, \ldots, N)\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[
 b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i \in (0, 1, \ldots, N),
@@ -850,20 +884,32 @@ b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i \in (0, 1, \ldots, 
 \[
 \tilde{b}^{(e)}_r = \frac{h}{2}\int_{-1}^1 u(x(X)) \ell_{r}(X) dX \quad r \in (0, 1, \ldots, d).
 \]</div>
-<p>We can create a function to do this assembly for any order <span class="math notranslate nohighlight">\(d\)</span> and a generic Sympy function <span class="math notranslate nohighlight">\(u(x)\)</span>:</p>
+<p>We can create a function <code class="docutils literal notranslate"><span class="pre">assemble_b</span></code> to do this assembly for any order <span class="math notranslate nohighlight">\(d\)</span> and a generic Sympy function <span class="math notranslate nohighlight">\(u(x)\)</span>. To this end we also create some helper functions <code class="docutils literal notranslate"><span class="pre">map_true_domain</span></code> and <code class="docutils literal notranslate"><span class="pre">map_reference_domain</span></code>, that return <span class="math notranslate nohighlight">\(x(X)\)</span> and <span class="math notranslate nohighlight">\(X(x)\)</span>, respectively. The function <code class="docutils literal notranslate"><span class="pre">map_u_true_domain</span></code> returns <span class="math notranslate nohighlight">\(\tilde{u}(X) = u(x(X))\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+
+<span class="k">def</span> <span class="nf">map_true_domain</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span> <span class="c1"># return x(X)</span>
+    <span class="n">xL</span><span class="p">,</span> <span class="n">xR</span> <span class="o">=</span> <span class="n">get_element_boundaries</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span> 
+    <span class="n">hj</span> <span class="o">=</span> <span class="n">get_element_length</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">xL</span><span class="o">+</span><span class="n">xR</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">hj</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">map_reference_domain</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span> <span class="c1"># return X(x)</span>
+    <span class="n">xL</span><span class="p">,</span> <span class="n">xR</span> <span class="o">=</span> <span class="n">get_element_boundaries</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span> 
+    <span class="n">hj</span> <span class="o">=</span> <span class="n">get_element_length</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="p">(</span><span class="n">xL</span><span class="o">+</span><span class="n">xR</span><span class="p">))</span><span class="o">/</span><span class="n">hj</span>
+
+<span class="k">def</span> <span class="nf">map_u_true_domain</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span> <span class="c1"># return u(x(X))</span>
+    <span class="k">return</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">map_true_domain</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+
 <span class="k">def</span> <span class="nf">assemble_b</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">sympy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">Ne</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="n">d</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ne</span><span class="p">):</span>
-        <span class="n">xL</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">elem</span><span class="p">]</span>
-        <span class="n">xR</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">elem</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-        <span class="n">hj</span> <span class="o">=</span> <span class="n">xR</span><span class="o">-</span><span class="n">xL</span>
-        <span class="n">us</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">xL</span><span class="o">+</span><span class="n">xR</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">hj</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">hj</span> <span class="o">=</span> <span class="n">get_element_length</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">map_u_true_domain</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">))</span>
         <span class="n">integ</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">xj</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="n">us</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="n">r</span><span class="p">](</span><span class="n">xj</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">b</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">elem</span><span class="o">+</span><span class="n">r</span><span class="p">]</span> <span class="o">+=</span> <span class="n">hj</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">integ</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">r</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
@@ -936,16 +982,16 @@ x_{2i+1} = \frac{x_{2i}+x_{2(i+1)}}{2}, \quad i \in (0, 1, \ldots, N/2-1).
 </div>
 <p>But what happened here? The results still look like piecewise linear polynomials and it looks no better than before. The problem now is not accuracy of the FEM approximation, though, it has more to do with postprocessing and finite element evaluation. We compute and plot the finite element solution <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>, but then matplotlib simply fills in the gaps between the points with linear profiles. The correct approach would be to evaluate the finite element function</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-sol">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega,
 \]</div>
 <p>in between the mesh points.</p>
-</div>
-<div class="section" id="finite-element-evaluation">
+</section>
+<section id="finite-element-evaluation">
 <h3>Finite element evaluation<a class="headerlink" href="#finite-element-evaluation" title="Permalink to this heading">#</a></h3>
-<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">()</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
+<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">(35)</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
 <ol class="arabic simple">
-<li><p>at a mesh point <span class="math notranslate nohighlight">\(x_i\)</span>, in which case <span class="math notranslate nohighlight">\(u(x_i) = \hat{u}_i\)</span>.</p></li>
+<li><p>at a mesh point <span class="math notranslate nohighlight">\(x_i\)</span>, in which case <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p></li>
 <li><p>in between mesh points and inside one and only one element.</p></li>
 </ol>
 <p>In case of the second event we can evaluate <span class="math notranslate nohighlight">\(u_N(x)\)</span> by mapping to the reference domain simply as</p>
@@ -955,10 +1001,6 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 \]</div>
 <p>So we only need to figure out which element the point <span class="math notranslate nohighlight">\(x\)</span> is in and then simply evaluate the nonzero polynomials on that element only. To this end it does not hurt to remind ourselves of formulas that we can use for our structured (uniform) grids:</p>
 <table class="table">
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Mesh</p></th>
 <th class="head"><p>Formula</p></th>
@@ -1015,12 +1057,8 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fe_evaluate</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">sympy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">elem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">p</span> <span class="o">&lt;=</span> <span class="n">xj</span><span class="p">[::</span><span class="n">d</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># find element containing p </span>
-    <span class="n">xL</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">elem</span><span class="p">]</span>
-    <span class="n">xR</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">elem</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-    <span class="n">hj</span> <span class="o">=</span> <span class="n">xR</span><span class="o">-</span><span class="n">xL</span>
-    <span class="n">xm</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">xL</span><span class="o">+</span><span class="n">xR</span><span class="p">)</span> 
-    <span class="n">xX</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">xm</span><span class="p">)</span><span class="o">/</span><span class="n">hj</span>
-    <span class="k">return</span> <span class="n">Lagrangefunction</span><span class="p">(</span><span class="n">uh</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">elem</span><span class="p">:</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">elem</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">l</span><span class="p">)(</span><span class="n">xX</span><span class="p">)</span> 
+    <span class="n">Xx</span> <span class="o">=</span> <span class="n">map_reference_domain</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Lagrangefunction</span><span class="p">(</span><span class="n">uh</span><span class="p">[</span><span class="n">d</span><span class="o">*</span><span class="n">elem</span><span class="p">:</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">elem</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">l</span><span class="p">)(</span><span class="n">Xx</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1048,22 +1086,25 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">pv</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">sympy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">elem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">((</span><span class="n">pv</span> <span class="o">&lt;=</span> <span class="n">xj</span><span class="p">[::</span><span class="n">d</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># find elements containing pv </span>
-    <span class="n">xL</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">d</span><span class="p">]</span>
-    <span class="n">xR</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="p">::</span><span class="n">d</span><span class="p">]</span>
+    <span class="n">elem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">((</span><span class="n">pv</span> <span class="o">&lt;</span> <span class="n">xj</span><span class="p">[::</span><span class="n">d</span><span class="p">,</span> <span class="kc">None</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># find elements containing pv </span>
+    <span class="n">xL</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">d</span><span class="p">]</span> <span class="c1"># All left element boundaries</span>
+    <span class="n">xR</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[</span><span class="n">d</span><span class="p">::</span><span class="n">d</span><span class="p">]</span>  <span class="c1"># All right element boundaries</span>
     <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">xL</span><span class="o">+</span><span class="n">xR</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="c1"># middle of all elements</span>
     <span class="n">hj</span> <span class="o">=</span> <span class="p">(</span><span class="n">xR</span><span class="o">-</span><span class="n">xL</span><span class="p">)</span>   <span class="c1"># length of all elements</span>
-    <span class="n">xX</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">pv</span><span class="o">-</span><span class="n">xm</span><span class="p">[</span><span class="n">elem</span><span class="p">])</span><span class="o">/</span><span class="n">hj</span><span class="p">[</span><span class="n">elem</span><span class="p">]</span> <span class="c1"># pv in reference space all elements</span>
+    <span class="n">Xx</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">pv</span><span class="o">-</span><span class="n">xm</span><span class="p">[</span><span class="n">elem</span><span class="p">])</span><span class="o">/</span><span class="n">hj</span><span class="p">[</span><span class="n">elem</span><span class="p">]</span> <span class="c1"># map pv to reference space all elements</span>
     <span class="n">dofs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">uh</span><span class="p">[</span><span class="n">e</span><span class="o">*</span><span class="n">d</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">elem</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lr</span><span class="p">(</span><span class="n">xX</span><span class="p">)</span> <span class="k">for</span> <span class="n">lr</span> <span class="ow">in</span> <span class="n">l</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="c1"># All basis functions evaluated for all points</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lr</span><span class="p">(</span><span class="n">Xx</span><span class="p">)</span> <span class="k">for</span> <span class="n">lr</span> <span class="ow">in</span> <span class="n">l</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="c1"># All basis functions evaluated for all points</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dofs</span> <span class="o">*</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Check the vectorized version by evaluating two points and compare with exact solution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">]),</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">display</span><span class="p">(</span><span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">]),</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">display</span><span class="p">((</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mf">1.2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mf">1.3</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1071,15 +1112,6 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.6, -0.1])
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mf">1.2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mf">1.3</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.6000000000000002, -0.09999999999999976)
 </pre></div>
 </div>
@@ -1090,13 +1122,15 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 \[
 u(x) = \exp(\cos x), \quad x \in [-1, 1].
 \]</div>
-<p>that required 20 Legendre or Chebyshev coefficients for full machine precision. Loop over a range of mesh sizes and compute both with linear and quadratic basis functions. When finished compute the <span class="math notranslate nohighlight">\(L^2\)</span> error norm using only the node values</p>
+<p>that required 20 Legendre or Chebyshev coefficients for full machine precision. Loop over a range of mesh sizes and compute both with linear and quadratic basis functions. When finished compute the <span class="math notranslate nohighlight">\(L^2\)</span> error norm using a numerical integral with 4 times as many points as the numerical solution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">):</span>
-    <span class="n">uej</span> <span class="o">=</span> <span class="n">ue</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uh</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">yj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">))</span>
+    <span class="n">uhj</span> <span class="o">=</span> <span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">yj</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">uej</span> <span class="o">=</span> <span class="n">ue</span><span class="p">(</span><span class="n">yj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uhj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">yj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
 <span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> 
 <span class="n">err</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1108,13 +1142,13 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
     <span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">@</span> <span class="n">b</span>
     <span class="n">A2</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">uh2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span> <span class="o">@</span> <span class="n">b2</span>
-    <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">))</span>
-    <span class="n">err2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uh2</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">))</span>
+    <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">err2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uh2</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The FEM approximation using linear polynomials should be second order accurate, because the linear <span class="math notranslate nohighlight">\(\ell_0\)</span> and <span class="math notranslate nohighlight">\(\ell_1\)</span> have Taylor expansions where the first neglected term is proportional to <span class="math notranslate nohighlight">\(\Delta x^2\)</span>. Similarly, the FEM approximation using second order polynomials should be fourth order. As stated in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture9.html">lecture 9</a> the Chebyshev and Legendre approximations have spectral accuracy, which is faster than any finite order. This is easy to illustrate. In the figure below we plot the <span class="math notranslate nohighlight">\(L^2\)</span> errors of the Legendre/Chebyshev approximations as well as the FEM. Note how the spectral methods accellerate towards machine precision, whereas the error for FEM disappears at a rate proportional to <span class="math notranslate nohighlight">\(N^{-2}\)</span> and <span class="math notranslate nohighlight">\(N^{-4}\)</span>. The global approximation using <span class="math notranslate nohighlight">\(N=8\)</span> achieves the same accuracy as quadratic elements with <span class="math notranslate nohighlight">\(N=52\)</span>.</p>
+<p>The FEM approximation using linear polynomials should be second order accurate, because the linear <span class="math notranslate nohighlight">\(\ell_0\)</span> and <span class="math notranslate nohighlight">\(\ell_1\)</span> have Taylor expansions where the first neglected term is proportional to <span class="math notranslate nohighlight">\(\Delta x^2\)</span>. Similarly, the FEM approximation using second order polynomials should be third order. As stated in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture9.html">lecture 9</a> the Chebyshev and Legendre approximations have spectral accuracy, which is faster than any finite order. This is easy to illustrate. In the figure below we plot the <span class="math notranslate nohighlight">\(L^2\)</span> errors of the Legendre/Chebyshev approximations as well as the FEM. Note how the spectral methods accelerate towards machine precision, whereas the error for FEM disappears at a rate proportional to <span class="math notranslate nohighlight">\(N^{-2}\)</span> and <span class="math notranslate nohighlight">\(N^{-3}\)</span>. The global approximation using <span class="math notranslate nohighlight">\(N=8\)</span> achieves better accuracy than local quadratic elements with <span class="math notranslate nohighlight">\(N=52\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err_cl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;./err_u.npy&#39;</span><span class="p">)</span>
@@ -1126,18 +1160,18 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
            <span class="n">fillstyle</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">plotslopes</span> <span class="kn">import</span> <span class="n">slope_marker</span>
 <span class="n">slope_marker</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span> <span class="n">err</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="n">err2</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="n">err2</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;FEM d=1&#39;</span><span class="p">,</span> <span class="s1">&#39;FEM d=2&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/80378f3dbae3fed5e6bfc482328acd9ee2aacabe7cbfb716931a91b32eacab80.png" src="_images/80378f3dbae3fed5e6bfc482328acd9ee2aacabe7cbfb716931a91b32eacab80.png" />
+<img alt="_images/90ed31cd66c9c8d6b9f4817d3e41a77304cf3ff9a1601279505b4557ca04ca15.png" src="_images/90ed31cd66c9c8d6b9f4817d3e41a77304cf3ff9a1601279505b4557ca04ca15.png" />
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1164,16 +1198,30 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
+    <a class="left-prev"
+       href="lecture9.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 9</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mandatory1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
-
                 </footer>
               
             </div>
@@ -1241,8 +1289,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>

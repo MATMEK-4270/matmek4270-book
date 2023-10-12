@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 5 &#8212; Lecture notes MATMEK-4270</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -170,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -329,10 +340,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -340,7 +351,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -395,9 +406,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-5">
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-5">
 <h1>Lecture 5<a class="headerlink" href="#lecture-5" title="Permalink to this heading">#</a></h1>
-<div class="section" id="finite-difference-methods-for-the-wave-equation">
+<section id="finite-difference-methods-for-the-wave-equation">
 <h2>Finite difference methods for the wave equation<a class="headerlink" href="#finite-difference-methods-for-the-wave-equation" title="Permalink to this heading">#</a></h2>
 <p>The wave equation is a partial differential equation (PDE):</p>
 <div class="math notranslate nohighlight">
@@ -411,23 +422,23 @@ document.write(`
 <li><p>The solutions are waves that can be written as <span class="math notranslate nohighlight">\(u(x+ct)\)</span> and <span class="math notranslate nohighlight">\(u(x-ct)\)</span>.</p></li>
 </ul>
 <p>The two derivatives in space require two boundary conditions</p>
-<div class="section" id="dirichlet-fixed-end">
+<section id="dirichlet-fixed-end">
 <h3>Dirichlet (Fixed end)<a class="headerlink" href="#dirichlet-fixed-end" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 u(0, t) = u(L, t) = 0
 \]</div>
 <p>The wave will be reflected, but <span class="math notranslate nohighlight">\(u\)</span> will change sign. A nonzero Dirichlet condition is also possible, but will not be considered here.</p>
-</div>
-<div class="section" id="neumann-loose-end">
+</section>
+<section id="neumann-loose-end">
 <h3>Neumann (Loose end)<a class="headerlink" href="#neumann-loose-end" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial u}{\partial x}(0, t) = \frac{\partial u}{\partial x}(L, t) = 0
 \]</div>
 <p>The wave will be reflected without change in sign. A nonzero Neumann condition is also possible, but will not be considered here.</p>
-</div>
-<div class="section" id="open-boundary-no-end">
+</section>
+<section id="open-boundary-no-end">
 <h3>Open boundary (No end)<a class="headerlink" href="#open-boundary-no-end" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
@@ -471,9 +482,9 @@ u(x, t=0) = I(x) \quad \text{and} \quad
 \frac{\partial u}{\partial t}(x, t=0) = V(x)
 \]</div>
 <p>for some functions <span class="math notranslate nohighlight">\(I(x)\)</span> and <span class="math notranslate nohighlight">\(V(x)\)</span>.</p>
-</div>
-</div>
-<div class="section" id="discretization">
+</section>
+</section>
+<section id="discretization">
 <h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
 <p>The simplest possible discretization is uniform in time and space</p>
 <div class="math notranslate nohighlight">
@@ -644,8 +655,8 @@ u^{n} &amp;\leftarrow u^{n+1}
 \end{align*}
 \end{split}\]</div>
 <p>We swap <span class="math notranslate nohighlight">\(u^{n-1} \leftarrow u^n\)</span> and <span class="math notranslate nohighlight">\(u^{n} \leftarrow u^{n+1}\)</span> to get ready for the next time step.</p>
-</div>
-<div class="section" id="remaining-complications">
+</section>
+<section id="remaining-complications">
 <h2>Remaining complications<a class="headerlink" href="#remaining-complications" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>How to fix initial conditions in time?</p></li>
@@ -664,8 +675,8 @@ u^{n} &amp;\leftarrow u^{n+1}
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="initial-conditions">
+</section>
+<section id="initial-conditions">
 <h2>Initial conditions<a class="headerlink" href="#initial-conditions" title="Permalink to this heading">#</a></h2>
 <p>Initial conditions will need to fix <code class="docutils literal notranslate"><span class="pre">un</span></code> and <code class="docutils literal notranslate"><span class="pre">unm1</span></code>. There are basically two options. If a time dependent function is given for initial conditions, then this function may be used for not only one, but two time steps, at</p>
 <div class="math notranslate nohighlight">
@@ -695,8 +706,8 @@ u^1 = u^0 + \frac{\underline{c}^2}{2}D^{(2)}u^0 + V \Delta t
 \]</div>
 <p>So with Neumann boundary conditions we initialize <code class="docutils literal notranslate"><span class="pre">unm1</span></code><span class="math notranslate nohighlight">\(=u^0=u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code><span class="math notranslate nohighlight">\(=u^1=u(x, \Delta t)\)</span> and solve first for <code class="docutils literal notranslate"><span class="pre">unp1</span></code><span class="math notranslate nohighlight">\(=u^2=u(x, 2\Delta t)\)</span>.</p>
 <p>The implementation in <code class="docutils literal notranslate"><span class="pre">Wave1D</span></code> simply evaluates a Sympy function for the initial condition. See the initial part of <code class="docutils literal notranslate"><span class="pre">Wave1D.__call__</span></code>.</p>
-</div>
-<div class="section" id="boundary-conditions">
+</section>
+<section id="boundary-conditions">
 <h2>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h2>
 <p>There are several options for the boundary conditions to the spatial domain.</p>
 <ol class="arabic simple">
@@ -738,7 +749,7 @@ u^n_{N}
 \end{bmatrix}
 \end{split}\]</div>
 <p>and the result is multiplied by the scalar value <span class="math notranslate nohighlight">\(C^2\)</span>.</p>
-<div class="section" id="dirichlet">
+<section id="dirichlet">
 <h3>Dirichlet<a class="headerlink" href="#dirichlet" title="Permalink to this heading">#</a></h3>
 <p>Dirichlet boundary conditions specifies fixed values at the edges of the domain. If both are zero, then we fix</p>
 <div class="math notranslate nohighlight">
@@ -775,8 +786,8 @@ u^{n} &amp;\leftarrow u^{n+1}
 \end{align*}
 \end{split}\]</div>
 <p>If the PDE is only used for initial points <span class="math notranslate nohighlight">\(j=1, 2, \ldots, N-1\)</span>, then it is not necessary to set <span class="math notranslate nohighlight">\(u^{n+1}_0 = u^{n+1}_N = 0\)</span> every time step. It is sufficient to fix them at the start of the simulation.</p>
-</div>
-<div class="section" id="neumann">
+</section>
+<section id="neumann">
 <h3>Neumann<a class="headerlink" href="#neumann" title="Permalink to this heading">#</a></h3>
 <p>Neumann is a bit more tricky. For simplicity we assume homogeneous conditions, such that</p>
 <div class="math notranslate nohighlight">
@@ -837,8 +848,8 @@ D^{(2)}_N = \begin{bmatrix}
 u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D_N^{(2)} u^n
 \]</div>
 <p>There is in other words no need to do anything for these Neumann conditions in the <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> method. Modifying the matrix is all that it takes.</p>
-</div>
-<div class="section" id="open-boundaries">
+</section>
+<section id="open-boundaries">
 <h3>Open boundaries<a class="headerlink" href="#open-boundaries" title="Permalink to this heading">#</a></h3>
 <p>At the left boundary we have the open condition</p>
 <div class="math notranslate nohighlight">
@@ -891,8 +902,8 @@ u^{n+1}_0 = 2(1-\overline{c})u^n_0 - \frac{1-\underline{c}}{1+\underline{c}}u^{n
 u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_N + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_{N-1}
 \]</div>
 <p>These two equations should be implemented in the <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> method.</p>
-</div>
-<div class="section" id="periodic-boundaries">
+</section>
+<section id="periodic-boundaries">
 <h3>Periodic boundaries<a class="headerlink" href="#periodic-boundaries" title="Permalink to this heading">#</a></h3>
 <p>If a domain is periodic, this simply means that a solution is repeating itself indefinitely. For example, a sine wave is periodic. The wave <span class="math notranslate nohighlight">\(\sin(2 x \pi)\)</span> is repeating itself every <span class="math notranslate nohighlight">\(x=1, 2, 3, \ldots\)</span> as shown below.</p>
 <div class="cell tag_hide-input docutils container">
@@ -942,9 +953,9 @@ D_p^{(2)} = \begin{bmatrix}
 <p>and we can use the vector approach for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span> and then in addition we can set <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span>.</p>
 <p>Note that the last row in the matrix <span class="math notranslate nohighlight">\(D^{(2)}_p\)</span> is not used, because we solve the PDE for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span>.</p>
 <p>The condition <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span> should be set in <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code>.</p>
-</div>
-</div>
-<div class="section" id="wave-equation-solver">
+</section>
+</section>
+<section id="wave-equation-solver">
 <h2>Wave equation solver<a class="headerlink" href="#wave-equation-solver" title="Permalink to this heading">#</a></h2>
 <p>A basic solver implemented with Dirichlet boundary conditions is given below. The solver should be modified with Neumann, open and periodic boundary conditions.</p>
 <div class="cell docutils container">
@@ -1129,8 +1140,8 @@ D_p^{(2)} = \begin{bmatrix}
 <img alt="_images/bfbc37c6431c6b46109ba1b0454057bf7a0ad5a6f37401c26ac78aec531eb25a.png" src="_images/bfbc37c6431c6b46109ba1b0454057bf7a0ad5a6f37401c26ac78aec531eb25a.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1157,11 +1168,10 @@ D_p^{(2)} = \begin{bmatrix}
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture4.html"
@@ -1181,10 +1191,7 @@ D_p^{(2)} = \begin{bmatrix}
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1263,8 +1270,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>

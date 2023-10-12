@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 9 &#8212; Lecture notes MATMEK-4270</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture9';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="next" title="Lecture 10" href="lecture10.html" />
     <link rel="prev" title="Lecture 8" href="lecture8.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -170,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -329,10 +340,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -340,7 +351,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -386,9 +397,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-9">
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-9">
 <h1>Lecture 9<a class="headerlink" href="#lecture-9" title="Permalink to this heading">#</a></h1>
-<div class="section" id="function-approximation-with-global-functions-continued">
+<section id="function-approximation-with-global-functions-continued">
 <h2>Function approximation with global functions continued<a class="headerlink" href="#function-approximation-with-global-functions-continued" title="Permalink to this heading">#</a></h2>
 <p>Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j(x)\}_{j=0}^N, x \in [-1, 1]\)</span> form a basis for the space of all polynomials with order smaller than or equal to <span class="math notranslate nohighlight">\(N\)</span>. This space is normally denoted as <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. The Galerkin method for approximating <span class="math notranslate nohighlight">\(u(x)\)</span> in the space of polynomials <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> would normally be formulated as: find <span class="math notranslate nohighlight">\(u_N \in \mathbb{P}_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-project">
@@ -406,7 +417,7 @@ document.write(`
 <p>The Legendre polynomials are often classified as a <strong>modal</strong> basis. A modal basis is not connected in any way to mesh points. The Lagrange polynomials, on the other hand, are often referred to as a <strong>nodal</strong> basis because they rely on mesh points.</p>
 </div>
 <p>We will now introduce yet another modal polynomial basis that is generally considered to be even better than Legendre: The Chebyshev polynomials!</p>
-<div class="section" id="chebyshev-polynomials">
+<section id="chebyshev-polynomials">
 <h3>Chebyshev polynomials<a class="headerlink" href="#chebyshev-polynomials" title="Permalink to this heading">#</a></h3>
 <p>The Chebyshev polynomials can be defined in their most simple and useful form as</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebt">
@@ -730,8 +741,8 @@ uj = lambda u, j: (2*j+1) * innern(u, sp.legendre(j, x))/2
 <p class="admonition-title">Note</p>
 <p>This very fast convergence down to machine precision is often referred to as spectral accuracy. It is actually faster than <strong>any</strong> finite difference method, which always leads to linear decay in the loglog plot above since the error in the finite difference method can be written as some integer order <span class="math notranslate nohighlight">\(r\)</span>, such that the error is <span class="math notranslate nohighlight">\(\mathcal{O}(\Delta x^r)\)</span>.</p>
 </div>
-</div>
-<div class="section" id="two-dimensional-functions">
+</section>
+<section id="two-dimensional-functions">
 <h3>Two-dimensional functions<a class="headerlink" href="#two-dimensional-functions" title="Permalink to this heading">#</a></h3>
 <p>We can approximate a two-dimensional function <span class="math notranslate nohighlight">\(u(x, y) \in W\)</span> as</p>
 <div class="math notranslate nohighlight">
@@ -1019,8 +1030,8 @@ U = V \hat{U} V^T.
 </div>
 </div>
 <p>Note the extremely fast convergence. Doubling the number of points in each direction from <span class="math notranslate nohighlight">\(N=10\)</span> to <span class="math notranslate nohighlight">\(N=20\)</span> leads to an error that descreses with 5 decades! This is spectral accuracy. At <span class="math notranslate nohighlight">\(N&gt;20\)</span> the solution does no longer improve because of roundoff errors and machine precision.</p>
-</div>
-<div class="section" id="external-software">
+</section>
+<section id="external-software">
 <h3>External software<a class="headerlink" href="#external-software" title="Permalink to this heading">#</a></h3>
 <p>Two softwares that are using both Legendre and Chebyshev polynomials for global function approximation and to solve partial differential equations are:</p>
 <ul class="simple">
@@ -1127,8 +1138,8 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </div>
 </div>
 <p>which is very similar to the already computed <a class="reference internal" href="#res-legendre-2d"><span class="std std-ref">above</span></a> without the use of Shenfun.</p>
-</div>
-<div class="section" id="fast-chebyshev-transforms-optional">
+</section>
+<section id="fast-chebyshev-transforms-optional">
 <h3>Fast Chebyshev transforms - (optional)<a class="headerlink" href="#fast-chebyshev-transforms-optional" title="Permalink to this heading">#</a></h3>
 <p>Besides the closed form, the Chebyshev polynomials have another advantage over Legendre. The Chebyshev series can make use of fast Cosine transforms (similar to fast Fourier transforms) when evaluating a series for Chebyshev points.</p>
 <p>Assume that the coefficients <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span> are known and you want to evaluate this series on <span class="math notranslate nohighlight">\(N+1\)</span> points in physical space</p>
@@ -1264,7 +1275,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55.8 µs ± 35.5 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>54.3 µs ± 33.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1276,15 +1287,15 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>108 µs ± 43.2 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>102 µs ± 37.6 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
 </div>
 <p>Not a big difference, but this difference will become larger for larger arrays, because the cost of the fast transform is only <span class="math notranslate nohighlight">\(\mathcal{O}(N \log_2 N)\)</span>. Also, the DCT from scipy is not very efficient. Faster versions are available from <a class="reference external" href="https://www.fftw.org">FFTW</a>, wrapped for usage in Python through <a class="reference external" href="https://github.com/mpi4py/mpi4py-fft">mpi4py-fft</a>.</p>
-</div>
-</div>
-<div class="section" id="weekly-assignments">
+</section>
+</section>
+<section id="weekly-assignments">
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
 <p>Experiment with the Chebyshev Galerkin method and approximate the same global functions that was considered with Legendre and collocation last week:</p>
 <ol class="arabic simple">
@@ -1295,8 +1306,8 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 <li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
 </ol>
 <p>Approximate the function <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2))\)</span> in the domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]^2\)</span> with Chebyshev polynomials in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Try both to implement it yourself, as done for <a class="reference internal" href="#impl-dblquad"><span class="std std-ref">Legendre</span></a>, and by using Shenfun.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1323,11 +1334,10 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture8.html"
@@ -1339,18 +1349,15 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
       </div>
     </a>
     <a class="right-next"
-       href="mandatory1.html"
+       href="lecture10.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+        <p class="prev-next-title">Lecture 10</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1420,8 +1427,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>

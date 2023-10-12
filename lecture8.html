@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 8 &#8212; Lecture notes MATMEK-4270</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -170,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -329,10 +340,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -340,7 +351,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -386,9 +397,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-8">
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-8">
 <h1>Lecture 8<a class="headerlink" href="#lecture-8" title="Permalink to this heading">#</a></h1>
-<div class="section" id="function-approximation-with-global-functions">
+<section id="function-approximation-with-global-functions">
 <h2>Function approximation with global functions<a class="headerlink" href="#function-approximation-with-global-functions" title="Permalink to this heading">#</a></h2>
 <p>Consider a generic function in one dimension <span class="math notranslate nohighlight">\(u(x)\)</span>. <span class="math notranslate nohighlight">\(u(x)\)</span> can be anything, a polynomial, harmonic, exponential, etc., and it can be defined on the entire real line <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> or simply a part of it <span class="math notranslate nohighlight">\(x \in [a, b]\)</span> for some real numbers <span class="math notranslate nohighlight">\(a &lt; b\)</span>. Sometimes you will see a notation like <span class="math notranslate nohighlight">\(u(x): [a, b] \rightarrow \mathbb{R}\)</span>. This means that the function <span class="math notranslate nohighlight">\(u(x)\)</span> is defined on the domain <span class="math notranslate nohighlight">\(x\in[a,b]\)</span> and outputs a real number.</p>
 <p>We now want to approximate this function <span class="math notranslate nohighlight">\(u(x)\)</span> using other functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span>, such that</p>
@@ -481,7 +492,7 @@ E = (e, e).
 </div>
 </div>
 </div>
-<div class="section" id="the-least-squares-method">
+<section id="the-least-squares-method">
 <h3>The least squares method<a class="headerlink" href="#the-least-squares-method" title="Permalink to this heading">#</a></h3>
 <p>The least squares method requires that we solve</p>
 <div class="math notranslate nohighlight">
@@ -537,8 +548,8 @@ E = (e, e).
 <img alt="_images/13ed90fdcece7d364fd7f56d56c7b000c6bed63fde134b41d6e148f035a1846a.png" src="_images/13ed90fdcece7d364fd7f56d56c7b000c6bed63fde134b41d6e148f035a1846a.png" />
 </div>
 </div>
-</div>
-<div class="section" id="the-galerkin-method">
+</section>
+<section id="the-galerkin-method">
 <h3>The Galerkin method<a class="headerlink" href="#the-galerkin-method" title="Permalink to this heading">#</a></h3>
 <p>The Galerkin method requires that the error is orthogonal to the basis functions (for the <span class="math notranslate nohighlight">\(L^2\)</span> inner product). That is</p>
 <div class="math notranslate nohighlight">
@@ -853,8 +864,8 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <p>The numerical integration routine <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quadrature.html">quadrature</a> is using adaptive quadrature in order to solve the integral. This adaptive integration routine is using a gradually finer mesh until the results of the integration are no longer improving more than a certain tolerance. The default tolerances (both relative and absolute) are <span class="math notranslate nohighlight">\(1.49 \cdot 10^{-8}\)</span>, but may also be set by the user.</p>
-</div>
-<div class="section" id="the-collocation-method">
+</section>
+<section id="the-collocation-method">
 <h3>The collocation method<a class="headerlink" href="#the-collocation-method" title="Permalink to this heading">#</a></h3>
 <p>The collocation method takes a very different approach, but the objective is still to find <span class="math notranslate nohighlight">\(u_N(x) \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
@@ -1080,8 +1091,8 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 </div>
 </div>
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
-</div>
-<div class="section" id="boundary-issues">
+</section>
+<section id="boundary-issues">
 <h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Permalink to this heading">#</a></h3>
 <p>Lets consider a slightly different problem</p>
 <div class="math notranslate nohighlight">
@@ -1248,9 +1259,9 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="weekly-assignments">
+</section>
+</section>
+<section id="weekly-assignments">
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
 <p>Experiment with the Galerkin and collocation methods and approximate the global functions</p>
 <ol class="arabic simple">
@@ -1268,8 +1279,8 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 </div>
 <p>The approximation of the Bessel function with Legendre polynomials is shown below for <span class="math notranslate nohighlight">\(N=(20, 40, 60)\)</span>. For <span class="math notranslate nohighlight">\(N=60\)</span> there is no visible difference from the exact solution.</p>
 <p><img alt="Approximation of the Bessel function" src="_images/Bessel.png" /></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1296,11 +1307,10 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture7.html"
@@ -1320,10 +1330,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1393,8 +1400,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>

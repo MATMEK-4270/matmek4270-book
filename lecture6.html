@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Lecture 6 &#8212; Lecture notes MATMEK-4270</title>
   
   
@@ -18,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -78,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -170,6 +180,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -329,10 +340,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -340,7 +351,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -397,9 +408,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-6">
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-6">
 <h1>Lecture 6<a class="headerlink" href="#lecture-6" title="Permalink to this heading">#</a></h1>
-<div class="section" id="two-dimensional-spatial-domain">
+<section id="two-dimensional-spatial-domain">
 <h2>Two-dimensional spatial domain<a class="headerlink" href="#two-dimensional-spatial-domain" title="Permalink to this heading">#</a></h2>
 <p>We will now consider equations within a simple two-dimensional spatial domain. To get started we will look at the Poisson equation</p>
 <div class="math notranslate nohighlight">
@@ -466,8 +477,8 @@ document.write(`
 <img alt="_images/f4d9051f59e126085391f8b4c040e5c441cb44fbaf04632fe7a773d91829fa4b.png" src="_images/f4d9051f59e126085391f8b4c040e5c441cb44fbaf04632fe7a773d91829fa4b.png" />
 </div>
 </div>
-</div>
-<div class="section" id="discretization">
+</section>
+<section id="discretization">
 <h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
 <p>We discretize the mesh using two lines, one in the <span class="math notranslate nohighlight">\(x\)</span>-direction and one in the <span class="math notranslate nohighlight">\(y\)</span>-direction:</p>
 <div class="math notranslate nohighlight">
@@ -487,7 +498,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 \[
 \boldsymbol{y} = \{y_0, y_1, \ldots, y_{N_y}\}
 \]</div>
-<div class="section" id="cartesian-products">
+<section id="cartesian-products">
 <h3>Cartesian products<a class="headerlink" href="#cartesian-products" title="Permalink to this heading">#</a></h3>
 <p>In order to create a two-dimensional mesh, like the one seen above, we use a Cartesian product. The Cartesian product is most easily explained through an example. Consider the two arrays <span class="math notranslate nohighlight">\(\boldsymbol{u}=[1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{v}=[4, 5]\)</span>. We can compute the Cartesian product of these two arrays using the Python package <a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a></p>
 <div class="cell docutils container">
@@ -608,8 +619,8 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </div>
 <p>Note that if this mesh was a two-dimensional matrix, then <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((i, j)\)</span> would represent column and row, respectively, which is counterintuitive. We normally think about a matrix <span class="math notranslate nohighlight">\(A\)</span> with items <span class="math notranslate nohighlight">\(a_{ij}\)</span>, where the first index <span class="math notranslate nohighlight">\(i\)</span> represents row and the second index <span class="math notranslate nohighlight">\(j\)</span> represents column. This is a complicating factor for the Cartesian mesh that is important to be aware of. But it is not a mistake. The numbers in the plot above are not indices of a matrix, they represent <span class="math notranslate nohighlight">\((x, y)\)</span> in a Cartesian mesh.</p>
-</div>
-<div class="section" id="meshgrid">
+</section>
+<section id="meshgrid">
 <h3>meshgrid<a class="headerlink" href="#meshgrid" title="Permalink to this heading">#</a></h3>
 <p>The Cartesian mesh gives both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> coordinates for the entire two-dimensional mesh and it is created from a Cartesian product of one-dimensional meshes along <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Luckily for us Numpy has a function that computes this mesh for us and we do not have to use itertools directly.</p>
 <p>Let us now compute the Cartesian mesh for</p>
@@ -732,8 +743,8 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 <img alt="_images/c1388a7cb7f0cf6c1afd02b43335ed7defc06ed4722b3951e0d725a5a0a50a56.png" src="_images/c1388a7cb7f0cf6c1afd02b43335ed7defc06ed4722b3951e0d725a5a0a50a56.png" />
 </div>
 </div>
-</div>
-<div class="section" id="sparse-meshgrid-and-broadcasting">
+</section>
+<section id="sparse-meshgrid-and-broadcasting">
 <h3>Sparse meshgrid and broadcasting<a class="headerlink" href="#sparse-meshgrid-and-broadcasting" title="Permalink to this heading">#</a></h3>
 <p>The meshgrid creates arrays where all rows are identical for <code class="docutils literal notranslate"><span class="pre">xij</span></code> and all columns for <code class="docutils literal notranslate"><span class="pre">yij</span></code>. This is unnecessary waste of memory, but luckily it is possible to store these 2D arrays using only the memory of one single array. Lets recreate the meshgrid with keyword <code class="docutils literal notranslate"><span class="pre">sparse=True</span></code>:</p>
 <div class="cell docutils container">
@@ -822,8 +833,8 @@ f(x, y) = x + y
 <p class="admonition-title">Note</p>
 <p><a class="reference external" href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Broadcasting</a> is a very useful and memory-saving operation that is highly important to Numpy and the writing of efficient, vectorized, Python code.</p>
 </div>
-</div>
-<div class="section" id="two-dimensional-mesh-function">
+</section>
+<section id="two-dimensional-mesh-function">
 <h3>Two-dimensional mesh function<a class="headerlink" href="#two-dimensional-mesh-function" title="Permalink to this heading">#</a></h3>
 <p>A mesh function on the two-dimensional domain will now be denoted as</p>
 <div class="math notranslate nohighlight">
@@ -846,8 +857,8 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 <p class="admonition-title">Note</p>
 <p>Notice that both <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code> are mesh functions! They are the coordinates <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> evaluated on the computational mesh.</p>
 </div>
-</div>
-<div class="section" id="row-major-computer-storage">
+</section>
+<section id="row-major-computer-storage">
 <h3>Row-major computer storage<a class="headerlink" href="#row-major-computer-storage" title="Permalink to this heading">#</a></h3>
 <p>In Python (which is written in C) a matrix is row-major. This means that the matrix is stored in memory with a long sequence of numbers row by row like</p>
 <div class="math notranslate nohighlight">
@@ -922,9 +933,9 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="finite-differences-in-2d">
+</section>
+</section>
+<section id="finite-differences-in-2d">
 <h2>Finite differences in 2D<a class="headerlink" href="#finite-differences-in-2d" title="Permalink to this heading">#</a></h2>
 <p>Let us move back to the Poisson equation</p>
 <div class="math notranslate nohighlight">
@@ -1116,8 +1127,8 @@ U (D^{(2)})^T
 </div>
 </div>
 <p>Again we get the correct result across the entire mesh.</p>
-</div>
-<div class="section" id="matrix-form-of-poisson-s-equation">
+</section>
+<section id="matrix-form-of-poisson-s-equation">
 <h2>Matrix form of Poisson’s equation<a class="headerlink" href="#matrix-form-of-poisson-s-equation" title="Permalink to this heading">#</a></h2>
 <p>Using now that <span class="math notranslate nohighlight">\(\partial^2 u/\partial x^2 = D_x^{(2)}U\)</span> and <span class="math notranslate nohighlight">\(\partial^2 u/\partial y^2 = U(D_y^{(2)})^T\)</span> we can write Poisson’s equation on discretized (and matrix) form as</p>
 <div class="math notranslate nohighlight" id="equation-mat-equation">
@@ -1138,8 +1149,8 @@ Ax = b
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the coefficient matrix, <span class="math notranslate nohighlight">\(x\)</span> is the unknown vector and <span class="math notranslate nohighlight">\(b\)</span> is the right hand side vector.</p>
 <p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(4)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(5)</a>. This operation is called vectorization, or the vec-trick.</p>
-</div>
-<div class="section" id="vectorization-the-vec-trick">
+</section>
+<section id="vectorization-the-vec-trick">
 <h2>Vectorization (the vec-trick)<a class="headerlink" href="#vectorization-the-vec-trick" title="Permalink to this heading">#</a></h2>
 <p>Consider first for simplicity a  <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix</p>
 <div class="math notranslate nohighlight">
@@ -1235,8 +1246,8 @@ It turns out that for any valid triple matrix product of matrices <span class="m
 <p class="admonition-title">Note</p>
 <p>Vectorization is a linear process that allows us to transform a matrix into a vector. Through vectorization we can express matrix-multiplication through a larger matrix using the Kronecker product.</p>
 </div>
-</div>
-<div class="section" id="the-kronecker-product">
+</section>
+<section id="the-kronecker-product">
 <span id="sec-kronecker"></span><h2>The Kronecker product<a class="headerlink" href="#the-kronecker-product" title="Permalink to this heading">#</a></h2>
 <p>In general, if <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are matrices of dimensions <span class="math notranslate nohighlight">\(p \times q\)</span> and <span class="math notranslate nohighlight">\(r \times s\)</span>, respectively, then <span class="math notranslate nohighlight">\(A \otimes B\)</span> is the matrix
 of dimension <span class="math notranslate nohighlight">\(pr \times qs\)</span>, with <span class="math notranslate nohighlight">\(p \times q\)</span> block form, where the <span class="math notranslate nohighlight">\(i, j\)</span> block is <span class="math notranslate nohighlight">\(a_{ij}B\)</span>. The Kronecker product is most simply illustrated for two small matrices of shape <span class="math notranslate nohighlight">\(2 \times 2\)</span>:</p>
@@ -1340,8 +1351,8 @@ of dimension <span class="math notranslate nohighlight">\(pr \times qs\)</span>,
   \end{matrix}
 \end{array}\right)
 \end{split}\]</div>
-</div>
-<div class="section" id="partial-derivatives">
+</section>
+<section id="partial-derivatives">
 <h2>Partial derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>
 <p>Let us try this new theory for partial derivatives. Create first a mesh using meshgrid, then define a function</p>
 <div class="math notranslate nohighlight">
@@ -1444,8 +1455,8 @@ D^{(2)} U
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="the-laplace-operator">
+</section>
+<section id="the-laplace-operator">
 <h2>The Laplace operator<a class="headerlink" href="#the-laplace-operator" title="Permalink to this heading">#</a></h2>
 <p>The Laplace operator <span class="math notranslate nohighlight">\(\nabla^2\)</span> applied to a two-dimensional field <span class="math notranslate nohighlight">\(u(x, y)\)</span> in Cartesian coordinates is</p>
 <div class="math notranslate nohighlight">
@@ -1517,7 +1528,7 @@ u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y))
 </div>
 </div>
 </div>
-<div class="section" id="boundary-conditions">
+<section id="boundary-conditions">
 <h3>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h3>
 <p>We need to fix the solution at all boundary points. But where are all the boundary points? How do we manipulate A in order to fix Dirichlet boundary conditions?</p>
 <p>In order to set Dirichlet boundary conditions we need to set the value of <span class="math notranslate nohighlight">\(U\)</span> to zero on all four boundaries:</p>
@@ -1587,8 +1598,8 @@ u_{i, N_y} = 0 \quad i \in (0, 1, \ldots, N_x)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="solve-the-problem">
+</section>
+<section id="solve-the-problem">
 <h3>Solve the problem<a class="headerlink" href="#solve-the-problem" title="Permalink to this heading">#</a></h3>
 <p>We have now set up the problem as</p>
 <div class="math notranslate nohighlight">
@@ -1631,9 +1642,9 @@ Ax = b
 </div>
 </div>
 <p>Voilà! The solution is correct. You should also verify that the solver works for a variety of spatial discretizations, especially when <span class="math notranslate nohighlight">\(N_x \ne N_y\)</span>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1660,11 +1671,10 @@ Ax = b
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture5.html"
@@ -1684,10 +1694,7 @@ Ax = b
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1768,8 +1775,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
