@@ -29,8 +29,8 @@ repository:
 sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  extra_extensions:
-    - sphinx_proof
+  #extra_extensions:
+  #  - sphinx_proof
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
