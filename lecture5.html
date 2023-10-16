@@ -35,7 +35,6 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -521,7 +520,7 @@ x_j = j \Delta x, \quad j = 0, 1, \ldots, N
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/6c0961710fa878b8b3fea292c4152a3defdc4228838df974a58eb2b922d8f8f3.png" src="_images/6c0961710fa878b8b3fea292c4152a3defdc4228838df974a58eb2b922d8f8f3.png" />
+<img alt="_images/f0aa503d0326a3f284b2b9036a56633ef3b100a6f3b68d893d71b73d9b252ab4.png" src="_images/f0aa503d0326a3f284b2b9036a56633ef3b100a6f3b68d893d71b73d9b252ab4.png" />
 </div>
 </div>
 <p>A mesh function is defined as</p>
@@ -576,7 +575,7 @@ u^n = \{u^n_0, u^n_1, \ldots, u^n_N\}
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/722eb147ed3da24b3565da0da72391769da2e8286d2b2b906015c0bcb1f60cc1.png" src="_images/722eb147ed3da24b3565da0da72391769da2e8286d2b2b906015c0bcb1f60cc1.png" />
+<img alt="_images/7bc162d171d4410b1fd2818f74d00c619df94273f250a15b4b38e60c5b2079bf.png" src="_images/7bc162d171d4410b1fd2818f74d00c619df94273f250a15b4b38e60c5b2079bf.png" />
 </div>
 </div>
 <p>The recursive solution algorithm is basically to solve the discrete PDE for all <span class="math notranslate nohighlight">\(u^{n+1}_j\)</span></p>
@@ -924,7 +923,7 @@ u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ca4aae252836dbd9b5dba313491f1c776460a6ec0b0a2ed14b35a4db949edc40.png" src="_images/ca4aae252836dbd9b5dba313491f1c776460a6ec0b0a2ed14b35a4db949edc40.png" />
+<img alt="_images/e2bd78045f25aa2c0dfed3c465adc14e54c857e2bf64e30c353956eec406b7b9.png" src="_images/e2bd78045f25aa2c0dfed3c465adc14e54c857e2bf64e30c353956eec406b7b9.png" />
 </div>
 </div>
 <p><img alt="tikz" src="_images/periodic.png" /></p>
@@ -1086,7 +1085,7 @@ D_p^{(2)} = \begin{bmatrix}
         <span class="n">D</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">D2</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cfl</span> <span class="o">=</span> <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfl</span> <span class="k">if</span> <span class="n">cfl</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">cfl</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span>
-        
+
         <span class="c1"># Initialize</span>
         <span class="n">u0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="mi">0</span><span class="p">}))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="c1"># unm1 = u(x, 0)</span>
@@ -1101,7 +1100,7 @@ D_p^{(2)} = \begin{bmatrix}
         <span class="k">if</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">plotdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-        <span class="c1"># Solve </span>
+        <span class="c1"># Solve</span>
         <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">un</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span> <span class="o">+</span> <span class="n">C</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">apply_bcs</span><span class="p">(</span><span class="n">bc</span><span class="p">)</span>
@@ -1111,7 +1110,7 @@ D_p^{(2)} = \begin{bmatrix}
                 <span class="n">plotdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unp1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">plotdata</span>
-    
+
     <span class="k">def</span> <span class="nf">plot_with_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">Nd</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
@@ -1138,7 +1137,7 @@ D_p^{(2)} = \begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bfbc37c6431c6b46109ba1b0454057bf7a0ad5a6f37401c26ac78aec531eb25a.png" src="_images/bfbc37c6431c6b46109ba1b0454057bf7a0ad5a6f37401c26ac78aec531eb25a.png" />
+<img alt="_images/037088f413ca80fdc3d3e62506098103c178ea1f5f456b75a55f47c64383f53d.png" src="_images/037088f413ca80fdc3d3e62506098103c178ea1f5f456b75a55f47c64383f53d.png" />
 </div>
 </div>
 </section>
@@ -1153,16 +1152,16 @@ D_p^{(2)} = \begin{bmatrix}
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "bookmatmek4270"
+            mode: "book"
         },
         kernelOptions: {
-            name: "bookmatmek4270",
+            name: "book",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'bookmatmek4270'</script>
+    <script>kernelName = 'book'</script>
 
                 </article>
               

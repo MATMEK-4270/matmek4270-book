@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lecture 11 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture11';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book/issues/new?title=Issue%20on%20page%20%2Flecture11.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture11.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 11</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-11">
+<h1>Lecture 11<a class="headerlink" href="#lecture-11" title="Permalink to this heading">#</a></h1>
+<section id="solving-pdes-with-the-method-of-weighted-residuals">
+<h2>Solving PDEs with the method of weighted residuals<a class="headerlink" href="#solving-pdes-with-the-method-of-weighted-residuals" title="Permalink to this heading">#</a></h2>
+<p>Up until now we have considered how to approximate a generic function <span class="math notranslate nohighlight">\(f(x)\)</span> in a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>. We have considered both variational formulations (Galerkin and least squares) and collocation (interpolation). But the underlying original problem has simply been to find some function <span class="math notranslate nohighlight">\(u \approx u_N = \sum_{j=0}^N\hat{u}_j \psi_j\)</span> such that <span class="math notranslate nohighlight">\(u = f\)</span>.</p>
+<p>We will now take it one step further and solve ordinary differential equations with a method that is almost identical. Instead of finding just <span class="math notranslate nohighlight">\(u=f\)</span>, we will now attempt to find the solution to</p>
+<div class="math notranslate nohighlight" id="equation-eq-l-op">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-l-op" title="Permalink to this equation">#</a></span>\[
+\mathcal{L}(u) = f,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is a generic operator acting on the function <span class="math notranslate nohighlight">\(u\)</span>. Hence <span class="math notranslate nohighlight">\(\mathcal{L}(u)\)</span>  can by anything, including just <span class="math notranslate nohighlight">\(\mathcal{L}(u)=u\)</span>, and by <a class="reference internal" href="#equation-eq-l-op">()</a> we could for example mean any one of</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u  &amp;= f, \\
+u' &amp;= f, \\
+u'' &amp;= f, \\
+u'' +\alpha u' + \lambda u  &amp;= f, \\
+\frac{d}{dx}\left(\alpha \frac{d u}{dx}\right) &amp;= f,
+\end{align*}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are either constant parameters of functions of <span class="math notranslate nohighlight">\(x\)</span>. From <a class="reference internal" href="#equation-eq-l-op">()</a> we can also define a residual (or an error)</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{R} = \mathcal{L}(u)-f,
+\]</div>
+<p>that we ultimately want to be zero. If we now insert the approximation <span class="math notranslate nohighlight">\(u \approx u_N \in V_N\)</span> (the same as we have used up until now) we can also define another residual</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{R}_N = \mathcal{L}(u_N)-f.
+\]</div>
+<p>The method of weighted residuals (MWR) requires that this residual is orthogonal to some test space <span class="math notranslate nohighlight">\(W\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+(\mathcal{R}_N, v) = 0 \quad \forall \, v \in W.
+\]</div>
+<p>The Galerkin method is as such a MWR where <span class="math notranslate nohighlight">\(W = V_N\)</span>. Likewise, it can be shown that the least squares method</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial (\mathcal{R_N}, \mathcal{R}_N)}{\partial \hat{u}_j} = 0 \quad j \in (0, 1, \ldots, N),
+\]</div>
+<p>can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\mathcal{R}_N, \frac{\partial \mathcal{R}_N}{\partial \hat{u}_j}\right) \quad j \in (0, 1, \ldots, N).
+\]</div>
+<p>This means that also the LSM is a MWR where <span class="math notranslate nohighlight">\(W = \text{span}\{\frac{\partial \mathcal{R}_N}{\partial \hat{u}_j}\}_{j=0}^N\)</span>.</p>
+<p>More surprisingly, the collocation method can also be considered a MWR. The collocation method is simply</p>
+<div class="math notranslate nohighlight" id="equation-eq-coll-r">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-coll-r" title="Permalink to this equation">#</a></span>\[
+\mathcal{R}_N(x_j) = f(x_j), \quad j \in (0, 1, \ldots, N).
+\]</div>
+<p>By choosing test functions <span class="math notranslate nohighlight">\(v = \delta(x-x_j)\)</span>, where <span class="math notranslate nohighlight">\(\delta(x)\)</span> is Dirac’s delta function, we can write this equivalently as a MWR:</p>
+<div class="math notranslate nohighlight" id="equation-eq-coll-gal">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-coll-gal" title="Permalink to this equation">#</a></span>\[
+(\mathcal{R}_N, \delta(x-x_j)) = (f, \delta(x-x_j)), \quad j \in (0, 1, \ldots, N).
+\]</div>
+<p>The equality of <a class="reference internal" href="#equation-eq-coll-r">()</a> with <a class="reference internal" href="#equation-eq-coll-gal">()</a> follows since</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{\Omega} \mathcal{R}_N(x) \delta(x-x_j) dx = \mathcal{R}_N(x_j) \, \text{  and  } \,  \int_{\Omega} f(x) \delta(x-x_j) dx = f(x_j).
+\]</div>
+<p>Lets consider a concrete example where</p>
+<div class="math notranslate nohighlight">
+\[
+u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
+\]</div>
+<p>such that <span class="math notranslate nohighlight">\(\mathcal{L}(u) = u''\)</span>. Note that there is one significant difference from merely function approximation, since the problem needs to be solved with boundary conditions! Since there are 2 derivatives, we need two boundary conditions and we have also prescribed homogeneous Dirichlet on both sides of the domain.</p>
+<p>The boundary conditions can be incorporated into the trial space by choosing basis functions that all satisfy <span class="math notranslate nohighlight">\(\psi_j(-1) = \psi_j(1) = 0\)</span>. Possible basis functions are thus</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\psi_j(x) &amp;= \sin\left(\pi (j+1) (x+1)/2\right), \\
+\psi_j(x) &amp;= P_j - P_{j+2}, \\
+\psi_j(x) &amp;= T_j - T_{j+2}, \\
+\end{align*}
+\end{split}\]</div>
+<p>where the latter two are zero on the boundaries because <span class="math notranslate nohighlight">\(P_j(-1) = T_j(-1) = (-1)^j\)</span> and <span class="math notranslate nohighlight">\(P_j(1)=T_j(1) = 1\)</span>. The first sine function is a bit odd because we need to map the true domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> to the sine function’s computational domain, which is <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
+<p>We consider first the regular, unweighted Galerkin method in the <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> inner product space, and as such only the first two are relevant. The Chebyshev polynomials should only be used with a weighted <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> inner product.</p>
+<p>Create <span class="math notranslate nohighlight">\(V_N = \text{span}\{\sin(\pi (j+1) (x+1)/2)\}_{j=0}^N\)</span> and find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(u_N''-f, v) = 0, \quad \forall \, v \in V_N.
+\]</div>
+<p>Insert for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v\)</span> to obtain the linear algebra problem</p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson-gal">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-poisson-gal" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^N \left(\psi''_j, \psi_i  \right) \hat{u}_j = (f, \psi_i), \quad i \in (0, 1, \ldots, N)
+\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(S = (s_{ij})_{i,j=0}^N\)</span>, where <span class="math notranslate nohighlight">\(s_{ij}=(\psi''_j, \psi_i)\)</span>, is usually called the <strong>stiffness matrix</strong>. With the chosen basis functions we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
+    &amp;= -\frac{(j+1)^2\pi^2}{4} (\pi \sin((j+1)(x+1)/2), \sin(\pi (i+1) (x+1)/2)), \\
+    &amp;= -\frac{(j+1)^2 \pi^2}{4} \delta_{ij}.
+\end{align*}
+\end{split}\]</div>
+<p>And since this matrix is diagonal Eq. <a class="reference internal" href="#equation-eq-poisson-gal">()</a> is solved with</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{-4}{(i+1)^2 \pi^2}(f, \sin( \pi (i+1)(x+1)/2)).
+\]</div>
+<p>Lets check the accuracy using the method of manufactured solutions and choose <span class="math notranslate nohighlight">\(u(x) = (1-x^2)\exp(\cos(x))\)</span>, which satisfies the boundary conditions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">ue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1">#uhat = lambda j: -(4/(j+1)**2/sp.pi**2)*sp.integrate(f*sp.sin((j+1)*sp.pi*(x+1)/2), (x, -1, 1))</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="o">-</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">uh</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">uh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">))[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">sines</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">sines</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;One coefficient&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> coefficients&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$|\hat</span><span class="si">{u}</span><span class="s1">|$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1e6fd07ec2af05b5fb390887656243bf8db1da67cadec2334dcbf82f7d2c1a30.png" src="_images/1e6fd07ec2af05b5fb390887656243bf8db1da67cadec2334dcbf82f7d2c1a30.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.3775315599944706,
+ -0.3779671926273212,
+ -0.03145871472458203,
+ -0.008156357045469275,
+ -0.005061574537457848,
+ -0.0027590439202210453,
+ -0.0016356636859774529,
+ -0.0011745388403623701,
+ -0.0007348989284172392,
+ -0.0006022896844607051,
+ -0.0003933589202512632,
+ -0.00034864937145678317,
+ -0.00023519585078792305,
+ -0.00021956028305990954,
+ -0.00015185095377601165,
+ -0.00014708026187579772,
+ -0.00010374441102674412,
+ -0.0001032925265343113,
+ -7.40259985388443e-05,
+ -7.529579571303481e-05]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "book"
+        },
+        kernelOptions: {
+            name: "book",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'book'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

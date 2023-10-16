@@ -35,7 +35,6 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -406,7 +405,7 @@ document.write(`
 <p>We now want to approximate this function <span class="math notranslate nohighlight">\(u(x)\)</span> using other functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span>, such that</p>
 <div class="math notranslate nohighlight">
 \[
-u(x) = \sum_{k=0}^N \hat{u}_k \psi_k(x).
+u(x) \approx \sum_{k=0}^N \hat{u}_k \psi_k(x).
 \]</div>
 <p>The other functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are called basis functions. The basis functions can also be anything, but they need to output the same kind of number as <span class="math notranslate nohighlight">\(u(x)\)</span>. That is, if <span class="math notranslate nohighlight">\(u(x)\)</span> is a complex function, then <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> better be  a complex function as well.</p>
 <p>A basis is a collection (or set) of basis functions</p>
@@ -443,7 +442,7 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/68bc623731ac132af15b698a92b7534ec2706ce23277f4984dee4d987a7c4ab3.png" src="_images/68bc623731ac132af15b698a92b7534ec2706ce23277f4984dee4d987a7c4ab3.png" />
+<img alt="_images/61b2417f62769197e7bdfa723c57586cbad8ecf1a14ff1fd6ae6026b9f0ec58b.png" src="_images/61b2417f62769197e7bdfa723c57586cbad8ecf1a14ff1fd6ae6026b9f0ec58b.png" />
 </div>
 </div>
 <p>Now create a functionspace consisting of all straight lines</p>
@@ -546,7 +545,7 @@ E = (e, e).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/13ed90fdcece7d364fd7f56d56c7b000c6bed63fde134b41d6e148f035a1846a.png" src="_images/13ed90fdcece7d364fd7f56d56c7b000c6bed63fde134b41d6e148f035a1846a.png" />
+<img alt="_images/28a7848a64638011b12c43051556e2217080428d6bee55c6bce4703c3684f363.png" src="_images/28a7848a64638011b12c43051556e2217080428d6bee55c6bce4703c3684f363.png" />
 </div>
 </div>
 </section>
@@ -693,7 +692,7 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/858fa8ea843ac67e0e6ed64502783b9c63bf51f7f0c6ce5e19953d452798f879.png" src="_images/858fa8ea843ac67e0e6ed64502783b9c63bf51f7f0c6ce5e19953d452798f879.png" />
+<img alt="_images/b671c256f67fcbfb2d450dfbf5e0d91bfac0f4e1368811b805c31b1f040fd278.png" src="_images/b671c256f67fcbfb2d450dfbf5e0d91bfac0f4e1368811b805c31b1f040fd278.png" />
 </div>
 </div>
 <p>The Legendre polynomials are <span class="math notranslate nohighlight">\(L^2\)</span> orthogonal on <span class="math notranslate nohighlight">\(\Omega=[-1, 1]\)</span></p>
@@ -812,7 +811,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7439150a378e276cd0adc4d150fa8700fe9a5d213eadad4ac3b5aa7c47d330ee.png" src="_images/7439150a378e276cd0adc4d150fa8700fe9a5d213eadad4ac3b5aa7c47d330ee.png" />
+<img alt="_images/fcd4d10e36d89ff4a86aa2f485580c8c556d54e9d499a521fe40a294711aa236.png" src="_images/fcd4d10e36d89ff4a86aa2f485580c8c556d54e9d499a521fe40a294711aa236.png" />
 </div>
 </div>
 <p>We see that the result is exactly as before, which is not so strange since the span of this Legendre basis is still the space of all linear functions. But add one more Legendre coefficient and the approximation becomes exact because <span class="math notranslate nohighlight">\(u(x)\)</span> is a second order polynomial.</p>
@@ -827,7 +826,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/29f37a2d854c140b4a3235d03764e86e1e2868885379e4927be0f2fd608837e5.png" src="_images/29f37a2d854c140b4a3235d03764e86e1e2868885379e4927be0f2fd608837e5.png" />
+<img alt="_images/963670c91ed71d0a2b3033fda478bb8c015ded5915fdc3ffd8fb80d8bbb21334.png" src="_images/963670c91ed71d0a2b3033fda478bb8c015ded5915fdc3ffd8fb80d8bbb21334.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -927,13 +926,13 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Lagrangebasis</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct Lagrange basis function for points in xj</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    xj : array</span>
 <span class="sd">        Interpolation points</span>
 <span class="sd">    x : Sympy Symbol</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    Lagrange basis functions</span>
@@ -951,7 +950,7 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 
 <span class="k">def</span> <span class="nf">Lagrangefunction</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">basis</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Lagrange polynomial</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    u : array</span>
@@ -983,7 +982,7 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/456e564d23c2e744b1d4977e4f79a651ba983f8887fb1ec27b41a2728fcd031e.png" src="_images/456e564d23c2e744b1d4977e4f79a651ba983f8887fb1ec27b41a2728fcd031e.png" />
+<img alt="_images/ab7d52e679ed2e84e8b43e95be51a8104f626325937593e5bf22cc8b119d98f7.png" src="_images/ab7d52e679ed2e84e8b43e95be51a8104f626325937593e5bf22cc8b119d98f7.png" />
 </div>
 </div>
 <p>So this seems to be less accurate than the Galerkin method or the least squares method. However, we have not done any integration, and the lower accuracy has come very easily. We can also very easily use one more point and end up with a perfect approximation:</p>
@@ -1000,7 +999,7 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a52110bdf2291eea6d0687bb308a1983937a2068ba1ee69098912f2ebea3698f.png" src="_images/a52110bdf2291eea6d0687bb308a1983937a2068ba1ee69098912f2ebea3698f.png" />
+<img alt="_images/106f4b9632fdc6eeb8d00e22264225e91f4d6773e76416076ceb83f19fa7a8dd.png" src="_images/106f4b9632fdc6eeb8d00e22264225e91f4d6773e76416076ceb83f19fa7a8dd.png" />
 </div>
 </div>
 <p>Lets consider a more difficult function</p>
@@ -1035,7 +1034,7 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cb4f58b13b22ed1ffa35d95c34d44ab9bf6e81bca6a36e35e486d203572e6cad.png" src="_images/cb4f58b13b22ed1ffa35d95c34d44ab9bf6e81bca6a36e35e486d203572e6cad.png" />
+<img alt="_images/8c57cdafeac12a6d3efd1a2a443ec349fb050bb74f89e4d481ca3e2ed35acb95.png" src="_images/8c57cdafeac12a6d3efd1a2a443ec349fb050bb74f89e4d481ca3e2ed35acb95.png" />
 </div>
 </div>
 <p>Ok, so that did not work out well! Large over and under-shoots in between the mesh points. So Lagrange polynomials are bad, right?</p>
@@ -1060,7 +1059,7 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/63635e37e7d4a42003d79daffdce3b86b890f20ac6960ddc27b38d2025538da5.png" src="_images/63635e37e7d4a42003d79daffdce3b86b890f20ac6960ddc27b38d2025538da5.png" />
+<img alt="_images/bfc5c5933fca248bddbad6a3309320fb1b3b2d084772205c66e305c2c66b80fd.png" src="_images/bfc5c5933fca248bddbad6a3309320fb1b3b2d084772205c66e305c2c66b80fd.png" />
 </div>
 </div>
 <p>The agreement is now much better. And the agreement will become better and better the more points you use. Whereas for a uniform grid the agreement will become worse and worse the more points you use.</p>
@@ -1088,7 +1087,7 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ca29a7a669eeba82f3fd414cbc4483b7fb586a3f50fb6ec1d966b1ac48c1246a.png" src="_images/ca29a7a669eeba82f3fd414cbc4483b7fb586a3f50fb6ec1d966b1ac48c1246a.png" />
+<img alt="_images/9b030b7857a68a2a45fd8cac75061b5288276d4d361d45ef7b981985175b3251.png" src="_images/9b030b7857a68a2a45fd8cac75061b5288276d4d361d45ef7b981985175b3251.png" />
 </div>
 </div>
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
@@ -1138,7 +1137,7 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/efd2f8a49768186908bca9eeca16ef60b54c02995442f5f8be41a7c0ee7ab05c.png" src="_images/efd2f8a49768186908bca9eeca16ef60b54c02995442f5f8be41a7c0ee7ab05c.png" />
+<img alt="_images/91d193c07215dfda30323a21733ec4f2171d208216cad6ddba234eae870b54bf.png" src="_images/91d193c07215dfda30323a21733ec4f2171d208216cad6ddba234eae870b54bf.png" />
 </div>
 </div>
 <p>Evidently, we get large oscillations and the solution does not seem to converge. The problem is that the basis functions are all such that</p>
@@ -1202,7 +1201,7 @@ u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/553836f3412880bf1fe00f22a7871a2df5f89893c0d4f00a1ffa54afcabde6a5.png" src="_images/553836f3412880bf1fe00f22a7871a2df5f89893c0d4f00a1ffa54afcabde6a5.png" />
+<img alt="_images/7f241dfd6a2bcc9af661b984dca8ddcb02038a86ac79cd0c844679aeefa5ad0e.png" src="_images/7f241dfd6a2bcc9af661b984dca8ddcb02038a86ac79cd0c844679aeefa5ad0e.png" />
 </div>
 </div>
 <p>Notice the very good agreement. The expansion coefficients are now converging, which we can see by printing out the 15 computed values</p>
@@ -1247,7 +1246,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
-<span class="n">uL</span> <span class="o">=</span> <span class="p">[]</span> 
+<span class="n">uL</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
     <span class="n">uL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">uL</span><span class="p">)</span>
@@ -1292,16 +1291,16 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "bookmatmek4270"
+            mode: "book"
         },
         kernelOptions: {
-            name: "bookmatmek4270",
+            name: "book",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'bookmatmek4270'</script>
+    <script>kernelName = 'book'</script>
 
                 </article>
               

@@ -1,17 +1,20 @@
 Traceback (most recent call last):
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 1305, in execute
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
     return loop.run_until_complete(inner)
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/asyncio/base_events.py", line 647, in run_until_complete
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
     return future.result()
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 705, in async_execute
+           ^^^^^^^^^^^^^^^
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/Users/mikaelmortensen/opt/anaconda3/envs/bookmatmek4270/lib/python3.9/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -21,18 +24,68 @@ ue = 1 / (1+16*x**2)
 N = 20
 V = sf.FunctionSpace(N+1, 'Legendre', domain=(-1, 1))
 v = sf.TestFunction(V)
-uh = (2*np.arange(N)+1)/2*sf.inner(ue, v, assemble='exact')
+uh = (2*np.arange(N+1)+1)/2*sf.inner(ue, v, assemble='exact')
 #uh = sf.project(ue, V) # or just this
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-Cell [0;32mIn[16], line 7[0m
-[1;32m      5[0m V [38;5;241m=[39m sf[38;5;241m.[39mFunctionSpace(N[38;5;241m+[39m[38;5;241m1[39m, [38;5;124m'[39m[38;5;124mLegendre[39m[38;5;124m'[39m, domain[38;5;241m=[39m([38;5;241m-[39m[38;5;241m1[39m, [38;5;241m1[39m))
-[1;32m      6[0m v [38;5;241m=[39m sf[38;5;241m.[39mTestFunction(V)
-[0;32m----> 7[0m uh [38;5;241m=[39m [43m([49m[38;5;241;43m2[39;49m[38;5;241;43m*[39;49m[43mnp[49m[38;5;241;43m.[39;49m[43marange[49m[43m([49m[43mN[49m[43m)[49m[38;5;241;43m+[39;49m[38;5;241;43m1[39;49m[43m)[49m[38;5;241;43m/[39;49m[38;5;241;43m2[39;49m[38;5;241;43m*[39;49m[43msf[49m[38;5;241;43m.[39;49m[43minner[49m[43m([49m[43mue[49m[43m,[49m[43m [49m[43mv[49m[43m,[49m[43m [49m[43massemble[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mexact[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[1;32m      8[0m [38;5;66;03m#uh = sf.project(ue, V) # or just this[39;00m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[16], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mshenfun[39;00m [38;5;28;01mas[39;00m [38;5;21;01msf[39;00m
+[1;32m      3[0m ue [38;5;241m=[39m [38;5;241m1[39m [38;5;241m/[39m ([38;5;241m1[39m[38;5;241m+[39m[38;5;241m16[39m[38;5;241m*[39mx[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m)
+[1;32m      4[0m N [38;5;241m=[39m [38;5;241m20[39m
 
-[0;31mValueError[0m: operands could not be broadcast together with shapes (20,) (21,) 
+File [0;32m~/MySoftware/shenfun/shenfun/__init__.py:38[0m
+[1;32m     36[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmpi4py[39;00m [38;5;28;01mimport[39;00m MPI
+[1;32m     37[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mconfig[39;00m [38;5;28;01mimport[39;00m config, dumpconfig
+[0;32m---> 38[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m chebyshev
+[1;32m     39[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m chebyshevu
+[1;32m     40[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m legendre
+
+File [0;32m~/MySoftware/shenfun/shenfun/chebyshev/__init__.py:2[0m
+[1;32m      1[0m [38;5;124;03m"""Functionality for working with Chebyshev bases"""[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m la
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mbases[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mmatrices[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+
+File [0;32m~/MySoftware/shenfun/shenfun/chebyshev/la.py:6[0m
+[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01moptimization[39;00m [38;5;28;01mimport[39;00m runtimeoptimizer
+[0;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mla[39;00m [38;5;28;01mimport[39;00m SparseMatrixSolver
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmatrixbase[39;00m [38;5;28;01mimport[39;00m TPMatrix, SpectralMatrix, extract_bc_matrices,\
+[1;32m      8[0m     get_simplified_tpmatrices
+[1;32m     11[0m [38;5;28;01mclass[39;00m [38;5;21;01mADDSolver[39;00m(SparseMatrixSolver):
+
+File [0;32m~/MySoftware/shenfun/shenfun/la.py:13[0m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01moptimization[39;00m [38;5;28;01mimport[39;00m optimizer, runtimeoptimizer
+[1;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmatrixbase[39;00m [38;5;28;01mimport[39;00m SparseMatrix, extract_bc_matrices, \
+[1;32m     12[0m     BlockMatrix, get_simplified_tpmatrices
+[0;32m---> 13[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mforms[39;00m[38;5;21;01m.[39;00m[38;5;21;01marguments[39;00m [38;5;28;01mimport[39;00m Function
+[1;32m     14[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmpi4py[39;00m [38;5;28;01mimport[39;00m MPI
+[1;32m     15[0m comm [38;5;241m=[39m MPI[38;5;241m.[39mCOMM_WORLD
+
+File [0;32m~/MySoftware/shenfun/shenfun/forms/__init__.py:2[0m
+[1;32m      1[0m [38;5;66;03m#pylint: disable=missing-docstring[39;00m
+[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mproject[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01minner[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01moperators[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+
+File [0;32m~/MySoftware/shenfun/shenfun/forms/project.py:10[0m
+[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmatrixbase[39;00m [38;5;28;01mimport[39;00m TPMatrix, BlockMatrix, SpectralMatrix, \
+[1;32m      7[0m     Identity
+[1;32m      8[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01marguments[39;00m [38;5;28;01mimport[39;00m Expr, TestFunction, TrialFunction, BasisFunction, \
+[1;32m      9[0m     Function, Array
+[0;32m---> 10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01minner[39;00m [38;5;28;01mimport[39;00m inner
+[1;32m     12[0m __all__ [38;5;241m=[39m ([38;5;124m'[39m[38;5;124mproject[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mProject[39m[38;5;124m'[39m)
+[1;32m     14[0m work [38;5;241m=[39m CachedArrayDict()
+
+File [0;32m~/MySoftware/shenfun/shenfun/forms/inner.py:9[0m
+[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutilities[39;00m [38;5;28;01mimport[39;00m dx, split, scalar_product, CachedArrayDict
+[1;32m      8[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mconfig[39;00m [38;5;28;01mimport[39;00m config
+[0;32m----> 9[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m [38;5;28;01mimport[39;00m comm
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01marguments[39;00m [38;5;28;01mimport[39;00m Expr, Function, BasisFunction, Array, TestFunction
+[1;32m     12[0m __all__ [38;5;241m=[39m ([38;5;124m'[39m[38;5;124minner[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mInner[39m[38;5;124m'[39m)
+
+[0;31mImportError[0m: cannot import name 'comm' from partially initialized module 'shenfun' (most likely due to a circular import) (/Users/mikaelmortensen/MySoftware/shenfun/shenfun/__init__.py)
 

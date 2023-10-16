@@ -35,7 +35,6 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -426,7 +425,7 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solver</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve Eq. (1)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dt : float</span>
@@ -435,7 +434,7 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 <span class="sd">        End time</span>
 <span class="sd">    I, w : float, optional</span>
 <span class="sd">        Model parameters</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    t : array_like</span>
@@ -455,14 +454,14 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 
 <span class="k">def</span> <span class="nf">u_exact</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Exact solution of Eq. (1)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    t : array_like</span>
 <span class="sd">        Array of times to compute the solution</span>
 <span class="sd">    I, w : float, optional</span>
 <span class="sd">        Model parameters</span>
-<span class="sd">        </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ue : array_like</span>
@@ -492,7 +491,7 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">l2_error</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">solver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the l2 error norm of result from `solver`</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dt : float</span>
@@ -503,11 +502,11 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 <span class="sd">        Model parameters</span>
 <span class="sd">    sol : callable</span>
 <span class="sd">        The function that solves Eq. (1)</span>
-<span class="sd">        </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
-<span class="sd">        The l2 error norm </span>
+<span class="sd">        The l2 error norm</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">t</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
     <span class="n">ue</span> <span class="o">=</span> <span class="n">u_exact</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">I</span><span class="p">)</span>
@@ -537,7 +536,7 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 <span class="sd">        Model parameters</span>
 <span class="sd">    sol : callable</span>
 <span class="sd">        The function that solves Eq. (1)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    array_like</span>
@@ -546,7 +545,7 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 <span class="sd">        The m errors of the m meshes</span>
 <span class="sd">    array_like</span>
 <span class="sd">        The m time steps of the m meshes</span>
-<span class="sd">        </span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">P</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">w</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">P</span><span class="o">/</span><span class="n">dt0</span>
@@ -604,7 +603,7 @@ u^{''} + \omega^2 u = 0, u(0)=I, u'(0) = 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7c31f824d413edb94900dea2a53136b9098a9e8efa463dcb6ed2304a3208c4c1.png" src="_images/7c31f824d413edb94900dea2a53136b9098a9e8efa463dcb6ed2304a3208c4c1.png" />
+<img alt="_images/c15706fa827466d36e4c7bda1172f270d64cd71566b66064c4d63982e0efa0e5.png" src="_images/c15706fa827466d36e4c7bda1172f270d64cd71566b66064c4d63982e0efa0e5.png" />
 </div>
 </div>
 <p>We see that the error has the same slope as <span class="math notranslate nohighlight">\(\Delta t^2\)</span>.</p>
@@ -741,7 +740,7 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adj_solver</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve Eq. (1)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dt : float</span>
@@ -750,7 +749,7 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
 <span class="sd">        End time</span>
 <span class="sd">    I, w : float, optional</span>
 <span class="sd">        Model parameters</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    t : array_like</span>
@@ -790,7 +789,7 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6fa485e86e84d172bd7a22ae85624b05c18096fb274ae81e9086fd32ad64423a.png" src="_images/6fa485e86e84d172bd7a22ae85624b05c18096fb274ae81e9086fd32ad64423a.png" />
+<img alt="_images/bb7630c3e4f1e2a114c38528000d48f203d16f761eed34f4ec33b4f9b8e55148.png" src="_images/bb7630c3e4f1e2a114c38528000d48f203d16f761eed34f4ec33b4f9b8e55148.png" />
 </div>
 </div>
 </section>
@@ -805,16 +804,16 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "quarto"
+            mode: "book"
         },
         kernelOptions: {
-            name: "quarto",
+            name: "book",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'quarto'</script>
+    <script>kernelName = 'book'</script>
 
                 </article>
               
