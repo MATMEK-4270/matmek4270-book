@@ -433,9 +433,9 @@ u(x) \approx u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 </figcaption>
 </figure>
 <p>These smaller subdomains are now referred to as <strong>elements</strong>.
-Note that an element in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-p1</span></code> is located in between two blue vertical bars.</p>
-<p>The mesh seen in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> is the simplest possible FEM mesh, where each element contains 2 <em>nodes</em>. These elements can at best make use of linear polynomials as basis functions since there are only 2 nodes in each element.</p>
-<p>A slightly more complicated mesh is shown in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P2</span></code>, which is non-uniform and contains only 2 elements and 5 nodes. Each of the elements contains 3 nodes, and as such these elements can make use of second order polynomials.</p>
+Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> is located in between two blue vertical bars.</p>
+<p>The mesh seen in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> is the simplest possible FEM mesh, where each element contains 2 <em>nodes</em>. These elements can at best make use of linear polynomials as basis functions since there are only 2 nodes in each element.</p>
+<p>A slightly more complicated mesh is shown in <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 3</span></a>, which is non-uniform and contains only 2 elements and 5 nodes. Each of the elements contains 3 nodes, and as such these elements can make use of second order polynomials.</p>
 <figure class="align-center" id="fem-1d-mesh-p2">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_P2.png"><img alt="_images/fe_mesh1D_P2.png" src="_images/fe_mesh1D_P2.png" style="width: 500px;" /></a>
 <figcaption>
@@ -445,14 +445,14 @@ Note that an element in <code class="xref std std-numref docutils literal notran
 <p>The <a class="reference internal" href="#dolfin-mesh"><span class="std std-ref">dolfin mesh</span></a> of course is a more complicated triangulation, where every triangle represents an element. It is also quite common to use rectangles in 2D. For 3D problems a finite element is usually in the shape of a tetrahedron.</p>
 <section id="finite-element-basis-functions">
 <h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Permalink to this heading">#</a></h3>
-<p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are continuous piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear. For example, for the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> two of the 6 basis functions will be as shown below:</p>
+<p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are continuous piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear. For example, for the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> two of the 6 basis functions will be as shown below:</p>
 <figure class="align-center" id="fem-1d-mesh-phi">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_phi_2_3.png"><img alt="_images/fe_mesh1D_phi_2_3.png" src="_images/fe_mesh1D_phi_2_3.png" style="width: 500px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 4 </span><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
 <span class="eqno">(33)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
 (u-u_N, v) = 0 \quad \forall \, v \in V_N.
@@ -467,7 +467,7 @@ Note that an element in <code class="xref std std-numref docutils literal notran
 <p>Other than the fact that the basis functions are piecewise polynomials with only local support, there is nothing new from the previous chapters. It is only <strong>much more complicated</strong> to work with local functions than global and it requires <strong>much more effort</strong> to implement.</p>
 </div>
 <p>In this class we will use Lagrange polynomials as basis functions for the finite element method. But not global Lagrange polynomials, only local; local to elements. In this way it is similar to using Lagrange polynomials for <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#lagrange-interpolation-polynomials">interpolation on a finite difference grid</a>.</p>
-<p>Each element in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> contains 2 nodes. These nodes will locally be denoted as <span class="math notranslate nohighlight">\((x^0, x^1)\)</span> no matter which element we are in, and the Lagrange formula is then</p>
+<p>Each element in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> contains 2 nodes. These nodes will locally be denoted as <span class="math notranslate nohighlight">\((x^0, x^1)\)</span> no matter which element we are in, and the Lagrange formula is then</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \ell_j(x) = \prod_{\substack{0 \le m &lt; 2 \\ m \ne j}} \frac{x-x^m}{x^j-x^m}, \quad j \in (0, 1).
@@ -601,7 +601,7 @@ A = \sum_{e=0}^{N_e-1} A^{(e)}.
 \[
 a_{rs}^{(e)} = \int_{\Omega^{(e)}} \psi_{q(e,r)} \psi_{q(e,s)} d\Omega
 \]</div>
-<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> and <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P2</span></code>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
+<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
 <div class="math notranslate nohighlight">
 \[
 q(e, r) = de+r.
