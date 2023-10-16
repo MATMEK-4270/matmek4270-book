@@ -406,7 +406,7 @@ document.write(`
 u(x) \approx u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 \]</div>
 <p>And we have seen how the least squares, Galerkin and collocation methods can be used to find the unknown <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}} = \{\hat{u}_j\}_{j=0}^N\)</span>. Up until now we have used global basis functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> defined on the entire domain <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
-<p>The global aspect of the basis functions is an advantage when it comes to both accuracy and efficiency. However, we are not always interested in solving equations on a simple line interval, or a rectangle for two dimensions. Normally we are more interested in domains that contain some physical obstructions, like <code class="xref std std-numref docutils literal notranslate"><span class="pre">dolfin-mesh</span></code>.</p>
+<p>The global aspect of the basis functions is an advantage when it comes to both accuracy and efficiency. However, we are not always interested in solving equations on a simple line interval, or a rectangle for two dimensions. Normally we are more interested in domains that contain some physical obstructions, like <a class="reference internal" href="#dolfin-mesh"><span class="std std-numref">Fig. 1</span></a>.</p>
 <figure class="align-left" id="dolfin-mesh">
 <a class="reference internal image-reference" href="_images/dolfin_mesh.png"><img alt="_images/dolfin_mesh.png" src="_images/dolfin_mesh.png" style="width: 300px;" /></a>
 <figcaption>
@@ -442,7 +442,7 @@ Note that an element in <code class="xref std std-numref docutils literal notran
 <p><span class="caption-number">Fig. 3 </span><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The <a class="reference internal" href="lecture10b.html#dolfin-mesh"><span class="std std-ref">dolfin mesh</span></a> of course is a more complicated triangulation, where every triangle represents an element. It is also quite common to use rectangles in 2D. For 3D problems a finite element is usually in the shape of a tetrahedron.</p>
+<p>The <a class="reference internal" href="#dolfin-mesh"><span class="std std-ref">dolfin mesh</span></a> of course is a more complicated triangulation, where every triangle represents an element. It is also quite common to use rectangles in 2D. For 3D problems a finite element is usually in the shape of a tetrahedron.</p>
 <section id="finite-element-basis-functions">
 <h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Permalink to this heading">#</a></h3>
 <p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are continuous piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear. For example, for the mesh in <code class="xref std std-numref docutils literal notranslate"><span class="pre">fem-1d-mesh-P1</span></code> two of the 6 basis functions will be as shown below:</p>
