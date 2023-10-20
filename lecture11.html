@@ -535,7 +535,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 \[\begin{split}
 \begin{align*}
 s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
-    &amp;= -\frac{(j+1)^2\pi^2}{4} (\pi \sin((j+1)(x+1)/2), \sin(\pi (i+1) (x+1)/2)), \\
+    &amp;= -\frac{(j+1)^2\pi^2}{4} (\sin(\pi (j+1)(x+1)/2), \sin(\pi (i+1) (x+1)/2)), \\
     &amp;= -\frac{(j+1)^2 \pi^2}{4} \delta_{ij}.
 \end{align*}
 \end{split}\]</div>
@@ -593,7 +593,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 <p>The basis functions <span class="math notranslate nohighlight">\(\sin(\pi (j+1)(x+1)/2)\)</span> are alternately even/odd for even/odd values of <span class="math notranslate nohighlight">\(j\)</span>. Since the solution is even, only the even basis functions contribute to the series expansion in <span class="math notranslate nohighlight">\(V_N\)</span> and we could simply omit all the odd basis functions. Normally, though, we do not know if the solution is odd, even or something else, which is why it is best to combine odd and even basis functions. The Legendre and Chebyshev polynomials are also odd/even for odd/even basis numbers <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The (unmapped) sine functions <span class="math notranslate nohighlight">\(\sin(\pi(j+1)x), x \in [-1, 1]\)</span> are odd for all integer <span class="math notranslate nohighlight">\(j \ge 0\)</span>, which makes them a basis only for odd functions. Hence they cannot be used to find the even solution above. The fact that <span class="math notranslate nohighlight">\(\sin(\pi(j+1)x)\)</span> is odd for <span class="math notranslate nohighlight">\(x \in [-1, 1]\)</span>  is why we need to map the physical space to the reference space <span class="math notranslate nohighlight">\([0, 1]\)</span> and work with basis functions <span class="math notranslate nohighlight">\(\sin(\pi (j+1)(x+1)/2)\)</span>.</p>
-<p>The first 7 basis functions <span class="math notranslate nohighlight">\(\sin(\pi (k+1)(x+1)/2)\)</span> are plotted below with the even functions to the left and the odd functions to the right.</p>
+<p>The first 7 basis functions <span class="math notranslate nohighlight">\(\sin(\pi (k+1)(x+1)/2)\)</span> are plotted below, with the even functions to the left and the odd functions to the right.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">100</span>
@@ -1271,7 +1271,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/18a005a2542bc75359baeffdb49b1e88f4a671eb9ed1affe6bf2b51632c56772.png" src="_images/18a005a2542bc75359baeffdb49b1e88f4a671eb9ed1affe6bf2b51632c56772.png" />
+<img alt="_images/531d47c95be1b001f2214748203ac49ed65ad5a5881f50cc9cf41830ed70f8dc.png" src="_images/531d47c95be1b001f2214748203ac49ed65ad5a5881f50cc9cf41830ed70f8dc.png" />
 </div>
 </div>
 </section>
@@ -1299,7 +1299,7 @@ u'' + \frac{1}{\epsilon} u = 0, \quad x \in [0, 1], u(0) = 0, u(1) = 1.
 \[
 u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 \]</div>
-<p>See also Sec 4.5 in <a class="reference external" href="https://link.springer.com/book/10.1007/978-3-030-23788-2">Introduction to Numerical Methods for Variational Problems</a>.</p>
+<p>See also Sec 4.5 in <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-3-030-23788-2_4#Sec27">Introduction to Numerical Methods for Variational Problems</a>.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>The Galerkin method with Legendre polynomials lead to a diagonal stiffness matrix, but the mass matrix (<span class="math notranslate nohighlight">\(a_{ij} = (\psi_j, \psi_i) = (P_{j}-P_{j+2}, P_i-P_{i+2})\)</span>) that you need for the Helmholtz problem will be banded with three nonzero diagonals. The diagonals are located at <span class="math notranslate nohighlight">\(a_{i, i-2}, a_{i,i}, a_{i, i+2}\)</span> and are easily computed by hand from using <span class="math notranslate nohighlight">\((P_j, P_i) = \frac{2}{2i+1}\delta_{ij}\)</span>.</p>
