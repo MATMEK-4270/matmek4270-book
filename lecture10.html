@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture10';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="next" title="Lecture 11" href="lecture11.html" />
     <link rel="prev" title="Lecture 9" href="lecture9.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -181,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -454,7 +455,7 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 </figure>
 <p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
 (u-u_N, v) = 0 \quad \forall \, v \in V_N.
 \]</div>
 <p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with continuous piecewise polynomial basis functions.</p>
@@ -566,7 +567,7 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 \]</div>
 <p>In other words, we need to solve the follow linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-femmat">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}_j = (u, \psi_i), \quad \forall\,  i \in (0, 1, \ldots, N).
 \]</div>
 <p>This is identical to the Galerkin problem already presented in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html#the-galerkin-method">lecture 8</a>. Again, the only difference is the choice of function spaces and basis.</p>
@@ -991,7 +992,7 @@ x_{2i+1} = \frac{x_{2i}+x_{2(i+1)}}{2}, \quad i \in (0, 1, \ldots, N/2-1).
 </div>
 <p>But what happened here? The results still look like piecewise linear polynomials and it looks no better than before. The problem now is not accuracy of the FEM approximation, though, it has more to do with postprocessing and finite element evaluation. We compute and plot the finite element solution <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>, but then matplotlib simply fills in the gaps between the points with linear profiles. The correct approach would be to evaluate the finite element function</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-sol">
-<span class="eqno">(35)<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(36)<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega,
 \]</div>
 <p>in between the mesh points.</p>
@@ -1246,11 +1247,11 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
       </div>
     </a>
     <a class="right-next"
-       href="mandatory1.html"
+       href="lecture11.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+        <p class="prev-next-title">Lecture 11</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

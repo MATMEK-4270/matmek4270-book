@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/mikaelmortensen/opt/anaconda3/envs/book/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import scipy.sparse as sparse
+Ss = S.diags('csr')
+uh2 = sparse.linalg.spsolve(Ss, b[:-2])
+assert np.allclose(uh, uh2)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[5], line 4[0m
+[1;32m      2[0m Ss [38;5;241m=[39m S[38;5;241m.[39mdiags([38;5;124m'[39m[38;5;124mcsr[39m[38;5;124m'[39m)
+[1;32m      3[0m uh2 [38;5;241m=[39m sparse[38;5;241m.[39mlinalg[38;5;241m.[39mspsolve(Ss, b[:[38;5;241m-[39m[38;5;241m2[39m])
+[0;32m----> 4[0m [38;5;28;01massert[39;00m [43mnp[49m[38;5;241;43m.[39;49m[43mallclose[49m[43m([49m[43muh[49m[43m,[49m[43m [49m[43muh2[49m[43m)[49m
+
+File [0;32m~/opt/anaconda3/envs/book/lib/python3.11/site-packages/numpy/core/numeric.py:2241[0m, in [0;36mallclose[0;34m(a, b, rtol, atol, equal_nan)[0m
+[1;32m   2170[0m [38;5;129m@array_function_dispatch[39m(_allclose_dispatcher)
+[1;32m   2171[0m [38;5;28;01mdef[39;00m [38;5;21mallclose[39m(a, b, rtol[38;5;241m=[39m[38;5;241m1.e-5[39m, atol[38;5;241m=[39m[38;5;241m1.e-8[39m, equal_nan[38;5;241m=[39m[38;5;28;01mFalse[39;00m):
+[1;32m   2172[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[1;32m   2173[0m [38;5;124;03m    Returns True if two arrays are element-wise equal within a tolerance.[39;00m
+[1;32m   2174[0m 
+[0;32m   (...)[0m
+[1;32m   2239[0m 
+[1;32m   2240[0m [38;5;124;03m    """[39;00m
+[0;32m-> 2241[0m     res [38;5;241m=[39m [38;5;28mall[39m([43misclose[49m[43m([49m[43ma[49m[43m,[49m[43m [49m[43mb[49m[43m,[49m[43m [49m[43mrtol[49m[38;5;241;43m=[39;49m[43mrtol[49m[43m,[49m[43m [49m[43matol[49m[38;5;241;43m=[39;49m[43matol[49m[43m,[49m[43m [49m[43mequal_nan[49m[38;5;241;43m=[39;49m[43mequal_nan[49m[43m)[49m)
+[1;32m   2242[0m     [38;5;28;01mreturn[39;00m [38;5;28mbool[39m(res)
+
+File [0;32m~/opt/anaconda3/envs/book/lib/python3.11/site-packages/numpy/core/numeric.py:2351[0m, in [0;36misclose[0;34m(a, b, rtol, atol, equal_nan)[0m
+[1;32m   2349[0m yfin [38;5;241m=[39m isfinite(y)
+[1;32m   2350[0m [38;5;28;01mif[39;00m [38;5;28mall[39m(xfin) [38;5;129;01mand[39;00m [38;5;28mall[39m(yfin):
+[0;32m-> 2351[0m     [38;5;28;01mreturn[39;00m [43mwithin_tol[49m[43m([49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43matol[49m[43m,[49m[43m [49m[43mrtol[49m[43m)[49m
+[1;32m   2352[0m [38;5;28;01melse[39;00m:
+[1;32m   2353[0m     finite [38;5;241m=[39m xfin [38;5;241m&[39m yfin
+
+File [0;32m~/opt/anaconda3/envs/book/lib/python3.11/site-packages/numpy/core/numeric.py:2332[0m, in [0;36misclose.<locals>.within_tol[0;34m(x, y, atol, rtol)[0m
+[1;32m   2330[0m [38;5;28;01mdef[39;00m [38;5;21mwithin_tol[39m(x, y, atol, rtol):
+[1;32m   2331[0m     [38;5;28;01mwith[39;00m errstate(invalid[38;5;241m=[39m[38;5;124m'[39m[38;5;124mignore[39m[38;5;124m'[39m), _no_nep50_warning():
+[0;32m-> 2332[0m         [38;5;28;01mreturn[39;00m less_equal([38;5;28mabs[39m([43mx[49m[38;5;241;43m-[39;49m[43my[49m), atol [38;5;241m+[39m rtol [38;5;241m*[39m [38;5;28mabs[39m(y))
+
+[0;31mValueError[0m: operands could not be broadcast together with shapes (40,) (38,) 
+

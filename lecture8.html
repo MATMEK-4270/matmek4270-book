@@ -181,6 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -474,8 +475,8 @@ u_N(x) = \hat{u}_0 + \hat{u}_1 x.
 <p>Sometimes the inner product is written as <span class="math notranslate nohighlight">\(\left(f, g \right)_{L^2(\Omega)}\)</span>, in order to clarify that it is the <span class="math notranslate nohighlight">\(L^2\)</span> inner product on a certain domain. Sometimes the inner product is also called the scalar product.</p>
 </div>
 <p>The inner product is used in defining the <span class="math notranslate nohighlight">\(L^2\)</span> error norm. If we define the error in the approximation as</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-error-u">
+<span class="eqno">(11)<a class="headerlink" href="#equation-eq-error-u" title="Permalink to this equation">#</a></span>\[
 e(x) = u(x)-u_N(x),
 \]</div>
 <p>then the <span class="math notranslate nohighlight">\(L^2\)</span> error norm is <span class="math notranslate nohighlight">\(\sqrt{(e, e)} = |e|\)</span>, or sometimes <span class="math notranslate nohighlight">\(|e|_{L^2}\)</span>. We will also use</p>
@@ -660,7 +661,7 @@ A \boldsymbol{x} = \boldsymbol{b},
 <p>is a basis for the space of all polynomials. However, it is not a good basis. This is because the basis functions are not orthogonal and the mass matrix <span class="math notranslate nohighlight">\(A\)</span> is ill conditioned.</p>
 <p>A much better polynomial basis are the Legendre polynomials that are defined on the domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-legrecursive">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eq-legrecursive" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-legrecursive" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 P_0(x) &amp;= 1, \\
 P_1(x) &amp;= x, \\
@@ -697,7 +698,7 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 <p>The Legendre polynomials are <span class="math notranslate nohighlight">\(L^2\)</span> orthogonal on <span class="math notranslate nohighlight">\(\Omega=[-1, 1]\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-legortho">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-legortho" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-legortho" title="Permalink to this equation">#</a></span>\[
 (P_j, P_i) =  \frac{2}{2j+1}\delta_{ij}.
 \]</div>
 <p>A slightly complicating factor, though, is that the computational domain needs to be <span class="math notranslate nohighlight">\([-1, 1]\)</span>. So if the actual domain of <span class="math notranslate nohighlight">\(u(x)\)</span> is <span class="math notranslate nohighlight">\([a, b]\)</span>, then this needs to be mapped to the computational domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>.</p>
@@ -711,14 +712,14 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be the coordinate in the computational (reference) domain <span class="math notranslate nohighlight">\([A, B]\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are real numbers. A linear (affine) mapping, from the computational coordinate <span class="math notranslate nohighlight">\(X\)</span> to the physical coordinate <span class="math notranslate nohighlight">\(x\)</span> is then</p>
 <div class="math notranslate nohighlight" id="equation-eq-x">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eq-x" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-x" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 x = a + \frac{b-a}{B-A}(X-A).
 \end{equation}
 \]</div>
 <p>The reverse mapping is</p>
 <div class="math notranslate nohighlight" id="equation-eq-xmap">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eq-xmap" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-xmap" title="Permalink to this equation">#</a></span>\[
 \begin{equation}
 X = A + \frac{B-A}{b-a}(x-a).
 \end{equation}
@@ -1065,7 +1066,7 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 <p>The agreement is now much better. And the agreement will become better and better the more points you use. Whereas for a uniform grid the agreement will become worse and worse the more points you use.</p>
 <p>How about Legendre polynomials? The domain is <span class="math notranslate nohighlight">\([-1, 1]\)</span> so we can get the Legendre coefficients without any mapping simply as</p>
 <div class="math notranslate nohighlight" id="equation-eq-legcoeff">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eq-legcoeff" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-legcoeff" title="Permalink to this equation">#</a></span>\[
 \hat{u}_i = \frac{2i+1}{2}(u, P_i).
 \]</div>
 <p>Compute the first 40 Legendre coefficients and plot them</p>
@@ -1093,7 +1094,7 @@ x_j = \cos(j \pi / N), \quad j \in (0, 1, \ldots, N).
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
 </section>
 <section id="boundary-issues">
-<h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Permalink to this heading">#</a></h3>
+<span id="sec-boundary-issues"></span><h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Permalink to this heading">#</a></h3>
 <p>Lets consider a slightly different problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1107,7 +1108,7 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 \]</div>
 <p>Hence we can easily get the coefficients with the Galerkin method</p>
 <div class="math notranslate nohighlight" id="equation-eq-hatusin">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eq-hatusin" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-hatusin" title="Permalink to this equation">#</a></span>\[
 \hat{u}_i = 2 \left( u(x),  \sin((i+1) \pi x) \right)_{L^2([0, 1])}.
 \]</div>
 <p>Lets implement and check the results:</p>
@@ -1153,7 +1154,7 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 <p>will allways lead to <span class="math notranslate nohighlight">\(u_N(0) = 0\)</span> and <span class="math notranslate nohighlight">\(u_N(1) = 0\)</span>. We have a problem with the basis functions having the wrong values at the boundaries.</p>
 <p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
 <div class="math notranslate nohighlight" id="equation-eq-un0">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eq-un0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-un0" title="Permalink to this equation">#</a></span>\[
 u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
@@ -1161,7 +1162,7 @@ u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 <p class="admonition-title">Note</p>
 <p>The function <span class="math notranslate nohighlight">\(b(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
 </div>
-<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(17)</a>)</p>
+<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(18)</a>)</p>
 <div class="math notranslate nohighlight">
 \[
 (u-(b+u_N), v) = 0, \quad \forall \, v \in V_N
@@ -1176,7 +1177,7 @@ u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \[
 \hat{u}_i = 2 \left(u(x)-b(x), \sin((i+1)\pi x) \right) \quad i \in (0, 1, \ldots, N).
 \]</div>
-<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(16)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
+<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(17)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc</span> <span class="o">=</span> <span class="p">[]</span>

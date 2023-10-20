@@ -67,6 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture11';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="prev" title="Lecture 10" href="lecture10.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,10 +177,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 11</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -376,7 +379,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-s-equation">Poisson’s equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inhomogeneous-dirichlet">Inhomogeneous Dirichlet</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocation">Collocation</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -395,10 +409,10 @@ document.write(`
 <p>Up until now we have considered how to approximate a generic function <span class="math notranslate nohighlight">\(f(x)\)</span> in a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>. We have considered both variational formulations (Galerkin and least squares) and collocation (interpolation). But the underlying original problem has simply been to find some function <span class="math notranslate nohighlight">\(u \approx u_N = \sum_{j=0}^N\hat{u}_j \psi_j\)</span> such that <span class="math notranslate nohighlight">\(u = f\)</span>.</p>
 <p>We will now take it one step further and solve ordinary differential equations with a method that is almost identical. Instead of finding just <span class="math notranslate nohighlight">\(u=f\)</span>, we will now attempt to find the solution to</p>
 <div class="math notranslate nohighlight" id="equation-eq-l-op">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-l-op" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(37)<a class="headerlink" href="#equation-eq-l-op" title="Permalink to this equation">#</a></span>\[
 \mathcal{L}(u) = f,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is a generic operator acting on the function <span class="math notranslate nohighlight">\(u\)</span>. Hence <span class="math notranslate nohighlight">\(\mathcal{L}(u)\)</span>  can by anything, including just <span class="math notranslate nohighlight">\(\mathcal{L}(u)=u\)</span>, and by <a class="reference internal" href="#equation-eq-l-op">()</a> we could for example mean any one of</p>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is a generic operator acting on the function <span class="math notranslate nohighlight">\(u\)</span>. Hence <span class="math notranslate nohighlight">\(\mathcal{L}(u)\)</span>  can by anything, including just <span class="math notranslate nohighlight">\(\mathcal{L}(u)=u\)</span>, and by <a class="reference internal" href="#equation-eq-l-op">(37)</a> we could for example mean any one of</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -409,7 +423,7 @@ u'' +\alpha u' + \lambda u  &amp;= f, \\
 \frac{d}{dx}\left(\alpha \frac{d u}{dx}\right) &amp;= f,
 \end{align*}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are either constant parameters of functions of <span class="math notranslate nohighlight">\(x\)</span>. From <a class="reference internal" href="#equation-eq-l-op">()</a> we can also define a residual (or an error)</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are either constant parameters or functions of <span class="math notranslate nohighlight">\(x\)</span>. From <a class="reference internal" href="#equation-eq-l-op">(37)</a> we can also define a residual (or an error, like in <a class="reference internal" href="lecture8.html#equation-eq-error-u">(11)</a>)</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{R} = \mathcal{L}(u)-f,
@@ -419,7 +433,7 @@ u'' +\alpha u' + \lambda u  &amp;= f, \\
 \[
 \mathcal{R}_N = \mathcal{L}(u_N)-f.
 \]</div>
-<p>The method of weighted residuals (MWR) requires that this residual is orthogonal to some test space <span class="math notranslate nohighlight">\(W\)</span></p>
+<p><strong>The method of weighted residuals</strong> (MWR) requires that this residual is orthogonal to some test space <span class="math notranslate nohighlight">\(W\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 (\mathcal{R}_N, v) = 0 \quad \forall \, v \in W.
@@ -437,26 +451,75 @@ u'' +\alpha u' + \lambda u  &amp;= f, \\
 <p>This means that also the LSM is a MWR where <span class="math notranslate nohighlight">\(W = \text{span}\{\frac{\partial \mathcal{R}_N}{\partial \hat{u}_j}\}_{j=0}^N\)</span>.</p>
 <p>More surprisingly, the collocation method can also be considered a MWR. The collocation method is simply</p>
 <div class="math notranslate nohighlight" id="equation-eq-coll-r">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-coll-r" title="Permalink to this equation">#</a></span>\[
-\mathcal{R}_N(x_j) = f(x_j), \quad j \in (0, 1, \ldots, N).
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-coll-r" title="Permalink to this equation">#</a></span>\[
+\mathcal{R}_N(x_j) = 0, \quad j \in (0, 1, \ldots, N).
 \]</div>
 <p>By choosing test functions <span class="math notranslate nohighlight">\(v = \delta(x-x_j)\)</span>, where <span class="math notranslate nohighlight">\(\delta(x)\)</span> is Dirac’s delta function, we can write this equivalently as a MWR:</p>
 <div class="math notranslate nohighlight" id="equation-eq-coll-gal">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-coll-gal" title="Permalink to this equation">#</a></span>\[
-(\mathcal{R}_N, \delta(x-x_j)) = (f, \delta(x-x_j)), \quad j \in (0, 1, \ldots, N).
+<span class="eqno">(39)<a class="headerlink" href="#equation-eq-coll-gal" title="Permalink to this equation">#</a></span>\[
+(\mathcal{R}_N, \delta(x-x_j)) = 0, \quad j \in (0, 1, \ldots, N).
 \]</div>
-<p>The equality of <a class="reference internal" href="#equation-eq-coll-r">()</a> with <a class="reference internal" href="#equation-eq-coll-gal">()</a> follows since</p>
+<p>The equality of <a class="reference internal" href="#equation-eq-coll-r">(38)</a> with <a class="reference internal" href="#equation-eq-coll-gal">(39)</a> follows since</p>
 <div class="math notranslate nohighlight">
 \[
-\int_{\Omega} \mathcal{R}_N(x) \delta(x-x_j) dx = \mathcal{R}_N(x_j) \, \text{  and  } \,  \int_{\Omega} f(x) \delta(x-x_j) dx = f(x_j).
+\int_{\Omega} \mathcal{R}_N(x) \delta(x-x_j) dx = \mathcal{R}_N(x_j).
 \]</div>
-<p>Lets consider a concrete example where</p>
-<div class="math notranslate nohighlight">
-\[
+<section id="poisson-s-equation">
+<h3>Poisson’s equation<a class="headerlink" href="#poisson-s-equation" title="Permalink to this heading">#</a></h3>
+<p>Lets consider a well-known example</p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson-1d">
+<span class="eqno">(40)<a class="headerlink" href="#equation-eq-poisson-1d" title="Permalink to this equation">#</a></span>\[
 u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 \]</div>
-<p>such that <span class="math notranslate nohighlight">\(\mathcal{L}(u) = u''\)</span>. Note that there is one significant difference from merely function approximation, since the problem needs to be solved with boundary conditions! Since there are 2 derivatives, we need two boundary conditions and we have also prescribed homogeneous Dirichlet on both sides of the domain.</p>
-<p>The boundary conditions can be incorporated into the trial space by choosing basis functions that all satisfy <span class="math notranslate nohighlight">\(\psi_j(-1) = \psi_j(1) = 0\)</span>. Possible basis functions are thus</p>
+<p>which is Poisson’s equation, where <span class="math notranslate nohighlight">\(\mathcal{L}(u) = u''\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is one significant difference in Eq. <a class="reference internal" href="#equation-eq-poisson-1d">(40)</a> from merely function approximation, since this equation needs to be solved with boundary conditions! Since there are 2 derivatives, we need two boundary conditions.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The handling of boundary conditions is usually the most tricky part when implementing solvers for most PDEs.</p>
+</div>
+<p>Using as always <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, where all <span class="math notranslate nohighlight">\(\psi_j(\pm 1) = 0\)</span>, we consider first the Galerkin method and attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathcal{R}_N, v) = (u_N''-f, v) = 0, \quad \forall \, v \in V_N.
+\]</div>
+<p>Insert for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v\)</span> and obtain the linear algebra problem</p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson-gal">
+<span class="eqno">(41)<a class="headerlink" href="#equation-eq-poisson-gal" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^N \left(\psi''_j, \psi_i  \right) \hat{u}_j = (f, \psi_i), \quad i \in (0, 1, \ldots, N).
+\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(S = (s_{ij})_{i,j=0}^N\)</span>, where <span class="math notranslate nohighlight">\(s_{ij}=(\psi''_j, \psi_i)\)</span>, is usually called the <strong>stiffness matrix</strong>.</p>
+<div class="admonition-integration-by-parts admonition" id="sec-integration-by-parts">
+<p class="admonition-title">Integration by parts</p>
+<p>The inner product <span class="math notranslate nohighlight">\(\left(\psi''_j, \psi_i  \right)\)</span> is a regular integral and we may use all the tricks we know in order to compute it. One such popular trick is <a class="reference external" href="https://en.wikipedia.org/wiki/Integration_by_parts">integration by parts</a></p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^b u' v dx = -\int_a^b u v' dx + [u v]_{a}^b.
+\]</div>
+<p>With a slight modification, this formula becomes</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{a}^b u'' v dx = -\int_a^b u' v' dx + [u' v]_{a}^b,
+\]</div>
+<p>which can be used on <span class="math notranslate nohighlight">\(\left(\psi''_j, \psi_i  \right)\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\psi''_j, \psi_i  \right) = -\left( \psi'_j, \psi'_i \right) + [\psi'_j \psi_i]_{-1}^1.
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span> or <span class="math notranslate nohighlight">\(\psi'_i(\pm 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(i\)</span>, then we can neglect the last term and obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\psi''_j, \psi_i  \right) = -\left( \psi'_j, \psi'_i \right).
+\]</div>
+</div>
+<p>Using integration by parts we can get the alternative form of Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(41)</a></p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson-gal-ibp">
+<span class="eqno">(42)<a class="headerlink" href="#equation-eq-poisson-gal-ibp" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^N \left(\psi'_j, \psi'_i  \right) \hat{u}_j = -(f, \psi_i), \quad i \in (0, 1, \ldots, N).
+\]</div>
+<p>As already mentioned the boundary conditions need to be incorporated into the function space <span class="math notranslate nohighlight">\(V_N\)</span> by choosing basis functions that all satisfy <span class="math notranslate nohighlight">\(\psi_j(\pm 1) = 0\)</span>. Possible basis functions are thus</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -465,19 +528,8 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 \psi_j(x) &amp;= T_j - T_{j+2}, \\
 \end{align*}
 \end{split}\]</div>
-<p>where the latter two are zero on the boundaries because <span class="math notranslate nohighlight">\(P_j(-1) = T_j(-1) = (-1)^j\)</span> and <span class="math notranslate nohighlight">\(P_j(1)=T_j(1) = 1\)</span>. The first sine function is a bit odd because we need to map the true domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> to the sine function’s computational domain, which is <span class="math notranslate nohighlight">\([0, 1]\)</span>.</p>
-<p>We consider first the regular, unweighted Galerkin method in the <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> inner product space, and as such only the first two are relevant. The Chebyshev polynomials should only be used with a weighted <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> inner product.</p>
-<p>Create <span class="math notranslate nohighlight">\(V_N = \text{span}\{\sin(\pi (j+1) (x+1)/2)\}_{j=0}^N\)</span> and find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
-<div class="math notranslate nohighlight">
-\[
-(u_N''-f, v) = 0, \quad \forall \, v \in V_N.
-\]</div>
-<p>Insert for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v\)</span> to obtain the linear algebra problem</p>
-<div class="math notranslate nohighlight" id="equation-eq-poisson-gal">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-poisson-gal" title="Permalink to this equation">#</a></span>\[
-\sum_{j=0}^N \left(\psi''_j, \psi_i  \right) \hat{u}_j = (f, \psi_i), \quad i \in (0, 1, \ldots, N)
-\]</div>
-<p>The matrix <span class="math notranslate nohighlight">\(S = (s_{ij})_{i,j=0}^N\)</span>, where <span class="math notranslate nohighlight">\(s_{ij}=(\psi''_j, \psi_i)\)</span>, is usually called the <strong>stiffness matrix</strong>. With the chosen basis functions we get</p>
+<p>where the latter two are zero on the boundaries because <span class="math notranslate nohighlight">\(P_j(-1) = T_j(-1) = (-1)^j\)</span> and <span class="math notranslate nohighlight">\(P_j(1)=T_j(1) = 1\)</span>. The first sine function is a bit odd because we need to map the true domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> to the sine function’s computational domain, which is <span class="math notranslate nohighlight">\([0, 1]\)</span>. Also, since Chebyshev polynomials should only be used with a weighted <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> inner product, we consider here only the first two bases.</p>
+<p>With the sine basis functions we use Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(41)</a> and obtain</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -486,12 +538,12 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
     &amp;= -\frac{(j+1)^2 \pi^2}{4} \delta_{ij}.
 \end{align*}
 \end{split}\]</div>
-<p>And since this matrix is diagonal Eq. <a class="reference internal" href="#equation-eq-poisson-gal">()</a> is solved with</p>
+<p>Since this matrix is diagonal Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(41)</a> is solved easily with</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = \frac{-4}{(i+1)^2 \pi^2}(f, \sin( \pi (i+1)(x+1)/2)).
 \]</div>
-<p>Lets check the accuracy using the method of manufactured solutions and choose <span class="math notranslate nohighlight">\(u(x) = (1-x^2)\exp(\cos(x))\)</span>, which satisfies the boundary conditions.</p>
+<p>Lets check the accuracy using the method of manufactured solutions and choose the even function <span class="math notranslate nohighlight">\(u(x) = (1-x^2)\exp(\cos(x))\)</span>, which satisfies the boundary conditions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -502,13 +554,13 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 
-<span class="n">ue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># manufactured f</span>
 <span class="c1">#uhat = lambda j: -(4/(j+1)**2/sp.pi**2)*sp.integrate(f*sp.sin((j+1)*sp.pi*(x+1)/2), (x, -1, 1))</span>
 <span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="o">-</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">uh</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="n">uh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
 
@@ -527,40 +579,701 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1e6fd07ec2af05b5fb390887656243bf8db1da67cadec2334dcbf82f7d2c1a30.png" src="_images/1e6fd07ec2af05b5fb390887656243bf8db1da67cadec2334dcbf82f7d2c1a30.png" />
+<img alt="_images/9a4366dd2d473dbf526ba34b7555b64c057926b08391212592896fe9ccff3622.png" src="_images/9a4366dd2d473dbf526ba34b7555b64c057926b08391212592896fe9ccff3622.png" />
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An even function <span class="math notranslate nohighlight">\(f(x)\)</span> is such that <span class="math notranslate nohighlight">\(f(x) = f(-x)\)</span>. An odd function is such that <span class="math notranslate nohighlight">\(f(x) = -f(-x)\)</span>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the odd coefficients <span class="math notranslate nohighlight">\(\hat{u}_{2i+1}, i \in (0, 1, \ldots)\)</span> are zero because the solution <span class="math notranslate nohighlight">\(u(x) = \exp(\cos(x))\)</span> is an even function.</p>
+</div>
+<p>The basis functions <span class="math notranslate nohighlight">\(\sin(\pi (j+1)(x+1)/2)\)</span> are alternately even/odd for even/odd values of <span class="math notranslate nohighlight">\(j\)</span>. Since the solution is even, only the even basis functions contribute to the series expansion in <span class="math notranslate nohighlight">\(V_N\)</span> and we could simply omit all the odd basis functions. Normally, though, we do not know if the solution is odd, even or something else, which is why it is best to combine odd and even basis functions. The Legendre and Chebyshev polynomials are also odd/even for odd/even basis numbers <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>The (unmapped) sine functions <span class="math notranslate nohighlight">\(\sin(\pi(j+1)x), x \in [-1, 1]\)</span> are odd for all integer <span class="math notranslate nohighlight">\(j \ge 0\)</span>, which makes them a basis only for odd functions. Hence they cannot be used to find the even solution above. The fact that <span class="math notranslate nohighlight">\(\sin(\pi(j+1)x)\)</span> is odd for <span class="math notranslate nohighlight">\(x \in [-1, 1]\)</span>  is why we need to map the physical space to the reference space <span class="math notranslate nohighlight">\([0, 1]\)</span> and work with basis functions <span class="math notranslate nohighlight">\(\sin(\pi (j+1)(x+1)/2)\)</span>.</p>
+<p>The first 7 basis functions <span class="math notranslate nohighlight">\(\sin(\pi (k+1)(x+1)/2)\)</span> are plotted below with the even functions to the left and the odd functions to the right.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uh</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sines</span><span class="p">[:,</span> <span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sines</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Even basis functions&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Odd basis functions&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">(x)$&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]);</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">(x)$&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.3775315599944706,
- -0.3779671926273212,
- -0.03145871472458203,
- -0.008156357045469275,
- -0.005061574537457848,
- -0.0027590439202210453,
- -0.0016356636859774529,
- -0.0011745388403623701,
- -0.0007348989284172392,
- -0.0006022896844607051,
- -0.0003933589202512632,
- -0.00034864937145678317,
- -0.00023519585078792305,
- -0.00021956028305990954,
- -0.00015185095377601165,
- -0.00014708026187579772,
- -0.00010374441102674412,
- -0.0001032925265343113,
- -7.40259985388443e-05,
- -7.529579571303481e-05]
+<img alt="_images/28c65c4be1cdf1d7d31c5475335bc8a704c81ed818900cbe9c8548c350e32aa2.png" src="_images/28c65c4be1cdf1d7d31c5475335bc8a704c81ed818900cbe9c8548c350e32aa2.png" />
+</div>
+</div>
+<p>Lets solve the same problem with Legendre polynomials instead and basis functions <span class="math notranslate nohighlight">\(\psi_i(x) = P_i(x)-P_{i+2}(x)\)</span>. The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now equal to <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. We now solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(42)</a> and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
+<div class="math notranslate nohighlight">
+\[
+(2j+3)P_{j+1} = P'_{j+2}-P'_{j}.
+\]</div>
+<p>We get that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\left(\psi'_j, \psi'_i\right) &amp;= \left(P'_j-P'_{j+2}, P'_i - P'_{i+2}\right), \\
+  &amp;=\left(-(2j+3)P_{j+1}, -(2i+3)P_{i+1}\right), \\
+  &amp;= (2j+3)(2i+3)\frac{2 \delta_{i+1,j+1}}{2j+3}, \\
+  &amp;= (4i+6) \delta_{ij},
+\end{align*}
+\end{split}\]</div>
+<p>since <span class="math notranslate nohighlight">\(\delta_{i+1,j+1}=\delta_{i,j}\)</span> and <span class="math notranslate nohighlight">\((P_{j+1}, P_{i+1}) = \frac{2}{2i+3}\delta_{i+1,j+1}\)</span>. So the stiffness matrix is diagonal also for Legendre polynomials. We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(42)</a> as</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{-1}{4i+6}\left(f, \psi_i\right).
+\]</div>
+<p>An implementation is shown below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span> <span class="k">as</span> <span class="n">Leg</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Not using Sympy because of accuracy</span>
+<span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">))</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">uh</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">uh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Ps</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">))(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">xj</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)),</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;One coefficient&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> coefficients&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$|\hat</span><span class="si">{u}</span><span class="s1">|$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f6300d758d9c716d716226ddb2074fc2e73f2326664c63c4b20fad343faa86e5.png" src="_images/f6300d758d9c716d716226ddb2074fc2e73f2326664c63c4b20fad343faa86e5.png" />
+</div>
+</div>
+<p>We note that less than 30 Legendre basis functions are required for full machine precision (<span class="math notranslate nohighlight">\(\approx 10^{-16}\)</span>). And exactly like for the sine basis functions all the odd coefficients are zero.</p>
+<p>We can use <a class="reference external" href="https://github.com/spectralDNS/shenfun">Shenfun</a> to implement the same problem with even less effort. For shenfun the function space is created with boundary conditions specified. If we write <code class="docutils literal notranslate"><span class="pre">bc=(a,</span> <span class="pre">b)</span></code> this is interpreted as two Dirichlet conditions at the two edges of the domain. In this case Shenfun makes use of the same basis functions as used above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">uh</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[::</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bab9cb4bf7d88b21a891199ef69ec4f57a2d3d111ab9413ff01cd8c186fd006d.png" src="_images/bab9cb4bf7d88b21a891199ef69ec4f57a2d3d111ab9413ff01cd8c186fd006d.png" />
+</div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<span class="n">Ss</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+<span class="n">uh2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">Ss</span><span class="p">,</span> <span class="n">b</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">uh2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Note that the matrix <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N-2)\times (N-2)}\)</span> whereas <span class="math notranslate nohighlight">\(b \in \mathbb{R}^N\)</span>. This has to do with the two boundary conditions, which are stored in <span class="math notranslate nohighlight">\(b[-2]\)</span> and <span class="math notranslate nohighlight">\(b[-1]\)</span>. Also, since there are 2 boundary conditions, the space created with dimension <span class="math notranslate nohighlight">\(N\)</span> has only <span class="math notranslate nohighlight">\(N-2\)</span> unknown coefficients. This is the reason why <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N-2)\times (N-2)}\)</span> and not <span class="math notranslate nohighlight">\(\in \mathbb{R}^{ N\times N}\)</span>.</p>
+<section id="boundary-conditions">
+<h4>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h4>
+<section id="inhomogeneous-dirichlet">
+<h5>Inhomogeneous Dirichlet<a class="headerlink" href="#inhomogeneous-dirichlet" title="Permalink to this heading">#</a></h5>
+<p>Lets make a minor change and solve Poisson’s equation with non-zero boundary conditions</p>
+<div class="math notranslate nohighlight">
+\[
+u'' = f, \quad x \in [-1, 1], \, u(-1) = a, u(1) = b.
+\]</div>
+<p>The problem is nearly the same as before, but we cannot simply use <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> because all the basis functions satisfy <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span>. However, we can do as in Sec <a class="reference internal" href="lecture8.html#sec-boundary-issues"><span class="std std-ref">Boundary issues</span></a> and add a boundary function</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x) = B(x) + \sum_{i=0}^N \hat{u}_i \psi_i(x),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(B(-1) = a\)</span> and <span class="math notranslate nohighlight">\(B(1) = b\)</span>. A function that satisfies this in the current domain is</p>
+<div class="math notranslate nohighlight">
+\[
+B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
+\]</div>
+<p>We can now define a new (homogeneous) function</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{u}(x) = u(x) - B(x), 
+\]</div>
+<p>such that <span class="math notranslate nohighlight">\(\tilde{u}(\pm 1) = 0\)</span>. And then since <span class="math notranslate nohighlight">\(u'' = \tilde{u}''+B'' = \tilde{u}''\)</span>, we can solve</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{u}'' = f, \quad x\in [-1, 1], \, \tilde{u}(\pm 1) = 0.
+\]</div>
+<p>The variational form becomes: find <span class="math notranslate nohighlight">\(\tilde{u}_N \in V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+\left(\tilde{u}_N''-f, v \right) = 0, \quad \forall \, v \in V_N.
+\]</div>
+<p>And then, in the end, we simply set <span class="math notranslate nohighlight">\(u_N = \tilde{u}_N + B\)</span>.</p>
+<p>As an example, we use the manufactured solution <span class="math notranslate nohighlight">\(u(x) = \exp(\cos(x-0.5))\)</span>, and reuse most of the code from the Legendre case above. In fact, the code used to solve for the Legendre coefficients is identical, and only the right hand side needs to be modified since the manufactured solution is new:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">))</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">uh</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">uh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have now found <span class="math notranslate nohighlight">\(\tilde{u}_N\)</span> and we compute <span class="math notranslate nohighlight">\(u_N = \tilde{u} + B(x)\)</span> below. It is the same code as before, only with <span class="math notranslate nohighlight">\(B(x)\)</span> added. The result is also equally good, with the Legendre coefficients moving quickly to zero. However, since the solution now is neither odd or even, all the Legendre coefficients are nonzero.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Ps</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">))(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">xj</span><span class="p">))</span>
+<span class="n">Bs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">B</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">Bs</span><span class="p">,</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span> <span class="o">+</span> <span class="n">Bs</span><span class="p">,</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)),</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;One coefficient&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> coefficients&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$|\hat</span><span class="si">{u}</span><span class="s1">|$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" src="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" />
+</div>
+</div>
+</section>
+<section id="neumann-boundary-conditions">
+<h5>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this heading">#</a></h5>
+<p>Poisson’s equation is also often solved with Neumann boundary conditions</p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson-neumann">
+<span class="eqno">(43)<a class="headerlink" href="#equation-eq-poisson-neumann" title="Permalink to this equation">#</a></span>\[
+u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
+\]</div>
+<p>However, this problem is actually ill-defined because if <span class="math notranslate nohighlight">\(u\)</span> is a solution, then <span class="math notranslate nohighlight">\(u + c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant, is also a solution. This follows since both the equation and both the boundary conditions contain at least one derivative. After all, <span class="math notranslate nohighlight">\((u+c)'' = u'' + c'' = u'' \)</span> and <span class="math notranslate nohighlight">\((u+c)' = u' + c' = u'\)</span>. Bottom line, we need an additional constraint in order to pose a well-defined Neumann problem. A common additional constraint to <a class="reference internal" href="#equation-eq-poisson-neumann">(43)</a> is to require that</p>
+<div class="math notranslate nohighlight" id="equation-eq-neumann-constraint">
+<span class="eqno">(44)<a class="headerlink" href="#equation-eq-neumann-constraint" title="Permalink to this equation">#</a></span>\[
+(u, 1) = \int_{\Omega} u(x) dx = c,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is still a constant.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is only the pure Neumann problem that is ill-defined. If we switch one of the boundary conditions with a Dirichlet condition, then it will be well-defined.</p>
+</div>
+<p>The Neumann problem can be solved with basis functions</p>
+<div class="math notranslate nohighlight" id="equation-eq-basis-neumann">
+<span class="eqno">(45)<a class="headerlink" href="#equation-eq-basis-neumann" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align*}
+\psi_j(x) &amp;= \cos(\pi j(x+1)/2), \\
+\psi_j(x) &amp;= P_j - \frac{j(j+1)}{(j+2)(j+3)}P_{j+2},
+\end{align*}
+\end{split}\]</div>
+<p>because they all satisfy <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>. However, note that for both the cosine and the Legendre bases we get that <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> since <span class="math notranslate nohighlight">\(\cos(0) = P_0 = 1\)</span>. This basis function is such that <span class="math notranslate nohighlight">\(\psi'_0=0\)</span> and it will as such lead to a zero column in  the stiffness matrix since <span class="math notranslate nohighlight">\((\psi''_0, \psi_i) = 0\)</span>. Hence this basis function cannot be used for solving Poisson’s equation directly. It can, however, be used to fix the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(44)</a>.</p>
+<p>We solve the Neumann problem with the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, but in order to also specify the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(44)</a> we will need to use a modified function space <span class="math notranslate nohighlight">\(\{u_N \in V_N | (u_N, 1) = c \}\)</span>. Since <span class="math notranslate nohighlight">\((\psi_j, 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(j \in (1, 2, \ldots, N)\)</span>, we get that</p>
+<div class="math notranslate nohighlight">
+\[
+(u_N, 1) = \sum_{j=0}^N (\psi_j, 1) \hat{u}_j = (\psi_0, 1)\hat{u}_0 = c,
+\]</div>
+<p>and since <span class="math notranslate nohighlight">\((\psi_0, 1) = (1, 1) = 2\)</span> we get that <span class="math notranslate nohighlight">\(\hat{u}_0 = c/2\)</span>. So the first of the unknowns is already fixed, and we need only solve for <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=1}^N\)</span>. To this end, for the remaining unknowns we use the modified <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span> and find <span class="math notranslate nohighlight">\(\tilde{u}_N \in \tilde{V}_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(\tilde{u}_N'', v) = f, \quad \forall \, v \in \tilde{V}_N.
+\]</div>
+<p>And the we use <span class="math notranslate nohighlight">\(u_N = \hat{u}_0 + \tilde{u}_N = \sum_{j=0}^N \hat{u}_j \psi_j\)</span>.</p>
+<p>Lets consider the cosine basis first with <span class="math notranslate nohighlight">\(V_N = \text{span}\{\cos(\pi j (x+1)/2)\}_{j=0}^N\)</span>. For all <span class="math notranslate nohighlight">\(i, j &gt; 0\)</span> we get the stiffness matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+s_{ij} &amp;= \left((\cos(\pi j (x+1)/2))'', \cos(\pi i (x+1)/2) \right), \\
+  &amp;= - \frac{\pi^2 j^2}{4}\left(\cos(\pi j (x+1)/2), \cos(\pi i (x+1)/2) \right), \\
+  &amp;= - \frac{\pi^2 j^2}{4} \delta_{ij}.
+\end{align*}
+\end{split}\]</div>
+<p>We can solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(43)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = -\frac{4}{\pi^2 i^2} \left(f, \cos(\pi i (x+1)/2) \right), \quad i \in (1, 2, \ldots, N),
+\]</div>
+<p>and we already know that <span class="math notranslate nohighlight">\(\hat{u}_0 = c/2\)</span>.</p>
+<p>We can implement the Neumann problem using a manufactured solution that satisfies the correct boundary conditions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># manufactured f</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">ue</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">j</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">uh</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">uh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution can then be plotted along with the absolute value of the coefficients <span class="math notranslate nohighlight">\(\{|\hat{u}_j|\}_{j=0}^N\)</span>, which shows how the series is converging.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cosines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">))[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">cosines</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">cosines</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;Two coefficients&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> coefficients&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$|\hat</span><span class="si">{u}</span><span class="s1">|$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" src="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" />
+</div>
+</div>
+<p>We can do the same for Legendre basis <span class="math notranslate nohighlight">\(V_N = \{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(45)</a>. The stiffness matrix is then</p>
+<div class="math notranslate nohighlight">
+\[
+s_{ij} = (\psi''_j, \psi_i) = -(\psi'_j, \psi'_i).
+\]</div>
+<p>It can be shown with a lot of tedious work that</p>
+<div class="math notranslate nohighlight">
+\[
+s_{ij} = -\alpha(i) \delta_{ij},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha(i) = i(i+1)-\frac{i^2(i+1)^2}{(i+2)(i+3)}\)</span>. Since the stiffnesss matrix is diagonal we can easily solve for the unknown expansion coefficients</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{-1}{\alpha(i)}(f, \psi_i), \quad i \in (1, 2, \ldots, N),
+\]</div>
+<p>and again <span class="math notranslate nohighlight">\(\hat{u}_0 = c/2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span><span class="o">*</span><span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">j</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">alpha</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">uh</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">uh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Ps</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">))(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">xj</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)),</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;Two coefficients&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> coefficients&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$|\hat</span><span class="si">{u}</span><span class="s1">|$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" src="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" />
+</div>
+</div>
+<p>The Neumann problem also has a particularly nice implementation option through the use of <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a></p>
+<div class="math notranslate nohighlight">
+\[
+(u'', v) = -(u', v') + [u' v]_{-1}^1.
+\]</div>
+<p>Now, if <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, then <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. We can thus solve the Neumann problem as: find <span class="math notranslate nohighlight">\(\tilde{u}_N \in \tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+-(\tilde{u}_N', v') = (f, v), \quad \forall \, v \in \tilde{V}_N,
+\]</div>
+<p>and then again use the solution <span class="math notranslate nohighlight">\(u_N = \hat{u}_0+\tilde{u}_N\)</span>.</p>
+<p>Note that there is no need for a basis function that satisfies <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>, because the boundary condition is enforced through the variational form using integration by parts. We can thus solve the problem simply using basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>. However, since the stiffness matrix now turns out to be not diagonal we need to set up and solve a linear algebra problem.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By setting the Neumann condition through the variational form we say that the boundary condition is enforced weakly.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="c1"># Not using Sympy because of accuracy</span>
+<span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uf</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">psi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
+<span class="n">fhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">quad</span><span class="p">(</span><span class="n">uf</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1"># Compute the stiffness matrix</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+<span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># To fix constraint uh[0] = c/2</span>
+
+<span class="n">fh</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># constraint</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fhat</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="n">fh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">Ps</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">))(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">xj</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span>
+         <span class="n">xj</span><span class="p">,</span> <span class="n">Ps</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)),</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;Two coefficients&#39;</span><span class="p">,</span> <span class="s1">&#39;Four coefficients&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1"> coefficients&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Solution&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$|\hat</span><span class="si">{u}</span><span class="s1">|$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" src="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the Neumann boundary conditions are set weakly, the computed solution will not satisfy the boundary conditions exactly. The boundary conditions will converge towards the correct solution, just like for the rest of the problem.</p>
+</div>
+<p>The Neumann problem can also be solved with shenfun.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}})</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">uh</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/78ded2d5fe70a7ade817851de383db4f2bad2e54e0517b98fc33f9d6f493106b.png" src="_images/78ded2d5fe70a7ade817851de383db4f2bad2e54e0517b98fc33f9d6f493106b.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Poisson’s equation can be solved with any combination of Dirichlet and Neumann boundary conditions. In shenfun these are specified as a dictionary. For example <code class="docutils literal notranslate"><span class="pre">{'left':</span> <span class="pre">{'N':</span> <span class="pre">a},</span> <span class="pre">'right':</span> <span class="pre">{'D':</span> <span class="pre">b}}</span></code> for Neumann at the left boundary and Dirichlet on the right, whereas <code class="docutils literal notranslate"><span class="pre">{'left':</span> <span class="pre">{'N':</span> <span class="pre">a,</span> <span class="pre">'D':</span> <span class="pre">b}}</span></code> specifies both Dirichlet and Neumann on the left hand side and nothing on the right. Shenfun will choose appropriate basis functions that satisfy the given (but homogeneous) boundary conditions. Shenfun also adds boundary functions for nonzero boundary conditions automatically.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="collocation">
+<h3>Collocation<a class="headerlink" href="#collocation" title="Permalink to this heading">#</a></h3>
+<p>The collocation method is very popular mainly because it is intuitive and easy to implement (it requires no integration). However, it is not very often used for solving PDEs as a global method. The main reason for this is that it is less efficient and requires more memory than a well planned <em>modal</em> Galerkin method. The Galerkin methods we have seen above have all, with one exception, led to diagonal stiffness matrices for Poisson’s equation. While this may not be the case for other equations, the modal methods will usually lead to banded matrices that are easy to invert. We will see below that the collocation method leads to a dense stiffness matrix.</p>
+<p>We will now solve Poisson’s equation using collocation and Lagrange polynomials. The procedure is exactly like for function approximation, but now we satisfy a differential equation instead of an algebraic, and we apply the boundary conditions <span class="math notranslate nohighlight">\(u(-1)=a\)</span> and <span class="math notranslate nohighlight">\(u(1)=b\)</span> at the two edges. We thus attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that the following <span class="math notranslate nohighlight">\(N+1\)</span> equations are satisfied</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathcal{R}_{N}(x_j) &amp;= 0, \quad \forall \, j \in (1, 2, \ldots, N-1), \\
+u_N(-1) &amp;=  a \quad \text{and} \quad u_N(1) = b.
+\end{align*}
+\end{split}\]</div>
+<p>The basis is <span class="math notranslate nohighlight">\(\{\ell_j\}_{j=0}^N\)</span>, and just like for function approximation it is advantageous to use a computational mesh that is not uniform, but rather skewed towards the edges. We will use the Chebyshev points <span class="math notranslate nohighlight">\(\{\cos(i \pi /N)\}_{i=0}^N \)</span> and the Lagrange polynomials that are still</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ell_j(x) = \prod_{\substack{0 \le m \le N \\ m \ne j}} \frac{x-x_m}{x_j-x_m}.
+\end{split}\]</div>
+<p>Inserting for the Lagrange polynomials and <span class="math notranslate nohighlight">\(u_N\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_N(x_i)=0\)</span> we get the <span class="math notranslate nohighlight">\(N-1\)</span> equations</p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson-coll">
+<span class="eqno">(46)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^N \ell''_j(x_i) \hat{u_j} = f(x_i), \quad i = (1, 2, \ldots, N-1), 
+\]</div>
+<p>plus the two boundary conditions that lead to <span class="math notranslate nohighlight">\(\hat{u}_0 = a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N = b\)</span>. To solve this problem we will use a second <strong>derivative matrix</strong>, <span class="math notranslate nohighlight">\(D^{(2)} = (\ell^{''}_j(x_i))_{i,j=0}^N\)</span>, modified in the first and last rows to account for the boundary conditions. This is the same approach as used for the finite difference method.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The global collocation method is similar to the finite difference methods in that we assemble and use derivative matrices. However, the derivative matrices are dense and not banded, since all mesh points are used by all basis functions.</p>
+</div>
+<p>The derivative matrix of any order <span class="math notranslate nohighlight">\(n\)</span> is defined as <span class="math notranslate nohighlight">\(d^{(n)}_{ij} = \ell^{(n)}_{j}(x_i)\)</span>, where <span class="math notranslate nohighlight">\(\ell^{(n)}_j(x) = \frac{d^n }{dx^n}\ell_j(x)\)</span>. We use this matrix directly to compute derivatives in mesh points. That is, for the mesh <span class="math notranslate nohighlight">\(\{x_i\}_{i=0}^N\)</span>, we find the <span class="math notranslate nohighlight">\(n\)</span>’th derivative of the mesh function <span class="math notranslate nohighlight">\(\boldsymbol{u} = \{u_j\}_{j=0}^N\)</span>, where <span class="math notranslate nohighlight">\(u_j = u(x_j)\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d^n}{dx^n} u_j = \sum_{j=0}^N d^{(n)}_{ij} u_{j}.
+\]</div>
+<p>Alternatively, on matrix form</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d^n}{dx^n}\boldsymbol{u} = D^{(n)} \boldsymbol{u},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(46)</a> can as such be assembled as</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{D}^{(2)} \boldsymbol{\hat{u}} = \boldsymbol{f},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is <span class="math notranslate nohighlight">\(D^{(2)}\)</span> modified to account for boundary conditions (by identing the first and last row).</p>
+<p>The derivatives of Lagrange polynomials <span class="math notranslate nohighlight">\(\ell^{(n)}_j\)</span> can be computed directly from the Sympy functions we have defined and used until now, as implemented in <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-book/blob/main/lagrange.py">lagrange.py</a>. However, these direct formulas are not very resistant towards round off errors and it turns out that it is much more efficient to use some ready made formulas. First the Lagrange polynomial can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\ell_j(x) = \theta(x) \frac{w_j}{x-x_j},
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\theta(x) &amp;= \prod^N_{\substack{i=0}}(x-x_i), \\
+w_j &amp;= \frac{1}{\prod^N_{\substack{i=0 \\ i \neq j}} (x_j - x_i)}, \quad j \in (0, 1, \ldots, N).
+\end{align*}
+\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\{w_j\}_{j=0}^N\)</span> are often referred to as barycentric weights. These weights are readily available from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">scipy.interpolate.BarycentricInterpolator</a>. We can then obtain the derivative matrix <span class="math notranslate nohighlight">\(d_{ij} = \ell'_j(x_i)\)</span> as</p>
+<div class="math notranslate nohighlight" id="equation-eq-derivative-coll">
+<span class="eqno">(47)<a class="headerlink" href="#equation-eq-derivative-coll" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align*}
+d_{ij} &amp;= \frac{w_j}{w_i(x_i-x_j)}, \quad i \, \neq j, \\
+d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
+\end{align*}
+\end{split}\]</div>
+<p>This derivative is implemented below using vectorized and efficient Python code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">BarycentricInterpolator</span>
+<span class="k">def</span> <span class="nf">Derivative</span><span class="p">(</span><span class="n">xj</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">wi</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">W</span> <span class="o">/</span> <span class="n">X</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">D</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(47)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
+<div class="math notranslate nohighlight">
+\[
+W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
+\]</div>
+<p>This is implemented as <code class="docutils literal notranslate"><span class="pre">W</span> <span class="pre">=</span> <span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">/</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code>. Here <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> is a row vector of shape <span class="math notranslate nohighlight">\(1 \times (N+1)\)</span>, whereas <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> is a column vector of shape <span class="math notranslate nohighlight">\((N+1) \times 1\)</span>. When we take the elementwise division <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">/</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code>, then these two vectors have different shape and Numpy tries to broadcast them into the same shape. The shape that works for both arrays is <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span>. This is only possible to illustrate with an example.</p>
+<p>Assume that we have a vector <code class="docutils literal notranslate"><span class="pre">w</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(3,)</span></code>. From this we create <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code>, which is of shape <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">3)</span></code> and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">1)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">display</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="n">display</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3]])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1],
+       [2],
+       [3]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now multiply <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">*</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code> and obtain a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [2, 4, 6],
+       [3, 6, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> are first broadcasted to the two <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices that are constant along the first and second axis, respectively. The matrices are extruded along the axis that contains <code class="docutils literal notranslate"><span class="pre">None</span></code>. So <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> is extruded along the first axis and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> along the second.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[1, 2, 3],
+        [1, 2, 3],
+        [1, 2, 3]]),
+ array([[1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the end the extruded <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices are of the same shape and they may be multiplied together elementwise. However, the intermediate <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices are never actually created. Numpy handles all this under the hood and it is very efficient. Try to implement <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> with for-loops and without vectorization. You will probably find that it is easier to implement, but the code is also likely to run much slower.</p>
+<p>Back to the derivative matrix. We have computed the first derivative matrix, and the second derivative matrix, or any higher order <span class="math notranslate nohighlight">\(d_{ij}^{(n)}\)</span>, can now be implemented recursively as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+d^{(n)}_{ij} &amp;= \frac{n}{x_i-x_j}\left(\frac{w_j}{w_i} d^{(n-1)}_{ii} - d^{(n-1)}_{ij} \right), \\
+d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
+\end{align*}
+\end{split}\]</div>
+<p>A vectorized implementation of this recursive algorithm is shown below in <code class="docutils literal notranslate"><span class="pre">PolyDerivative</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">wi</span>
+    <span class="c1">#D = Derivative(xj) # compute it directly below because W and X are needed</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">W</span> <span class="o">/</span> <span class="n">X</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">D</span>
+    <span class="n">D2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">D2</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="n">X</span> <span class="o">*</span> <span class="p">(</span><span class="n">W</span> <span class="o">*</span> <span class="n">D</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">D</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">D</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">D2</span>
+    <span class="k">return</span> <span class="n">D2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> and <code class="docutils literal notranslate"><span class="pre">PolyDerivative</span></code> are available in the <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-book/blob/main/lagrange.py">lagrange.py</a> module.</p>
+<p>We now create a solver <code class="docutils literal notranslate"><span class="pre">poisson_coll</span></code> that assembles and solves Poisson’s equation with <code class="docutils literal notranslate"><span class="pre">N+1</span></code> collocation points and a given right hand side <code class="docutils literal notranslate"><span class="pre">f</span></code> as a Sympy function. We also create a function to compute the <span class="math notranslate nohighlight">\(L^2\)</span> error, because with the collocation method you cannot simply look at the magnitude of the computed expansion coefficients as a measure of the convergence.</p>
+<p>The linear algebra system we solve for any given <span class="math notranslate nohighlight">\(N\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{D}^{(2)} \boldsymbol{\hat{u}} = \boldsymbol{f},
+\]</div>
+<p>such that</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\hat{u}} = \tilde{D}^{(-2)} \boldsymbol{f},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{D}^{(-2)}\)</span> is the inverse matrix of <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># Get second derivative matrix</span>
+    <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># ident first row</span>
+    <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># ident last row</span>
+    <span class="n">fh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">fh</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">fh</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fh</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc</span>             <span class="c1"># Fix boundary conditions</span>
+    <span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uh</span><span class="p">,</span> <span class="n">D</span>
+
+<span class="k">def</span> <span class="nf">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">):</span>
+    <span class="n">uj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">yi</span><span class="o">=</span><span class="n">uh</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="n">L</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">2.</span><span class="o">/</span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We choose the manufactured solution <span class="math notranslate nohighlight">\(u(x) = \exp(\cos(x-0.5))\)</span> and solve the problem for a range of <span class="math notranslate nohighlight">\(N\)</span>. The error is seen to disappear very quickly, matching even the Legendre method from above. However, note that in order to solve the problem we need to invert a dense matrix <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span>. This was not necessary (or at least trivial) for the Legendre method because the stiffness matrix there was diagonal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">uh</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">)</span>
+<span class="n">err</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+    <span class="n">uh</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">)</span>
+    <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">err</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/acca9c367a314bdd264e6375ac50d5e14f1beae89fd2110f46c1ff3cf5baf141.png" src="_images/acca9c367a314bdd264e6375ac50d5e14f1beae89fd2110f46c1ff3cf5baf141.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -594,6 +1307,24 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture10.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 10</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mandatory1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -609,7 +1340,18 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-s-equation">Poisson’s equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inhomogeneous-dirichlet">Inhomogeneous Dirichlet</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#collocation">Collocation</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
