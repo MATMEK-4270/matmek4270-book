@@ -1271,14 +1271,14 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2134264ea6129295a57bd82dc823550f253b0a67aad880ffd5baca493eb8e8c5.png" src="_images/2134264ea6129295a57bd82dc823550f253b0a67aad880ffd5baca493eb8e8c5.png" />
+<img alt="_images/18a005a2542bc75359baeffdb49b1e88f4a671eb9ed1affe6bf2b51632c56772.png" src="_images/18a005a2542bc75359baeffdb49b1e88f4a671eb9ed1affe6bf2b51632c56772.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="weekly-assignments">
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
-<p>In this weeks assignments you may choose the method of implementation, Galerkin or collocation, or both. You are also encouraged to try to implement the problems both on you own and by using <a class="reference external" href="https://github.com/spectralDNS/shenfun">shenfun</a>.</p>
+<p>In this weeks assignments you may choose the method of implementation: Galerkin, collocation, or both. Also, if you use a Galerkin method, then choose either Legendre or Chebyshev polynomials or both. You are also encouraged to try to implement the problems both on you own and by using <a class="reference external" href="https://github.com/spectralDNS/shenfun">shenfun</a>.</p>
 <ol class="arabic simple">
 <li><p>Solve the inhomogeneous Helmholtz equation</p></li>
 </ol>
@@ -1286,7 +1286,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 \[
 u'' + \alpha u = f, \quad x \in [-1, 1], u(\pm 1)=0,
 \]</div>
-<p>using the manufactured solution <span class="math notranslate nohighlight">\(u(x)=(1-x^2)\exp(\cos(x-0.5))\)</span> and <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>. Try also to remove <span class="math notranslate nohighlight">\(1-x^2\)</span> and solve the same problem with inhomogeneous boundary conditions.</p>
+<p>using the manufactured solution <span class="math notranslate nohighlight">\(u(x)=(1-x^2)\exp(\cos(x-0.5))\)</span> and <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>. Try also to remove <span class="math notranslate nohighlight">\(1-x^2\)</span> and solve the same problem with inhomogeneous boundary conditions. Plot both the solution and the <span class="math notranslate nohighlight">\(L^2\)</span> error.</p>
 <ol class="arabic simple" start="2">
 <li><p>Solve the homogeneous Helmholtz equation in the domain <span class="math notranslate nohighlight">\(x \in [0, 1]\)</span> and vary the parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> such that <span class="math notranslate nohighlight">\(\epsilon \in (1, 0.1, 0.01, 0.001)\)</span>:</p></li>
 </ol>
@@ -1300,6 +1300,14 @@ u'' + \frac{1}{\epsilon} u = 0, \quad x \in [0, 1], u(0) = 0, u(1) = 1.
 u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 \]</div>
 <p>See also Sec 4.5 in <a class="reference external" href="https://link.springer.com/book/10.1007/978-3-030-23788-2">Introduction to Numerical Methods for Variational Problems</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The Galerkin method with Legendre polynomials lead to a diagonal stiffness matrix, but the mass matrix (<span class="math notranslate nohighlight">\(a_{ij} = (\psi_j, \psi_i) = (P_{j}-P_{j+2}, P_i-P_{i+2})\)</span>) that you need for the Helmholtz problem will be banded with three nonzero diagonals. The diagonals are located at <span class="math notranslate nohighlight">\(a_{i, i-2}, a_{i,i}, a_{i, i+2}\)</span> and are easily computed by hand from using <span class="math notranslate nohighlight">\((P_j, P_i) = \frac{2}{2i+1}\delta_{ij}\)</span>.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The Galerkin method with Chebyshev polynomials lead to a dense stiffness matrix and a tri-diagonal mass matrix, like for Legendre.</p>
+</div>
 </section>
 </section>
 
