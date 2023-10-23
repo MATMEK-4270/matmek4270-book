@@ -613,7 +613,27 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 <img alt="_images/28c65c4be1cdf1d7d31c5475335bc8a704c81ed818900cbe9c8548c350e32aa2.png" src="_images/28c65c4be1cdf1d7d31c5475335bc8a704c81ed818900cbe9c8548c350e32aa2.png" />
 </div>
 </div>
-<p>Lets solve the same problem with Legendre polynomials instead and basis functions <span class="math notranslate nohighlight">\(\psi_i(x) = P_i(x)-P_{i+2}(x)\)</span>. The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now equal to <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. We now solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(42)</a> and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
+<p>Lets solve the same problem with Legendre polynomials instead and basis functions <span class="math notranslate nohighlight">\(\psi_i(x) = P_i(x)-P_{i+2}(x)\)</span>. The first 4 of these basis functions are shown below. Note that even numbered basis functions 0 and 2 are even, whereas the odd numbered basis functions are odd.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span> <span class="k">as</span> <span class="n">Leg</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">psi</span><span class="p">(</span><span class="n">i</span><span class="p">)(</span><span class="n">xj</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$P_0-P_2$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_1-P_3$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_2-P_4$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_3-P_5$&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1aac242d0&gt;
+</pre></div>
+</div>
+<img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
+</div>
+</div>
+<p>The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now a subspace of <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. The subspace can also be denoted as <span class="math notranslate nohighlight">\(V_N=\{v \in \mathbb{P}_{N+2} | v(\pm 1)=0\}\)</span>. In order to solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(42)</a> we need to assemble the stiffness matrix and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
 <div class="math notranslate nohighlight">
 \[
 (2j+3)P_{j+1} = P'_{j+2}-P'_{j}.
@@ -636,9 +656,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 <p>An implementation is shown below</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span> <span class="k">as</span> <span class="n">Leg</span>
-<span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Not using Sympy because of accuracy</span>
-<span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
 <span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">))</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -673,19 +691,19 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="n">VN</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">VN</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">VN</span><span class="p">)</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">uh</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[::</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bab9cb4bf7d88b21a891199ef69ec4f57a2d3d111ab9413ff01cd8c186fd006d.png" src="_images/bab9cb4bf7d88b21a891199ef69ec4f57a2d3d111ab9413ff01cd8c186fd006d.png" />
+<img alt="_images/d7777b39bfa5f4527ed10c50a0460baff60ab8f736701bec5c9444a30f0d9b16.png" src="_images/d7777b39bfa5f4527ed10c50a0460baff60ab8f736701bec5c9444a30f0d9b16.png" />
 </div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
@@ -699,7 +717,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 </div>
 </div>
-<p>Note that the matrix <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N-2)\times (N-2)}\)</span> whereas <span class="math notranslate nohighlight">\(b \in \mathbb{R}^N\)</span>. This has to do with the two boundary conditions, which are stored in <span class="math notranslate nohighlight">\(b[-2]\)</span> and <span class="math notranslate nohighlight">\(b[-1]\)</span>. Also, since there are 2 boundary conditions, the space created with dimension <span class="math notranslate nohighlight">\(N\)</span> has only <span class="math notranslate nohighlight">\(N-2\)</span> unknown coefficients. This is the reason why <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N-2)\times (N-2)}\)</span> and not <span class="math notranslate nohighlight">\(\in \mathbb{R}^{ N\times N}\)</span>.</p>
+<p>Note that the matrix <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> as expected, whereas <span class="math notranslate nohighlight">\(uh \in \mathbb{R}^{N+3}\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{N+3}\)</span>. This has to do with the two (possibly nonzero) boundary conditions, which are then stored in <code class="docutils literal notranslate"><span class="pre">uh[-2]``</span> <span class="pre">and</span> </code>uh[-1]`. Also, note that because of these two boundary conditions shenfun created the space <span class="math notranslate nohighlight">\(V_N=\text{span}\{P_i-P_{i+2}\}_{i=0}^{N}\)</span> using the first argument <span class="math notranslate nohighlight">\(N+3\)</span> and not <span class="math notranslate nohighlight">\(N+1\)</span>.</p>
 <section id="boundary-conditions">
 <h4>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h4>
 <section id="inhomogeneous-dirichlet">
@@ -752,7 +770,7 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 </div>
 </div>
-<p>We have now found <span class="math notranslate nohighlight">\(\tilde{u}_N\)</span> and we compute <span class="math notranslate nohighlight">\(u_N = \tilde{u} + B(x)\)</span> below. It is the same code as before, only with <span class="math notranslate nohighlight">\(B(x)\)</span> added. The result is also equally good, with the Legendre coefficients moving quickly to zero. However, since the solution now is neither odd or even, all the Legendre coefficients are nonzero.</p>
+<p>We have now found <span class="math notranslate nohighlight">\(\tilde{u}_N\)</span> and we compute <span class="math notranslate nohighlight">\(u_N = \tilde{u} + B(x)\)</span> below. It is the same code as before, only with <span class="math notranslate nohighlight">\(B(x)\)</span> added. The result is also equally good, with the Legendre coefficients moving quickly to zero. However, since the solution now is neither odd nor even, all the Legendre coefficients are nonzero.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -819,7 +837,7 @@ u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
 \[
 (\tilde{u}_N'', v) = f, \quad \forall \, v \in \tilde{V}_N.
 \]</div>
-<p>And the we use <span class="math notranslate nohighlight">\(u_N = \hat{u}_0 + \tilde{u}_N = \sum_{j=0}^N \hat{u}_j \psi_j\)</span>.</p>
+<p>And then we use <span class="math notranslate nohighlight">\(u_N = \hat{u}_0 + \tilde{u}_N = \sum_{j=0}^N \hat{u}_j \psi_j\)</span>.</p>
 <p>Lets consider the cosine basis first with <span class="math notranslate nohighlight">\(V_N = \text{span}\{\cos(\pi j (x+1)/2)\}_{j=0}^N\)</span>. For all <span class="math notranslate nohighlight">\(i, j &gt; 0\)</span> we get the stiffness matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -829,7 +847,7 @@ s_{ij} &amp;= \left((\cos(\pi j (x+1)/2))'', \cos(\pi i (x+1)/2) \right), \\
   &amp;= - \frac{\pi^2 j^2}{4} \delta_{ij}.
 \end{align*}
 \end{split}\]</div>
-<p>We can solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(43)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
+<p>We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(43)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = -\frac{4}{\pi^2 i^2} \left(f, \cos(\pi i (x+1)/2) \right), \quad i \in (1, 2, \ldots, N),
@@ -880,11 +898,11 @@ s_{ij} &amp;= \left((\cos(\pi j (x+1)/2))'', \cos(\pi i (x+1)/2) \right), \\
 <p>We can do the same for Legendre basis <span class="math notranslate nohighlight">\(V_N = \{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(45)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
 \[
-s_{ij} = (\psi''_j, \psi_i) = -(\psi'_j, \psi'_i).
+s_{ij} = (\psi''_j, \psi_i) = -(\psi'_j, \psi'_i),
 \]</div>
-<p>It can be shown with a lot of tedious work that</p>
-<div class="math notranslate nohighlight">
-\[
+<p>and it can be shown with a lot of tedious work that</p>
+<div class="math notranslate nohighlight" id="equation-eq-neumann-stiffness">
+<span class="eqno">(46)<a class="headerlink" href="#equation-eq-neumann-stiffness" title="Permalink to this equation">#</a></span>\[
 s_{ij} = -\alpha(i) \delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha(i) = i(i+1)-\frac{i^2(i+1)^2}{(i+2)(i+3)}\)</span>. Since the stiffnesss matrix is diagonal we can easily solve for the unknown expansion coefficients</p>
@@ -934,25 +952,15 @@ s_{ij} = -\alpha(i) \delta_{ij},
 <img alt="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" src="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" />
 </div>
 </div>
-<p>The Neumann problem also has a particularly nice implementation option through the use of <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a></p>
+<p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
 <div class="math notranslate nohighlight">
 \[
 (u'', v) = -(u', v') + [u' v]_{-1}^1.
 \]</div>
-<p>Now, if <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, then <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. We can thus solve the Neumann problem as: find <span class="math notranslate nohighlight">\(\tilde{u}_N \in \tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span> such that</p>
-<div class="math notranslate nohighlight">
-\[
--(\tilde{u}_N', v') = (f, v), \quad \forall \, v \in \tilde{V}_N,
-\]</div>
-<p>and then again use the solution <span class="math notranslate nohighlight">\(u_N = \hat{u}_0+\tilde{u}_N\)</span>.</p>
-<p>Note that there is no need for a basis function that satisfies <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>, because the boundary condition is enforced through the variational form using integration by parts. We can thus solve the problem simply using basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>. However, since the stiffness matrix now turns out to be not diagonal we need to set up and solve a linear algebra problem.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By setting the Neumann condition through the variational form we say that the boundary condition is enforced weakly.</p>
-</div>
+<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(46)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi_j(\pm 1) \ne=0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="c1"># Not using Sympy because of accuracy</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
 <span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">uf</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">psi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
@@ -1006,25 +1014,25 @@ s_{ij} = -\alpha(i) \delta_{ij},
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When the Neumann boundary conditions are set weakly, the computed solution will not satisfy the boundary conditions exactly. The boundary conditions will converge towards the correct solution, just like for the rest of the problem.</p>
+<p>When the Neumann boundary conditions are set weakly, the computed solution will not satisfy the boundary conditions exactly. The boundary conditions will converge towards the correct solution, though, just like for the rest of the problem.</p>
 </div>
 <p>The Neumann problem can also be solved with shenfun.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}})</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}})</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">uh</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/78ded2d5fe70a7ade817851de383db4f2bad2e54e0517b98fc33f9d6f493106b.png" src="_images/78ded2d5fe70a7ade817851de383db4f2bad2e54e0517b98fc33f9d6f493106b.png" />
+<img alt="_images/0a5f9b364ef6927776e6a101efdaec5ab19a1e9209bd727c3f06cc9c182aa814.png" src="_images/0a5f9b364ef6927776e6a101efdaec5ab19a1e9209bd727c3f06cc9c182aa814.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1052,7 +1060,7 @@ u_N(-1) &amp;=  a \quad \text{and} \quad u_N(1) = b.
 \end{split}\]</div>
 <p>Inserting for the Lagrange polynomials and <span class="math notranslate nohighlight">\(u_N\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_N(x_i)=0\)</span> we get the <span class="math notranslate nohighlight">\(N-1\)</span> equations</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-coll">
-<span class="eqno">(46)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(47)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N \ell''_j(x_i) \hat{u}_j = f(x_i), \quad i = (1, 2, \ldots, N-1), 
 \]</div>
 <p>plus the two boundary conditions that lead to <span class="math notranslate nohighlight">\(\hat{u}_0 = a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N = b\)</span>. To solve this problem we will use a second <strong>derivative matrix</strong>, <span class="math notranslate nohighlight">\(D^{(2)} = (\ell^{''}_j(x_i))_{i,j=0}^N\)</span>, modified in the first and last rows to account for the boundary conditions. This is the same approach as used for the finite difference method.</p>
@@ -1070,7 +1078,7 @@ u_N(-1) &amp;=  a \quad \text{and} \quad u_N(1) = b.
 \[
 \frac{d^n}{dx^n}\boldsymbol{u} = D^{(n)} \boldsymbol{u},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(46)</a> can as such be assembled as</p>
+<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(47)</a> can as such be assembled as</p>
 <div class="math notranslate nohighlight">
 \[
 \tilde{D}^{(2)} \boldsymbol{\hat{u}} = \boldsymbol{f},
@@ -1091,7 +1099,7 @@ w_j &amp;= \frac{1}{\prod^N_{\substack{i=0 \\ i \neq j}} (x_j - x_i)}, \quad j \
 \end{split}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(\{w_j\}_{j=0}^N\)</span> are often referred to as barycentric weights. These weights are readily available from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">scipy.interpolate.BarycentricInterpolator</a>. We can then obtain the derivative matrix <span class="math notranslate nohighlight">\(d_{ij} = \ell'_j(x_i)\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-derivative-coll">
-<span class="eqno">(47)<a class="headerlink" href="#equation-eq-derivative-coll" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(48)<a class="headerlink" href="#equation-eq-derivative-coll" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 d_{ij} &amp;= \frac{w_j}{w_i(x_i-x_j)}, \quad i \, \neq j, \\
 d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
@@ -1114,7 +1122,7 @@ d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
 </div>
 </div>
 </div>
-<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(47)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(48)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
 <div class="math notranslate nohighlight">
 \[
 W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
@@ -1256,7 +1264,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">uh</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">)</span>
 <span class="n">err</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
     <span class="n">uh</span><span class="p">,</span> <span class="n">D</span> <span class="o">=</span> <span class="n">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">)</span>
     <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">))</span>
 </pre></div>
@@ -1266,12 +1274,12 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">err</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">err</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/531d47c95be1b001f2214748203ac49ed65ad5a5881f50cc9cf41830ed70f8dc.png" src="_images/531d47c95be1b001f2214748203ac49ed65ad5a5881f50cc9cf41830ed70f8dc.png" />
+<img alt="_images/3b225facdca8cb2382e77cd3d7568839dcfeaacfa45903c95613f00a59acbea4.png" src="_images/3b225facdca8cb2382e77cd3d7568839dcfeaacfa45903c95613f00a59acbea4.png" />
 </div>
 </div>
 </section>
