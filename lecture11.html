@@ -627,7 +627,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1aac242d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1abc66e10&gt;
 </pre></div>
 </div>
 <img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
@@ -957,7 +957,7 @@ s_{ij} = -\alpha(i) \delta_{ij},
 \[
 (u'', v) = -(u', v') + [u' v]_{-1}^1.
 \]</div>
-<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(46)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi_j(\pm 1) \ne=0\)</span>.</p>
+<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(46)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi_j(\pm 1) \ne 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
@@ -1063,7 +1063,17 @@ u_N(-1) &amp;=  a \quad \text{and} \quad u_N(1) = b.
 <span class="eqno">(47)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N \ell''_j(x_i) \hat{u}_j = f(x_i), \quad i = (1, 2, \ldots, N-1), 
 \]</div>
-<p>plus the two boundary conditions that lead to <span class="math notranslate nohighlight">\(\hat{u}_0 = a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N = b\)</span>. To solve this problem we will use a second <strong>derivative matrix</strong>, <span class="math notranslate nohighlight">\(D^{(2)} = (\ell^{''}_j(x_i))_{i,j=0}^N\)</span>, modified in the first and last rows to account for the boundary conditions. This is the same approach as used for the finite difference method.</p>
+<p>plus the two boundary conditions that lead to <span class="math notranslate nohighlight">\(\hat{u}_0 = a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N = b\)</span>. This follows since all basis functions are Lagrange polynomials and thus <span class="math notranslate nohighlight">\(\ell_j(x_i) = \delta_{ij}\)</span>. For the boundary nodes we thus have</p>
+<div class="math notranslate nohighlight">
+\[
+u(-1) = u(x_0) = \sum_{j=0}^N \hat{u}_j \ell_j(x_0) = \hat{u}_0 = a,
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+u(1) = u(x_N) = \sum_{j=0}^N \hat{u}_j \ell_j(x_N) = \hat{u}_N = b.
+\]</div>
+<p>To solve Poisson’s equation we will use a second <strong>derivative matrix</strong>, <span class="math notranslate nohighlight">\(D^{(2)} = (\ell^{''}_j(x_i))_{i,j=0}^N\)</span>, modified in the first and last rows to account for the boundary conditions. This is the same approach as used for the finite difference method.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The global collocation method is similar to the finite difference methods in that we assemble and use derivative matrices. However, the derivative matrices are dense and not banded, since all mesh points are used by all basis functions.</p>
@@ -1279,7 +1289,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3b225facdca8cb2382e77cd3d7568839dcfeaacfa45903c95613f00a59acbea4.png" src="_images/3b225facdca8cb2382e77cd3d7568839dcfeaacfa45903c95613f00a59acbea4.png" />
+<img alt="_images/816f26aedb2b41b55efcb685202012c04227333b70f2e655131f5ae040d39829.png" src="_images/816f26aedb2b41b55efcb685202012c04227333b70f2e655131f5ae040d39829.png" />
 </div>
 </div>
 </section>
