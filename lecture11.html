@@ -627,7 +627,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1abc66e10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x19fe2a610&gt;
 </pre></div>
 </div>
 <img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
@@ -717,7 +717,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 </div>
 </div>
-<p>Note that the matrix <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> as expected, whereas <span class="math notranslate nohighlight">\(uh \in \mathbb{R}^{N+3}\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^{N+3}\)</span>. This has to do with the two (possibly nonzero) boundary conditions, which are then stored in <code class="docutils literal notranslate"><span class="pre">uh[-2]``</span> <span class="pre">and</span> </code>uh[-1]`. Also, note that because of these two boundary conditions shenfun created the space <span class="math notranslate nohighlight">\(V_N=\text{span}\{P_i-P_{i+2}\}_{i=0}^{N}\)</span> using the first argument <span class="math notranslate nohighlight">\(N+3\)</span> and not <span class="math notranslate nohighlight">\(N+1\)</span>.</p>
+<p>Note that the matrix <code class="docutils literal notranslate"><span class="pre">S</span></code> <span class="math notranslate nohighlight">\( \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> as expected, whereas <code class="docutils literal notranslate"><span class="pre">uh</span></code> <span class="math notranslate nohighlight">\( \in \mathbb{R}^{N+3}\)</span> and <code class="docutils literal notranslate"><span class="pre">b</span></code> <span class="math notranslate nohighlight">\(\in \mathbb{R}^{N+3}\)</span>. This has to do with the two (possibly nonzero) boundary conditions, which are then stored in <code class="docutils literal notranslate"><span class="pre">uh[-2]</span></code> and <code class="docutils literal notranslate"><span class="pre">uh[-1]</span></code>. Also, note that because of these two boundary conditions shenfun created the space <span class="math notranslate nohighlight">\(V_N=\text{span}\{P_i-P_{i+2}\}_{i=0}^{N}\)</span> using the first argument <span class="math notranslate nohighlight">\(N+3\)</span> and not <span class="math notranslate nohighlight">\(N+1\)</span>.</p>
 <section id="boundary-conditions">
 <h4>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h4>
 <section id="inhomogeneous-dirichlet">
@@ -1289,7 +1289,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/816f26aedb2b41b55efcb685202012c04227333b70f2e655131f5ae040d39829.png" src="_images/816f26aedb2b41b55efcb685202012c04227333b70f2e655131f5ae040d39829.png" />
+<img alt="_images/57f610ab873f354cae00da393a07b9a558f5eb26fbc9cf2cfd90cc31b3b11a0e.png" src="_images/57f610ab873f354cae00da393a07b9a558f5eb26fbc9cf2cfd90cc31b3b11a0e.png" />
 </div>
 </div>
 </section>
@@ -1306,11 +1306,11 @@ u'' + \alpha u = f, \quad x \in [-1, 1], u(\pm 1)=0,
 \]</div>
 <p>using the manufactured solution <span class="math notranslate nohighlight">\(u(x)=(1-x^2)\exp(\cos(x-0.5))\)</span> and <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>. Try also to remove <span class="math notranslate nohighlight">\(1-x^2\)</span> and solve the same problem with inhomogeneous boundary conditions. Plot both the solution and the <span class="math notranslate nohighlight">\(L^2\)</span> error.</p>
 <ol class="arabic simple" start="2">
-<li><p>Solve the homogeneous Helmholtz equation in the domain <span class="math notranslate nohighlight">\(x \in [0, 1]\)</span> and vary the parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> such that <span class="math notranslate nohighlight">\(\epsilon \in (1, 0.1, 0.01, 0.001)\)</span>:</p></li>
+<li><p>Solve the convection-diffusion equation in the domain <span class="math notranslate nohighlight">\(x \in [0, 1]\)</span> and vary the parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> such that <span class="math notranslate nohighlight">\(\epsilon \in (1, 0.1, 0.01, 0.001)\)</span>:</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[
-u'' + \frac{1}{\epsilon} u = 0, \quad x \in [0, 1], u(0) = 0, u(1) = 1.
+u'' + \frac{1}{\epsilon} u' = 0, \quad x \in [0, 1], u(0) = 0, u(1) = 1.
 \]</div>
 <p>The exact solution is here</p>
 <div class="math notranslate nohighlight">
