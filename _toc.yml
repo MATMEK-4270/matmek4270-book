@@ -21,3 +21,4 @@ parts:
   numbered: true
   chapters:
   - file: mandatory1
+  - file: mandatory2
