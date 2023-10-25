@@ -182,6 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 10</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -383,6 +384,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-by-the-finite-element-method">Function approximation by the finite element method</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-basis-functions">Finite element basis functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-to-reference-domain">Mapping to reference domain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-assembly-of-a-vector">Finite element assembly of a vector</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-evaluation">Finite element evaluation</a></li>
 </ul>
 </li>
@@ -561,7 +563,7 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 \end{cases}
 \end{split}\]</div>
 <p>for <span class="math notranslate nohighlight">\(j \in (0, 1, \ldots, N)\)</span>. Note that <span class="math notranslate nohighlight">\(x_{-1}\)</span> and <span class="math notranslate nohighlight">\(x_{N+1}\)</span> are undefined, but this is irrelevant because the basis functions will not be used outside the domain <span class="math notranslate nohighlight">\(\Omega = [x_0, x_N]\)</span>.</p>
-<p>A function space for the piecewise linear polynomials can be defined as <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and with the Galerkin method <a class="reference internal" href="lecture10b.html#equation-eq-galerkin-fem">()</a> we approximate any function <span class="math notranslate nohighlight">\(u(x)\)</span> by looking for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<p>A function space for the piecewise linear polynomials can be defined as <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and with the Galerkin method we approximate any function <span class="math notranslate nohighlight">\(u(x)\)</span> by looking for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 (u-\sum_{j=0}^N \hat{u}_j \psi_j, \psi_i) = 0 \quad \forall \, i \in (0, 1, \ldots, N).
@@ -603,14 +605,14 @@ A = \sum_{e=0}^{N_e-1} A^{(e)}.
 \[
 a_{rs}^{(e)} = \int_{\Omega^{(e)}} \psi_{q(e,r)} \psi_{q(e,s)} d\Omega
 \]</div>
-<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
+<p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 3</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
 <div class="math notranslate nohighlight">
 \[
 q(e, r) = de+r.
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> contains the same nonzero items as <span class="math notranslate nohighlight">\(A^{(e)}\)</span>, but <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\in \mathbb{R}^{(d+1) \times (d+1)}\)</span> is dense, whereas <span class="math notranslate nohighlight">\(A^{(e)} \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> is highly sparse. The small matrices in <code class="xref std std-numref docutils literal notranslate"><span class="pre">mov-assemble-mass</span></code> represent <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> contains the same nonzero items as <span class="math notranslate nohighlight">\(A^{(e)}\)</span>, but <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\in \mathbb{R}^{(d+1) \times (d+1)}\)</span> is dense, whereas <span class="math notranslate nohighlight">\(A^{(e)} \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> is highly sparse. The small matrices in <a class="reference internal" href="#mov-assemble-mass"><span class="std std-numref">Fig. 5</span></a> represent <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span>.</p>
 </div>
 <p>In order to use the local (and small) element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> we assemble for each element into the global matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
 <div class="math notranslate nohighlight">
@@ -665,8 +667,8 @@ a_{q(e,r),q(e, s)} \mathop{+}= a^{(e)}_{r,s}, \quad (r, s) \in \mathcal{I}_d^2.
 </div>
 <p>So the basis functions always look the same regardless of domain, regardless of what <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> are. Hence it should be possible to perform the integration once, in a reference domain, and then reuse this result for all elements. This can be achieved by mapping to a reference domain, which has already been used for both Legendre and Chebyshev polynomials, but for slightly different reasons. For those two, we needed to map because the polynomials and weight functions were only defined on a reference domain.</p>
 <p>We will now use this linear (affine) mapping and the same reference domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> as the Chebyshev/Legendre polynomials. In this domain the mapping  from physical coordinate <span class="math notranslate nohighlight">\(x \in \Omega^{(e)} = [x_{q(e,0)}, x_{q(e, d)}] = [x_L, x_R]\)</span> to computational (or reference) coordinate <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span> can be written as</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-affine-map">
+<span class="eqno">(36)<a class="headerlink" href="#equation-eq-affine-map" title="Permalink to this equation">#</a></span>\[
 x = \frac{1}{2}(x_L+x_R) + \frac{1}{2}(x_R-x_L)X. 
 \]</div>
 <p>Note that <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_R\)</span> are the left and right boundary points of the domain <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span>. If we introduce the center of the element as <span class="math notranslate nohighlight">\(x_m = (x_L+x_R)/2\)</span> and the element length <span class="math notranslate nohighlight">\(h = x_R-x_L\)</span>, then the mapping can be written simply as</p>
@@ -880,7 +882,10 @@ a_{rs}^{(e)} = \frac{h}{2}\int_{-1}^1 \ell_{r}(X) \ell_{s}(X) dX.
 <p class="admonition-title">Note</p>
 <p>For the matrices computed above we have used a uniform mesh such that <span class="math notranslate nohighlight">\(h\)</span> is constant. A non-uniform mesh needs to take into account the different element sizes <span class="math notranslate nohighlight">\(h\)</span>, but this is only a matter of scaling the element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span>. <code class="docutils literal notranslate"><span class="pre">assemble_mass</span></code> works also for a non-uniform mesh, because the size of each element is taken into account.</p>
 </div>
-<p>We now know how to compute the mass matrix in <a class="reference internal" href="lecture10b.html#equation-eq-galerkin-femmat">()</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i \in (0, 1, \ldots, N)\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
+</section>
+<section id="finite-element-assembly-of-a-vector">
+<span id="fem-assemble-vector"></span><h3>Finite element assembly of a vector<a class="headerlink" href="#finite-element-assembly-of-a-vector" title="Permalink to this heading">#</a></h3>
+<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">(35)</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i \in (0, 1, \ldots, N)\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[
 b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i \in (0, 1, \ldots, N),
@@ -993,14 +998,14 @@ x_{2i+1} = \frac{x_{2i}+x_{2(i+1)}}{2}, \quad i \in (0, 1, \ldots, N/2-1).
 </div>
 <p>But what happened here? The results still look like piecewise linear polynomials and it looks no better than before. The problem now is not accuracy of the FEM approximation, though, it has more to do with postprocessing and finite element evaluation. We compute and plot the finite element solution <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>, but then matplotlib simply fills in the gaps between the points with linear profiles. The correct approach would be to evaluate the finite element function</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-sol">
-<span class="eqno">(36)<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(37)<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega,
 \]</div>
 <p>in between the mesh points.</p>
 </section>
 <section id="finite-element-evaluation">
 <h3>Finite element evaluation<a class="headerlink" href="#finite-element-evaluation" title="Permalink to this heading">#</a></h3>
-<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="lecture10b.html#equation-eq-fem-sol">()</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
+<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">(37)</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
 <ol class="arabic simple">
 <li><p>at a mesh point <span class="math notranslate nohighlight">\(x_i\)</span>, in which case <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p></li>
 <li><p>in between mesh points and inside one and only one element.</p></li>
@@ -1274,6 +1279,7 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-approximation-by-the-finite-element-method">Function approximation by the finite element method</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-basis-functions">Finite element basis functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-to-reference-domain">Mapping to reference domain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-assembly-of-a-vector">Finite element assembly of a vector</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-element-evaluation">Finite element evaluation</a></li>
 </ul>
 </li>
