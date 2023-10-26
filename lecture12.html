@@ -382,6 +382,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-finite-element-method">Solving PDEs with the finite element method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann boundary conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fem-in-multiple-dimensions">FEM in multiple dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-element-matrices-in-2d-or-3d">Assembly of element matrices in 2D or 3D</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -397,12 +402,13 @@ document.write(`
 <h1>Lecture 12<a class="headerlink" href="#lecture-12" title="Permalink to this heading">#</a></h1>
 <section id="solving-pdes-with-the-finite-element-method">
 <h2>Solving PDEs with the finite element method<a class="headerlink" href="#solving-pdes-with-the-finite-element-method" title="Permalink to this heading">#</a></h2>
-<p>The procedure for solving PDEs with the finite element method is exactly the same as for global basis functions. However</p>
+<p>The procedure for solving differential equations with the finite element method is much the same as for global basis functions. However</p>
 <ul class="simple">
 <li><p>Basis functions are local</p></li>
 <li><p>We always use reference elements</p></li>
 <li><p>Matrices are assembled elementwise</p></li>
-<li><p>We will only use Lagrange polynomials</p></li>
+<li><p>We will only use polynomials for basis functions</p></li>
+<li><p>PDEs are normally not solved using tensor products in multiple dimensions</p></li>
 </ul>
 <p>As always we work with a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_{j}\}_{j=0}^N\)</span> and approximations</p>
 <div class="math notranslate nohighlight">
@@ -414,7 +420,7 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 \[
 a_{ij} = (\psi_j, \psi_i) = \sum_{e=0}^{N_e-1} \int_{\Omega^{(e)}} \psi_j \psi_i d\Omega.
 \]</div>
-<p>In this lecture we move one step further and use the FEM to solve ordinary differential equations. Exactly like in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> this means that we want to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<p>In this lecture we move one step further and use the FEM to solve differential equations. Exactly like in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> this means that we want to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 (\mathcal{R}_N, v) = 0, \quad \forall \, v \in V_N,
@@ -424,24 +430,24 @@ a_{ij} = (\psi_j, \psi_i) = \sum_{e=0}^{N_e-1} \int_{\Omega^{(e)}} \psi_j \psi_i
 <p>We will start this lecture by considering Poisson’s equation</p>
 <div class="math notranslate nohighlight">
 \[
-u'' = f, \quad x \in [0, L], \, u(0) = u(L) = 0.
+u'' = f, \quad x \in [0, L], \, u(0) = a, u(L) = b,
 \]</div>
 <p>using piecewise linear polynomials as basis functions. The variational Galerkin form is now</p>
 <div class="math notranslate nohighlight">
 \[
-(u'', v) = (f, v), \quad \forall \, v \in V_N,
+(u_N'', v) = (f, v), \quad \forall \, v \in V_N,
 \]</div>
 <p>which is modified into</p>
 <div class="math notranslate nohighlight">
 \[
--(u', v') = (f, v) - [u'v]_{x=0}^{x=L}, \quad \forall \, v \in V_N.
+-(u_N', v') = (f, v) - [u_N'v]_{x=0}^{x=L}, \quad \forall \, v \in V_N.
 \]</div>
-<p>Inserting for <span class="math notranslate nohighlight">\(u\approx u_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> we get</p>
+<p>Inserting for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-poisson">
-<span class="eqno">(50)<a class="headerlink" href="#equation-eq-fem-poisson" title="Permalink to this equation">#</a></span>\[
--\sum_{j=0}^N(\psi'_j, \psi'_i) \hat{u}_j = (f, \psi_i) - (u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0)).
+<span class="eqno">(53)<a class="headerlink" href="#equation-eq-fem-poisson" title="Permalink to this equation">#</a></span>\[
+-\sum_{j=0}^N(\psi'_j, \psi'_i) \hat{u}_j = (f, \psi_i) - (u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)).
 \]</div>
-<p>The boundary term <span class="math notranslate nohighlight">\((u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0))\)</span> can be used to specify Neumann boundary conditions, and we will get back to that. However, for now we consider only Dirichlet conditions. How can this be implemented? The boundary term contains only the derivatives <span class="math notranslate nohighlight">\(u'_N\)</span> and not <span class="math notranslate nohighlight">\(u(0)\)</span> or u(L), so this cannot be used. Remember that for Dirichlet conditions the solution is known at the edges, and not unknown. The finite element solution is using Lagrange polynomials that are such that</p>
+<p>The boundary term <span class="math notranslate nohighlight">\(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\)</span> can be used to specify Neumann boundary conditions, and we will get back to that. But first we consider only Dirichlet conditions. How can these be implemented? The boundary terms contain only the derivatives <span class="math notranslate nohighlight">\(u'_N\)</span> and not <span class="math notranslate nohighlight">\(u(0)\)</span> or u(L), so this cannot be used. However, remember that the finite element solution is using Lagrange polynomials that are such that</p>
 <div class="math notranslate nohighlight">
 \[
 \psi_j(x_i) = \delta_{ij}.
@@ -449,15 +455,15 @@ u'' = f, \quad x \in [0, L], \, u(0) = u(L) = 0.
 <p>Hence</p>
 <div class="math notranslate nohighlight">
 \[
-u(0) = u_N(x_0) = \sum_{j=0}^N \hat{u}_j \psi_j(x_0) = \psi_0(x_0) \hat{u}_0 = \hat{u}_0,
+u(0) = u_N(x_0) = \sum_{j=0}^N \hat{u}_j \psi_j(x_0) = \psi_0(x_0) \hat{u}_0 = \hat{u}_0 = a,
 \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-u(L) = u_N(x_N) = \sum_{j=0}^N \hat{u}_j \psi_j(x_N) = \psi_N(x_N) \hat{u}_N = \hat{u}_N.
+u(L) = u_N(x_N) = \sum_{j=0}^N \hat{u}_j \psi_j(x_N) = \psi_N(x_N) \hat{u}_N = \hat{u}_N = b.
 \]</div>
-<p>So the two expansion coefficients <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span> are known. That means that we only need to solve <a class="reference internal" href="#equation-eq-fem-poisson">(50)</a> for <span class="math notranslate nohighlight">\(i \in (1, 2, \ldots, N-1)\)</span>. And the boundary term <span class="math notranslate nohighlight">\(u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0)\)</span> is only (possibly) nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(i=N\)</span>. So with Dirichlet boundary conditions we can simply neglect the boundary terms! We will get back to this term for Neumann boundary conditions.</p>
-<p>To solve <a class="reference internal" href="#equation-eq-fem-poisson">(50)</a>, the right hand side is treated exactly as in <span class="xref std std-ref">lecture 10</span>, whereas we need to assemble the stiffness matrix</p>
+<p>So the two expansion coefficients <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span> are known. That means that we only need to solve <a class="reference internal" href="#equation-eq-fem-poisson">(53)</a> for <span class="math notranslate nohighlight">\(i \in (1, 2, \ldots, N-1)\)</span>. And the boundary terms <span class="math notranslate nohighlight">\(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\)</span> are only (possibly) nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(i=N\)</span>, because only <span class="math notranslate nohighlight">\(\psi_0\)</span> and <span class="math notranslate nohighlight">\(\psi_N\)</span> are nonzero at the edges (at <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(x_N\)</span>). That is, the only nonzero terms are <span class="math notranslate nohighlight">\(u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0)\)</span> and as such the boundary terms will only enter the assembled equations <a class="reference internal" href="#equation-eq-fem-poisson">(53)</a> for the unknowns <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>. But these are not unknown, so with Dirichlet boundary conditions we can simply neglect the boundary terms! We will get back to these boundary term for Neumann boundary conditions though.</p>
+<p>To solve <a class="reference internal" href="#equation-eq-fem-poisson">(53)</a>, the right hand side is treated exactly as in <a class="reference internal" href="lecture10.html#fem-assemble-vector"><span class="std std-ref">lecture 10</span></a>, whereas we need to assemble the stiffness matrix</p>
 <div class="math notranslate nohighlight">
 \[
 s_{ij} = -(\psi'_j, \psi'_i) = \sum_{e=0}^{N_e-1} \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega.
@@ -481,7 +487,7 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
  &amp;= \int_{-1}^1 \frac{d \ell_s(X)}{dX} \frac{dX}{dx} \frac{d \ell_r(X)}{dX} \frac{dX}{dx} \frac{dx}{dX}dX
 \end{align*}
 \end{split}\]</div>
-<p>With the linear mapping <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(36)</a> we get that</p>
+<p>With the linear mapping <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(37)</a> we get that</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{dx}{dX} = \frac{h}{2}, 
@@ -501,6 +507,7 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">lagrange</span> <span class="kn">import</span> <span class="n">Lagrangebasis</span><span class="p">,</span> <span class="n">Lagrangefunction</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,h&#39;</span><span class="p">)</span>
@@ -516,28 +523,29 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
 \[\begin{split}\displaystyle \left[\begin{matrix}\frac{1}{h} &amp; - \frac{1}{h}\\- \frac{1}{h} &amp; \frac{1}{h}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>We can implement a generic routine for higher order elements of order <span class="math notranslate nohighlight">\(d\)</span>. However, since it is easy to make this implementation for any generic element matrix, we implement instead</p>
+<p>If you now remember back to lecture 10 and the <a class="reference internal" href="lecture10.html#assemble-mass"><span class="std std-ref">assembly of the mass matrix</span></a>, you will notice that the code above is almost identical. The only difference is that the Lagrange basis functions are differentiated. Since we can easily differentiate as many times as we like, there is really no reason why we shouldn’t just as well implement a completely generic routine for any element matrix</p>
 <div class="math notranslate nohighlight">
 \[
-\tilde{a}^{(e,m,n)}_{rs} = \left(\frac{h}{2}\right)^{1-(m+n)} \int_{-1}^1 \ell^{(n)}_s(X) \ell^{(m)}_r(X)  dX
+\tilde{q}^{(e,m,n)}_{rs} = \left(\frac{h}{2}\right)^{1-(m+n)} \int_{-1}^1 \ell^{(n)}_s(X) \ell^{(m)}_r(X)  dX
 \]</div>
+<p>where <span class="math notranslate nohighlight">\(\ell^{(n)}_r = \frac{d^{n} \ell_r}{dX^n}\)</span>. This matrix is both the stiffness matrix <span class="math notranslate nohighlight">\(\tilde{s}^{(e)}_{rs} = \tilde{q}^{(e, 1, 1)}_{rs}\)</span> and the mass matrix <span class="math notranslate nohighlight">\(\tilde{a}^{(e)}_{rs} = \tilde{q}^{(e, 0, 0)}_{rs}\)</span>. An implementation is as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)]))</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># np.linspace(-1, 1, d+1) only rational</span>
 <span class="n">ll</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">Xj</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
-<span class="n">ade</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">Ade</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="n">qe</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">Qe</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">ll</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">A</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">ade</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">qe</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In order to assemble the global matrix, we need to loop over all elements. This is accomplished as shown below:</p>
+<p>In order to assemble the global matrix, we need to loop over all elements. This was done for the <a class="reference internal" href="lecture10.html#assemble-mass"><span class="std std-ref">mass matrix</span></a> in lecture 10 and it requires just a minor adjustment as shown below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fem</span> <span class="kn">import</span> <span class="n">get_element_boundaries</span><span class="p">,</span> <span class="n">get_element_length</span><span class="p">,</span> <span class="n">local_to_global_map</span>
@@ -546,14 +554,20 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">Ne</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="n">d</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">Ad</span> <span class="o">=</span> <span class="n">Ade</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">Qe</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Ne</span><span class="p">):</span>
         <span class="n">hj</span> <span class="o">=</span> <span class="n">get_element_length</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
         <span class="n">s0</span> <span class="o">=</span> <span class="n">local_to_global_map</span><span class="p">(</span><span class="n">elem</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
-        <span class="n">A</span><span class="p">[</span><span class="n">s0</span><span class="p">,</span> <span class="n">s0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Ad</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">hj</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">s0</span><span class="p">,</span> <span class="n">s0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">hj</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">A</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this <code class="docutils literal notranslate"><span class="pre">assemble_generic_matrix</span></code> we can get the stiffness matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">S</span> <span class="o">=</span> <span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
@@ -570,7 +584,7 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
 </div>
 </div>
 </div>
-<p>The mass matrix is similarly</p>
+<p>The mass matrix is still the same as in lecture 10:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -588,6 +602,317 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
 </div>
 </div>
 </div>
+<p>Since we now know how to assemble any matrix, we can also solve any (linear) ordinary differential equation. Let us try to solve Poisson’s equation with a manufactured solution <span class="math notranslate nohighlight">\(u(x) = J_0(x), \, x \in [0, 10]\)</span>, where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the 0 order Bessel function of the first kind. We first create a function <code class="docutils literal notranslate"><span class="pre">fem_poisson</span></code> that solves the problem using any order <span class="math notranslate nohighlight">\(d\)</span> and any right hand side function <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fem</span> <span class="kn">import</span> <span class="n">assemble_b</span><span class="p">,</span> <span class="n">fe_evaluate_v</span>
+
+<span class="k">def</span> <span class="nf">fem_poisson</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="o">-</span><span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># ident first row for bc at u(0)</span>
+    <span class="n">S</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># ident last row for bc at u(L)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">assemble_b</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># specify u(0)</span>
+    <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># specify u(L)</span>
+    <span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uh</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now solve the problem using any order. But remember, the number of nodes need to match the order of the method. A method of order <span class="math notranslate nohighlight">\(d\)</span> need to use <span class="math notranslate nohighlight">\(N=d M\)</span> for some integer <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">besselj</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="p">(</span><span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">uh</span> <span class="o">=</span> <span class="n">fem_poisson</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">)</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;FEM d=1 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;FEM d=2 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/db0caeb3e9875e58944385b549f36f5185383653a471ca26326651cd7a96a5e9.png" src="_images/db0caeb3e9875e58944385b549f36f5185383653a471ca26326651cd7a96a5e9.png" />
+</div>
+</div>
+</section>
+<section id="neumann-boundary-conditions">
+<h2>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<p>We will now solve a Helmholtz equation with Neumann boundary conditions</p>
+<div class="math notranslate nohighlight" id="equation-eq-helmholtz-neumann">
+<span class="eqno">(54)<a class="headerlink" href="#equation-eq-helmholtz-neumann" title="Permalink to this equation">#</a></span>\[
+u'' + \alpha u= f, \quad x \in [0, L], \, u'(0) = a, u'(L) = b.
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <span class="math notranslate nohighlight">\(\alpha=0\)</span>, then Eq. <a class="reference internal" href="#equation-eq-helmholtz-neumann">(54)</a> becomes Poisson’s equation. In this case the problem is ill-defined and we need to add another constraint, like in <a class="reference internal" href="lecture11.html#sec-lecture11-neumann"><span class="std std-ref">lecture 11</span></a>. The Helmholtz problem is well-defined and does not require a constraint.</p>
+</div>
+<p>The Neumann problem is solved with the same Lagrange polynomials and space <span class="math notranslate nohighlight">\(V_N\)</span> as the Dirichlet problem. With the Galerkin method we get the variational form</p>
+<div class="math notranslate nohighlight" id="equation-eq-fem-helmholtz0">
+<span class="eqno">(55)<a class="headerlink" href="#equation-eq-fem-helmholtz0" title="Permalink to this equation">#</a></span>\[
+-(u_N', v') + \alpha(u_N, v) = (f, v) - [u_N'v]_{x=0}^{x=L}, \quad \forall \, v \in V_N.
+\]</div>
+<p>Here we already know how to assemble <span class="math notranslate nohighlight">\((u_N', v'), (u_N, v)\)</span> and <span class="math notranslate nohighlight">\((f, v)\)</span>. The only new issue is boundary conditions. We no longer know <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> or <span class="math notranslate nohighlight">\(\hat{u}_N\)</span>, but we do know that <span class="math notranslate nohighlight">\(u'(0)=a\)</span> and <span class="math notranslate nohighlight">\(u'(L)=b\)</span>.
+If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v = \psi_i\)</span> and manipulate just a little bit we get</p>
+<div class="math notranslate nohighlight" id="equation-eq-fem-helmholtz1">
+<span class="eqno">(56)<a class="headerlink" href="#equation-eq-fem-helmholtz1" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^N \left(-(\psi'_j, \psi'_i) +\alpha(\psi_j, \psi_i)\right)  \hat{u}_j = (f, \psi_i) - (u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)).
+\]</div>
+<p>The two boundary conditions can be inserted into the two boundary terms above and we get</p>
+<div class="math notranslate nohighlight" id="equation-eq-fem-helmholtz2">
+<span class="eqno">(57)<a class="headerlink" href="#equation-eq-fem-helmholtz2" title="Permalink to this equation">#</a></span>\[
+\sum_{j=0}^N \left(-(\psi'_j, \psi'_i) +\alpha(\psi_j, \psi_i)\right)  \hat{u}_j = (f, \psi_i) - b\psi_i(L) + a\psi_i(0),
+\]</div>
+<p>which is the Helmholtz equation to solve with Neumann boundary conditions. Note that the boundary conditions will enter the equations for <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span>, because <span class="math notranslate nohighlight">\(\psi_i(0)\)</span> and <span class="math notranslate nohighlight">\(\psi_i(L)\)</span> are only nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>, respectively. In fact, <span class="math notranslate nohighlight">\(\psi_0(0)=1\)</span> and <span class="math notranslate nohighlight">\(\psi_N(L)=1\)</span>.</p>
+<p>We solve Eq. <a class="reference internal" href="#equation-eq-fem-helmholtz2">(57)</a> as a linear algebra problem</p>
+<div class="math notranslate nohighlight">
+\[
+(S+\alpha A) \boldsymbol{\hat{u}} = \boldsymbol{b}, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(s_{ij} = -(\psi'_j, \psi'_i), a_{ij}=(\psi_j, \psi_i)\)</span> and the right hand side vector <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span> becomes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{b} = \begin{bmatrix} 
+(f, \psi_0)+a \\
+(f, \psi_1) \\
+\vdots \\
+(f, \psi_{N-1}) \\
+(f, \psi_N) - b
+\end{bmatrix}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fem_poisson_neumann</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="o">-</span><span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">assemble_b</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># specify u&#39;(0)</span>
+    <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># specify u&#39;(L)</span>
+    <span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">uh</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">besselj</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">ue</span>
+<span class="n">bc</span> <span class="o">=</span> <span class="p">(</span><span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">(),</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">uh</span> <span class="o">=</span> <span class="n">fem_poisson_neumann</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">)</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;k:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;FEM d=1 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;FEM d=2 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9f3451115867da93d74ce55fd8131e91ea99fe783e54cfef87d90b9b14ad56bd.png" src="_images/9f3451115867da93d74ce55fd8131e91ea99fe783e54cfef87d90b9b14ad56bd.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>None of the matrices <span class="math notranslate nohighlight">\(S\)</span> or <span class="math notranslate nohighlight">\(A\)</span> are affected in any way by the Neumann boundary conditions. The Neumann condition only applies to the right hand side vector <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span>.</p>
+</div>
+</section>
+<section id="fem-in-multiple-dimensions">
+<h2>FEM in multiple dimensions<a class="headerlink" href="#fem-in-multiple-dimensions" title="Permalink to this heading">#</a></h2>
+<p>The finite element method is particularly useful in 2D or 3D because the method can handle geometrically complex domains <span class="math notranslate nohighlight">\(\Omega\)</span> with ease. The method is still exactly as in 1D, but now the basis functions are multidimensional</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, y, z) \approx u_N(x, y, z) = \sum_{j=0}^N \hat{u}_j \psi_j(x, y, z).
+\]</div>
+<p>The function space is also the same <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and we still solve for <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathcal{L}(u_N)-f, v)_{L^2(\Omega)} = 0, \quad \forall \, v \in V_N,
+\]</div>
+<p>for some <span class="math notranslate nohighlight">\(\mathcal{L}(u_N)\)</span>. So it is still only a matter of choosing basis functions, and then the rest follows more or less mechanically. However, in 2D and 3D we deal with partial differential equations (PDEs) and normally describe the equations using the gradient and divergence operators. Poisson’s equation is normally written as</p>
+<div class="math notranslate nohighlight">
+\[
+ \nabla^2 u = f,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nabla^2 u = \nabla \cdot \nabla u = \text{div}(\text{grad}(u))\)</span>. On variational form Poisson’s equation becomes</p>
+<div class="math notranslate nohighlight">
+\[
+(\nabla^2 u, v)_{L^2(\Omega)} = (f, v)_{L^2(\Omega)}.
+\]</div>
+<p>The <span class="math notranslate nohighlight">\(L^2(\Omega)\)</span> inner product is defined for multiple dimensions as</p>
+<div class="math notranslate nohighlight">
+\[
+(u, v)_{L^2(\Omega)} = \int_{\Omega}u \cdot v \, d\Omega,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> can be either scalar or vector fields, which is why we need the dot product on the right hand side in the integral.</p>
+<p>In multiple dimensions we cannot use integration by parts, which is defined only for one dimension, but the exact same idea extends to multiple dimensions using Green’s first identity</p>
+<div class="admonition-green-s-first-identity admonition">
+<p class="admonition-title">Green’s first identity</p>
+<p>Green’s first identity can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{\Omega} \nabla^2 u \,v \,d\Omega = -\int_{\Omega} \nabla u \cdot \nabla v \, d \Omega + \oint_{\partial \Omega} \nabla u \cdot \boldsymbol{n} \, v \, d \sigma,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\partial \Omega\)</span> is the enclosing boundary of the domain <span class="math notranslate nohighlight">\(\Omega\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{n}\)</span> is an outward pointing unit normal vector and <span class="math notranslate nohighlight">\(d\sigma\)</span> is a line element in 2D and a surface element in 3D. We can also write Green’s identity using the <span class="math notranslate nohighlight">\(L^2\)</span> inner product notation</p>
+<div class="math notranslate nohighlight">
+\[
+(\nabla^2 u, v)_{L^2(\Omega)} = - (\nabla u, \nabla v)_{L^2(\Omega)} + (\nabla u \cdot \boldsymbol{n}, v)_{L^2(\partial \Omega)}.
+\]</div>
+<p>Note the use of <span class="math notranslate nohighlight">\(L^2(\partial \Omega)\)</span> for the line- or surface-integral.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes you see the following notation for the gradient of <span class="math notranslate nohighlight">\(u\)</span> in the direction normal to <span class="math notranslate nohighlight">\(\partial \Omega\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial n} = \nabla u \cdot \boldsymbol{n}
+\]</div>
+</div>
+<p>By applying Green’s first identity to the Poisson problem we get</p>
+<div class="math notranslate nohighlight">
+\[
+-(\nabla u, \nabla v)_{L^2(\Omega)} = (f, v)_{L^2(\Omega)} - (\nabla u \cdot \boldsymbol{n}, v)_{L^2(\partial \Omega)}.
+\]</div>
+<p>Exactly like in 1D Neumann boundary conditions are fixed though the boundary term <span class="math notranslate nohighlight">\((\nabla u \cdot \boldsymbol{n}, v)_{L^2(\partial \Omega)}\)</span>, whereas Dirichlet conditions are specified by fixing <span class="math notranslate nohighlight">\(\hat{u}_i\)</span> for all points <span class="math notranslate nohighlight">\(i\)</span> where the mesh point <span class="math notranslate nohighlight">\(\boldsymbol{x}_i=(x_i, y_i, z_i)\)</span> is on the boundary. As in 1D Dirichlet boundary conditions are implemented by identing all rows in the coefficient matrix corresponding to a boundary point and manipulating the right hand side vector.</p>
+<p>A problem is often declared with Neumann on some part of the domain and Dirichlet on another. We then normally declare the problem as</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{L}(u) = f, \quad \boldsymbol{x} \in \Omega, \quad u(\boldsymbol{x}) = u_0, \boldsymbol{x} \in \partial \Omega_D, \quad
+\frac{\partial u}{\partial n}(\boldsymbol{x}) = g, \boldsymbol{x} \in \partial \Omega_N.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\partial \Omega_D\)</span> and <span class="math notranslate nohighlight">\(\partial \Omega_N\)</span> are the parts of the boundary where Dirichlet and Neumann boundary conditions should be applied, respectively.</p>
+<p>A major difference from global Galerkin methods is that it is <strong>not common to use tensor products</strong> for multiple dimensions. Instead we use multidimensional basis functions <span class="math notranslate nohighlight">\(\psi_j(x,y,z)\)</span> and just the single sum</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(\boldsymbol{x}) = \sum_{j=0}^N \hat{u}_j \psi_j(\boldsymbol{x}).
+\]</div>
+<p>On the contrary, with tensor product methods there is one basis function for each dimension and we use approximations like</p>
+<div class="math notranslate nohighlight">
+\[
+u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
+\]</div>
+<p>in 2D and three sums over three basis functions in 3D.</p>
+<p>The multidimensional basis functions are usually defined on reference elements. Remember that we earlier in 1D mapped all elements to a <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture10.html#mapping-to-reference-domain">reference domain</a> <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span>. In 2D and 3D we use instead reference triangles and tetrahedra as shown in <a class="reference internal" href="#p1-1d2d3d"><span class="std std-numref">Fig. 6</span></a></p>
+<figure class="align-center" id="p1-1d2d3d">
+<a class="reference internal image-reference" href="_images/P1-1d2d3d.png"><img alt="_images/P1-1d2d3d.png" src="_images/P1-1d2d3d.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">P1 finite element reference elements in 1D, 2D and 3D. The dots are the nodes in the elements.</span><a class="headerlink" href="#p1-1d2d3d" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The piecewise linear basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span> now lives on a 2D mesh consisting of triangles, but <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_i)\)</span> is still 1 if <span class="math notranslate nohighlight">\(i=j\)</span> and 0 otherwise. In other words the piecewise linear basis functions are still defined such that</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_j(\boldsymbol{x}_i) = \delta_{ij},
+\]</div>
+<p>for all nodes <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> in the computational mesh. This leads to the “tent” basis function that is nicely illustrated in <a class="reference internal" href="#basisfunc-2d"><span class="std std-numref">Fig. 7</span></a></p>
+<figure class="align-center" id="basisfunc-2d">
+<a class="reference internal image-reference" href="_images/demo2D_basisfunc.png"><img alt="_images/demo2D_basisfunc.png" src="_images/demo2D_basisfunc.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Illustration of one single basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span>, where the node in the center of the “tent” is <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> such that <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_j)=1\)</span> at this node only and zero on all the others.</span><a class="headerlink" href="#basisfunc-2d" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The reference triangle has three nodes <span class="math notranslate nohighlight">\(\boldsymbol{X}_0= (0, 0), \boldsymbol{X}_1= (1, 0)\)</span> and <span class="math notranslate nohighlight">\( \boldsymbol{X}_2 = (0, 1)\)</span>, and the three nonzero reference basis functions on this element are</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\psi}_0(X, Y) = 1-X-Y, \quad \tilde{\psi}_1(X, Y) = X, \quad \tilde{\psi}_2(X, Y) = Y.
+\]</div>
+<p>This should be compared with the Lagrange polynomials on the 1D reference element <a class="reference internal" href="lecture10.html#equation-eq-lagrange-p1">(38)</a>. Note that the reference basis functions are mapped as</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_{q(e, r)}(\boldsymbol{x}) = \tilde{\psi}_r(\boldsymbol{X}).
+\]</div>
+<p>There is a mapping <span class="math notranslate nohighlight">\(q(e, r)\)</span> from local to global degrees of freedom also in multiple dimensions, but the mapping is not as easy as <a class="reference internal" href="lecture10.html#equation-eq-mapping-q">(36)</a>. Normally, the finite element in multiple dimensions is implemented in an unstructured manner, and the map from a local node <span class="math notranslate nohighlight">\(r\)</span> on a global element <span class="math notranslate nohighlight">\(e\)</span>, <span class="math notranslate nohighlight">\(q(e, r)\)</span>, needs to be stored in lists.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We write boldface <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> for a point in physical space and <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> for a point in reference space. For a global node <span class="math notranslate nohighlight">\(i = q(e,r)\)</span> on local node <span class="math notranslate nohighlight">\(r\)</span> on element <span class="math notranslate nohighlight">\(e\)</span>, the node is <span class="math notranslate nohighlight">\(\boldsymbol{x}_i = \boldsymbol{x}_{q(e, r)}\)</span>. For local node <span class="math notranslate nohighlight">\(r\)</span> the reference point is <span class="math notranslate nohighlight">\(\boldsymbol{X}_r\)</span>. In 2D  and 3D <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> is respectively <span class="math notranslate nohighlight">\((x_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((x_i, y_i, z_i)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{X}_r\)</span> is <span class="math notranslate nohighlight">\((X_r, Y_r)\)</span> and <span class="math notranslate nohighlight">\((X_r, Y_r, Z_r)\)</span>. We will also use <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_0, x_1, x_2)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{X} = (X_0, X_1, X_2)\)</span> if we need to loop over coordinates.</p>
+</div>
+<p>We can map from the reference coordinate <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> to the physical coordinate <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> using</p>
+<div class="math notranslate nohighlight" id="equation-eq-map-x">
+<span class="eqno">(58)<a class="headerlink" href="#equation-eq-map-x" title="Permalink to this equation">#</a></span>\[
+\boldsymbol{x} = \sum_{r} \tilde{\psi}_r(\boldsymbol{X}) \boldsymbol{x}_{q(e, r)},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> runs over the number of vertices on the reference element, i.e., 2 on lines, 3 on triangles and 4 on tetrahedra. You should try to convince yourself that <a class="reference internal" href="#equation-eq-map-x">(58)</a> is the same as Eq. <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(37)</a> on a line.</p>
+<section id="assembly-of-element-matrices-in-2d-or-3d">
+<h3>Assembly of element matrices in 2D or 3D<a class="headerlink" href="#assembly-of-element-matrices-in-2d-or-3d" title="Permalink to this heading">#</a></h3>
+<p>Lets consider the assembly of the stiffness matrix</p>
+<div class="math notranslate nohighlight" id="equation-eq-assembly1">
+<span class="eqno">(59)<a class="headerlink" href="#equation-eq-assembly1" title="Permalink to this equation">#</a></span>\[
+\int_{\Omega^{(e)}} \nabla \psi_j(\boldsymbol{x}) \cdot \nabla \psi_i(\boldsymbol{x}) \, d\Omega,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span> is the basis function <span class="math notranslate nohighlight">\(j\)</span> defined in physical space. Suppose that we now want to compute this integral using the reference elements <span class="math notranslate nohighlight">\(\tilde{\Omega}^{(r)}\)</span> and the reference basis functions <span class="math notranslate nohighlight">\(\tilde{\psi}_r(\boldsymbol{X}) = \psi_{q(e, r)}(\boldsymbol{x}) = \psi_j(\boldsymbol{x})\)</span>.</p>
+<p>A change of variables in the integral leads to a change in domain from <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span> to <span class="math notranslate nohighlight">\(\tilde{\Omega}^{(r)}\)</span>, and the volume element changes into</p>
+<div class="math notranslate nohighlight">
+\[
+d\Omega = \text{det}J \, d\tilde{\Omega},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is the Jacobian matrix of the transformation from <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> to <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span>. The Jacobian and its inverse are defined as</p>
+<div class="math notranslate nohighlight">
+\[
+J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} = \frac{\partial X_j}{\partial x_i}.
+\]</div>
+<p>We also need to transform the derivatives present in the integral <a class="reference internal" href="#equation-eq-assembly1">(59)</a>. The <span class="math notranslate nohighlight">\(i\)</span>’th component of the gradient in physical space can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+(\nabla \psi_j)_i = \frac{\partial \psi_j}{ \partial x_i}, 
+\]</div>
+<p>and we can transform these derivatives as</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial \psi_{q(e, r)}(\boldsymbol{x})}{\partial x_i} =\frac{\partial \tilde{\psi}_r(\boldsymbol{X})}{\partial x_i} = \frac{\partial \tilde{\psi}_r}{\partial X_j}\frac{\partial X_j}{\partial x_i},
+\]</div>
+<p>with summation implied by repeating indices. Using the inverse Jacobian we can write the last term as</p>
+<div class="math notranslate nohighlight" id="equation-eq-dpsidx">
+<span class="eqno">(60)<a class="headerlink" href="#equation-eq-dpsidx" title="Permalink to this equation">#</a></span>\[
+\frac{\partial \tilde{\psi}_r}{\partial X_j}\frac{\partial X_j}{\partial x_i} = J_{ij}^{-1}  \frac{\partial \tilde{\psi}_r}{\partial X_j}.
+\]</div>
+<p>We can also define this on matrix form using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla  u= \begin{bmatrix} \frac{\partial u}{\partial x} \\[0.1cm] 
+\frac{\partial u}{\partial y} \\[0.1cm] 
+\frac{\partial u}{\partial z} 
+\end{bmatrix} \quad \text{and} \quad  
+\nabla_X  u = \begin{bmatrix} \frac{\partial u}{\partial X} \\[0.1cm] 
+\frac{\partial u}{\partial Y} \\[0.1cm]
+ \frac{\partial u}{\partial Z} \end{bmatrix}.
+\end{split}\]</div>
+<p>We then get <a class="reference internal" href="#equation-eq-dpsidx">(60)</a> as</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla \psi_{q(e, r)} = J^{-1} \cdot \nabla_X \tilde{\psi}_r
+\]</div>
+<p>Inserted into <a class="reference internal" href="#equation-eq-assembly1">(59)</a> we get</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{\Omega^{(e)}} \nabla \psi_{q(e, s)}(\boldsymbol{x}) \cdot \nabla \psi_{q(e, r)}(\boldsymbol{x}) \, d\Omega = \int_{\tilde{\Omega}^{(r)}} \left(J^{-1} \cdot \nabla_X \tilde{\psi}_s(\boldsymbol{X})\right) \cdot \left(J^{-1} \cdot \nabla_X \tilde{\psi}_r(\boldsymbol{X})\right) \, \text{det}J\, d\tilde{\Omega}.
+\]</div>
+<p>Quite complicated, but like for 1D you can compute the reference integral once and then reuse it for all future purposes.</p>
+<p>Implementing the finite element in two or three dimensions on unstructured grids is a bit too complex for this short course. But there are excellent software tools available for free that can help you implement very complex equations in even more complex domains. See, e.g.,</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://fenicsproject.org">FEniCS</a></p></li>
+<li><p><a class="reference external" href="https://www.csc.fi/web/elmer">Elmer</a></p></li>
+<li><p><a class="reference external" href="https://freefem.org">FreeFEM</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/List_of_finite_element_software_packages">and more</a></p></li>
+</ul>
+<p>FEniCS is very nice since it has an easy to use Python interface, and it has been developed partly at UiO.</p>
+</section>
 </section>
 </section>
 
@@ -655,6 +980,11 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-finite-element-method">Solving PDEs with the finite element method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann boundary conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fem-in-multiple-dimensions">FEM in multiple dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-element-matrices-in-2d-or-3d">Assembly of element matrices in 2D or 3D</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
