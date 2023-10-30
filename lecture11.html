@@ -493,7 +493,6 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 <span class="eqno">(45)<a class="headerlink" href="#equation-eq-poisson-gal" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N \left(\psi''_j, \psi_i  \right) \hat{u}_j = (f, \psi_i), \quad i \in (0, 1, \ldots, N).
 \]</div>
-<p>The matrix <span class="math notranslate nohighlight">\(S = (s_{ij})_{i,j=0}^N\)</span>, where <span class="math notranslate nohighlight">\(s_{ij}=(\psi''_j, \psi_i)\)</span>, is usually called the <strong>stiffness matrix</strong>.</p>
 <div class="admonition-integration-by-parts admonition" id="sec-integration-by-parts">
 <p class="admonition-title">Integration by parts</p>
 <p>The inner product <span class="math notranslate nohighlight">\(\left(\psi''_j, \psi_i  \right)\)</span> is a regular integral and we may use all the tricks we know in order to compute it. One such popular trick is <a class="reference external" href="https://en.wikipedia.org/wiki/Integration_by_parts">integration by parts</a></p>
@@ -522,6 +521,10 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 <span class="eqno">(46)<a class="headerlink" href="#equation-eq-poisson-gal-ibp" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N \left(\psi'_j, \psi'_i  \right) \hat{u}_j = -(f, \psi_i), \quad i \in (0, 1, \ldots, N).
 \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The matrix <span class="math notranslate nohighlight">\(S = (s_{ij})_{i,j=0}^N\)</span>, where <span class="math notranslate nohighlight">\(s_{ij}=(\psi'_j, \psi'_i)\)</span>, is usually called the <strong>stiffness matrix</strong>. The stiffness matrix is symmetric.</p>
+</div>
 <p>As already mentioned the boundary conditions need to be incorporated into the function space <span class="math notranslate nohighlight">\(V_N\)</span> by choosing basis functions that all satisfy <span class="math notranslate nohighlight">\(\psi_j(\pm 1) = 0\)</span>. Possible basis functions are thus</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -536,7 +539,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
+(\psi''_j, \psi_i) &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
     &amp;= -\frac{(j+1)^2\pi^2}{4} (\sin(\pi (j+1)(x+1)/2), \sin(\pi (i+1) (x+1)/2)), \\
     &amp;= -\frac{(j+1)^2 \pi^2}{4} \delta_{ij}.
 \end{align*}
@@ -629,7 +632,7 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1a82d7290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x19ff702d0&gt;
 </pre></div>
 </div>
 <img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
@@ -696,8 +699,8 @@ s_{ij} &amp;= ((\sin( \pi (j+1)  (x+1)/2))'', \sin(\pi (i+1)(x+1)/2)), \\
 <span class="n">VN</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">VN</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">VN</span><span class="p">)</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">uh</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
@@ -844,7 +847,7 @@ u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-s_{ij} &amp;= \left((\cos(\pi j (x+1)/2))'', \cos(\pi i (x+1)/2) \right), \\
+(\psi''_j, \psi_i) &amp;= \left((\cos(\pi j (x+1)/2))'', \cos(\pi i (x+1)/2) \right), \\
   &amp;= - \frac{\pi^2 j^2}{4}\left(\cos(\pi j (x+1)/2), \cos(\pi i (x+1)/2) \right), \\
   &amp;= - \frac{\pi^2 j^2}{4} \delta_{ij}.
 \end{align*}
@@ -900,12 +903,12 @@ s_{ij} &amp;= \left((\cos(\pi j (x+1)/2))'', \cos(\pi i (x+1)/2) \right), \\
 <p>We can do the same for Legendre basis <span class="math notranslate nohighlight">\(V_N = \{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(49)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
 \[
-s_{ij} = (\psi''_j, \psi_i) = -(\psi'_j, \psi'_i),
+s_{ij} = -(\psi''_j, \psi_i) = (\psi'_j, \psi'_i),
 \]</div>
 <p>and it can be shown with a lot of tedious work that</p>
 <div class="math notranslate nohighlight" id="equation-eq-neumann-stiffness">
 <span class="eqno">(50)<a class="headerlink" href="#equation-eq-neumann-stiffness" title="Permalink to this equation">#</a></span>\[
-s_{ij} = -\alpha(i) \delta_{ij},
+s_{ij} = \alpha(i) \delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha(i) = i(i+1)-\frac{i^2(i+1)^2}{(i+2)(i+3)}\)</span>. Since the stiffnesss matrix is diagonal we can easily solve for the unknown expansion coefficients</p>
 <div class="math notranslate nohighlight">
@@ -1025,8 +1028,8 @@ s_{ij} = -\alpha(i) \delta_{ij},
 <span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}})</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">Dx</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Dx</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="o">-</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="n">uh</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
@@ -1291,7 +1294,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8b61773d207ee91ba94add20d58b6c4fb25b1447b8a60edbe1332d8b1016acd4.png" src="_images/8b61773d207ee91ba94add20d58b6c4fb25b1447b8a60edbe1332d8b1016acd4.png" />
+<img alt="_images/3be379780b4d416257eaf32ba258796e647f5a9952882e46ee9bf583d8316715.png" src="_images/3be379780b4d416257eaf32ba258796e647f5a9952882e46ee9bf583d8316715.png" />
 </div>
 </div>
 </section>
