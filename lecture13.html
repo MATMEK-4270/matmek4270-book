@@ -1,0 +1,1259 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lecture 13 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture13';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="prev" title="Lecture 12" href="lecture12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Lecture Notes MATMEK-4270
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 13</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MATMEK-4270/matmek4270-book/issues/new?title=Issue%20on%20page%20%2Flecture13.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lecture13.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 13</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-variational-methods">Time-dependent variational methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability">Stability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">Stability of the forward Euler method for finite difference spatial discretizations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-variational-forms">Stability of the forward Euler method for variational forms</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-13">
+<h1>Lecture 13<a class="headerlink" href="#lecture-13" title="Permalink to this heading">#</a></h1>
+<section id="time-dependent-variational-methods">
+<h2>Time-dependent variational methods<a class="headerlink" href="#time-dependent-variational-methods" title="Permalink to this heading">#</a></h2>
+<p>In <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture12.html">lecture 12</a> we have focused on the spatial discretization of steady (time-independent) differential equations. We will now add time-dependence and thus consider equations like</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\frac{\partial u}{\partial t}  &amp;= \mathcal{L}(u) + f, \\
+\frac{\partial^2 u}{\partial t^2}  &amp;= \mathcal{L}(u) + f.
+\end{align*}
+\end{split}\]</div>
+<p>The solution <span class="math notranslate nohighlight">\(u(\boldsymbol{x}, t)\)</span> is now a function of both space <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and time <span class="math notranslate nohighlight">\(t\)</span>, and naturally, the approximation will be as well. However, we will put all the time dependence in the expansion coefficients</p>
+<div class="math notranslate nohighlight">
+\[
+u(\boldsymbol{x}, t) \approx u_N(\boldsymbol{x}, t) = \sum_{j=0}^N \hat{u}_j(t) \psi_j(\boldsymbol{x}),
+\]</div>
+<p>and the spatial dependence in the basis functions. As such, we still use the same (time-independent) function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, and the above sum is equivalent to the expansion <span class="math notranslate nohighlight">\(u_N(\boldsymbol{x}, t) \in V_N\)</span>.</p>
+<p>The most common approach for handling time-dependent problems with variational methods is to use a finite difference method for the time-derivative, and then subsequently apply the method of weighted residuals. For example, in order to solve</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial u}{\partial t}  = \mathcal{L}(u) + f,
+\]</div>
+<p>with the forward Euler method in time, we discretize first as</p>
+<div class="math notranslate nohighlight" id="equation-eq-forward-euler1">
+<span class="eqno">(63)<a class="headerlink" href="#equation-eq-forward-euler1" title="Permalink to this equation">#</a></span>\[
+\frac{u^{n+1}-u^n}{\Delta t}  = \mathcal{L}(u^n) + f^n,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(u^n = u(\boldsymbol{x}, t_n)\)</span>, <span class="math notranslate nohighlight">\(f^n = f(\boldsymbol{x}, t_n)\)</span> and <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span>. The solution <span class="math notranslate nohighlight">\(u^n\)</span> is known and <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown we are after. As always the Euler method needs to initialize the solution <span class="math notranslate nohighlight">\(u^0\)</span> in order to get started.</p>
+<p>A residual can now be defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{R}(u^{n+1}; u^n) = \frac{u^{n+1}-u^n}{\Delta t} - \mathcal{L}(u^n) - f^n,
+\]</div>
+<p>and as always we want this residual to be zero.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The notation <span class="math notranslate nohighlight">\(\mathcal{R}(u^{n+1}; u^n)\)</span> is used to indicate that <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown and <span class="math notranslate nohighlight">\(u^n\)</span> (right of the semicolon) is known.</p>
+</div>
+<p>We now introduce the approximations to <span class="math notranslate nohighlight">\(u^{k} = u(\boldsymbol{x}, t_k)\)</span>, which for given integer <span class="math notranslate nohighlight">\(k\)</span> is found in the space <span class="math notranslate nohighlight">\(V_N\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u(\boldsymbol{x}, t_k) \approx u^{k}_N = \sum_{j=0}^N \hat{u}^{k}_j \psi_j(\boldsymbol{x}).
+\]</div>
+<p>Inserted into the residual we get</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{R}_N = \mathcal{R}(u^{n+1}_N; u^{n}_N) = \frac{u_N^{n+1}-u_N^n}{\Delta t} - \mathcal{L}(u_N^n) - f^n.
+\]</div>
+<p>The method of weighted residuals is to find <span class="math notranslate nohighlight">\(u^{n+1}_N \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathcal{R}_N, v) = 0, \quad \forall \, v \in W,
+\]</div>
+<p>and for the Galerkin method <span class="math notranslate nohighlight">\(W = V_N\)</span>.</p>
+<p>In order to solve the time-dependent problem we need to solve this Galerkin problem many times. The procedure is</p>
+<ol class="arabic simple">
+<li><p>Initialize <span class="math notranslate nohighlight">\(u_N^0(\boldsymbol{x})\)</span></p></li>
+<li><p>For <span class="math notranslate nohighlight">\(n \in (0, 1, \ldots, N_t-1)\)</span> find <span class="math notranslate nohighlight">\(u^{n+1}_N \in V_N\)</span> such that</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+(\mathcal{R}_N, v) = 0, \quad \forall \, v \in V_N.
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(N_t\)</span> is the number of time steps such that <span class="math notranslate nohighlight">\(N_t \Delta t = T\)</span> and <span class="math notranslate nohighlight">\(t \in [0, T]\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By initializing <span class="math notranslate nohighlight">\(u_N^0(\boldsymbol{x})=u^0(\boldsymbol{x})\)</span>, we need to project <span class="math notranslate nohighlight">\(u^0(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(V_N\)</span> and store the expansion coefficients <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span>. This is a regular function approximation, like in lectures <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html">8</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture9.html">9</a>. For the finite difference method, on the other hand, initialization is simply to evaluate (interpolate) the solution on the computational mesh: <span class="math notranslate nohighlight">\(\{u^0(x_i)\}_{i=0}^N\)</span>. The finite element method can do either project or interpolate, because the FEM is using Lagrange polynomials such that <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p>
+</div>
+<section id="stability">
+<span id="sec-stability-1"></span><h3>Stability<a class="headerlink" href="#stability" title="Permalink to this heading">#</a></h3>
+<p>Just like for the finite difference method we need to be very careful with the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, in order to obtain a stable solution. A stable solution is one that remains bounded as <span class="math notranslate nohighlight">\(t \longrightarrow \infty\)</span>. However, there is one major difference from the finite difference or collocation methods. The Galerkin method described above does not involve a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>! So the Courant number is not defined. How do we overcome this problem? In order to describe this problem it is helpful to first revisit the stability of the finite difference method.</p>
+<section id="stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">
+<h4>Stability of the forward Euler method for finite difference spatial discretizations<a class="headerlink" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations" title="Permalink to this heading">#</a></h4>
+<p>We start by considering <a class="reference internal" href="#equation-eq-forward-euler1">(63)</a> with finite difference discretizations for both temporal and spatial derivatives:</p>
+<div class="math notranslate nohighlight">
+\[
+u_j^{n+1} - u_j^n = {\Delta t}\mathcal{L}(\boldsymbol{u}^n)_j,
+\]</div>
+<p>where, for example, <span class="math notranslate nohighlight">\(\mathcal{L}(\boldsymbol{u}^n)_j = (u^n_{j+1}-2u^n_j+u^n_{j-1})/\Delta x^2\)</span> if <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> represents the second derivative <span class="math notranslate nohighlight">\(\partial^2/\partial x^2\)</span>. For simplicity we have assumed only one spatial dimension and the mesh function is thus <span class="math notranslate nohighlight">\(u^n_j=u(x_j, t_n)\)</span>, where <span class="math notranslate nohighlight">\(x_j = j \Delta x\)</span> and <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span>. The solution vector at a given time step <span class="math notranslate nohighlight">\(n\)</span> is given as <span class="math notranslate nohighlight">\(\boldsymbol{u}^n = \{u^n_j\}_{j=0}^N\)</span>.</p>
+<p>With the finite difference method we assume that the solution can be written as an exponential decay in time and periodic in space (the Fourier wave <span class="math notranslate nohighlight">\(e^{ikx_j}\)</span> is periodic in space)</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_j = (e^{a \Delta t})^n e^{ikx_j} \quad \text{and} \quad \boldsymbol{u}^{n+1} = (e^{a \Delta t})^n e^{ik\boldsymbol{x}}, 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(i = \sqrt{-1}\)</span> and <span class="math notranslate nohighlight">\(k\)</span> is a wavenumber. The spatial mesh is <span class="math notranslate nohighlight">\( \boldsymbol{x} = \{x_j\}_{j=0}^N\)</span> and we will write this ansatz as</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_j = g^n e^{ikx_j} = g^n u^0_j \quad \text{and} \quad \boldsymbol{u}^{n+1} = g^n e^{ik\boldsymbol{x}} = g^n \boldsymbol{u}^0,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g=e^{a \Delta t}\)</span> is the amplification factor, which is independent of space and time, and only depends on <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>. We now let the operator <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> be the finite difference <span class="math notranslate nohighlight">\(m\)</span>’th derivative operator <span class="math notranslate nohighlight">\(D^{(m)}=(d^{(m)}_{ij})_{i,j=0}^N\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1}_j - u^n_j = {\Delta t}\sum_{k} d_{jk}^{(m)}{u}_k^n.
+\]</div>
+<p>For example, if <span class="math notranslate nohighlight">\(m=2\)</span> and we use second order accuracy, then <span class="math notranslate nohighlight">\(\sum_{k}d_{jk}^{(2)}{u}_k^n = (u^n_{j+1}-2u^n_j+u^n_{j-1})/\Delta x^2\)</span>. With matrix notation we can write</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u}^{n+1} - \boldsymbol{u}^n = {\Delta t}D^{(m)}\boldsymbol{u}^n.
+\]</div>
+<p>Now apply the ansatz <span class="math notranslate nohighlight">\(\boldsymbol{u}^n=g^n \boldsymbol{u}^0\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+g^{n+1}\boldsymbol{u}^0 - g^n \boldsymbol{u}^0 = {\Delta t} g^n D^{(m)} \boldsymbol{u}^0.
+\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(g^n\)</span> to obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-gmin1">
+<span class="eqno">(64)<a class="headerlink" href="#equation-eq-gmin1" title="Permalink to this equation">#</a></span>\[
+(g-1)\boldsymbol{u}^0 = \Delta t D^{(m)} \boldsymbol{u}^0.
+\]</div>
+<p>Stability requires that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>, but in order to say something more specific, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with Dirichlet boundary conditions</p>
+<div class="math notranslate nohighlight" id="equation-eq-d2-dir">
+<span class="eqno">(65)<a class="headerlink" href="#equation-eq-d2-dir" title="Permalink to this equation">#</a></span>\[\begin{split}
+D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
+h^2 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
+0 &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; h^2 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(65)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
+<div class="math notranslate nohighlight">
+\[
+(g-1)\boldsymbol{u}^0 = \frac{\Delta t}{\Delta x^2} \tilde{D}^{(2)} \boldsymbol{u}^0,
+\]</div>
+<p>and inserting for <span class="math notranslate nohighlight">\({u}_j^0=e^{ik j \Delta x}\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+(g-1)e^{ikj \Delta x} = \frac{\Delta t}{\Delta x^2} (e^{ik(j+1)\Delta x} - 2e^{ikj\Delta x} + e^{ik(j-1)\Delta x}).
+\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(e^{ikj\Delta x}\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+g-1 = \frac{\Delta t}{\Delta x^2} (e^{ik\Delta x} - 2 + e^{-ik\Delta x}),
+\]</div>
+<p>and use <span class="math notranslate nohighlight">\(e^{ix}+e^{-ix} = 2 \cos x\)</span>, <span class="math notranslate nohighlight">\(\cos(2x) = \cos^2 x - \sin^2 x\)</span> and <span class="math notranslate nohighlight">\(1=\cos^2x+\sin^2x\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+g = 1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right).
+\]</div>
+<p>We still want <span class="math notranslate nohighlight">\(|g|\le 1\)</span>, so we need</p>
+<div class="math notranslate nohighlight" id="equation-eq-limit0">
+<span class="eqno">(66)<a class="headerlink" href="#equation-eq-limit0" title="Permalink to this equation">#</a></span>\[
+|1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right)| \le 1,
+\]</div>
+<p>and since <span class="math notranslate nohighlight">\(\sin^2\left(k \Delta x/2\right) \le 1\)</span> and positive, we get that <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> is always less than 1. However, <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> can be smaller than <span class="math notranslate nohighlight">\(-1\)</span>, and that gives us the limit</p>
+<div class="math notranslate nohighlight" id="equation-eq-limit1">
+<span class="eqno">(67)<a class="headerlink" href="#equation-eq-limit1" title="Permalink to this equation">#</a></span>\[
+1- \frac{4 \Delta t}{\Delta x^2} \ge -1
+\]</div>
+<p>which is satisfied if <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 \le 1/2\)</span>. This is the absolute stability limit for the forward Euler method for the diffusion equation. Note that it involves both <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
+<p>We have now found the absolute stability limit for the diffusion equation using the forward Euler method. However, it was quite complicated to compute since we had to discretize in both space and time. You might ask if there is an easier way, and the answer for once is yes. There is actually a generic approach we can take for any differentiation matrix (any value of <span class="math notranslate nohighlight">\(m\)</span> in <span class="math notranslate nohighlight">\(D^{(m)}\)</span>), and that is to compute its <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues</a> <span class="math notranslate nohighlight">\(\lambda\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
+\]</div>
+<p>We can insert this into <a class="reference internal" href="#equation-eq-gmin1">(64)</a> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+(g-1)\boldsymbol{u}^0 = \Delta t \lambda \boldsymbol{u}^0.
+\]</div>
+<p>which indicates that <span class="math notranslate nohighlight">\(g-1 = \Delta t \lambda\)</span>. So we can compute the amplification factor <span class="math notranslate nohighlight">\(g\)</span> from the eigenvalues of the difference matrix! Since we require that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>, we get that</p>
+<div class="math notranslate nohighlight">
+\[
+|1+\Delta t \lambda| \le 1,
+\]</div>
+<p>which is a generic result for the forward Euler method with any difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. Note that <span class="math notranslate nohighlight">\(\lambda\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(D^{(m)}\)</span>, which is a matrix that includes <span class="math notranslate nohighlight">\(\Delta x\)</span>. In the case of <span class="math notranslate nohighlight">\(D^{(2)}\)</span>, we could also find the eigenvalues of <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span>, which would be the same as for <span class="math notranslate nohighlight">\(D^{(2)}\)</span>, but divided by <span class="math notranslate nohighlight">\(\Delta x^2\)</span>. With <span class="math notranslate nohighlight">\(\lambda\)</span> the eigenvalues of <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span>, we get the more specific result for the diffusion equation</p>
+<div class="math notranslate nohighlight">
+\[
+|1+\frac{\Delta t}{\Delta x^2} \lambda| \le 1.
+\]</div>
+<p>We can now compute the eigenvalues of <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+
+<span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">Lambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum eigenvalue = </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">Lambda</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.996206657474088
+</pre></div>
+</div>
+</div>
+</div>
+<p>We find that the minimum eigenvalue is -3.99620665 for a matrix of shape <span class="math notranslate nohighlight">\(50 \times 50\)</span>. If we use a larger matrix, then this number will approach -4 even further. Hence we get</p>
+<div class="math notranslate nohighlight">
+\[
+|1- 4\frac{\Delta t}{\Delta x^2}| \le 1.
+\]</div>
+<p>which is the same result as <a class="reference internal" href="#equation-eq-limit0">(66)</a> if we set <span class="math notranslate nohighlight">\(\sin^2(k \Delta x/2)\)</span> to its maximum value of 1.</p>
+</section>
+<section id="stability-of-the-forward-euler-method-for-variational-forms">
+<h4>Stability of the forward Euler method for variational forms<a class="headerlink" href="#stability-of-the-forward-euler-method-for-variational-forms" title="Permalink to this heading">#</a></h4>
+<p>As described in the start of <a class="reference internal" href="#sec-stability-1"><span class="std std-ref">Stability</span></a>, the variational methods do not include a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>. However, we can use the eigenvalue approach described above without defining a mesh size and we will now use this to find stability limits for variational forms.</p>
+<p>First of all we make the same ansatz and assume that the solution <span class="math notranslate nohighlight">\(u_N^{n+1}\)</span> can be computed from <span class="math notranslate nohighlight">\(u_N^n\)</span> as</p>
+<div class="math notranslate nohighlight" id="equation-eq-un-g">
+<span class="eqno">(68)<a class="headerlink" href="#equation-eq-un-g" title="Permalink to this equation">#</a></span>\[
+u_N^{n+1} = g u_N^n \quad \text{and thus} \quad u^{n}_N = g^n u^0_N. 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(g\)</span> is an amplification factor independent of spatial coordinate <span class="math notranslate nohighlight">\(x\)</span>. As always a stable method is one where <span class="math notranslate nohighlight">\(|g| &lt; 1\)</span>.</p>
+<p>For the forward Euler method we now consider the discretized Galerkin equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler-forward-gal">
+<span class="eqno">(69)<a class="headerlink" href="#equation-eq-euler-forward-gal" title="Permalink to this equation">#</a></span>\[
+\left(u^{n+1}_N, v\right) = \left(u^{n}_N, v\right) + \Delta t \left(\mathcal{L}(u^n_N), v\right)
+\]</div>
+<p>and insert for Eq. <a class="reference internal" href="#equation-eq-un-g">(68)</a></p>
+<div class="math notranslate nohighlight">
+\[
+\left(g^{n+1}u^{0}_N, v\right) = \left(g^n u^{0}_N, v\right) + \Delta t \left(\mathcal{L}(g^n u^0_N), v\right)
+\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(g^n\)</span> (<span class="math notranslate nohighlight">\(g\)</span> is not dependent on <span class="math notranslate nohighlight">\(x\)</span>) to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+g \left(u^{0}_N, v\right) = \left(u^{0}_N, v\right) + \Delta t \left(\mathcal{L}(u^0_N), v\right).
+\]</div>
+<p>We now insert for <span class="math notranslate nohighlight">\(u^0_N = \sum_{j=0}^N \hat{u}^0_j \psi_j\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+g \sum_{j=0}^N \left(\psi_j, \psi_i \right) \hat{u}^0_j = \sum_{j=0}^N \left(\psi_j, \psi_i\right)\hat{u}^0_j + \Delta t \sum_{j=0}^N\left(\mathcal{L}(\psi_j), \psi_i\right) \hat{u}^0_j
+\]</div>
+<p>On matrix form this is</p>
+<div class="math notranslate nohighlight">
+\[
+g A \boldsymbol{\hat{u}}^0 = A \boldsymbol{\hat{u}}^0 + \Delta t M \boldsymbol{\hat{u}}^0 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is the mass matrix and <span class="math notranslate nohighlight">\(m_{ij} = \left( \mathcal{L}(\psi_j), \psi_i\right)\)</span> and <span class="math notranslate nohighlight">\(M=\{m_{ij}\}_{i,j=0}^N\)</span>. Multiply from the left by <span class="math notranslate nohighlight">\(A^{-1}\)</span> to obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-g2">
+<span class="eqno">(70)<a class="headerlink" href="#equation-eq-g2" title="Permalink to this equation">#</a></span>\[
+g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \Delta t A^{-1}M \boldsymbol{\hat{u}}^0
+\]</div>
+<p>We can compute the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of the matrix <span class="math notranslate nohighlight">\(H = A^{-1}M\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+H \boldsymbol{\hat{u}}^0 = \lambda \boldsymbol{\hat{u}}^0,
+\]</div>
+<p>which can be inserted into  <a class="reference internal" href="#equation-eq-g2">(70)</a></p>
+<div class="math notranslate nohighlight">
+\[
+g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \lambda \Delta t \boldsymbol{\hat{u}}^0.
+\]</div>
+<p>Since the vector <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span> is the same in all three terms, we get that</p>
+<div class="math notranslate nohighlight">
+\[
+g = 1 + \lambda \Delta t
+\]</div>
+<p>and for stability <span class="math notranslate nohighlight">\(|g| &lt; 1\)</span>, we need to have <span class="math notranslate nohighlight">\(|1+\lambda \Delta t| &lt; 1\)</span>.</p>
+<p>So with the Galerkin method we do not need the mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span> in order to compute stability limits. On the other hand, we do need to solve an eigenvalue problem to find the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span>. In the stability computation, we use the largest eigenvalue. Lets try this out with a complete example, using the diffusion equation.</p>
+</section>
+</section>
+<section id="the-diffusion-equation">
+<h3>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Permalink to this heading">#</a></h3>
+<p>Consider the diffusion equation with Dirichlet boundary conditions and initial condition <span class="math notranslate nohighlight">\(u(x, 0)=p(x)\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-diffusion">
+<span class="eqno">(71)<a class="headerlink" href="#equation-eq-diffusion" title="Permalink to this equation">#</a></span>\[
+\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in [0, L] \times [0, T], \, u(0, t) = f(0), u(L, t) = p(L), u(x, 0) = p(x).
+\]</div>
+<p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(71)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(69)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n+1}_j = \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n}_j - \Delta t\left( \sum_{j=0}^N (\psi'_j, \psi'_i) \hat{u}^{n}_j - [u^n_N \psi_i]_{x=0}^{x=L} \right).
+\]</div>
+<p>Since we are using basis functions that are all zero on the boundaries, the last term disappears. In order to incorporate the Dirichlet boundary condition we add a boundary term <span class="math notranslate nohighlight">\(B(x)\)</span> and solve for <span class="math notranslate nohighlight">\(\tilde{u}^{n+1}_N = u^{n+1}_N - B(x)\)</span>, where <span class="math notranslate nohighlight">\(\tilde{u}^{n+1}_N(0, t) = \tilde{u}^{n+1}_N(L, t)=0\)</span>. Note that we get exactly the same equation for <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> as for <span class="math notranslate nohighlight">\(\tilde{u}^{n+1}_N\)</span> since all terms with <span class="math notranslate nohighlight">\(B(x)\)</span> will be eliminated when inserting <span class="math notranslate nohighlight">\(u^{n+1}_N = \tilde{u}^{n+1}_N+B(x)\)</span> and <span class="math notranslate nohighlight">\(u^{n}_N = \tilde{u}^{n}_N+B(x)\)</span>. But we solve the equation for <span class="math notranslate nohighlight">\(\tilde{u}^{n+1}_N\)</span>, with the zero boundary conditions, and then to get <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> we simply add <span class="math notranslate nohighlight">\(B(x)\)</span>.</p>
+<p>We use Legendre basis functions with a mapping from <span class="math notranslate nohighlight">\(x\in[0, L]\)</span> to <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+x = L(1+X)/2\quad \text{and} \quad \frac{dx}{dX} = L/2.
+\]</div>
+<p>The stiffness matrix <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i)\)</span> was given in Eq. <a class="reference internal" href="lecture11.html#equation-eq-stiffness-legendre-dir">(47)</a>, but it needs to be modified for the mapping</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\int_{0}^L\psi'_j(x) \psi'_i(x) dx &amp;= \int_{-1}^1 (P'_{j}(X)-P'_{j+2}(X))\frac{dX}{dx} (P'_{i}(X)-P'_{i+2}(X))\frac{dX}{dx} \frac{dx}{dX}dX, \\ 
+&amp;= \frac{2}{L} \int_{-1}^1 (P'_{j}(X)-P'_{j+2}(X)) (P'_{i}(X)-P'_{i+2}(X))dX, \\
+&amp;= \frac{2}{L}(P'_{j}-P'_{j+2}, P'_{i}-P'_{i+2})_{L^2([-1, 1])}, \\
+&amp;= \frac{2}{L}(4i+6)\delta_{ij}.
+\end{align*}
+\end{split}\]</div>
+<p>The mass matrix <span class="math notranslate nohighlight">\(a_{ij} = (\psi_j, \psi_i)\)</span> is similarly</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\int_{0}^L\psi_j(x) \psi_i(x) dx &amp;= \int_{-1}^1 (P_{j}(X)-P_{j+2}(X)) (P_{i}(X)-P_{i+2}(X))\frac{dx}{dX}dX, \\
+&amp;= \frac{L}{2}(P_{j}-P_{j+2}, P_i-P_{i+2})_{L^2([-1, 1])}, \\
+&amp;= \frac{L}{2}\left( (P_j, P_i) - (P_{j+2}, P_i) - (P_j, P_{i+2}) + (P_{j+2}, P_{i+2}) \right).
+\end{align*}
+\end{split}\]</div>
+<p>The mass matrix is symmetric and we know that <span class="math notranslate nohighlight">\((P_j, P_i) = |P_i|^2 \delta_{ij}\)</span>, where <span class="math notranslate nohighlight">\(|P_i|^2=\frac{2}{2i+1}\)</span> is the squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of <span class="math notranslate nohighlight">\(P_i\)</span>. Hence with <span class="math notranslate nohighlight">\(j = i\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+(\psi_i, \psi_i) = \frac{L}{2}((P_i, P_i) + (P_{i+2}, P_{i+2})) = \frac{L}{2}(|P_i|^2 + |P_{i+2}|^2),
+\]</div>
+<p>and with <span class="math notranslate nohighlight">\(j=i+2\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+(\psi_{i+2}, \psi_i) = - \frac{L}{2}|P_{i+2}|^2.
+\]</div>
+<p>The mass matrix is as such</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+a_{ij} = a_{ji} = \frac{L}{2}\begin{cases} |P_i|^2+|P_{i+2}|^2, \quad &amp;i = j, \\
+- |P_{i+2}|^2, \quad  &amp;j = i+2, \\
+0, \quad &amp;\text{otherwise}.
+\end{cases}
+\end{split}\]</div>
+<p>On matrix form the equation to solve is</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{\hat{u}}^{n+1} = A \boldsymbol{\hat{u}}^{n} - \Delta t S \boldsymbol{\hat{u}}^n.
+\]</div>
+<p>This equation is solved for <span class="math notranslate nohighlight">\(n\in (0, 1, \ldots, N_t-1)\)</span> after first initializing <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span>.
+A solver is created in the class <code class="docutils literal notranslate"><span class="pre">FE_Diffusion</span></code> below, where we reuse the code from <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory2">mandatory assignment 2</a>. In the code we assemble the mass and stiffness matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(S\)</span>, and compute the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(H=A^{-1}S\)</span>. We then use that <span class="math notranslate nohighlight">\(|1-\lambda \Delta t| &lt; 1\)</span> (where the minus is because we have used integration by parts) and the fact that here all eigenvalues are positive real numbers, to determine that</p>
+<div class="math notranslate nohighlight">
+\[
+0 &lt; \lambda \Delta t &lt; 2.
+\]</div>
+<p>This means that for stability we need to choose a time step <span class="math notranslate nohighlight">\(\Delta t &lt; 2/\max(\lambda)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+<span class="kn">from</span> <span class="nn">galerkin</span> <span class="kn">import</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">DirichletLegendre</span><span class="p">,</span> <span class="n">DirichletChebyshev</span><span class="p">,</span> \
+    <span class="n">project</span><span class="p">,</span> <span class="n">inner</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,t,c,L&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">FE_Diffusion</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for solving the diffusion equation with</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    N : int</span>
+<span class="sd">        Number of basis functions</span>
+<span class="sd">    L0 : number</span>
+<span class="sd">        The extent of the domain, which is [0, L0]</span>
+<span class="sd">    bc : 2-tuple of numbers</span>
+<span class="sd">        The Dirichlet boundary conditions at the two edges</span>
+<span class="sd">    u0 : Sympy function of x, t, c and L</span>
+<span class="sd">        Used for specifying initial condition</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="n">L0</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bc</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span><span class="o">.</span><span class="n">n</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">:</span> <span class="n">L0</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># expansion coefficients \hat{u}^{n+1}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">V</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_function_space</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mats</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lu</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">splu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">get_function_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DirichletLegendre</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bc</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_mats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mass and stiffness matrices</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">*</span><span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">s</span>
+
+    <span class="k">def</span> <span class="nf">get_eigenvalues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return eigenvalues of H=A^{-1}S&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">toarray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve diffusion equation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        Nt : int</span>
+<span class="sd">            Number of time steps</span>
+<span class="sd">        dt : number</span>
+<span class="sd">            timestep</span>
+<span class="sd">        save_step : int, optional</span>
+<span class="sd">            Save solution every save_step time step</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dictionary with key, values as timestep, array of solution</span>
+<span class="sd">        The number of items in the dictionary is Nt/save_step, and</span>
+<span class="sd">        each value is an array of length N+1</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Initialize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span> <span class="c1"># unm1 = u(x, 0)</span>
+        <span class="n">xj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">()</span>
+        <span class="n">plotdata</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">,</span> <span class="n">xj</span><span class="p">)}</span>
+
+        <span class="c1"># Solve</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">f</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># save every save_step timestep</span>
+                <span class="n">plotdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span><span class="p">,</span> <span class="n">xj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">plotdata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets solve the problem using initial condition <span class="math notranslate nohighlight">\(u(x, 0) = \cos(\pi x /L) + \cos(10 \pi x/L)\)</span> and <span class="math notranslate nohighlight">\(dt= 2/\max(\lambda)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">plot_with_offset</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">FE_Diffusion</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">get_eigenvalues</span><span class="p">())</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/95dc458c74b2651d1d1c00c576e09483bf267c9e3bd1e00032670b8cef1eee0c.png" src="_images/95dc458c74b2651d1d1c00c576e09483bf267c9e3bd1e00032670b8cef1eee0c.png" />
+</div>
+</div>
+<p>The solution is nice and smooth and the time step is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum time step = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 2.1980578790345163e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets solve it using a slightly larger <span class="math notranslate nohighlight">\(dt\)</span> to see if this really is the largest possible time step:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">1.01</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f8a6a468f96f77c17ce1b0bec1c0b383d44ec238c43d5d21be110f1197a7ce22.png" src="_images/f8a6a468f96f77c17ce1b0bec1c0b383d44ec238c43d5d21be110f1197a7ce22.png" />
+</div>
+</div>
+<p>Obviously, the solver is now unstable and the solution diverges.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The diffusion equation is “stiff” and requires a very short time step with the forward Euler method in order to remain stable.</p>
+</div>
+<p>Changing from Legendre to Chebyshev makes the required time step even shorter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FE_Diffusion_Cheb</span><span class="p">(</span><span class="n">FE_Diffusion</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">get_function_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DirichletChebyshev</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bc</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_mats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mass and stiffness matrices</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="c1">#s2 = -inner(u.diff(2), v) # slow</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">diag</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="p">[:</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">diags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">diag</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">diags</span><span class="p">]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">*</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">diags</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">FE_Diffusion_Cheb</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">get_eigenvalues</span><span class="p">())</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b99e12f77eec3c34d8e6c717a86a966d5724d07b33f3688530516e275d88941c.png" src="_images/b99e12f77eec3c34d8e6c717a86a966d5724d07b33f3688530516e275d88941c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum time step = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 1.2332249161314773e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compare the absolute stability limits with the finite difference method, where <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 &lt; 0.5\)</span> for stability. Using a uniform mesh with <span class="math notranslate nohighlight">\(N=40\)</span>, we get <span class="math notranslate nohighlight">\(\Delta x = 2/(N-1) = 0.051282\)</span> and <span class="math notranslate nohighlight">\(\Delta t &lt; 0.5 \cdot 0.051282^2 = 1.3149 \cdot 10^{-3}\)</span>. Hence, the Galerkin method with Chebyshev basis functions requires approximately 100 times shorter time steps for stability!</p>
+<div class="admonition-stiffness-matrix-for-chebyshev-basis admonition">
+<p class="admonition-title">Stiffness matrix for Chebyshev basis</p>
+<p>Note that in the implementation we have used <span class="math notranslate nohighlight">\(s_{ij} = -(\psi''_j, \psi_i)_{\omega}\)</span> and</p>
+<div class="math notranslate nohighlight" id="equation-eq-stiffness-cheb">
+<span class="eqno">(72)<a class="headerlink" href="#equation-eq-stiffness-cheb" title="Permalink to this equation">#</a></span>\[\begin{split}
+(\psi''_j, \psi_i)_{\omega} = \frac{2}{L}\begin{cases} 2 \pi (i+1)(i+2), \quad &amp;i=j, \\
+4 \pi (i+1), \quad &amp;j=i+2, i+4, \ldots, N  \\
+0, \quad &amp;j &lt; i \text{ or } i+j \text{ odd}  
+\end{cases}
+\end{split}\]</div>
+<p>because it is quite expensive to compute the matrix using the <code class="docutils literal notranslate"><span class="pre">inner(u.diff(2),</span> <span class="pre">v)</span></code> function that loops over all <span class="math notranslate nohighlight">\(i,j \in (0, 1, \ldots, N)^2\)</span>. Equation <a class="reference internal" href="#equation-eq-stiffness-cheb">(72)</a> can be derived using</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2) T_j,
+\end{split}\]</div>
+<p>but it is a lot of work and only necessary in order to save some time on computing the stiffness matrix.</p>
+<p>Also note that because of the non-constant weight function <span class="math notranslate nohighlight">\(\omega(x)=1/\sqrt{1-x^2}\)</span> it is not common to use integration by parts with the Chebyshev basis.</p>
+</div>
+</section>
+<section id="backward-euler">
+<h3>Backward Euler<a class="headerlink" href="#backward-euler" title="Permalink to this heading">#</a></h3>
+<p>The forward Euler method requires a very short time step for the diffusion equation. How about the backward Euler method</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler-backward-gal">
+<span class="eqno">(73)<a class="headerlink" href="#equation-eq-euler-backward-gal" title="Permalink to this equation">#</a></span>\[
+\left(u^{n+1}_N, v\right) = \left(u^{n}_N, v\right) + \Delta t \left(\mathcal{L}(u^{n+1}_N), v\right),
+\]</div>
+<p>where the only difference from forward is that <span class="math notranslate nohighlight">\(\left(\mathcal{L}(u^{n+1}_N), v\right)\)</span>  is making use of the unknown <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> and not the known <span class="math notranslate nohighlight">\(u^n_N\)</span>? The linear algebra problem is now</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N \left( (\psi_j, \psi_i) + \Delta t (\psi'_j, \psi'_i) \right)  \hat{u}^{n+1}_j = \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n}_j.
+\]</div>
+<p>If we continue with the ansatz <span class="math notranslate nohighlight">\(u^{n+1}_N = g u^n_N\)</span>, and thus <span class="math notranslate nohighlight">\(u^{n+1}_N = g^{n+1} u^0_N\)</span>, we get</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N g \left( (\psi_j, \psi_i) + \Delta t (\psi'_j, \psi'_i) \right)  \hat{u}^{0}_j = \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{0}_j,
+\]</div>
+<p>which on matrix form reads</p>
+<div class="math notranslate nohighlight">
+\[
+g (A + \Delta t S) \boldsymbol{\hat{u}}^0 = A \boldsymbol{\hat{u}}^0
+\]</div>
+<p>If we multiply from left to right by <span class="math notranslate nohighlight">\(A^{-1}\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[
+g (I + \Delta t A^{-1}S) \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0.
+\]</div>
+<p>Here we can once again use <span class="math notranslate nohighlight">\(H=A^{-1}S\)</span> and <span class="math notranslate nohighlight">\(H \boldsymbol{\hat{u}}^0 = \lambda \boldsymbol{\hat{u}}^0\)</span> and thus we find</p>
+<div class="math notranslate nohighlight">
+\[
+g = \frac{1}{1+\Delta t \lambda}.
+\]</div>
+<p>Since all time steps and eigenvalues are real numbers larger than 0, we find that <span class="math notranslate nohighlight">\(g\)</span> is always less than 1 and the backward Euler method is as such <em>unconditionally</em> stable.</p>
+</section>
+<section id="the-wave-equation">
+<h3>The Wave equation<a class="headerlink" href="#the-wave-equation" title="Permalink to this heading">#</a></h3>
+<p>Lets consider the wave equation from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html">lecture 5</a> in one spatial dimension</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}, \quad (x, t) \in [0, L] \times [0, T].
+\]</div>
+<p>As you may recall, we solved the wave equation with Dirichlet, Neumann and open boundary conditions. The two time derivatives also required that the solution was initialized at two time-steps, or more mathematically precise, that both <span class="math notranslate nohighlight">\(u(\boldsymbol{x}, 0)\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}(\boldsymbol{x}, 0)\)</span> were given.</p>
+<p>We now use finite differences in time such that</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} = c^2 \frac{\partial^2 u^n}{\partial x^2}. 
+\]</div>
+<p>A numerical residual <span class="math notranslate nohighlight">\(\mathcal{R}_N = \mathcal{R}(u^{n+1}_N; u^n_N, u^{n-1}_N)\)</span> can now be defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\mathcal{R}_N={u_N^{n+1}-2u_N^n+u_N^{n-1}} - \alpha^2 (u_N^n)'',
+\]</div>
+<p>where we use <span class="math notranslate nohighlight">\(\alpha = c \Delta t\)</span> and <span class="math notranslate nohighlight">\(u' = \frac{\partial u}{\partial x}\)</span> for simplicity, since there is only one spatial dimension.
+If we now initialize <span class="math notranslate nohighlight">\(u_N^0\)</span> and <span class="math notranslate nohighlight">\(u_N^1\)</span>, the Galerkin method is to find <span class="math notranslate nohighlight">\(u^{n+1}_N \in V_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+\left({u_N^{n+1}-2u_N^n+u_N^{n-1}} - \alpha^2 (u_N^n)'', v \right) = 0, \quad \forall \, v \in V_N,
+\]</div>
+<p>for <span class="math notranslate nohighlight">\(n \in (1, \ldots, N_t-1)\)</span>. We can also integrate the last term by parts</p>
+<div class="math notranslate nohighlight">
+\[
+({u_N^{n+1}-2u_N^n+u_N^{n-1}}, v) + \alpha^2 \left( \left((u_N^n)', v' \right) - \left[(u^n_N)' v\right]_{x=0}^{x=L} \right)  = 0, \quad \forall \, v \in V_N.
+\]</div>
+<p>In order to solve the Galerkin problem we need to formulate the linear algebra problem.  Hence we insert for <span class="math notranslate nohighlight">\(u^{n-1}_N, u^{n}_N, u^{n+1}_N\)</span> and <span class="math notranslate nohighlight">\(v = \psi_i\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N \left(\psi_j, \psi_i \right)  \left(\hat{u}^{n+1}_j - 2\hat{u}^{n}_j + \hat{u}^{n-1}_j\right)
++ \alpha^2 \left(\sum_{j=0}^N \left(\psi'_j, \psi'_i \right) \hat{u}^n_j - \left[(u^n_N)' \psi_i\right]_{x=0}^{x=L}  \right) = 0.
+\]</div>
+<p>We next rearrange such that the unknown <span class="math notranslate nohighlight">\(\hat{u}_j^{n+1}\)</span> is on the left hand side and the rest of the known terms are on the right hand side</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{j=0}^N \left(\psi_j, \psi_i \right) \hat{u}^{n+1}_j =  \sum_{j=0}^N \left(\psi_j, \psi_i \right) (2\hat{u}^{n}_j - \hat{u}^{n-1}_j) - \alpha^2 \left( \sum_{j=0}^N \left(\psi'_j, \psi'_i \right) \hat{u}^n_j - \left[(u^n_N)' \psi_i\right]_{x=0}^{x=L} \right)
+\]</div>
+<p>With matrix notation, <span class="math notranslate nohighlight">\(a_{ij} = (\psi_j, \psi_i)\)</span> and <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i) \)</span>, we get</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{\hat{u}}^{n+1} = A (2 \boldsymbol{\hat{u}}^n - \boldsymbol{\hat{u}}^{n-1}) - \alpha^2 \left( S \boldsymbol{\hat{u}}^n  - \boldsymbol{b}^n \right),
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{b}^n = \{(u^n_N)'(L) \psi_i(L) - (u^n_N)'(0) \psi_i(0)\}_{i=0}^N\)</span>. We can write this as</p>
+<div class="math notranslate nohighlight">
+\[
+A \boldsymbol{\hat{u}}^{n+1} = \boldsymbol{f}^n,
+\]</div>
+<p>where the vector <span class="math notranslate nohighlight">\(\boldsymbol{f}^n = A (2 \boldsymbol{\hat{u}}^n - \boldsymbol{\hat{u}}^{n-1}) - \alpha^2 \left( S \boldsymbol{\hat{u}}^n  - \boldsymbol{b}^n\right) \)</span>.</p>
+<p>The boundary conditions determine the path forward. Here there are subtile differences between global Galerkin methods and the local finite element method, but the procedures are exactly as detailed in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html#inhomogeneous-dirichlet">lecture 11</a> and <a class="reference internal" href="lecture12.html#sec-12-note1"><span class="std std-ref">lecture 12</span></a>.</p>
+<p>For Dirichlet boundary conditions <span class="math notranslate nohighlight">\(u(0, t) = a\)</span> and <span class="math notranslate nohighlight">\(u(L, t) = b\)</span>:</p>
+<ul class="simple">
+<li><p>Global methods make use of basis functions that are all zero at the boundaries <span class="math notranslate nohighlight">\(\psi_j(0) =\psi_j(L) = 0\)</span>. Hence the vector <span class="math notranslate nohighlight">\(\boldsymbol{b}^n\)</span> disappears. Nonzero values for <span class="math notranslate nohighlight">\(a, b\)</span> are incorporated using a boundary function, see <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html#inhomogeneous-dirichlet">lecture 11</a>.</p></li>
+<li><p>The finite element method makes use of Lagrange polynomials and <span class="math notranslate nohighlight">\(\psi_i(0)= 1\)</span> for <span class="math notranslate nohighlight">\(i=0\)</span> and zero otherwise. Similarly, <span class="math notranslate nohighlight">\(\psi_i(L)=1 \)</span> for <span class="math notranslate nohighlight">\(i=N\)</span> and zero otherwise. Hence it is only <span class="math notranslate nohighlight">\(b^n_0\)</span> and <span class="math notranslate nohighlight">\(b^n_N\)</span> that potentially are different from zero. However, since <span class="math notranslate nohighlight">\(u(0, t)=a = \hat{u}^{n+1}_0\)</span> and <span class="math notranslate nohighlight">\(u(L, t) = b = \hat{u}^{n+1}_N\)</span> we ident <span class="math notranslate nohighlight">\(A\)</span> and set <span class="math notranslate nohighlight">\(f^n_0=a\)</span> and <span class="math notranslate nohighlight">\(f^n_N=b\)</span> (see <a class="reference internal" href="lecture12.html#sec-12-note1"><span class="std std-ref">lecture 12</span></a>). As such the boundary terms in <span class="math notranslate nohighlight">\(\boldsymbol{b}^n\)</span> will never enter the equation system.</p></li>
+</ul>
+<p>For Neumann boundary conditions <span class="math notranslate nohighlight">\(u'(0, t) = g_0\)</span> and <span class="math notranslate nohighlight">\(u'(L, t) = g_L\)</span>:</p>
+<ul class="simple">
+<li><p>Global methods can make use of basis functions that all have <span class="math notranslate nohighlight">\(\psi'_j(0) = \psi'_j(L)=0\)</span>, and add a boundary function <span class="math notranslate nohighlight">\(B(x)\)</span> that satisfied <span class="math notranslate nohighlight">\(B'(0)=g_0\)</span> and <span class="math notranslate nohighlight">\(B'(L)=g_L\)</span>. However, global methods can also make use of any basis functions (like pure Legendre polynomials) and incorporate the boundary conditions through <span class="math notranslate nohighlight">\(\boldsymbol{b}^n\)</span>. We get that <span class="math notranslate nohighlight">\(b^n_i = g_L\psi_i(L)-g_0\psi_i(0)\)</span>. Note that this approach is very easy to use if <span class="math notranslate nohighlight">\(g_0=g_L=0\)</span>, because in that case you only need to neglect the boundary vector <span class="math notranslate nohighlight">\(\boldsymbol{b}^n\)</span>.</p></li>
+<li><p>The finite element method makes use of the weak form and specifies <span class="math notranslate nohighlight">\(b^n_0 = -g_0\)</span> and <span class="math notranslate nohighlight">\(b^n_N = g_L\)</span> since the basis functions are Lagrange polynomials. No more is needed. In the event that <span class="math notranslate nohighlight">\(g_0 = g_L = 0\)</span>, the boundary vector can simply be neglected.</p></li>
+</ul>
+<p>How about stability? We can make the same ansatz as for the diffusion equation and assume <span class="math notranslate nohighlight">\(u_N^{n+1}=g^{n+1}u_N^0\)</span>. We get after some trivial manipulations</p>
+<div class="math notranslate nohighlight">
+\[
+(g^{n+1}-2g^n+g^{n-1}) A \boldsymbol{\hat{u}}^0 = -\alpha^2 g^n S \boldsymbol{\hat{u}}^0,
+\]</div>
+<p>which can be transformed by dividing by <span class="math notranslate nohighlight">\(g^n\)</span> and multiplying by <span class="math notranslate nohighlight">\(A^{-1}\)</span> from the left</p>
+<div class="math notranslate nohighlight">
+\[
+(g - 2 + g^{-1}) I \boldsymbol{\hat{u}}^0 = -\alpha^2 A^{-1}S \boldsymbol{\hat{u}} ^{0}.
+\]</div>
+<p>Using <span class="math notranslate nohighlight">\(H = A^{-1} S\)</span> and <span class="math notranslate nohighlight">\(H \boldsymbol{\hat{u}}^0 = \lambda \boldsymbol{\hat{u}}^0\)</span>, we get</p>
+<div class="math notranslate nohighlight">
+\[
+g + g^{-1} = \beta,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( \beta = -\alpha^2 \lambda +2\)</span>. This is more difficult to conclude with than for the Euler method, because we have a quadratic equation for <span class="math notranslate nohighlight">\(g\)</span>. Nevertheless, we can find</p>
+<div class="math notranslate nohighlight">
+\[
+g = \frac{\beta \pm \sqrt{\beta^2-4}}{2} \quad \text{and thus } |g| = \sqrt{0.5 \beta^2-1},
+\]</div>
+<p>and in order for <span class="math notranslate nohighlight">\(|g| \le 1\)</span> we need <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> and thus <span class="math notranslate nohighlight">\(0 \le \alpha^2 \lambda \le 4\)</span>. The maximum time step that we can use is as such</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta t &lt; \frac{1}{c}\sqrt{\frac{4}{\max(\lambda)}}.
+\]</div>
+<p>Lets implement the wave equation using a global Galerkin method, homogeneous Dirichlet boundary conditions and an initial pulse <span class="math notranslate nohighlight">\(u(x, t) = \exp(-200(x-L/2+ct)^2)\)</span> used for both <span class="math notranslate nohighlight">\(t=0\)</span> and <span class="math notranslate nohighlight">\(t=\Delta t\)</span>. Since we are using the same matrices as the diffusion problem, we can create a solver by subclassing the <code class="docutils literal notranslate"><span class="pre">FE_Diffusion</span></code> class and thus reuse much code</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wave</span><span class="p">(</span><span class="n">FE_Diffusion</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)):</span>
+        <span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">c</span><span class="p">:</span> <span class="n">c0</span><span class="p">})</span>
+        <span class="n">FE_Diffusion</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="n">L0</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">u0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="c1"># Initialize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span> <span class="c1"># unm1 = u(x, 0)</span>
+        <span class="n">xj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">()</span>
+        <span class="n">plotdata</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span><span class="p">,</span> <span class="n">xj</span><span class="p">)}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dt</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">plotdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">,</span> <span class="n">xj</span><span class="p">)</span>
+
+        <span class="c1"># Solve</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">alfa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="n">dt</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">f</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">@</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span><span class="p">)</span> <span class="o">-</span> <span class="n">alfa</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lu</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># save every save_step timestep</span>
+                <span class="n">plotdata</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_np1</span><span class="p">,</span> <span class="n">xj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">plotdata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">Wave</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">sol</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">get_eigenvalues</span><span class="p">()))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/08bcee2eb36964a31f82378dbb2f5a97b5297b4abf580bf0c166e0fa30dd3077.png" src="_images/08bcee2eb36964a31f82378dbb2f5a97b5297b4abf580bf0c166e0fa30dd3077.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum time step = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 0.0066303210767420856
+</pre></div>
+</div>
+</div>
+</div>
+<p>This maximum time step should be compared with the maximum time step of a finite difference method. Remember the Courant number <span class="math notranslate nohighlight">\(C = c \Delta t/\Delta x\)</span> and the stability condition <span class="math notranslate nohighlight">\(C \le 1\)</span>. For our case, with <span class="math notranslate nohighlight">\(c=1\)</span>, this limit is <span class="math notranslate nohighlight">\(\Delta t \le \Delta x\)</span>. So with <span class="math notranslate nohighlight">\(N=40\)</span> and <span class="math notranslate nohighlight">\(\Delta x = 2/(N-1)\)</span>, we get <span class="math notranslate nohighlight">\(\Delta t \le 0.051282\)</span>. Again, the finite difference method can take much longer time steps than the global Galerkin method. But remember, the global Galerkin method is using a much more accurate spatial discretization and can actually get away with using a much lower <span class="math notranslate nohighlight">\(N\)</span>.</p>
+</section>
+</section>
+<section id="weekly-assignments">
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Implement the diffusion equation with the backward Euler scheme.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "book"
+        },
+        kernelOptions: {
+            name: "book",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'book'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lecture 12</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="mandatory1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-variational-methods">Time-dependent variational methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability">Stability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">Stability of the forward Euler method for finite difference spatial discretizations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-variational-forms">Stability of the forward Euler method for variational forms</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

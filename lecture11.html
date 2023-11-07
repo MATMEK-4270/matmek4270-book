@@ -183,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 11</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -632,7 +633,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x19ff702d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1a50f0090&gt;
 </pre></div>
 </div>
 <img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
@@ -644,8 +645,8 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 (2j+3)P_{j+1} = P'_{j+2}-P'_{j}.
 \]</div>
 <p>We get that</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-eq-stiffness-legendre-dir">
+<span class="eqno">(47)<a class="headerlink" href="#equation-eq-stiffness-legendre-dir" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \left(\psi'_j, \psi'_i\right) &amp;= \left(P'_j-P'_{j+2}, P'_i - P'_{i+2}\right), \\
   &amp;=\left(-(2j+3)P_{j+1}, -(2i+3)P_{i+1}\right), \\
@@ -810,12 +811,12 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 <span id="sec-lecture11-neumann"></span><h5>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this heading">#</a></h5>
 <p>Poisson’s equation is also often solved with Neumann boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-neumann">
-<span class="eqno">(47)<a class="headerlink" href="#equation-eq-poisson-neumann" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(48)<a class="headerlink" href="#equation-eq-poisson-neumann" title="Permalink to this equation">#</a></span>\[
 u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
 \]</div>
-<p>However, this problem is actually ill-defined because if <span class="math notranslate nohighlight">\(u\)</span> is a solution, then <span class="math notranslate nohighlight">\(u + c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant, is also a solution. This follows since both the equation and both the boundary conditions contain at least one derivative. After all, <span class="math notranslate nohighlight">\((u+c)'' = u'' + c'' = u'' \)</span> and <span class="math notranslate nohighlight">\((u+c)' = u' + c' = u'\)</span>. Bottom line, we need an additional constraint in order to pose a well-defined Neumann problem. A common additional constraint to <a class="reference internal" href="#equation-eq-poisson-neumann">(47)</a> is to require that</p>
+<p>However, this problem is actually ill-defined because if <span class="math notranslate nohighlight">\(u\)</span> is a solution, then <span class="math notranslate nohighlight">\(u + c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant, is also a solution. This follows since both the equation and both the boundary conditions contain at least one derivative. After all, <span class="math notranslate nohighlight">\((u+c)'' = u'' + c'' = u'' \)</span> and <span class="math notranslate nohighlight">\((u+c)' = u' + c' = u'\)</span>. Bottom line, we need an additional constraint in order to pose a well-defined Neumann problem. A common additional constraint to <a class="reference internal" href="#equation-eq-poisson-neumann">(48)</a> is to require that</p>
 <div class="math notranslate nohighlight" id="equation-eq-neumann-constraint">
-<span class="eqno">(48)<a class="headerlink" href="#equation-eq-neumann-constraint" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(49)<a class="headerlink" href="#equation-eq-neumann-constraint" title="Permalink to this equation">#</a></span>\[
 (u, 1) = \int_{\Omega} u(x) dx = c,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c\)</span> is still a constant.</p>
@@ -825,14 +826,14 @@ u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
 </div>
 <p>The Neumann problem can be solved with basis functions</p>
 <div class="math notranslate nohighlight" id="equation-eq-basis-neumann">
-<span class="eqno">(49)<a class="headerlink" href="#equation-eq-basis-neumann" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(50)<a class="headerlink" href="#equation-eq-basis-neumann" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \psi_j(x) &amp;= \cos(\pi j(x+1)/2), \\
 \psi_j(x) &amp;= P_j - \frac{j(j+1)}{(j+2)(j+3)}P_{j+2},
 \end{align*}
 \end{split}\]</div>
-<p>because they all satisfy <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>. However, note that for both the cosine and the Legendre bases we get that <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> since <span class="math notranslate nohighlight">\(\cos(0) = P_0 = 1\)</span>. This basis function is such that <span class="math notranslate nohighlight">\(\psi'_0=0\)</span> and it will as such lead to a zero column in  the stiffness matrix since <span class="math notranslate nohighlight">\((\psi''_0, \psi_i) = 0\)</span>. Hence this basis function cannot be used for solving Poisson’s equation directly. It can, however, be used to fix the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(48)</a>.</p>
-<p>We solve the Neumann problem with the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, but in order to also specify the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(48)</a> we will need to use a modified function space <span class="math notranslate nohighlight">\(\{u_N \in V_N | (u_N, 1) = c \}\)</span>. Since <span class="math notranslate nohighlight">\((\psi_j, 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(j \in (1, 2, \ldots, N)\)</span>, we get that</p>
+<p>because they all satisfy <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>. However, note that for both the cosine and the Legendre bases we get that <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> since <span class="math notranslate nohighlight">\(\cos(0) = P_0 = 1\)</span>. This basis function is such that <span class="math notranslate nohighlight">\(\psi'_0=0\)</span> and it will as such lead to a zero column in  the stiffness matrix since <span class="math notranslate nohighlight">\((\psi''_0, \psi_i) = 0\)</span>. Hence this basis function cannot be used for solving Poisson’s equation directly. It can, however, be used to fix the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(49)</a>.</p>
+<p>We solve the Neumann problem with the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, but in order to also specify the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(49)</a> we will need to use a modified function space <span class="math notranslate nohighlight">\(\{u_N \in V_N | (u_N, 1) = c \}\)</span>. Since <span class="math notranslate nohighlight">\((\psi_j, 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(j \in (1, 2, \ldots, N)\)</span>, we get that</p>
 <div class="math notranslate nohighlight">
 \[
 (u_N, 1) = \sum_{j=0}^N (\psi_j, 1) \hat{u}_j = (\psi_0, 1)\hat{u}_0 = c,
@@ -852,7 +853,7 @@ u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
   &amp;= - \frac{\pi^2 j^2}{4} \delta_{ij}.
 \end{align*}
 \end{split}\]</div>
-<p>We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(47)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
+<p>We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(48)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = -\frac{4}{\pi^2 i^2} \left(f, \cos(\pi i (x+1)/2) \right), \quad i \in (1, 2, \ldots, N),
@@ -900,14 +901,14 @@ u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
 <img alt="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" src="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" />
 </div>
 </div>
-<p>We can do the same for Legendre basis <span class="math notranslate nohighlight">\(V_N = \{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(49)</a>. The stiffness matrix is then</p>
+<p>We can do the same for Legendre basis <span class="math notranslate nohighlight">\(V_N = \{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(50)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
 \[
 s_{ij} = -(\psi''_j, \psi_i) = (\psi'_j, \psi'_i),
 \]</div>
 <p>and it can be shown with a lot of tedious work that</p>
 <div class="math notranslate nohighlight" id="equation-eq-neumann-stiffness">
-<span class="eqno">(50)<a class="headerlink" href="#equation-eq-neumann-stiffness" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(51)<a class="headerlink" href="#equation-eq-neumann-stiffness" title="Permalink to this equation">#</a></span>\[
 s_{ij} = \alpha(i) \delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha(i) = i(i+1)-\frac{i^2(i+1)^2}{(i+2)(i+3)}\)</span>. Since the stiffnesss matrix is diagonal we can easily solve for the unknown expansion coefficients</p>
@@ -962,7 +963,7 @@ s_{ij} = \alpha(i) \delta_{ij},
 \[
 (u'', v) = -(u', v') + [u' v]_{-1}^1.
 \]</div>
-<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(50)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi_j(\pm 1) \ne 0\)</span>.</p>
+<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(51)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi_j(\pm 1) \ne 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
@@ -1065,7 +1066,7 @@ u_N(-1) &amp;=  a \quad \text{and} \quad u_N(1) = b.
 \end{split}\]</div>
 <p>Inserting for the Lagrange polynomials and <span class="math notranslate nohighlight">\(u_N\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_N(x_i)=0\)</span> we get the <span class="math notranslate nohighlight">\(N-1\)</span> equations</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-coll">
-<span class="eqno">(51)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(52)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
 \sum_{j=0}^N \ell''_j(x_i) \hat{u}_j = f(x_i), \quad i = (1, 2, \ldots, N-1), 
 \]</div>
 <p>plus the two boundary conditions that lead to <span class="math notranslate nohighlight">\(\hat{u}_0 = a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N = b\)</span>. This follows since all basis functions are Lagrange polynomials and thus <span class="math notranslate nohighlight">\(\ell_j(x_i) = \delta_{ij}\)</span>. For the boundary nodes we thus have</p>
@@ -1093,7 +1094,7 @@ u(1) = u(x_N) = \sum_{j=0}^N \hat{u}_j \ell_j(x_N) = \hat{u}_N = b.
 \[
 \frac{d^n}{dx^n}\boldsymbol{u} = D^{(n)} \boldsymbol{u},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(51)</a> can as such be assembled as</p>
+<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(52)</a> can as such be assembled as</p>
 <div class="math notranslate nohighlight">
 \[
 \tilde{D}^{(2)} \boldsymbol{\hat{u}} = \boldsymbol{f},
@@ -1114,7 +1115,7 @@ w_j &amp;= \frac{1}{\prod^N_{\substack{i=0 \\ i \neq j}} (x_j - x_i)}, \quad j \
 \end{split}\]</div>
 <p>Here <span class="math notranslate nohighlight">\(\{w_j\}_{j=0}^N\)</span> are often referred to as barycentric weights. These weights are readily available from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">scipy.interpolate.BarycentricInterpolator</a>. We can then obtain the derivative matrix <span class="math notranslate nohighlight">\(d_{ij} = \ell'_j(x_i)\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-derivative-coll">
-<span class="eqno">(52)<a class="headerlink" href="#equation-eq-derivative-coll" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(53)<a class="headerlink" href="#equation-eq-derivative-coll" title="Permalink to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 d_{ij} &amp;= \frac{w_j}{w_i(x_i-x_j)}, \quad i \, \neq j, \\
 d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
@@ -1137,7 +1138,7 @@ d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
 </div>
 </div>
 </div>
-<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(52)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(53)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
 <div class="math notranslate nohighlight">
 \[
 W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
@@ -1294,7 +1295,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3be379780b4d416257eaf32ba258796e647f5a9952882e46ee9bf583d8316715.png" src="_images/3be379780b4d416257eaf32ba258796e647f5a9952882e46ee9bf583d8316715.png" />
+<img alt="_images/f8832d333b34ac2ce239153fe0517fe0610048a8f5739526b5571f68017c8e6f.png" src="_images/f8832d333b34ac2ce239153fe0517fe0610048a8f5739526b5571f68017c8e6f.png" />
 </div>
 </div>
 </section>
