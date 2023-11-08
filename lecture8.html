@@ -452,9 +452,9 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 <p>Now create a functionspace consisting of all straight lines</p>
 <div class="math notranslate nohighlight">
 \[
-V = \text{span}\{1, x\},
+V_N = \text{span}\{1, x\},
 \]</div>
-<p>and try to find the approximation <span class="math notranslate nohighlight">\(u_N \in V\)</span> that is the best approximation of <span class="math notranslate nohighlight">\(u(x)\)</span>. How can we do this? All we know is that</p>
+<p>and try to find the approximation <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> that is the best approximation of <span class="math notranslate nohighlight">\(u(x)\)</span>. How can we do this? All we know is that</p>
 <div class="math notranslate nohighlight">
 \[
 u_N(x) = \hat{u}_0 + \hat{u}_1 x.
@@ -594,20 +594,20 @@ E = (e, e).
 <p>For function approximations the Galerkin method always gives the same result as the least squares method. However, the same does not apply when solving PDEs.</p>
 </div>
 <p>The Galerkin method can be formulated as:</p>
-<p>Find <span class="math notranslate nohighlight">\(u_N \in V\)</span> such that</p>
+<p>Find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-(e, v) = 0, \quad \forall \, v \in V,
+(e, v) = 0, \quad \forall \, v \in V_N,
 \]</div>
 <p>which means exactly the same as:</p>
-<p>Find <span class="math notranslate nohighlight">\(u_N \in V\)</span> such that</p>
+<p>Find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 (e, \psi_i) = 0, \quad \forall \, i \in (0, 1, \ldots, N).
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The Galerkin method described above is sometimes referred to as a projection method and may be formulated as: find <span class="math notranslate nohighlight">\(u_N\)</span>(x) as the projection of <span class="math notranslate nohighlight">\(u(x)\)</span> into <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<p>The Galerkin method described above is sometimes referred to as a projection method and may be formulated as: find <span class="math notranslate nohighlight">\(u_N\)</span>(x) as the projection of <span class="math notranslate nohighlight">\(u(x)\)</span> into <span class="math notranslate nohighlight">\(V_N\)</span>.</p>
 </div>
 <p>Inserting for <span class="math notranslate nohighlight">\(e=u-u_N\)</span> and <span class="math notranslate nohighlight">\(u_N=\sum_{j=0}^N \hat{u}_j \psi_j\)</span> we get</p>
 <div class="math notranslate nohighlight">
@@ -649,9 +649,9 @@ A \boldsymbol{x} = \boldsymbol{b},
 <p>It is more common that the basis functions are <em>orthogonal</em>. In this case the mass matrix becomes</p>
 <div class="math notranslate nohighlight">
 \[
-(\psi_j, \psi_i) = |\psi_i|^2 \delta_{ij}.
+(\psi_j, \psi_i) = |\psi_i|^2 \delta_{ij},
 \]</div>
-<p>We can still easily solve the linear algebra system (because <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix)</p>
+<p>where <span class="math notranslate nohighlight">\(|\psi_i|^2\)</span> is the squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of <span class="math notranslate nohighlight">\(\psi_i\)</span>. We can still easily solve the linear algebra system (because <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix)</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = \frac{(u, \psi_i)}{|\psi_i|^2} \quad \forall \, i \in (0, 1, \ldots, N).
@@ -659,7 +659,7 @@ A \boldsymbol{x} = \boldsymbol{b},
 <p>The monomial basis</p>
 <div class="math notranslate nohighlight">
 \[
-\{x^n | n \in \mathbb{N} \}
+\{x^n | n \in \mathbb{N} \},
 \]</div>
 <p>is a basis for the space of all polynomials. However, it is not a good basis. This is because the basis functions are not orthogonal and the mass matrix <span class="math notranslate nohighlight">\(A\)</span> is ill conditioned.</p>
 <p>A much better polynomial basis are the Legendre polynomials that are defined on the domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> as</p>
@@ -845,12 +845,12 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ninner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">ref_domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
-    <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quadrature</span>
+    <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
     <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">ref_domain</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">domain</span>
     <span class="n">us</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">A</span><span class="p">))</span>
     <span class="n">uv</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="o">*</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">quadrature</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">uhatn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ninner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
 <span class="n">display</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">uhatn</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
@@ -859,19 +859,19 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 2.3333333333333335)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 2.333333333333334)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 5.000000000000002)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 5.0)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The numerical integration routine <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quadrature.html">quadrature</a> is using adaptive quadrature in order to solve the integral. This adaptive integration routine is using a gradually finer mesh until the results of the integration are no longer improving more than a certain tolerance. The default tolerances (both relative and absolute) are <span class="math notranslate nohighlight">\(1.49 \cdot 10^{-8}\)</span>, but may also be set by the user.</p>
+<p>The numerical integration routine <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html">quad</a> is using adaptive quadrature in order to solve the integral. This adaptive integration routine is using a gradually finer mesh until the results of the integration are no longer improving more than a certain tolerance. The default tolerances (both relative and absolute) are <span class="math notranslate nohighlight">\(1.49 \cdot 10^{-8}\)</span>, but may also be set by the user.</p>
 </section>
 <section id="the-collocation-method">
 <h3>The collocation method<a class="headerlink" href="#the-collocation-method" title="Permalink to this heading">#</a></h3>
-<p>The collocation method takes a very different approach, but the objective is still to find <span class="math notranslate nohighlight">\(u_N(x) \in V_N\)</span> such that</p>
+<p>The collocation method takes a very different approach, but the objective is still to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
@@ -900,8 +900,8 @@ u(x_j) - u_N(x_j) = 0, \quad j \in (0, 1, \ldots, N).
 <p>are defined such that</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\ell_j(x_i) = \delta_{ij} = \begin{cases} 1 \text{ for } i=j \\
-0 \text{ for }  i\ne j.
+\ell_j(x_i) = \delta_{ij} = \begin{cases} 1 \quad &amp;\text{for } i=j \\
+0 \quad &amp;\text{for }  i\ne j.
 \end{cases}
 \end{split}\]</div>
 <p>Hence for the Lagrange interpolation method the matrix <span class="math notranslate nohighlight">\(A\)</span> is the identity matrix and we can simply use the coefficients</p>
@@ -921,59 +921,10 @@ u_N(x) = \hat{u}_0 \ell_0(x) + \hat{u}_1 \ell_1(x),
 u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 \]</div>
 <p>We can choose the end points <span class="math notranslate nohighlight">\([x_0, x_1] = [1, 2]\)</span> and reuse the two functions <code class="docutils literal notranslate"><span class="pre">Lagrangebasis</span></code> and <code class="docutils literal notranslate"><span class="pre">Lagrangefunction</span></code> from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#lagrange-interpolation-polynomials">lecture 7</a>. The result is then as shown below.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Lagrangebasis</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct Lagrange basis function for points in xj</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    xj : array</span>
-<span class="sd">        Interpolation points</span>
-<span class="sd">    x : Sympy Symbol</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    Lagrange basis functions</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Mul</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
-    <span class="n">ell</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">numert</span> <span class="o">=</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">xj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)])</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="n">numer</span> <span class="o">=</span> <span class="n">numert</span><span class="o">/</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">xj</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">denom</span> <span class="o">=</span> <span class="n">Mul</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">xj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">])</span>
-        <span class="n">ell</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numer</span><span class="o">/</span><span class="n">denom</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ell</span>
-
-<span class="k">def</span> <span class="nf">Lagrangefunction</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">basis</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Lagrange polynomial</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    u : array</span>
-<span class="sd">        Mesh function values</span>
-<span class="sd">    basis : tuple of Lagrange basis functions</span>
-<span class="sd">        Output from Lagrangebasis</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">uj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
-        <span class="n">f</span> <span class="o">+=</span> <span class="n">basis</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">uj</span>
-    <span class="k">return</span> <span class="n">f</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lagrange</span> <span class="kn">import</span> <span class="n">Lagrangebasis</span><span class="p">,</span> <span class="n">Lagrangefunction</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">u</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span>
 <span class="n">ell</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">L</span> <span class="o">=</span> <span class="n">Lagrangefunction</span><span class="p">([</span><span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">ell</span><span class="p">)</span>
@@ -1009,9 +960,9 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 <p>Lets consider a more difficult function</p>
 <div class="math notranslate nohighlight">
 \[
-u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
+u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1],
 \]</div>
-<p>and attempt to approximate this function with Lagrange polynomials on a uniform grid.</p>
+<p>and attempt to approximate it with Lagrange polynomials on a uniform grid.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -1158,27 +1109,27 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)
 <p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
 <div class="math notranslate nohighlight" id="equation-eq-un0">
 <span class="eqno">(18)<a class="headerlink" href="#equation-eq-un0" title="Permalink to this equation">#</a></span>\[
-u_N(x) = b(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
+u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(b(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = b(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=b(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(b(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
+<p>where <span class="math notranslate nohighlight">\(B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(B(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=B(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(B(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The function <span class="math notranslate nohighlight">\(b(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
+<p>The function <span class="math notranslate nohighlight">\(B(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
 </div>
 <p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(18)</a>)</p>
 <div class="math notranslate nohighlight">
 \[
-(u-(b+u_N), v) = 0, \quad \forall \, v \in V_N
+(u_N+B-u, v) = 0, \quad \forall \, v \in V_N
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(V_N = \{\sin((j+1)\pi x)\}_{j=0}^N\)</span>. We get</p>
 <div class="math notranslate nohighlight">
 \[
-\left(u- b -\sum_{j=0}^N \hat{u}_j \sin((j+1)\pi x), \sin((i+1)\pi x) \right) = 0, \quad i \in (0, 1, \ldots, N)
+\left(\sum_{j=0}^N \hat{u}_j \sin((j+1)\pi x)+B-u, \sin((i+1)\pi x) \right) = 0, \quad i \in (0, 1, \ldots, N)
 \]</div>
 <p>and using the orthogonality of the sines we get</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{u}_i = 2 \left(u(x)-b(x), \sin((i+1)\pi x) \right) \quad i \in (0, 1, \ldots, N).
+\hat{u}_i = 2 \left(u-B, \sin((i+1)\pi x) \right) \quad i \in (0, 1, \ldots, N).
 \]</div>
 <p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(17)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
 <div class="cell docutils container">
@@ -1259,9 +1210,6 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7/3, -5, 5/3, 0, 0, 0]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
