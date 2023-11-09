@@ -595,7 +595,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>All the odd coefficients <span class="math notranslate nohighlight">\(\hat{u}_{2i+1}, i \in (0, 1, \ldots)\)</span> are zero because the solution <span class="math notranslate nohighlight">\(u(x) = \exp(\cos(x))\)</span> is an even function.</p>
+<p>All the odd coefficients <span class="math notranslate nohighlight">\(\hat{u}_{2i+1}, i \in (0, 1, \ldots)\)</span> are zero because the solution <span class="math notranslate nohighlight">\(u(x) = (1-x^2)\exp(\cos(x))\)</span> is an even function.</p>
 </div>
 <p>The basis functions <span class="math notranslate nohighlight">\(\sin(\pi (j+1)(x+1)/2)\)</span> are alternately even/odd for even/odd values of <span class="math notranslate nohighlight">\(j\)</span>. Since the solution is even, only the even basis functions contribute to the series expansion in <span class="math notranslate nohighlight">\(V_N\)</span> and we could simply omit all the odd basis functions. Normally, though, we do not know if the solution is odd, even or something else, which is why it is best to combine odd and even basis functions. The Legendre and Chebyshev polynomials are also odd/even for odd/even basis numbers <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <p>The (unmapped) sine functions <span class="math notranslate nohighlight">\(\sin(\pi(j+1)x), x \in [-1, 1]\)</span> are odd for all integer <span class="math notranslate nohighlight">\(j \ge 0\)</span>, which makes them a basis only for odd functions. Hence they cannot be used to find the even solution above. The fact that <span class="math notranslate nohighlight">\(\sin(\pi(j+1)x)\)</span> is odd for <span class="math notranslate nohighlight">\(x \in [-1, 1]\)</span>  is why we need to map the physical space to the reference space <span class="math notranslate nohighlight">\([0, 1]\)</span> and work with basis functions <span class="math notranslate nohighlight">\(\sin(\pi (j+1)(x+1)/2)\)</span>.</p>
@@ -628,14 +628,11 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">psi</span><span class="p">(</span><span class="n">i</span><span class="p">)(</span><span class="n">xj</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$P_0-P_2$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_1-P_3$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_2-P_4$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_3-P_5$&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$P_0-P_2$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_1-P_3$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_2-P_4$&#39;</span><span class="p">,</span> <span class="s1">&#39;$P_3-P_5$&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1aca4eb90&gt;
-</pre></div>
-</div>
 <img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
 </div>
 </div>
@@ -733,7 +730,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 \[
 u'' = f, \quad x \in [-1, 1], \, u(-1) = a, u(1) = b.
 \]</div>
-<p>The problem is nearly the same as before, but we cannot simply use <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> because all the basis functions satisfy <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span>. However, we can do as in Sec <a class="reference internal" href="lecture8.html#sec-boundary-issues"><span class="std std-ref">Boundary issues</span></a> and add a boundary function</p>
+<p>The problem is nearly the same as before, but we cannot simply use <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> because all the basis functions satisfy <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span>. However, we can do as in <a class="reference internal" href="lecture8.html#sec-boundary-issues"><span class="std std-ref">Boundary issues</span></a> and add a boundary function</p>
 <div class="math notranslate nohighlight">
 \[
 u_N(x) = B(x) + \sum_{i=0}^N \hat{u}_i \psi_i(x),
@@ -958,12 +955,12 @@ s_{ij} = \alpha(i) \delta_{ij},
 <img alt="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" src="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" />
 </div>
 </div>
-<p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
+<p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi'_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
 <div class="math notranslate nohighlight">
 \[
 (u'', v) = -(u', v') + [u' v]_{-1}^1.
 \]</div>
-<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 = 0\)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(51)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi_j(\pm 1) \ne 0\)</span>.</p>
+<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 \)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(51)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) \ne 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
@@ -1295,7 +1292,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cb5429a696eaf6cc8c448f29b5450da3b5630c51ecef923ad1cabb9be27eeed1.png" src="_images/cb5429a696eaf6cc8c448f29b5450da3b5630c51ecef923ad1cabb9be27eeed1.png" />
+<img alt="_images/d12974d659fc9f7c0d530b9697e6a9173e9003fcd109cab2ebe74d6e4fda8d33.png" src="_images/d12974d659fc9f7c0d530b9697e6a9173e9003fcd109cab2ebe74d6e4fda8d33.png" />
 </div>
 </div>
 </section>

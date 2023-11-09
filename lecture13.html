@@ -515,7 +515,8 @@ g^{n+1}\boldsymbol{u}^0 - g^n \boldsymbol{u}^0 = {\Delta t} g^n D^{(m)} \boldsym
 <span class="eqno">(64)<a class="headerlink" href="#equation-eq-gmin1" title="Permalink to this equation">#</a></span>\[
 (g-1)\boldsymbol{u}^0 = \Delta t D^{(m)} \boldsymbol{u}^0.
 \]</div>
-<p>Stability requires that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>, but in order to say something more specific, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with Dirichlet boundary conditions</p>
+<p>Stability requires that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>. However, unlike the decay equation discussed in lectures 1 and 2, it is not always a requirement that <span class="math notranslate nohighlight">\(g&gt;0\)</span>, because the solution may be oscillatory.</p>
+<p>In order to say something more specific about stability, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with Dirichlet boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-d2-dir">
 <span class="eqno">(65)<a class="headerlink" href="#equation-eq-d2-dir" title="Permalink to this equation">#</a></span>\[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
@@ -556,7 +557,7 @@ g = 1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right).
 <p>and since <span class="math notranslate nohighlight">\(\sin^2\left(k \Delta x/2\right) \le 1\)</span> and positive, we get that <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> is always less than 1. However, <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> can be smaller than <span class="math notranslate nohighlight">\(-1\)</span>, and that gives us the limit</p>
 <div class="math notranslate nohighlight" id="equation-eq-limit1">
 <span class="eqno">(67)<a class="headerlink" href="#equation-eq-limit1" title="Permalink to this equation">#</a></span>\[
-1- \frac{4 \Delta t}{\Delta x^2} \ge -1
+1- \frac{4 \Delta t}{\Delta x^2} \ge -1,
 \]</div>
 <p>which is satisfied if <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 \le 1/2\)</span>. This is the absolute stability limit for the forward Euler method for the diffusion equation. Note that it involves both <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
 <p>We have now found the absolute stability limit for the diffusion equation using the forward Euler method. However, it was quite complicated to compute since we had to discretize in both space and time. You might ask if there is an easier way, and the answer for once is yes. There is actually a generic approach we can take for any differentiation matrix (any value of <span class="math notranslate nohighlight">\(m\)</span> in <span class="math notranslate nohighlight">\(D^{(m)}\)</span>), and that is to compute its <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues</a> <span class="math notranslate nohighlight">\(\lambda\)</span>, such that</p>
@@ -917,7 +918,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-<p>We can compare the absolute stability limits with the finite difference method, where <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 &lt; 0.5\)</span> for stability. Using a uniform mesh with <span class="math notranslate nohighlight">\(N=40\)</span>, we get <span class="math notranslate nohighlight">\(\Delta x = 2/(N-1) = 0.051282\)</span> and <span class="math notranslate nohighlight">\(\Delta t &lt; 0.5 \cdot 0.051282^2 = 1.3149 \cdot 10^{-3}\)</span>. Hence, the Galerkin method with Chebyshev basis functions requires approximately 100 times shorter time steps for stability!</p>
+<p>We can compare the absolute stability limits with the finite difference method, where <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 &lt; 0.5\)</span> for stability. Using a uniform mesh with <span class="math notranslate nohighlight">\(N=40\)</span>, we get <span class="math notranslate nohighlight">\(\Delta x = 2/N = 0.05\)</span> and <span class="math notranslate nohighlight">\(\Delta t &lt; 0.5 \cdot 0.05^2 = 1.25 \cdot 10^{-3}\)</span>. Hence, the Galerkin method with Chebyshev basis functions requires approximately 100 times shorter time steps for stability!</p>
 <div class="admonition-stiffness-matrix-for-chebyshev-basis admonition">
 <p class="admonition-title">Stiffness matrix for Chebyshev basis</p>
 <p>Note that in the implementation we have used <span class="math notranslate nohighlight">\(s_{ij} = -(\psi''_j, \psi_i)_{\omega}\)</span> and</p>
@@ -1124,7 +1125,25 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2} \quad \text{and thus } |g| = \sqrt{0.5 
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Implement the diffusion equation with the backward Euler scheme.</p></li>
+<li><p>Find the absolute stability limit of the diffusion equation discretized with a Crank-Nicolson scheme. Use both a finite difference method</p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u}^{n+1} - \boldsymbol{u}^n = \frac{\Delta t}{2}D^{(2)}(\boldsymbol{u}^{n+1}+\boldsymbol{u}^n).
+\]</div>
+<p>and a comparable Galerkin method.</p>
+<ol class="arabic simple" start="3">
+<li><p>Implement the diffusion equation with a Crank-Nicolson scheme and verify the absolute stability limits found in 2.</p></li>
+<li><p>Consider the leap-frog finite difference scheme</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u}^{n+1} - \boldsymbol{u}^{n-1} = {2\Delta t}D^{(2)}\boldsymbol{u}^n,
+\]</div>
+<p>suggested by <a class="reference external" href="https://royalsocietypublishing.org/doi/10.1098/rspa.1910.0020">Richardson in 1910</a>. Explain why this scheme is unconditionally unstable.</p>
+<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>[Richardson](https://en.wikipedia.org/wiki/Lewis_Fry_Richardson) was one of the great pioneers for using mathematical techniques in weather forecasting, but at the time (1910) he did not know about stability limits for finite difference schemes. The [von Neumann stability analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis) that made this possible was not discovered until 1947.
+</pre></div>
+</div>
 </section>
 </section>
 
