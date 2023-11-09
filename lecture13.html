@@ -1052,9 +1052,9 @@ g + g^{-1} = \beta,
 <p>where <span class="math notranslate nohighlight">\( \beta = -\alpha^2 \lambda +2\)</span>. This is more difficult to conclude with than for the Euler method, because we have a quadratic equation for <span class="math notranslate nohighlight">\(g\)</span>. Nevertheless, we can find</p>
 <div class="math notranslate nohighlight">
 \[
-g = \frac{\beta \pm \sqrt{\beta^2-4}}{2} \quad \text{and thus } |g| = \sqrt{0.5 \beta^2-1},
+g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 \]</div>
-<p>and in order for <span class="math notranslate nohighlight">\(|g| \le 1\)</span> we need <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> and thus <span class="math notranslate nohighlight">\(0 \le \alpha^2 \lambda \le 4\)</span>. The maximum time step that we can use is as such</p>
+<p>and in order for <span class="math notranslate nohighlight">\(|g| \le 1\)</span> (<span class="math notranslate nohighlight">\(g\)</span> may be complex) we need <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> and thus <span class="math notranslate nohighlight">\(0 \le \alpha^2 \lambda \le 4\)</span>. The maximum time step that we can use is as such</p>
 <div class="math notranslate nohighlight">
 \[
 \Delta t &lt; \frac{1}{c}\sqrt{\frac{4}{\max(\lambda)}}.
@@ -1125,24 +1125,21 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2} \quad \text{and thus } |g| = \sqrt{0.5 
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Implement the diffusion equation with the backward Euler scheme.</p></li>
-<li><p>Find the absolute stability limit of the diffusion equation discretized with a Crank-Nicolson scheme. Use both a finite difference method</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{u}^{n+1} - \boldsymbol{u}^n = \frac{\Delta t}{2}D^{(2)}(\boldsymbol{u}^{n+1}+\boldsymbol{u}^n).
-\]</div>
-<p>and a comparable Galerkin method.</p>
-<ol class="arabic simple" start="3">
+<li><p>Find the absolute stability limit of the diffusion equation discretized with a Crank-Nicolson scheme. Use both a finite difference method
+<span class="math notranslate nohighlight">\(
+\boldsymbol{u}^{n+1} - \boldsymbol{u}^n = \frac{\Delta t}{2}D^{(2)}(\boldsymbol{u}^{n+1}+\boldsymbol{u}^n)
+\)</span>
+and a comparable Galerkin method.</p></li>
 <li><p>Implement the diffusion equation with a Crank-Nicolson scheme and verify the absolute stability limits found in 2.</p></li>
-<li><p>Consider the leap-frog finite difference scheme</p></li>
-</ol>
-<div class="math notranslate nohighlight">
-\[
+<li><p>Consider the leap-frog finite difference scheme
+<span class="math notranslate nohighlight">\(
 \boldsymbol{u}^{n+1} - \boldsymbol{u}^{n-1} = {2\Delta t}D^{(2)}\boldsymbol{u}^n,
-\]</div>
-<p>suggested by <a class="reference external" href="https://royalsocietypublishing.org/doi/10.1098/rspa.1910.0020">Richardson in 1910</a>. Explain why this scheme is unconditionally unstable.</p>
-<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>[Richardson](https://en.wikipedia.org/wiki/Lewis_Fry_Richardson) was one of the great pioneers for using mathematical techniques in weather forecasting, but at the time (1910) he did not know about stability limits for finite difference schemes. The [von Neumann stability analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis) that made this possible was not discovered until 1947.
-</pre></div>
+\)</span>
+suggested by <a class="reference external" href="https://royalsocietypublishing.org/doi/10.1098/rspa.1910.0020">Richardson in 1910</a>. Explain why this scheme is unconditionally unstable. To this end you can use that all the eigenvalues of <span class="math notranslate nohighlight">\(D^{(2)}\)</span> are real.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Lewis_Fry_Richardson">Richardson</a> was one of the great pioneers for using mathematical techniques in weather forecasting, but at the time (1910) he did not know about stability limits for finite difference schemes. The <a class="reference external" href="https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis">von Neumann stability analysis</a> that made this possible was not discovered until 1947.</p>
 </div>
 </section>
 </section>
