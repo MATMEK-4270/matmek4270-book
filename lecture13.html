@@ -516,17 +516,17 @@ g^{n+1}\boldsymbol{u}^0 - g^n \boldsymbol{u}^0 = {\Delta t} g^n D^{(m)} \boldsym
 (g-1)\boldsymbol{u}^0 = \Delta t D^{(m)} \boldsymbol{u}^0.
 \]</div>
 <p>Stability requires that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>. However, unlike the decay equation discussed in lectures 1 and 2, it is not always a requirement that <span class="math notranslate nohighlight">\(g&gt;0\)</span>, because the solution may be oscillatory.</p>
-<p>In order to say something more specific about stability, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with Dirichlet boundary conditions</p>
+<p>In order to say something more specific about stability, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with periodic boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-d2-dir">
 <span class="eqno">(65)<a class="headerlink" href="#equation-eq-d2-dir" title="Permalink to this equation">#</a></span>\[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
-h^2 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+-2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 1  \\
 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 \vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
 0 &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
 0 &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; h^2 \\
+1 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(65)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
@@ -586,14 +586,15 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
 
-<span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">Lambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum eigenvalue = </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">Lambda</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.996206657474088
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.9962066574740924
 </pre></div>
 </div>
 </div>
@@ -1061,7 +1062,7 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For all <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> we get that <span class="math notranslate nohighlight">\(|g|=1\)</span>. This makes sense if we consider <span class="math notranslate nohighlight">\(g + g^{-1} = \beta\)</span>, because if <span class="math notranslate nohighlight">\(g\)</span> is a root of the quadratic equation, then <span class="math notranslate nohighlight">\(g^{-1}\)</span> must also be a root. Hence, if <span class="math notranslate nohighlight">\(g &lt; 1\)</span>, then <span class="math notranslate nohighlight">\(g^{-1}&gt;1\)</span>, which is unstable. So all the possible <span class="math notranslate nohighlight">\(\beta\)</span> must here have <span class="math notranslate nohighlight">\(|g|=1\)</span>.</p>
+<p>For all <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> we get that <span class="math notranslate nohighlight">\(|g|=1\)</span>. This makes sense if we consider <span class="math notranslate nohighlight">\(g + g^{-1} = \beta\)</span>, because if <span class="math notranslate nohighlight">\(g\)</span> is a root of the quadratic equation, then <span class="math notranslate nohighlight">\(g^{-1}\)</span> must also be a root. Hence, if <span class="math notranslate nohighlight">\(g &lt; 1\)</span>, then <span class="math notranslate nohighlight">\(g^{-1}&gt;1\)</span>, which is unstable. So all the possible <span class="math notranslate nohighlight">\(\beta\)</span> must here have <span class="math notranslate nohighlight">\(|g|=1\)</span>. We can also easily compute <span class="math notranslate nohighlight">\(|\beta \pm \sqrt{\beta^2-4}| = 2\)</span> when the real number <span class="math notranslate nohighlight">\(-2\ge\beta \ge 2\)</span>.</p>
 </div>
 <p>Lets implement the wave equation using a global Galerkin method, homogeneous Dirichlet boundary conditions and an initial pulse <span class="math notranslate nohighlight">\(u(x, t) = \exp(-200(x-L/2+ct)^2)\)</span> used for both <span class="math notranslate nohighlight">\(t=0\)</span> and <span class="math notranslate nohighlight">\(t=\Delta t\)</span>. Since we are using the same matrices as the diffusion problem, we can create a solver by subclassing the <code class="docutils literal notranslate"><span class="pre">FE_Diffusion</span></code> class and thus reuse much code</p>
 <div class="cell docutils container">
