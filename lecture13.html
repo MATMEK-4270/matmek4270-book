@@ -660,7 +660,7 @@ g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \lambda \Delta t \boldsymbol
 \[
 g = 1 + \lambda \Delta t
 \]</div>
-<p>and for stability <span class="math notranslate nohighlight">\(|g| &lt; 1\)</span>, we need to have <span class="math notranslate nohighlight">\(|1+\lambda \Delta t| &lt; 1\)</span>.</p>
+<p>and for stability <span class="math notranslate nohighlight">\(|g| \le 1\)</span>, we need to have <span class="math notranslate nohighlight">\(|1+\lambda \Delta t| \le 1\)</span>.</p>
 <p>So with the Galerkin method we do not need the mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span> in order to compute stability limits. On the other hand, we do need to solve an eigenvalue problem to find the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span>. In the stability computation, we use the largest eigenvalue. Lets try this out with a complete example, using the diffusion equation.</p>
 </section>
 </section>
@@ -725,10 +725,10 @@ a_{ij} = a_{ji} = \frac{L}{2}\begin{cases} |P_i|^2+|P_{i+2}|^2, \quad &amp;i = j
 A \boldsymbol{\hat{u}}^{n+1} = A \boldsymbol{\hat{u}}^{n} - \Delta t S \boldsymbol{\hat{u}}^n.
 \]</div>
 <p>This equation is solved for <span class="math notranslate nohighlight">\(n\in (0, 1, \ldots, N_t-1)\)</span> after first initializing <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span>.
-A solver is created in the class <code class="docutils literal notranslate"><span class="pre">FE_Diffusion</span></code> below, where we reuse the code from <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory2">mandatory assignment 2</a>. In the code we assemble the mass and stiffness matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(S\)</span>, and compute the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(H=A^{-1}S\)</span>. We then use that <span class="math notranslate nohighlight">\(|1-\lambda \Delta t| &lt; 1\)</span> (where the minus is because we have used integration by parts) and the fact that here all eigenvalues are positive real numbers, to determine that</p>
+A solver is created in the class <code class="docutils literal notranslate"><span class="pre">FE_Diffusion</span></code> below, where we reuse the code from <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory2">mandatory assignment 2</a>. In the code we assemble the mass and stiffness matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(S\)</span>, and compute the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(H=A^{-1}S\)</span>. We then use that <span class="math notranslate nohighlight">\(|1-\lambda \Delta t| \le 1\)</span> (where the minus is because we have used integration by parts) and the fact that here all eigenvalues are positive real numbers, to determine that</p>
 <div class="math notranslate nohighlight">
 \[
-0 &lt; \lambda \Delta t &lt; 2.
+0 \le \lambda \Delta t \le 2.
 \]</div>
 <p>This means that for stability we need to choose a time step <span class="math notranslate nohighlight">\(\Delta t &lt; 2/\max(\lambda)\)</span>.</p>
 <div class="cell docutils container">
@@ -919,7 +919,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 </div>
-<p>We can compare the absolute stability limits with the finite difference method, where <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 &lt; 0.5\)</span> for stability. Using a uniform mesh with <span class="math notranslate nohighlight">\(N=40\)</span>, we get <span class="math notranslate nohighlight">\(\Delta x = 2/N = 0.05\)</span> and <span class="math notranslate nohighlight">\(\Delta t &lt; 0.5 \cdot 0.05^2 = 1.25 \cdot 10^{-3}\)</span>. Hence, the Galerkin method with Chebyshev basis functions requires approximately 100 times shorter time steps for stability!</p>
+<p>We can compare the absolute stability limits with the finite difference method, where <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 \le 0.5\)</span> for stability. Using a uniform mesh with <span class="math notranslate nohighlight">\(N=40\)</span>, we get <span class="math notranslate nohighlight">\(\Delta x = 2/N = 0.05\)</span> and <span class="math notranslate nohighlight">\(\Delta t \le 0.5 \cdot 0.05^2 = 1.25 \cdot 10^{-3}\)</span>. Hence, the Galerkin method with Chebyshev basis functions requires approximately 100 times shorter time steps for stability!</p>
 <div class="admonition-stiffness-matrix-for-chebyshev-basis admonition">
 <p class="admonition-title">Stiffness matrix for Chebyshev basis</p>
 <p>Note that in the implementation we have used <span class="math notranslate nohighlight">\(s_{ij} = -(\psi''_j, \psi_i)_{\omega}\)</span> and</p>
@@ -1058,7 +1058,7 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 <p>and in order for <span class="math notranslate nohighlight">\(|g| \le 1\)</span> (<span class="math notranslate nohighlight">\(g\)</span> may be complex) we need <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> and thus <span class="math notranslate nohighlight">\(0 \le \alpha^2 \lambda \le 4\)</span>. The maximum time step that we can use is as such</p>
 <div class="math notranslate nohighlight">
 \[
-\Delta t &lt; \frac{1}{c}\sqrt{\frac{4}{\max(\lambda)}}.
+\Delta t \le \frac{1}{c}\sqrt{\frac{4}{\max(\lambda)}}.
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
