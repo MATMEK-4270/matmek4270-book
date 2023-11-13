@@ -18,6 +18,7 @@ parts:
   - file: lecture10
   - file: lecture11
   - file: lecture12
+  - file: lecture13
 - caption: Mandatory assignments
   numbered: true
   chapters:
