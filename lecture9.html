@@ -500,7 +500,7 @@ T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right)
 \left(T_j, T_i \right)_{\omega} = \frac{c_i \pi}{2}\delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_0=2\)</span> and <span class="math notranslate nohighlight">\(c_i = 1\)</span> for <span class="math notranslate nohighlight">\(i &gt; 0\)</span>. The weighted squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of Chebyshev polynomials is <span class="math notranslate nohighlight">\(|T_i|_{\omega}^2 = \frac{c_i \pi}{2}\)</span>.</p>
-<p>For Chebyshev polynomials the approximation problem is now solved with the Galerkin method in the <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> space: find <span class="math notranslate nohighlight">\(u(x) \in \mathbb{P}_N\)</span> such that</p>
+<p>For Chebyshev polynomials the approximation problem is now solved with the Galerkin method in the <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> space: find <span class="math notranslate nohighlight">\(u_N(x) \in \mathbb{P}_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebproject">
 <span class="eqno">(24)<a class="headerlink" href="#equation-eq-chebproject" title="Permalink to this equation">#</a></span>\[
 (u-u_N, v)_{\omega} = 0, \quad \forall \, v \in \mathbb{P}_N.
@@ -1279,8 +1279,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.05 times longer than the fastest. This could mean that an intermediate result is being cached.
-56.1 µs ± 37.3 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>55.9 µs ± 33.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1292,8 +1291,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.77 times longer than the fastest. This could mean that an intermediate result is being cached.
-159 µs ± 110 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98.7 µs ± 43.1 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>

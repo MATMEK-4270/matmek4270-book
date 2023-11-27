@@ -708,7 +708,7 @@ u^1 = 2u^0 - u^{-1} + \underline{c}^2 D^{(2)}u^0
 \[
 u^1 = u^0 + \frac{\underline{c}^2}{2}D^{(2)}u^0 + V \Delta t
 \]</div>
-<p>So with Neumann boundary conditions we initialize <code class="docutils literal notranslate"><span class="pre">unm1</span></code><span class="math notranslate nohighlight">\(=u^0=u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code><span class="math notranslate nohighlight">\(=u^1=u(x, \Delta t)\)</span> and solve first for <code class="docutils literal notranslate"><span class="pre">unp1</span></code><span class="math notranslate nohighlight">\(=u^2=u(x, 2\Delta t)\)</span>.</p>
+<p>So with two initial conditions we fix <code class="docutils literal notranslate"><span class="pre">unm1</span></code><span class="math notranslate nohighlight">\(=u^0=u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code><span class="math notranslate nohighlight">\(=u^1=u(x, \Delta t)\)</span> and solve first for <code class="docutils literal notranslate"><span class="pre">unp1</span></code><span class="math notranslate nohighlight">\(=u^2=u(x, 2\Delta t)\)</span>.</p>
 <p>The implementation in <code class="docutils literal notranslate"><span class="pre">Wave1D</span></code> simply evaluates a Sympy function for the initial condition. See the initial part of <code class="docutils literal notranslate"><span class="pre">Wave1D.__call__</span></code>.</p>
 </section>
 <section id="boundary-conditions">

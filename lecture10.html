@@ -599,12 +599,12 @@ A = \sum_{e=0}^{N_e-1} A^{(e)}.
 <p>The element mass matrix <span class="math notranslate nohighlight">\(A^{(e)}=(a^{(e)}_{ij})_{i,j=0}^N\)</span> is very sparse since it only has nonzero items for indices <span class="math notranslate nohighlight">\(i, j\)</span> corresponding to nonzero basis functions in the element <span class="math notranslate nohighlight">\(e\)</span>. Hence it makes sense to reduce its size. If there are <span class="math notranslate nohighlight">\(d+1\)</span> nonzero basis functions on each element, then there can be at most <span class="math notranslate nohighlight">\((d+1)^2\)</span> nonzero combinations of <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((\psi_i, \psi_j)\)</span> and the element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> can as such be represented as a dense <span class="math notranslate nohighlight">\((d+1)\times (d+1)\)</span> matrix</p>
 <div class="math notranslate nohighlight">
 \[
-\tilde{A}^{(e)} = (a_{rs}^{(e)})_{r,s=0}^{d} \in \mathbb{R}^{(d+1)\times (d+1)},
+\tilde{A}^{(e)} = (\tilde{a}_{rs}^{(e)})_{r,s=0}^{d} \in \mathbb{R}^{(d+1)\times (d+1)},
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[
-a_{rs}^{(e)} = \int_{\Omega^{(e)}} \psi_{q(e,r)} \psi_{q(e,s)} d\Omega
+\tilde{a}_{rs}^{(e)} = \int_{\Omega^{(e)}} \psi_{q(e,r)} \psi_{q(e,s)} d\Omega
 \]</div>
 <p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 3</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
 <div class="math notranslate nohighlight" id="equation-eq-mapping-q">
@@ -618,7 +618,7 @@ q(e, r) = de+r.
 <p>In order to use the local (and small) element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> we assemble for each element into the global matrix <span class="math notranslate nohighlight">\(A\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
-a_{q(e,r),q(e, s)} \mathop{+}= a^{(e)}_{r,s}, \quad (r, s) \in \mathcal{I}_d^2.
+a_{q(e,r),q(e, s)} \mathop{+}= \tilde{a}^{(e)}_{r,s}, \quad (r, s) \in \mathcal{I}_d^2.
 \]</div>
 <p>This process, which is termed <em>finite element assembly</em>, can be illustrated as shown below, where 4 small element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> of shape <span class="math notranslate nohighlight">\(2 \times 2\)</span> are inserted into the global matrix <span class="math notranslate nohighlight">\(A\)</span> of shape <span class="math notranslate nohighlight">\(5 \times 5\)</span>. For this linear case <span class="math notranslate nohighlight">\(d=1\)</span>. Note that there is overlap between the 4 element matrices in the global <span class="math notranslate nohighlight">\(A\)</span>, because all the internal (linear) basis functions are nonzero in 2 elements each.</p>
 <figure class="align-center" id="mov-assemble-mass">
@@ -740,7 +740,7 @@ X_r = -1 + \frac{2r}{d}, \quad r \in (0, 1, \ldots, d).
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-a^{(e)}_{rs} &amp;= \int_{\Omega^{(e)}} \psi_{q(e,r)}(x) \psi_{q(e,s)}(x) d\Omega, \\
+\tilde{a}^{(e)}_{rs} &amp;= \int_{\Omega^{(e)}} \psi_{q(e,r)}(x) \psi_{q(e,s)}(x) d\Omega, \\
 &amp;= \int_{x_{q(e, 0)}}^{x_{q(e, d)}} \psi_{q(e,r)}(x) \psi_{q(e,s)}(x) dx, \\
 &amp;= \int_{-1}^1 \ell_{r}(X) \ell_{s}(X) \frac{dx}{dX} dX,
 \end{align*}
@@ -748,7 +748,7 @@ a^{(e)}_{rs} &amp;= \int_{\Omega^{(e)}} \psi_{q(e,r)}(x) \psi_{q(e,s)}(x) d\Omeg
 <p>where <span class="math notranslate nohighlight">\(dx/dX = h/2\)</span>, such that for any element, regardless of order <span class="math notranslate nohighlight">\(d\)</span>, we can compute the elements of the element matrix as</p>
 <div class="math notranslate nohighlight">
 \[
-a_{rs}^{(e)} = \frac{h}{2}\int_{-1}^1 \ell_{r}(X) \ell_{s}(X) dX.
+\tilde{a}_{rs}^{(e)} = \frac{h}{2}\int_{-1}^1 \ell_{r}(X) \ell_{s}(X) dX.
 \]</div>
 <p>Hence, instead of computing the element matrix for linear polynomials as</p>
 <div class="math notranslate nohighlight">
