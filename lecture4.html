@@ -168,7 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 4</a></li>
@@ -404,19 +408,18 @@ document.write(`
 <h1>Lecture 4<a class="headerlink" href="#lecture-4" title="Permalink to this heading">#</a></h1>
 <section id="the-finite-difference-method">
 <h2>The Finite difference method<a class="headerlink" href="#the-finite-difference-method" title="Permalink to this heading">#</a></h2>
-<p>The finite difference method divides (in 1D) the line into a mesh and solves equations only for specific locations (nodes) in the mesh. A mesh is created with <span class="math notranslate nohighlight">\(t = (0, \Delta t, 2\Delta t, \ldots, N \Delta t)\)</span>, where <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span> and <span class="math notranslate nohighlight">\(T=t_N = N \Delta t\)</span>.</p>
+<p>The finite difference method divides (in 1D) the line into a mesh and solves equations only for specific locations (nodes) in the mesh. A mesh is created with <span class="math notranslate nohighlight">\(t = 0, \Delta t, 2\Delta t, \ldots, N \Delta t\)</span>, where <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span> and <span class="math notranslate nohighlight">\(T=t_N = N \Delta t\)</span>.</p>
 <p><img alt="tikz" src="_images/line.png" /></p>
 <p>Up until now we have solved equations by using a recursive approach. This is very easy to implement intuitively using for-loops. However, the most common and general use of finite difference methods is through explicit assembling of matrices.</p>
 <p>Consider the decay model first</p>
 <div class="math notranslate nohighlight">
-\[ u' + au = 0, u(0)=I, t \in [0, T] \]</div>
-<p>We create a solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^0, u^1, \ldots, u^{N_t})\)</span></p>
-<p>To solve recursively, we start by setting <span class="math notranslate nohighlight">\(u^0=I\)</span>, and then recursively solve</p>
+\[ u' + au = 0, u(0)=I, t \in [0, T]. \]</div>
+<p>We create a solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^0, u^1, \ldots, u^{N_t})\)</span>. To solve recursively, we start by setting <span class="math notranslate nohighlight">\(u^0=I\)</span>, and then recursively solve</p>
 <div class="math notranslate nohighlight">
-\[ \frac{u^{n+1}-u^n}{\Delta t} = -a (\theta u^{n+1} + (1-\theta) u^n) \]</div>
+\[ \frac{u^{n+1}-u^n}{\Delta t} = -a (\theta u^{n+1} + (1-\theta) u^n) \quad \text{for}\, n=1, 2, \ldots, N.\]</div>
 <p>Rearranged</p>
 <div class="math notranslate nohighlight">
-\[ u^{n+1} = \frac{1 - (1-\theta) a \Delta t}{1 + \theta a \Delta t} u^n \]</div>
+\[ u^{n+1} = \frac{1 - (1-\theta) a \Delta t}{1 + \theta a \Delta t} u^n. \]</div>
 <p>Recursive algorithm:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(u^0 = I\)</span></p></li>
@@ -462,7 +465,7 @@ document.write(`
 <p>The recursive approach never assembles the <span class="math notranslate nohighlight">\(N+1\)</span> linear equations, it just steps forward, solving <span class="math notranslate nohighlight">\(u^{n+1}\)</span> from <span class="math notranslate nohighlight">\(u^n\)</span>. The matrix approach is simply an approach where all the linear equations are assembled first as a matrix problem. The matrix formulation for the generic problem is</p>
 <div class="math notranslate nohighlight">
 \[
-A \boldsymbol{u} = \boldsymbol{b}
+A \boldsymbol{u} = \boldsymbol{b},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} \in \mathbb{R}^{N+1}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{b} \in \mathbb{R}^{N+1}\)</span> and  the matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(N+1) \times (N+1)}\)</span> is the coefficient matrix, that for the decay problem is</p>
 <div class="math notranslate nohighlight">
@@ -482,12 +485,12 @@ A = \begin{bmatrix}
 <p>We have a linear algebra problem</p>
 <div class="math notranslate nohighlight">
 \[
-A \boldsymbol{u} = \boldsymbol{b}
+A \boldsymbol{u} = \boldsymbol{b},
 \]</div>
 <p>which is trivially solved by Gaussian elimination or simply a forward elimination.</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{u} = A^{-1} \boldsymbol{b}
+\boldsymbol{u} = A^{-1} \boldsymbol{b}.
 \]</div>
 <p>The system to solve looks like</p>
 <div class="math notranslate nohighlight">
@@ -595,12 +598,12 @@ I \\
 <h2>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Permalink to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
-u'' + \omega^2 u = 0, \quad u(0) = I, u'(0) = 0, t \in [0, T]
+u'' + \omega^2 u = 0, \quad u(0) = I, u'(0) = 0, t \in [0, T],
 \]</div>
 <p>is solved using a central difference for <span class="math notranslate nohighlight">\(n=1, 2, \ldots, N-1\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-\frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^n = 0
+\frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^n = 0.
 \]</div>
 <p>The recursive algorithm is</p>
 <ul class="simple">
@@ -614,7 +617,7 @@ u'' + \omega^2 u = 0, \quad u(0) = I, u'(0) = 0, t \in [0, T]
 </ul>
 <p>The algebraic problem</p>
 <div class="math notranslate nohighlight">
-\[ A \boldsymbol{u} = \boldsymbol{b} \]</div>
+\[ A \boldsymbol{u} = \boldsymbol{b}, \]</div>
 <p>is now, using <span class="math notranslate nohighlight">\(C = 2-\omega^2 \Delta t^2\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -680,15 +683,15 @@ I \\
 <div class="math notranslate nohighlight">
 \[
 \begin{equation*}
-u''(t_n) = \frac{u^{n+1}-2u^n + u^{n-1}}{h^2}  + \frac{h^2}{12}u'''' + 
+u''(t_n) = \frac{u^{n+1}-2u^n + u^{n-1}}{h^2}  + \frac{h^2}{12}u'''' +
 \end{equation*}
 \]</div>
 <p>The operation can be set up for all <span class="math notranslate nohighlight">\(n\)</span> as a matrix-vector product</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{u}^{(2)} = D^{(2)} \boldsymbol{u}
+\boldsymbol{u}^{(2)} = D^{(2)} \boldsymbol{u},
 \]</div>
-<p>where we use <span class="math notranslate nohighlight">\(\boldsymbol{u}^{(2)}=\{u''(t_n)\}_{n=0}^{N}\)</span> to represent the finite difference approximation to the second derivative at the <span class="math notranslate nohighlight">\(N+1\)</span> mesh points. The finite difference differentiation matrix is</p>
+<p>where we use <span class="math notranslate nohighlight">\(\boldsymbol{u}^{(2)}=(u''(t_n))_{n=0}^{N}\)</span> to represent the finite difference approximation to the second derivative at the <span class="math notranslate nohighlight">\(N+1\)</span> mesh points. The finite difference differentiation matrix is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
@@ -710,13 +713,13 @@ D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
 <p>Isolate <span class="math notranslate nohighlight">\(u''\)</span> to obtain</p>
 <div class="math notranslate nohighlight">
 \[
-u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' + 
+u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' +
 \]</div>
 <p>The error is first order as the first error term is <span class="math notranslate nohighlight">\(-h u'''\)</span>.</p>
 <p>Can we do better? Yes, of course, just add one more point to the finite difference stencil using Eq. (3). Now to eliminate both <span class="math notranslate nohighlight">\(u'\)</span> and <span class="math notranslate nohighlight">\(u'''\)</span> terms add the three equations as <span class="math notranslate nohighlight">\(-(3) + 4(2) - 5(1)\)</span> (don’t worry about how I know this yet)</p>
 <div class="math notranslate nohighlight">
 \[
--(3)+4(2)-5(1): \, -u^{n+3}+4u^{n+2}-5u^{n+1} = -2 u^n + h^2 u'' - \frac{11 h^4}{12}u'''' +   
+-(3)+4(2)-5(1): \, -u^{n+3}+4u^{n+2}-5u^{n+1} = -2 u^n + h^2 u'' - \frac{11 h^4}{12}u'''' +  
 \]</div>
 <p>which leads to the second order accurate</p>
 <div class="math notranslate nohighlight">
@@ -782,7 +785,7 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 </div>
 </div>
 </div>
-<p>If we apply <span class="math notranslate nohighlight">\(D^{(2)}\)</span> to a vector (mesh function) <span class="math notranslate nohighlight">\(\boldsymbol{f} = \{f(t_n)\}_{n=0}^{N}\)</span>, the we get the second derivative with second order accuracy. Let us try this first with <span class="math notranslate nohighlight">\(f=t^2\)</span>.</p>
+<p>If we apply <span class="math notranslate nohighlight">\(D^{(2)}\)</span> to a vector (mesh function) <span class="math notranslate nohighlight">\(\boldsymbol{f} = (f(t_n))_{n=0}^{N}\)</span>, we get the second derivative with second order accuracy. Let us try this first with <span class="math notranslate nohighlight">\(f=t^2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
@@ -840,14 +843,11 @@ u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' +
 <span class="n">d2f</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span>
 <span class="n">d2f1</span> <span class="o">=</span> <span class="n">D2e</span> <span class="o">@</span> <span class="n">f</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">d2fe</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">d2f</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">d2f1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd order&#39;</span><span class="p">,</span> <span class="s1">&#39;1st order&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd order&#39;</span><span class="p">,</span> <span class="s1">&#39;1st order&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x110541f10&gt;
-</pre></div>
-</div>
 <img alt="_images/0c3e7c01585130026e5e7165e96028267613e2fa71ea908af6e32f8bc48a77d8.png" src="_images/0c3e7c01585130026e5e7165e96028267613e2fa71ea908af6e32f8bc48a77d8.png" />
 </div>
 </div>
@@ -939,7 +939,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1112adc90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1195319d0&gt;
 </pre></div>
 </div>
 <img alt="_images/89f6ecc69966e347db9b11b94279dda7aad2a4418978d85d6b04deaffc569ed5.png" src="_images/89f6ecc69966e347db9b11b94279dda7aad2a4418978d85d6b04deaffc569ed5.png" />
@@ -991,22 +991,22 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 <p>Let’s do the decay equation first and assemble the system</p>
 <div class="math notranslate nohighlight">
 \[
-A \boldsymbol{u} = \boldsymbol{b}
+A \boldsymbol{u} = \boldsymbol{b},
 \]</div>
 <p>for the equation</p>
 <div class="math notranslate nohighlight">
 \[
-u' + au = 0, u(0)=I, t \in [0, T] 
+u' + au = 0, u(0)=I, t \in [0, T].
 \]</div>
 <p>Before boundary conditions we can assemble this as</p>
 <div class="math notranslate nohighlight">
 \[
-(D^{(1)} + a \mathbb{I})\boldsymbol{u} = \boldsymbol{b}
+(D^{(1)} + a \mathbb{I})\boldsymbol{u} = \boldsymbol{b},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> is the identity matrix and the only non-zero item in <span class="math notranslate nohighlight">\(\boldsymbol{b}\)</span> is the boundary condition for <span class="math notranslate nohighlight">\(n=0\)</span>. We get</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{u^{n+1}-u^{n-1}}{2 h} + a u^n = 0
+\frac{u^{n+1}-u^{n-1}}{2 h} + a u^n = 0.
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1045,9 +1045,9 @@ u' + au = 0, u(0)=I, t \in [0, T]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1114a8a10&gt;,
- &lt;matplotlib.lines.Line2D at 0x11150cfd0&gt;,
- &lt;matplotlib.lines.Line2D at 0x11133e010&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1197521d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x1197524d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x119752250&gt;]
 </pre></div>
 </div>
 <img alt="_images/e45298c76b3df066cc4262817354230bb8d8dfd4285c3184096ccfca26657300.png" src="_images/e45298c76b3df066cc4262817354230bb8d8dfd4285c3184096ccfca26657300.png" />
@@ -1060,26 +1060,26 @@ u' + au = 0, u(0)=I, t \in [0, T]
 <p>It is possible to derive finite difference stencils of any order from the Taylor expansions around a point in both positive and negative directions. The generic Taylor expansion around <span class="math notranslate nohighlight">\(x=x_0\)</span> reads</p>
 <div class="math notranslate nohighlight">
 \[
-u(x) = \sum_{i=0}^{N} \frac{(x-x_0)^i}{i!} u^{(i)}(x_0) + \mathcal{O}((x-x_0)^{N+1})
+u(x) = \sum_{i=0}^{N} \frac{(x-x_0)^i}{i!} u^{(i)}(x_0) + \mathcal{O}((x-x_0)^{N+1}),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(u^{(i)}(x_0) = \frac{d^{i}u}{dx^{i}}|_{x=x_0}\)</span>.</p>
 <p>With the finite difference method we only evaluate this expansion for certain points around <span class="math notranslate nohighlight">\(x_0\)</span>. That is, we use only <span class="math notranslate nohighlight">\(x=x_0+mh\)</span>, where <span class="math notranslate nohighlight">\(m\)</span> is an integer and <span class="math notranslate nohighlight">\(h\)</span> is a constant (time step or mesh size). We get</p>
 <div class="math notranslate nohighlight">
 \[
-u(x_0+mh) = \sum_{i=0}^{N} \frac{(mh)^i}{i!} u^{(i)}(x_0) + \mathcal{O}(h^{N+1})
+u(x_0+mh) = \sum_{i=0}^{N} \frac{(mh)^i}{i!} u^{(i)}(x_0) + \mathcal{O}(h^{N+1}),
 \]</div>
 <p>where we usually use the finite difference notation <span class="math notranslate nohighlight">\(u^{n+m} = u(x_0+mh)\)</span>. Note that the equation above is a matrix vector product, because <span class="math notranslate nohighlight">\(\frac{(mh)^i}{i!}\)</span> has two indices <span class="math notranslate nohighlight">\(m, i\)</span> like a matrix and <span class="math notranslate nohighlight">\(u^{(i)}(x_0)\)</span> and <span class="math notranslate nohighlight">\(u(x_0+mh)\)</span> have both only one (<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(m\)</span>, respectively). With <span class="math notranslate nohighlight">\(c_{mi} = \frac{(mh)^i}{i!}\)</span> and <span class="math notranslate nohighlight">\(du_i = u^{(i)}(x_0)\)</span> and neglecting the <span class="math notranslate nohighlight">\(\mathcal{O}(h^{N+1})\)</span> terms we get</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+m} = \sum_{i=0}^N c_{mi} du_i
+u^{n+m} = \sum_{i=0}^{N} c_{mi} du_i,
 \]</div>
-<p>or on matrix notation</p>
+<p>or in matrix notation</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{u} = C \boldsymbol{du}
+\boldsymbol{u} = C \boldsymbol{du},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} = \{u^{n+m}\}_{m=m_0}^{N-m_0}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{du}=\{du_i\}_{i=0}^N\)</span>.</p>
-<p>We can set up a system of equations for <span class="math notranslate nohighlight">\(m=-2, -1, 0, 1, 2\)</span> and <span class="math notranslate nohighlight">\(N=4\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^{n+m})_{m=m_0}^{N+m_0}\)</span>, <span class="math notranslate nohighlight">\(C = (c_{m+m_0,i})_{m,i=0}^{N,N}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{du}=(du_i)_{i=0}^N\)</span>. Here <span class="math notranslate nohighlight">\(m_0\)</span> is an integer representing the lowest value of <span class="math notranslate nohighlight">\(m\)</span> in the stencil.</p>
+<p>We can set up a system of equations for <span class="math notranslate nohighlight">\(m_0=-2\)</span> and <span class="math notranslate nohighlight">\(N=4\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -1090,7 +1090,7 @@ u^{n+1} &amp;= \sum_{i=0}^{N} \frac{(h)^i}{i!} du_i  \\
 u^{n+2} &amp;= \sum_{i=0}^{N} \frac{(2h)^i}{i!} du_i  \\
 \end{align*}
 \end{split}\]</div>
-<p>These 5 equations can be written on matrix form as</p>
+<p>These 5 equations can be written in matrix form as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -1118,17 +1118,17 @@ du_4
 <p>or more easily as</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{u} = C \boldsymbol{du}
+\boldsymbol{u} = C \boldsymbol{du}.
 \]</div>
 <p>Remember that the derivatives <span class="math notranslate nohighlight">\(du_i = u^{(i)}(x_0)\)</span> are what we’re normally interested in. And by assembling the matrix <span class="math notranslate nohighlight">\(C\)</span> we can compute any finite difference scheme (!!) simply through:</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{du} = C^{-1} \boldsymbol{u}
+\boldsymbol{du} = C^{-1} \boldsymbol{u}.
 \]</div>
 <p>For example, for a second order accurate scheme (with <span class="math notranslate nohighlight">\(m=-1, 0, 1\)</span>) we should have</p>
 <div class="math notranslate nohighlight">
 \[
-du_2 = u^{(2)}(x_0) = \frac{u^{n+1}-2u^n+u^{n-1}}{h^2}
+du_2 = u^{(2)}(x_0) = \frac{u^{n+1}-2u^n+u^{n-1}}{h^2}.
 \]</div>
 <p>Let’s derive this with the approach above. The scheme is central so we use <span class="math notranslate nohighlight">\(m=(-1, 0, 1)\)</span> and second order so use <span class="math notranslate nohighlight">\(N=2\)</span>. The <span class="math notranslate nohighlight">\(C\)</span> matrix is then</p>
 <div class="math notranslate nohighlight">
@@ -1169,12 +1169,12 @@ C = \begin{bmatrix}
 <p>The second order central schemes are found in the last two rows. Row 1 is the first derivative, row 2 the second derivative (i.e., row one is <span class="math notranslate nohighlight">\(du_1\)</span> and row 2 <span class="math notranslate nohighlight">\(du_2\)</span>). We can also print out the scheme by computing</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{du} = C^{-1} \boldsymbol{u}
+\boldsymbol{du} = C^{-1} \boldsymbol{u}.
 \]</div>
 <p>For given order 2 we get</p>
 <div class="math notranslate nohighlight">
 \[
-du_2 = \sum_{i=0}^N c_{2i} u^{n-i-1}
+du_2 = \sum_{i=0}^N c_{2i} u^{n-i-1}.
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1366,7 +1366,7 @@ By Mikael Mortensen
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

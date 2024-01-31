@@ -168,7 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
@@ -417,7 +421,7 @@ document.write(`
 <p>The wave equation is a partial differential equation (PDE):</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}
+\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}.
 \]</div>
 <p>We will consider the time and space domains:
 <span class="math notranslate nohighlight">\(t\in[0, T]\)</span>, <span class="math notranslate nohighlight">\(x \in [0, L]\)</span>.</p>
@@ -425,7 +429,7 @@ document.write(`
 <li><p>The wave equation is a hyperbolic PDE, so recursive methods are ok.</p></li>
 <li><p>The solutions are waves that can be written as <span class="math notranslate nohighlight">\(u(x+ct)\)</span> and <span class="math notranslate nohighlight">\(u(x-ct)\)</span>.</p></li>
 </ul>
-<p>The two derivatives in space require two boundary conditions</p>
+<p>The two derivatives in space require two boundary conditions:</p>
 <section id="dirichlet-fixed-end">
 <h3>Dirichlet (Fixed end)<a class="headerlink" href="#dirichlet-fixed-end" title="Permalink to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
@@ -483,7 +487,7 @@ u(0, t) = u(L, t) = 0
 <div class="math notranslate nohighlight">
 \[
 u(x, t=0) = I(x) \quad \text{and} \quad
-\frac{\partial u}{\partial t}(x, t=0) = V(x)
+\frac{\partial u}{\partial t}(x, t=0) = V(x),
 \]</div>
 <p>for some functions <span class="math notranslate nohighlight">\(I(x)\)</span> and <span class="math notranslate nohighlight">\(V(x)\)</span>.</p>
 </section>
@@ -530,20 +534,20 @@ x_j = j \Delta x, \quad j = 0, 1, \ldots, N
 <p>A mesh function is defined as</p>
 <div class="math notranslate nohighlight">
 \[
-u^n_j = u(x_j, t_n)
+u^n_j = u(x_j, t_n),
 \]</div>
 <p>and the mesh function has one value at each node in the mesh. For simplicity in later algorithms we will use the vectors</p>
 <div class="math notranslate nohighlight">
 \[
-u^n = \{u^n_0, u^n_1, \ldots, u^n_N\}
+u^n = (u^n_0, u^n_1, \ldots, u^n_N),
 \]</div>
 <p>which is the solution vector at time <span class="math notranslate nohighlight">\(t_n\)</span>.</p>
 <p>A second order accurate discretization of the wave equation is</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{u^{n+1}_j - u^n_j + u^{n-1}_j}{\Delta x^2} = c^2 \frac{u^n_{j+1}-2 u^{n}_j + u^n_{j-1}}{\Delta t^2}
+\frac{u^{n+1}_j - 2u^n_j + u^{n-1}_j}{\Delta t^2} = c^2 \frac{u^n_{j+1}-2 u^{n}_j + u^n_{j-1}}{\Delta x^2}
 \]</div>
-<p>This stencil makes use of 5 neighbouring points</p>
+<p>This stencil makes use of 5 neighboring points</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -599,14 +603,14 @@ u^n = \{u^n_0, u^n_1, \ldots, u^n_N\}
 <p>Since the solution algorithm is recursive we only need to store the solution at three time steps,</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}, u^n, u^{n-1}
+u^{n+1}, u^n, u^{n-1}.
 \]</div>
 <p>Each vector requires storage of <span class="math notranslate nohighlight">\(N+1\)</span> number, so the total storage requirement for the method is merely <span class="math notranslate nohighlight">\(3(N+1)\)</span>.</p>
 <p>The unknown vector is <span class="math notranslate nohighlight">\(u^{n+1}\)</span>, whereas <span class="math notranslate nohighlight">\(u^n\)</span> and <span class="math notranslate nohighlight">\(u^{n-1}\)</span> are always known.</p>
 <p>The number</p>
 <div class="math notranslate nohighlight">
 \[
-\underline{c} = \frac{c \Delta t}{\Delta x}
+\underline{c} = \frac{c \Delta t}{\Delta x},
 \]</div>
 <p>is the Courant number. The value of the Courant number is very important for the stability of the numerical scheme.</p>
 <p>We may now use the second differentiation matrix to simplify the notation. We use</p>
@@ -623,7 +627,7 @@ D^{(2)} = \begin{bmatrix}
 \end{bmatrix}
 \end{split}\]</div>
 <p>which does not include <span class="math notranslate nohighlight">\(\Delta x\)</span>. We may now simply write the recursive formula as</p>
-<p>For <span class="math notranslate nohighlight">\(n=(1, 2, \ldots, N_t-1)\)</span> compute</p>
+<p>For <span class="math notranslate nohighlight">\(n=1, 2, \ldots, N_t-1\)</span> compute</p>
 <div class="math notranslate nohighlight">
 \[
 u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n
@@ -685,28 +689,28 @@ u^{n} &amp;\leftarrow u^{n+1}
 <p>Initial conditions will need to fix <code class="docutils literal notranslate"><span class="pre">un</span></code> and <code class="docutils literal notranslate"><span class="pre">unm1</span></code>. There are basically two options. If a time dependent function is given for initial conditions, then this function may be used for not only one, but two time steps, at</p>
 <div class="math notranslate nohighlight">
 \[
-u(x, t=0) \quad \text{and} \quad u(x, t=\Delta t)
+u(x, t=0) \quad \text{and} \quad u(x, t=\Delta t).
 \]</div>
 <p>We will in the implementation then set <code class="docutils literal notranslate"><span class="pre">unm1</span></code>=<span class="math notranslate nohighlight">\(u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code>=<span class="math notranslate nohighlight">\(u(x, \Delta t)\)</span> simply by evaluation.</p>
 <p>The other alternative is to use the actual condition <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}=V(x)\)</span>. In order to implement this with a central scheme and second order accuracy, we use</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial t} = \frac{u^1-u^{-1}}{2 \Delta t} = V
+\frac{\partial u}{\partial t} = \frac{u^1-u^{-1}}{2 \Delta t} = V,
 \]</div>
 <p>and then we use this equation to solve for the “unknown” <span class="math notranslate nohighlight">\(u^{-1}\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-u^{-1} = u^1 - 2 V \Delta t
+u^{-1} = u^1 - 2 V \Delta t.
 \]</div>
 <p>This can further be used in the wave PDE at initial time step <span class="math notranslate nohighlight">\(n=0\)</span>, which is</p>
 <div class="math notranslate nohighlight">
 \[
-u^1 = 2u^0 - u^{-1} + \underline{c}^2 D^{(2)}u^0
+u^1 = 2u^0 - u^{-1} + \underline{c}^2 D^{(2)}u^0.
 \]</div>
 <p>Insert for <span class="math notranslate nohighlight">\(u^{-1}\)</span> and obtain a modified equation for <span class="math notranslate nohighlight">\(u^1\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-u^1 = u^0 + \frac{\underline{c}^2}{2}D^{(2)}u^0 + V \Delta t
+u^1 = u^0 + \frac{\underline{c}^2}{2}D^{(2)}u^0 + V \Delta t.
 \]</div>
 <p>So with two initial conditions we fix <code class="docutils literal notranslate"><span class="pre">unm1</span></code><span class="math notranslate nohighlight">\(=u^0=u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code><span class="math notranslate nohighlight">\(=u^1=u(x, \Delta t)\)</span> and solve first for <code class="docutils literal notranslate"><span class="pre">unp1</span></code><span class="math notranslate nohighlight">\(=u^2=u(x, 2\Delta t)\)</span>.</p>
 <p>The implementation in <code class="docutils literal notranslate"><span class="pre">Wave1D</span></code> simply evaluates a Sympy function for the initial condition. See the initial part of <code class="docutils literal notranslate"><span class="pre">Wave1D.__call__</span></code>.</p>
@@ -772,7 +776,7 @@ u^{n+1}_0 = 0 \quad u^{n+1}_{N} = 0
 <p>Note that since we specify <span class="math notranslate nohighlight">\(u^{n+1}_0\)</span> and <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> after solving for all the internal nodes, it does not matter what is in the first and last row of <span class="math notranslate nohighlight">\(D^{(2)}\)</span>. Whatever is computed for <span class="math notranslate nohighlight">\(j=0\)</span> and <span class="math notranslate nohighlight">\(j=N\)</span> with</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n
+u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D^{(2)} u^n,
 \]</div>
 <p>will be overwritten by specifying <span class="math notranslate nohighlight">\(u^{n+1}_0 = u^{n+1}_{N} = 0\)</span>.</p>
 <p>For Dirichlet the algorithm is</p>
@@ -796,42 +800,42 @@ u^{n} &amp;\leftarrow u^{n+1}
 <p>Neumann is a bit more tricky. For simplicity we assume homogeneous conditions, such that</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial x}(0, t) = \frac{\partial u}{\partial x}(L, t) = 0 
+\frac{\partial u}{\partial x}(0, t) = \frac{\partial u}{\partial x}(L, t) = 0. 
 \]</div>
 <p>If we now apply central differences of second order, then the stencil is</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial x} = \frac{u^{n}_{j+1}-u^{n}_{j-1}}{2 \Delta x}
+\frac{\partial u}{\partial x} = \frac{u^{n}_{j+1}-u^{n}_{j-1}}{2 \Delta x},
 \]</div>
-<p>for any time step <span class="math notranslate nohighlight">\(n \in (0, 1, \ldots, N)\)</span>. At the left boundary <span class="math notranslate nohighlight">\(j=0\)</span> and we get</p>
+<p>for any time step <span class="math notranslate nohighlight">\(n = 0, 1, \ldots, N\)</span>. At the left boundary <span class="math notranslate nohighlight">\(j=0\)</span> and we get</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial x} = \frac{u^{n}_{1}-u^{n}_{-1}}{2 \Delta x} = 0
+\frac{\partial u}{\partial x} = \frac{u^{n}_{1}-u^{n}_{-1}}{2 \Delta x} = 0.
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(u^{n}_{-1}\)</span> is not known, or it is outside the mesh. However, we get from the above equation that</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n}_{-1} = u^{n}_{1}
+u^{n}_{-1} = u^{n}_{1},
 \]</div>
 <p>and this can be used together with the PDE for the wave equation</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_j = 2u^n_j - u^{n-1}_j + \underline{c}^2 (u^{n}_{j+1}-2u^n_{j} + u^n_{j-1})
+u^{n+1}_j = 2u^n_j - u^{n-1}_j + \underline{c}^2 (u^{n}_{j+1}-2u^n_{j} + u^n_{j-1}).
 \]</div>
 <p>This equation at node 0 is</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^{n}_{1}-2 u^{n}_0 + u^{n}_{-1})
+u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^{n}_{1}-2 u^{n}_0 + u^{n}_{-1}),
 \]</div>
 <p>where we can insert for <span class="math notranslate nohighlight">\(u^{n}_{-1} = u^{n}_{1}\)</span> and get</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (2u^{n}_{1}-2 u^{n}_0)
+u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (2u^{n}_{1}-2 u^{n}_0).
 \]</div>
-<p>Similarily, at the last node <span class="math notranslate nohighlight">\(j=N\)</span> and</p>
+<p>Similarly, at the last node <span class="math notranslate nohighlight">\(j=N\)</span> and</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_N= 2u^{n}_N - u^{n-1}_N + \underline{c}^2 (2u^{n}_{N-1}-2 u^{n}_N)
+u^{n+1}_N= 2u^{n}_N - u^{n-1}_N + \underline{c}^2 (2u^{n}_{N-1}-2 u^{n}_N).
 \]</div>
 <p>In order to get this into a vector notation we can modify the first and last rows of the matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -849,7 +853,7 @@ D^{(2)}_N = \begin{bmatrix}
 <p>Now the following equation will be valid for all nodes, and not just the internal:</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D_N^{(2)} u^n
+u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D_N^{(2)} u^n.
 \]</div>
 <p>There is in other words no need to do anything for these Neumann conditions in the <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> method. Modifying the matrix is all that it takes.</p>
 </section>
@@ -858,52 +862,52 @@ u^{n+1} = 2u^n-u^{n-1} + \underline{c}^2 D_N^{(2)} u^n
 <p>At the left boundary we have the open condition</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial t} - c \frac{\partial u}{\partial x} =0
+\frac{\partial u}{\partial t} - c \frac{\partial u}{\partial x} =0.
 \]</div>
 <p>A simple solution here is to use first order accurate forward differences</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{u^{n+1}_0 - u^n_0}{\Delta t} - c \frac{u^n_1-u^n_0}{\Delta x} = 0
+\frac{u^{n+1}_0 - u^n_0}{\Delta t} - c \frac{u^n_1-u^n_0}{\Delta x} = 0.
 \]</div>
 <p>This equation can be solved for <span class="math notranslate nohighlight">\(u^{n+1}_0\)</span>, which is exactly what we need at the boundary. Hence we directly have an equation to use</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0 = u^n_0 + \underline{c} (u^n_1-u^n_0)
+u^{n+1}_0 = u^n_0 + \underline{c} (u^n_1-u^n_0).
 \]</div>
-<p>Similarily at the other boundary we have</p>
+<p>Similarly at the other boundary we have</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} =0
+\frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} =0,
 \]</div>
 <p>and the same first order approach gives us</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_N = u^n_N + \underline{c} (u^n_{N-1}-u^n_N)
+u^{n+1}_N = u^n_N + \underline{c} (u^n_{N-1}-u^n_N).
 \]</div>
 <p>Unfortunately the accuracy is only first order. Like for Neumann conditions we can also here use the wave PDE in order to get better accuracy. Using central second order stencils we get for <span class="math notranslate nohighlight">\(j=0\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-\frac{u^{n+1}_0 - u^{n-1}_0}{ 2\Delta t} - c \frac{u^n_1-u^n_{-1}}{ 2 \Delta x} = 0
+\frac{u^{n+1}_0 - u^{n-1}_0}{ 2\Delta t} - c \frac{u^n_1-u^n_{-1}}{ 2 \Delta x} = 0.
 \]</div>
 <p>This equation can be solved for the unknown <span class="math notranslate nohighlight">\(u^n_{-1}\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-u^n_{-1} = u^n_1 - \frac{1}{\underline{c}}(u^{n+1}_0-u^{n-1}_0)
+u^n_{-1} = u^n_1 - \frac{1}{\underline{c}}(u^{n+1}_0-u^{n-1}_0),
 \]</div>
 <p>which can be used in the PDE for node <span class="math notranslate nohighlight">\(j=0\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^{n}_{1}-2 u^{n}_0 + u^{n}_{-1})
+u^{n+1}_0= 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^{n}_{1}-2 u^{n}_0 + u^{n}_{-1}).
 \]</div>
 <p>Some algebra leads to</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0 = 2(1-\overline{c})u^n_0 - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_0 + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_1
+u^{n+1}_0 = 2(1-\overline{c})u^n_0 - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_0 + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_1.
 \]</div>
 <p>A similar approach for <span class="math notranslate nohighlight">\(j=N\)</span> leads to</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_N + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_{N-1}
+u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n-1}_N + \frac{2 \underline{c}^2}{1+\underline{c}}u^n_{N-1}.
 \]</div>
 <p>These two equations should be implemented in the <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code> method.</p>
 </section>
@@ -934,12 +938,12 @@ u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n
 <p>Periodic boundary conditions simply mean that <span class="math notranslate nohighlight">\(u(0, t) = u(L, t)\)</span>. This means the two red dots above are the same and as such</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n}_0 = u^n_{N}
+u^{n}_0 = u^n_{N}.
 \]</div>
 <p>However, there is more. Because of the above, this means that <span class="math notranslate nohighlight">\(u^n_{-1}\)</span>, which earlier has been outside of the domain, now is simply <span class="math notranslate nohighlight">\(u^n_{N-1}\)</span>. The mesh wraps around. And as a consequence there is nothing out of the ordinary with <span class="math notranslate nohighlight">\(j=0\)</span>. We can use the central PDE stencil wrapped around. For <span class="math notranslate nohighlight">\(j=0\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_0 = 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^n_1-2 u^n_0 + u^n_{N-1})
+u^{n+1}_0 = 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^n_1-2 u^n_0 + u^n_{N-1}).
 \]</div>
 <p>So the matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> can be modified as</p>
 <div class="math notranslate nohighlight">
@@ -1250,7 +1254,7 @@ By Mikael Mortensen
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

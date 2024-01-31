@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 4" href="lecture4.html" />
-    <link rel="prev" title="Lecture Notes MATMEK-4270" href="intro.html" />
+    <link rel="prev" title="Common symbols and notation" href="notation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,7 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
@@ -414,7 +418,7 @@ A simple, recursive, finite difference method for solving the vibration equation
 \begin{align*}
   u^0 &amp;= I\\
   u^{1} &amp;= u^0 - \frac{1}{2}\Delta t^2 \omega^2 u^0 \\
-  u^{n+1} &amp;= 2u^n - u^{n-1} - \Delta t^2 \omega^2 u^{n}, n \in (1, 2, \ldots, N_t-1)
+  u^{n+1} &amp;= 2u^n - u^{n-1} - \Delta t^2 \omega^2 u^{n}, \quad n = 1, 2, \ldots, N_t-1,
 \end{align*}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(u^n = u(t_n)\)</span> and <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span>.</p>
@@ -476,17 +480,17 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 <p>We now want to compute convergence rates. We will use the <span class="math notranslate nohighlight">\(\ell^2\)</span>-norm computed as</p>
 <div class="math notranslate nohighlight">
-\[E_i = \sqrt{\Delta t_i\sum_{n=0}^{N^{i}_t}(u^n-u_e(t_n))^2}\]</div>
+\[E_i = \sqrt{\Delta t_i\sum_{n=0}^{N^{i}_t}(u^n-u_e(t_n))^2},\]</div>
 <p>for a given uniform mesh level <span class="math notranslate nohighlight">\(i\)</span>. For example, we can use <span class="math notranslate nohighlight">\(N^0_t=8, N_t^{1}=16, N^2_t = 32\)</span>, etc., such that <span class="math notranslate nohighlight">\(\Delta t_{1} / \Delta t_2 = 2\)</span> and <span class="math notranslate nohighlight">\(\Delta t_{n-1} / \Delta t_{n} = 2\)</span> for all <span class="math notranslate nohighlight">\(n\)</span>. Note that there are <span class="math notranslate nohighlight">\(N_t^{i}\)</span> intervals on level <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(N_t^{i}+1\)</span> points.</p>
 <p>We assume that the error on the mesh with level <span class="math notranslate nohighlight">\(i\)</span> can be written as</p>
 <div class="math notranslate nohighlight">
 \[E_i = C (\Delta t_i)^r, \]</div>
 <p>where <span class="math notranslate nohighlight">\(C\)</span> is a constant. This way, if we have the error on two levels, then we can compute</p>
 <div class="math notranslate nohighlight">
-\[ \frac{E_{i-1}}{E_i} = \frac{ (\Delta t_{i-1})^r}{(\Delta t_{i})^r} = \left( \frac{\Delta t_{i-1}}{ \Delta t_i} \right)^r  \]</div>
+\[ \frac{E_{i-1}}{E_i} = \frac{ (\Delta t_{i-1})^r}{(\Delta t_{i})^r} = \left( \frac{\Delta t_{i-1}}{ \Delta t_i} \right)^r,\]</div>
 <p>and isolate <span class="math notranslate nohighlight">\(r\)</span> by computing</p>
 <div class="math notranslate nohighlight">
-\[ r = \frac{\log {\frac{E_{i-1}}{E_i}}}{\log {\frac{\Delta t_{i-1}}{\Delta t_i}}} \]</div>
+\[ r = \frac{\log {\frac{E_{i-1}}{E_i}}}{\log {\frac{\Delta t_{i-1}}{\Delta t_i}}}. \]</div>
 <p>So by computing the error on two different levels we can find the order of the convergence!</p>
 <p>Let’s first write a function that computes the <span class="math notranslate nohighlight">\(\ell^2\)</span> error of the solver defined above</p>
 <div class="cell docutils container">
@@ -626,6 +630,10 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tolerance in <code class="docutils literal notranslate"><span class="pre">test_order</span></code> is set low <span class="math notranslate nohighlight">\((~10^{-2})\)</span>, because this is a limiting order. Normally, the total error gets contributions from many trailing terms in a Taylor series, scaling as <span class="math notranslate nohighlight">\(\Delta t^2, \Delta t^3, \ldots\)</span>, and all these errors contribute to the total error that we measure. However, as <span class="math notranslate nohighlight">\(\Delta t \rightarrow 0\)</span> the leading error term dominates and we approach an integer order. If we use more and smaller time steps in <code class="docutils literal notranslate"><span class="pre">convergence_rates</span></code>, then we can also set the tolerance lower.</p>
+</div>
 </section>
 <section id="method-of-manufactured-solution">
 <h2>Method of manufactured solution<a class="headerlink" href="#method-of-manufactured-solution" title="Permalink to this heading">#</a></h2>
@@ -640,8 +648,8 @@ A simple, recursive, finite difference method for solving the vibration equation
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-u'' + {\omega^2 u} &amp;= 2 + \omega^2 u \\
-u'' &amp;= 2 \\
+u'' + {\omega^2 u} &amp;= 2 + \omega^2 u, \\
+u'' &amp;= 2. \\
 \end{align*}
 \end{split}\]</div>
 <p>We also know that a second order accurate finite difference solution should be exact for a second order polynomial. Check:</p>
@@ -661,13 +669,13 @@ u'' &amp;= 2 \\
 <p>The numerical solution is exact!</p>
 <p>Assume now that the solution is</p>
 <div class="math notranslate nohighlight">
-\[ u(t) = t^4 \]</div>
+\[ u(t) = t^4. \]</div>
 <p>Initial conditions still ok. Now the equation becomes</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} 
 \begin{align*}
-u'' + \omega^2 u &amp;= 12 t^2 + \omega^2 t^4 \\
-u'' &amp;= 12 t^2
+u'' + \omega^2 u &amp;= 12 t^2 + \omega^2 t^4, \\
+u'' &amp;= 12 t^2.
 \end{align*}
 \end{split}\]</div>
 <p>Since the solution is a fourth order polynomial, the second order numerical solution will not be exact, but it will converge</p>
@@ -718,11 +726,11 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
 <p>We can put the numerical expression into our equation and get</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align}
- u'' + \omega^2 u &amp;= 0 \\
- \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' + \omega^2 u &amp;= 0 \\
- \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} + \omega^2 u &amp;= \frac{\Delta t^2}{12}u'''' 
-\end{align}
+\begin{align*}
+ u'' + \omega^2 u &amp;= 0, \\
+ \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' + \omega^2 u &amp;= 0, \\
+ \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} + \omega^2 u &amp;= \frac{\Delta t^2}{12}u''''. 
+\end{align*}
 \end{split}\]</div>
 <p>The residual is <span class="math notranslate nohighlight">\(\Delta t^2 u'''' / 12\)</span>.</p>
 <p>Go back and check that the solution for <span class="math notranslate nohighlight">\(u=t^4\)</span> correspond exactly to this residual:</p>
@@ -828,12 +836,12 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="notation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture Notes MATMEK-4270</p>
+        <p class="prev-next-title">Common symbols and notation</p>
       </div>
     </a>
     <a class="right-next"
@@ -886,7 +894,7 @@ By Mikael Mortensen
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

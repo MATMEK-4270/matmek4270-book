@@ -168,7 +168,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
@@ -419,22 +423,22 @@ document.write(`
 <p>We will now consider equations within a simple two-dimensional spatial domain. To get started we will look at the Poisson equation</p>
 <div class="math notranslate nohighlight">
 \[
-\nabla^2 u = f
+\nabla^2 u = f,
 \]</div>
 <p>which in two-dimensional Cartesian coordinates is</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f.
 \]</div>
 <p>We consider the equation for a rectangular domain</p>
 <div class="math notranslate nohighlight">
-\[(x, y) \in [0, L_x] \times [0, L_y]\]</div>
+\[(x, y) \in [0, L_x] \times [0, L_y],\]</div>
 <p>and Dirichlet boundary conditions. A Dirichlet boundary condition means that the solution is known (or fixed) at the boundary. There are now 4 sides to a rectangle and the solutions needs to be fixed at all these boundaries since there are two derivatives in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. We need to fix:</p>
 <div class="math notranslate nohighlight">
 \[\color{red}{ u(x=0, y)}, \quad \color{green}{u(x=L_x, y)}\]</div>
 <div class="math notranslate nohighlight">
 \[\color{blue}{u(x, y=0)}, \quad \color{magenta}{u(x, y=L_y)}\]</div>
-<p>In the figure below the location of these Dirichlet conditions are plotted in color.</p>
+<p>In the figure below the locations of these Dirichlet conditions are plotted in color.</p>
 <p>Note that the conditions at the two sides <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=L_x\)</span> can be functions of the other coordinate <span class="math notranslate nohighlight">\(y\)</span>. Likewise, for the two boundaries with constant <span class="math notranslate nohighlight">\(y\)</span> the condition may be a function of <span class="math notranslate nohighlight">\(x\)</span>. Also note that the boundary conditions need to be consistent in the corners, because each corner belongs to two sides.</p>
 <p>We will at first simply use a constant value 0 along all boundaries since this is easiest. In that case</p>
 <div class="math notranslate nohighlight">
@@ -496,11 +500,11 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 <p>where <span class="math notranslate nohighlight">\(\Delta x = L_x/N_x\)</span> and <span class="math notranslate nohighlight">\(\Delta y = L_y/N_y\)</span>. The mesh is plotted above for <span class="math notranslate nohighlight">\(N_x=N_y = 8\)</span>. We will use vector notation for the mesh, with</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{x} = \{x_0, x_1, \ldots, x_{N_x}\}
+\boldsymbol{x} = (x_0, x_1, \ldots, x_{N_x})
 \]</div>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{y} = \{y_0, y_1, \ldots, y_{N_y}\}
+\boldsymbol{y} = (y_0, y_1, \ldots, y_{N_y})
 \]</div>
 <section id="cartesian-products">
 <h3>Cartesian products<a class="headerlink" href="#cartesian-products" title="Permalink to this heading">#</a></h3>
@@ -525,19 +529,19 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 <p>The Cartesian product <span class="math notranslate nohighlight">\(\boldsymbol{u} \times \boldsymbol{v}\)</span> can be described mathematically as</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{u} \times \boldsymbol{v} = \{ (u, v) \, | \,  u \in \boldsymbol{u} \text{ and } v \in \boldsymbol{v} \} 
+\boldsymbol{u} \times \boldsymbol{v} = \{ (u, v) \, | \,  u \in \boldsymbol{u} \text{ and } v \in \boldsymbol{v} \}, 
 \]</div>
 <p>which reads all the pairs <span class="math notranslate nohighlight">\((u, v)\)</span> such that <span class="math notranslate nohighlight">\(u\)</span> is in the set <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and <span class="math notranslate nohighlight">\(v\)</span> in the set <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>.</p>
 <p>What does this have to do with a discretization of a computational mesh? Well the computational mesh is a combination of all pairs <span class="math notranslate nohighlight">\((x, y)\)</span> such that <span class="math notranslate nohighlight">\(x\)</span> is in the 1D mesh along the <span class="math notranslate nohighlight">\(x\)</span>-direction (<span class="math notranslate nohighlight">\(0, \Delta x, 2 \Delta x, \ldots\)</span>) and <span class="math notranslate nohighlight">\(y\)</span> is in the 1D mesh along the <span class="math notranslate nohighlight">\(y\)</span>-direction (<span class="math notranslate nohighlight">\(0, \Delta y, 2 \Delta y, \ldots\)</span>). We have already defined these two meshes above in the vectors <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>. So the computational mesh is really</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{x} \times \boldsymbol{y} = \{(x, y) \, | \, x \in \boldsymbol{x} \text{ and } y \in \boldsymbol{y} \}
+\boldsymbol{x} \times \boldsymbol{y} = \{(x, y) \, | \, x \in \boldsymbol{x} \text{ and } y \in \boldsymbol{y} \},
 \]</div>
 <p>all pairs <span class="math notranslate nohighlight">\((x, y)\)</span> such that <span class="math notranslate nohighlight">\(x\)</span> is in <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> is in <span class="math notranslate nohighlight">\(\boldsymbol{y}\)</span>.</p>
 <p>If the meshes are simply</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{x} = \{0, \Delta x, 2\Delta x, 3\Delta x\}  \text{ and } \boldsymbol{y} = \{0, \Delta y, 2\Delta y\}
+\boldsymbol{x} = (0, \Delta x, 2\Delta x, 3\Delta x)  \text{ and } \boldsymbol{y} = (0, \Delta y, 2\Delta y),
 \]</div>
 <p>then a two-dimensional mesh would be all possible combinations of these arrays, as shown below.</p>
 <div class="cell tag_hide-input docutils container">
@@ -630,8 +634,8 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 <p>Let us now compute the Cartesian mesh for</p>
 <div class="math notranslate nohighlight">
 \[
-\boldsymbol{x} = [0, 1, 2, 3] \quad \text{ and } \quad
-\boldsymbol{y} = [0, 1, 2]
+\boldsymbol{x} = (0, 1, 2, 3) \quad \text{ and } \quad
+\boldsymbol{y} = (0, 1, 2),
 \]</div>
 <p>where we have chosen <span class="math notranslate nohighlight">\(\Delta x = \Delta y = 1\)</span> just for simplicity.</p>
 <p>We create this 2D mesh using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html">numpy.meshgrid</a></p>
@@ -843,7 +847,7 @@ f(x, y) = x + y
 <p>A mesh function on the two-dimensional domain will now be denoted as</p>
 <div class="math notranslate nohighlight">
 \[
-u_{ij} = u(x_i, y_j)
+u_{ij} = u(x_i, y_j).
 \]</div>
 <p>The mesh function is a dense two-dimensional array of shape <span class="math notranslate nohighlight">\({(N_x+1)\times (N_y+1)}\)</span> and we will write <span class="math notranslate nohighlight">\(U = (u_{ij})_{i,j=0}^{N_x, N_y}\)</span>. It may also be considered a matrix.</p>
 <div class="math notranslate nohighlight">
@@ -856,7 +860,7 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>We note that the mesh function <span class="math notranslate nohighlight">\(U\)</span> is a matrix, like <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code>, and in the component <span class="math notranslate nohighlight">\(u_{ij}\)</span> <span class="math notranslate nohighlight">\(i\)</span> represents row and <span class="math notranslate nohighlight">\(j\)</span> represents column.</p>
-<p>Also note that sometimes (like above) it makes sense to add a comma between <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. This has no further significance than to more clearly seperate <span class="math notranslate nohighlight">\(i\)</span> from <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>Also note that sometimes (like above) it makes sense to add a comma between <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>. This has no further significance than to more clearly separate <span class="math notranslate nohighlight">\(i\)</span> from <span class="math notranslate nohighlight">\(j\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Notice that both <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code> are mesh functions! They are the coordinates <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> evaluated on the computational mesh.</p>
@@ -867,7 +871,7 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 <p>In Python (which is written in C) a matrix is row-major. This means that the matrix is stored in memory with a long sequence of numbers row by row like</p>
 <div class="math notranslate nohighlight">
 \[
-\Big( \underbrace{u_{0, 0}, u_{0, 1}, \cdots, u_{0, N_y}}_{\text{First row}}, \underbrace{u_{1, 0}, u_{1, 1}, \cdots, u_{1, N_y}}_{\text{Second row}}, \cdots \cdots, \underbrace{u_{N_y, 0}, u_{N_y, 1}, \cdots, u_{N_y, N_y}}_{\text{Last row}} \Big)
+ \underbrace{u_{0, 0}, u_{0, 1}, \cdots, u_{0, N_y}}_{\text{First row}}, \underbrace{u_{1, 0}, u_{1, 1}, \cdots, u_{1, N_y}}_{\text{Second row}}, \cdots \cdots, \underbrace{u_{N_y, 0}, u_{N_y, 1}, \cdots, u_{N_y, N_y}}_{\text{Last row}}
 \]</div>
 <p>So the computer memory does not know anything about these numbers belonging to a two-dimensional array. The computer only knows that <span class="math notranslate nohighlight">\((N_x+1)(N_y+1)\)</span> numbers are stored side by side.</p>
 <p>We can get the single row <span class="math notranslate nohighlight">\(i\)</span> of the <span class="math notranslate nohighlight">\(U\)</span> matrix as <span class="math notranslate nohighlight">\(u_i = (u_{i,0}, u_{i,1}, \ldots, u_{i, N_y})\)</span>. For example, lets create a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix  in Python</p>
@@ -944,12 +948,12 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 <p>Let us move back to the Poisson equation</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f.
 \]</div>
 <p>If we now use second order central differences in both directions we get</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{u_{i+1,j} - 2u_{i,j} + u_{i-1, j}}{\Delta x^2} + \frac{u_{i,j+1} - 2u_{i,j} + u_{i, j-1}}{\Delta y^2} = f_{i,j}
+\frac{u_{i+1,j} - 2u_{i,j} + u_{i-1, j}}{\Delta x^2} + \frac{u_{i,j+1} - 2u_{i,j} + u_{i, j-1}}{\Delta y^2} = f_{i,j}.
 \]</div>
 <p>We have already learned that a second differentiation matrix in one dimension can be written as</p>
 <div class="math notranslate nohighlight">
@@ -1000,12 +1004,12 @@ D_x^{(2)} = \frac{1}{\Delta x^2}\begin{bmatrix}
 <p>Now let us consider a very simple function in 2D</p>
 <div class="math notranslate nohighlight">
 \[
-u(x, y) = x^2
+u(x, y) = x^2,
 \]</div>
 <p>such that</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u}{\partial x^2} = 2
+\frac{\partial^2 u}{\partial x^2} = 2.
 \]</div>
 <p>Let the domain now be <span class="math notranslate nohighlight">\([0, 4]\times [0, 4]\)</span> and choose <span class="math notranslate nohighlight">\(\Delta x = \Delta y = 1\)</span>. We create the Cartesian product mesh as follows</p>
 <div class="cell docutils container">
@@ -1066,7 +1070,7 @@ D^{(2)} U = \sum_{k=0}^{N_x} d^{(2)}_{ik} u_{k,j}
 <p>How about the other derivative <span class="math notranslate nohighlight">\(\partial^2 u / \partial y^2\)</span>? Let us create a mesh function</p>
 <div class="math notranslate nohighlight">
 \[
-u(x, y) = y^2
+u(x, y) = y^2,
 \]</div>
 <p>such that again the second derivative <span class="math notranslate nohighlight">\(\partial^2 u / \partial y^2\)</span> should be 2. Create first <span class="math notranslate nohighlight">\(u\)</span></p>
 <div class="cell docutils container">
@@ -1108,7 +1112,7 @@ u(x, y) = y^2
 \[
 \sum_{k=0}^{N_y} u_{i, k} d^{(2)}_{j, k}
 \]</div>
-<p>On matrix form this can be written as</p>
+<p>In matrix form this can be written as</p>
 <div class="math notranslate nohighlight">
 \[
 U (D^{(2)})^T
@@ -1137,19 +1141,19 @@ U (D^{(2)})^T
 <p>Using now that <span class="math notranslate nohighlight">\(\partial^2 u/\partial x^2 = D_x^{(2)}U\)</span> and <span class="math notranslate nohighlight">\(\partial^2 u/\partial y^2 = U(D_y^{(2)})^T\)</span> we can write Poisson’s equation on discretized (and matrix) form as</p>
 <div class="math notranslate nohighlight" id="equation-mat-equation">
 <span class="eqno">(4)<a class="headerlink" href="#equation-mat-equation" title="Permalink to this equation">#</a></span>\[
-D_x^{(2)} U + U (D_y^{(2)})^T = F
+D_x^{(2)} U + U (D_y^{(2)})^T = F,
 \]</div>
 <p>where the mesh function <span class="math notranslate nohighlight">\(F = (f(x_i, y_j))_{i,j=0}^{N_x, N_y}\)</span>.</p>
 <p>However, how can we solve this equation for the unknown <span class="math notranslate nohighlight">\(U\)</span>?</p>
 <p>The problem now is that we cannot (apparently) write Eq. <a class="reference internal" href="#equation-mat-equation">(4)</a> as we normally do for a linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-axb">
 <span class="eqno">(5)<a class="headerlink" href="#equation-axb" title="Permalink to this equation">#</a></span>\[
-Ax = b
+Ax = b,
 \]</div>
 <p>or on index form</p>
 <div class="math notranslate nohighlight" id="equation-axbindex">
 <span class="eqno">(6)<a class="headerlink" href="#equation-axbindex" title="Permalink to this equation">#</a></span>\[
-\sum_{j=0}^{N}a_{ij} x_j = b_i
+\sum_{j=0}^{N}a_{ij} x_j = b_i,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the coefficient matrix, <span class="math notranslate nohighlight">\(x\)</span> is the unknown vector and <span class="math notranslate nohighlight">\(b\)</span> is the right hand side vector.</p>
 <p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(4)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(5)</a>. This operation is called vectorization, or the vec-trick.</p>
@@ -1201,17 +1205,17 @@ a &amp; b &amp; c &amp; d
 <p>Vectorization of our Poisson equation (vectorization applied to both left and right hand side) leads to</p>
 <div class="math notranslate nohighlight">
 \[
-\text{vec}\left(D_x^{(2)}U + U (D_y^{(2)})^T \right) = \text{vec}(F)
+\text{vec}\left(D_x^{(2)}U + U (D_y^{(2)})^T \right) = \text{vec}(F),
 \]</div>
 <p>and since vectorization is a linear process</p>
 <div class="math notranslate nohighlight">
 \[
-\text{vec}\left(D_x^{(2)}U\right) + \text{vec}\left(U (D_y^{(2)})^T \right) = \text{vec}(F)
+\text{vec}\left(D_x^{(2)}U\right) + \text{vec}\left(U (D_y^{(2)})^T \right) = \text{vec}(F).
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(\text{vec}(F)\)</span> is simply the ravelling (or flattening) of the matrix as described above. This leaves the left hand side, which contains matrix-matrix products, and these require a special trick for vectorization. But first we will write the equation as</p>
 <div class="math notranslate nohighlight">
 \[
-\text{vec}\left(D_x^{(2)}U I_{y}\right) + \text{vec}\left(I_{x} U (D_y^{(2)})^T \right) = \text{vec}(F)
+\text{vec}\left(D_x^{(2)}U I_{y}\right) + \text{vec}\left(I_{x} U (D_y^{(2)})^T \right) = \text{vec}(F),
 \]</div>
 <p>where the diagonal identity matrix <span class="math notranslate nohighlight">\(I_{i} \in \mathbb{R}^{(N_i+1) \times (N_i+1)}\)</span></p>
 <div class="math notranslate nohighlight">
@@ -1228,22 +1232,22 @@ I_{i} = \begin{bmatrix}
 It turns out that for any valid triple matrix product of matrices <span class="math notranslate nohighlight">\(A, B\)</span> and <span class="math notranslate nohighlight">\(C\)</span>, vectorization is defined as</p>
 <div class="math notranslate nohighlight">
 \[
-\text{vec}(A B C^T) = (A \otimes C) \text{vec} (B)
+\text{vec}(A B C^T) = (A \otimes C) \text{vec} (B),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A \otimes B\)</span> is the Kronecker product of matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>. We will get back to the Kronecker product soon. Meanwhile we get that</p>
 <div class="math notranslate nohighlight">
 \[
-\text{vec}(D_x^{(2)}U I_{y}) = (D_x^{(2)} \otimes I_{y}) \text{vec}(U)
+\text{vec}(D_x^{(2)}U I_{y}) = (D_x^{(2)} \otimes I_{y}) \text{vec}(U),
 \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-\text{vec}(I_{x} U (D_y^{(2)})^T) = (I_{x} \otimes D_y^{(2)}) \text{vec}(U)
+\text{vec}(I_{x} U (D_y^{(2)})^T) = (I_{x} \otimes D_y^{(2)}) \text{vec}(U),
 \]</div>
 <p>and the equation we need to solve is thus</p>
 <div class="math notranslate nohighlight">
 \[
-\left(D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)} \right) \text{vec}(U) = \text{vec}(F)
+\left(D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)} \right) \text{vec}(U) = \text{vec}(F).
 \]</div>
 <p>This is a linear equations of type <span class="math notranslate nohighlight">\(Ax=b\)</span>, where <span class="math notranslate nohighlight">\(A = D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)}\)</span>, <span class="math notranslate nohighlight">\(x = \text{vec}(U)\)</span> and <span class="math notranslate nohighlight">\(b = \text{vec}(F)\)</span>.</p>
 <div class="admonition note">
@@ -1465,12 +1469,12 @@ D^{(2)} U
 <p>The Laplace operator <span class="math notranslate nohighlight">\(\nabla^2\)</span> applied to a two-dimensional field <span class="math notranslate nohighlight">\(u(x, y)\)</span> in Cartesian coordinates is</p>
 <div class="math notranslate nohighlight">
 \[
-\nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}
+\nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2}.
 \]</div>
 <p>Discretized on a structured Cartesian mesh we get</p>
 <div class="math notranslate nohighlight">
 \[
-\nabla^2 u = \left(D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)} \right) \text{vec}(U)
+\nabla^2 u = \left(D_x^{(2)} \otimes I_{y} + I_{x} \otimes D_y^{(2)} \right) \text{vec}(U).
 \]</div>
 <p>We implement the operator as</p>
 <div class="cell docutils container">
@@ -1487,7 +1491,7 @@ D^{(2)} U
 <p>We are now ready to solve the Poisson equation. Lets use the method of manufactured solutions and guess a solution</p>
 <div class="math notranslate nohighlight">
 \[
-u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y))
+u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y)),
 \]</div>
 <p>and use a computational domain <span class="math notranslate nohighlight">\(\Omega = [0, 1] \times [0, 1]\)</span>.</p>
 <div class="cell docutils container">
@@ -1539,10 +1543,10 @@ u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y))
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-u_{0, j} = 0 \quad j \in (0, 1, \ldots, N_y) \\
-u_{N_x, j} = 0 \quad j \in (0, 1, \ldots, N_y)\\
-u_{i, 0} = 0 \quad i \in (0, 1, \ldots, N_x)\\
-u_{i, N_y} = 0 \quad i \in (0, 1, \ldots, N_x)
+u_{0, j} = 0 \quad j \in \{0, 1, \ldots, N_y\}, \\
+u_{N_x, j} = 0 \quad j \in \{0, 1, \ldots, N_y\},\\
+u_{i, 0} = 0 \quad i \in \{0, 1, \ldots, N_x\}, \\
+u_{i, N_y} = 0 \quad i \in \{0, 1, \ldots, N_x\}.
 \end{align*}
 \end{split}\]</div>
 <p>We can do this by identing all rows of <code class="docutils literal notranslate"><span class="pre">A</span></code> corresponding to a boundary point. But which indices in <code class="docutils literal notranslate"><span class="pre">A</span></code> correspond to boundaries? We can find this easily with a little slicing and trickery. Lets create a mesh function <code class="docutils literal notranslate"><span class="pre">B</span></code> that is one on the boundary and zero elsewhere</p>
@@ -1608,7 +1612,7 @@ u_{i, N_y} = 0 \quad i \in (0, 1, \ldots, N_x)
 <p>We have now set up the problem as</p>
 <div class="math notranslate nohighlight">
 \[
-Ax = b
+Ax = b,
 \]</div>
 <p>and all that is left is to solve the assembled problem using a sparse linear algebra solver</p>
 <div class="cell docutils container">
@@ -1755,7 +1759,7 @@ By Mikael Mortensen
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>
