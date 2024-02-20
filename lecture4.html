@@ -413,7 +413,7 @@ document.write(`
 <p>Up until now we have solved equations by using a recursive approach. This is very easy to implement intuitively using for-loops. However, the most common and general use of finite difference methods is through explicit assembling of matrices.</p>
 <p>Consider the decay model first</p>
 <div class="math notranslate nohighlight">
-\[ u' + au = 0, u(0)=I, t \in [0, T]. \]</div>
+\[ u' + au = 0, t \in (0, T], \, u(0)=I. \]</div>
 <p>We create a solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^0, u^1, \ldots, u^{N_t})\)</span>. To solve recursively, we start by setting <span class="math notranslate nohighlight">\(u^0=I\)</span>, and then recursively solve</p>
 <div class="math notranslate nohighlight">
 \[ \frac{u^{n+1}-u^n}{\Delta t} = -a (\theta u^{n+1} + (1-\theta) u^n) \quad \text{for}\, n=1, 2, \ldots, N.\]</div>
@@ -598,7 +598,7 @@ I \\
 <h2>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Permalink to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[
-u'' + \omega^2 u = 0, \quad u(0) = I, u'(0) = 0, t \in [0, T],
+u'' + \omega^2 u = 0,\, t \in (0, T] \quad u(0) = I, u'(0) = 0,
 \]</div>
 <p>is solved using a central difference for <span class="math notranslate nohighlight">\(n=1, 2, \ldots, N-1\)</span></p>
 <div class="math notranslate nohighlight">
@@ -939,7 +939,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1195319d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x110dbd7d0&gt;
 </pre></div>
 </div>
 <img alt="_images/89f6ecc69966e347db9b11b94279dda7aad2a4418978d85d6b04deaffc569ed5.png" src="_images/89f6ecc69966e347db9b11b94279dda7aad2a4418978d85d6b04deaffc569ed5.png" />
@@ -996,7 +996,7 @@ A \boldsymbol{u} = \boldsymbol{b},
 <p>for the equation</p>
 <div class="math notranslate nohighlight">
 \[
-u' + au = 0, u(0)=I, t \in [0, T].
+u' + au = 0, \, t \in (0, T], u(0)=I.
 \]</div>
 <p>Before boundary conditions we can assemble this as</p>
 <div class="math notranslate nohighlight">
@@ -1045,9 +1045,9 @@ u' + au = 0, u(0)=I, t \in [0, T].
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1197521d0&gt;,
- &lt;matplotlib.lines.Line2D at 0x1197524d0&gt;,
- &lt;matplotlib.lines.Line2D at 0x119752250&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x110dab550&gt;,
+ &lt;matplotlib.lines.Line2D at 0x110d5ef50&gt;,
+ &lt;matplotlib.lines.Line2D at 0x110db6a10&gt;]
 </pre></div>
 </div>
 <img alt="_images/e45298c76b3df066cc4262817354230bb8d8dfd4285c3184096ccfca26657300.png" src="_images/e45298c76b3df066cc4262817354230bb8d8dfd4285c3184096ccfca26657300.png" />

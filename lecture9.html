@@ -414,10 +414,10 @@ document.write(`
 <span class="eqno">(21)<a class="headerlink" href="#equation-eq-project" title="Permalink to this equation">#</a></span>\[
 (u-u_N, v) = 0, \quad \forall \, v \in \mathbb{P}_N.
 \]</div>
-<p>Here there is no mentioning of the Legendre polynomials as there is no need for them yet. But the Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j\}_{j=0}^N\)</span> may now be chosen as a basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> and we can solve Eq. <a class="reference internal" href="#equation-eq-project">(21)</a> using this basis. The Legendre polynomials are a very good basis because they are orthogonal in <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span></p>
+<p>Here there is no mentioning of the Legendre polynomials as there is no need for them yet. But the Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j\}_{j=0}^N\)</span> may now be chosen as a basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> and we can solve Eq. <a class="reference internal" href="#equation-eq-project">(21)</a> using this basis. The Legendre polynomials are a very good basis because they are orthogonal in <span class="math notranslate nohighlight">\(L^2(-1, 1)\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-\left(P_i, P_j\right)_{L^2([-1,1])} = \frac{2}{2i+1}\delta_{ij}
+\left(P_i, P_j\right)_{L^2(-1, 1)} = \frac{2}{2i+1}\delta_{ij}
 \]</div>
 <p>and very well suited for approximating other smooth functions. However, the Legendre polynomials are not the only possible basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. We can just as easily choose the <span class="math notranslate nohighlight">\(\{x^j\}_{j=0}^N\)</span> and use this basis to solve Eq. <a class="reference internal" href="#equation-eq-project">(21)</a>. But the basis functions <span class="math notranslate nohighlight">\(x^j\)</span> are not orthogonal and the approach is less efficient even though we get exactly the same result. The choice of basis functions is actually very important for the efficiency!</p>
 <div class="admonition-nodal-vs-modal-basis admonition">
@@ -1066,6 +1066,58 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">shenfun</span> <span class="k">as</span> <span class="nn">sf</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ue</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">38</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">dumpconfig</span>
+<span class="ne">---&gt; </span><span class="mi">38</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">chebyshev</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">chebyshevu</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">legendre</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">chebyshev</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Functionality for working with Chebyshev bases&quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">la</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.bases</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.matrices</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">chebyshev</span><span class="o">/</span><span class="n">la</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">shenfun.optimization</span> <span class="kn">import</span> <span class="n">runtimeoptimizer</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">shenfun.la</span> <span class="kn">import</span> <span class="n">SparseMatrixSolver</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">shenfun.matrixbase</span> <span class="kn">import</span> <span class="n">TPMatrix</span><span class="p">,</span> <span class="n">SpectralMatrix</span><span class="p">,</span> <span class="n">extract_bc_matrices</span><span class="p">,</span>\
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">get_simplified_tpmatrices</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">optimization</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">18</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">cython</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1">#try:</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">numba</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1">#except ModuleNotFoundError:</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1">#    numba = None</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="sd"> runtimeoptimizer</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="sd"> &quot;&quot;&quot;</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">optimization</span><span class="o">/</span><span class="n">numba</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.diagma</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.threedma</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numba&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <p>The code should be fairly easy to follow. We simply create the function space <code class="docutils literal notranslate"><span class="pre">V</span></code> <span class="math notranslate nohighlight">\(=\text{span}\{P_i\}_{i=0}^{N}\)</span>, then a test function <code class="docutils literal notranslate"><span class="pre">v</span></code> from this space and then we compute the Legendre coefficients using the formula in Eq. <a class="reference internal" href="#equation-eq-leg-coeff">(30)</a>.</p>
 <p>Note that there is a shortcut function <a class="reference external" href="https://shenfun.readthedocs.io/en/latest/shenfun.forms.html#shenfun.forms.project.project">project</a> that projects <span class="math notranslate nohighlight">\(u(x)\)</span> to the chosen space and basis in one line of code.</p>
@@ -1077,9 +1129,6 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uh</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/d29abc8c7bf6c390af8dd2b0f456dce2b95788cd29352466406d40b7ee00092e.png" src="_images/d29abc8c7bf6c390af8dd2b0f456dce2b95788cd29352466406d40b7ee00092e.png" />
 </div>
 </div>
 <p>Notice how the error oscillates all throughout the domain. This is typical of spectral methods.</p>
@@ -1104,9 +1153,6 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/c271e1a2662fe230e003acc350424a70524a57cf3eb4c75204682e442a29e7e5.png" src="_images/c271e1a2662fe230e003acc350424a70524a57cf3eb4c75204682e442a29e7e5.png" />
-</div>
 </div>
 <p>We see that the error is very similar to the Legendre, but slightly better towards the edges.</p>
 <p>Two- and three-dimensional problems can also be solved using shenfun and tensor products. Lets try to approximate <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2)\)</span> using Legendre polynomials in both directions and a tensor product function space.</p>
@@ -1129,18 +1175,10 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/d7c15b6fd7c9762fdf9d64f5f6f61d512f4871573c036f53b2e1ef3015ecb12f.png" src="_images/d7c15b6fd7c9762fdf9d64f5f6f61d512f4871573c036f53b2e1ef3015ecb12f.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">uh</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.165785761229327e-10
 </pre></div>
 </div>
 </div>
@@ -1181,15 +1219,6 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.   ,  1.   ,  1.   ,  1.   ,  1.   ,  1.   ],
-       [ 1.   ,  0.707,  0.   , -0.707, -1.   , -0.707],
-       [ 1.   ,  0.   , -1.   , -0.   ,  1.   ,  0.   ],
-       [ 1.   , -0.707, -0.   ,  0.707, -1.   ,  0.707],
-       [ 1.   , -1.   ,  1.   , -1.   ,  1.   , -1.   ]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now the column <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\text{T}\)</span> represents the numbers <span class="math notranslate nohighlight">\((T_j(x_i))_{i=0}^N\)</span>, that is, the basis function <span class="math notranslate nohighlight">\(T_j\)</span> evaluated on the mesh points <span class="math notranslate nohighlight">\((x_i)_{i=0}^N\)</span>.</p>
 <p>We can now evaluate <a class="reference internal" href="#equation-eq-chebvander">(34)</a> for any <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}\)</span> simply as</p>
@@ -1197,11 +1226,6 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">T</span> <span class="o">@</span> <span class="n">uhat</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3.   , -0.707,  0.   ,  0.707, -3.   ])
 </pre></div>
 </div>
 </div>
@@ -1282,20 +1306,10 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>53.6 µs ± 30.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 uj = T @ uhat
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>101 µs ± 36.5 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>

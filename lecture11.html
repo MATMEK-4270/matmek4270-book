@@ -476,9 +476,12 @@ u'' +\alpha u' + \lambda u  &amp;= f, \\
 <h3>Poisson’s equation<a class="headerlink" href="#poisson-s-equation" title="Permalink to this heading">#</a></h3>
 <p>Lets consider a well-known example</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-1d">
-<span class="eqno">(46)<a class="headerlink" href="#equation-eq-poisson-1d" title="Permalink to this equation">#</a></span>\[
-u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
-\]</div>
+<span class="eqno">(46)<a class="headerlink" href="#equation-eq-poisson-1d" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{align}
+u''(x) &amp;= f(x), \quad x \in (-1, 1), \\
+u(-1) &amp;= u(1) = 0,
+\end{align}
+\end{split}\]</div>
 <p>which is Poisson’s equation, where <span class="math notranslate nohighlight">\(\mathcal{L}(u) = u''\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -539,7 +542,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 \psi_j(x) &amp;= T_j - T_{j+2}, \\
 \end{align*}
 \end{split}\]</div>
-<p>where the latter two are zero on the boundaries because <span class="math notranslate nohighlight">\(P_j(-1) = T_j(-1) = (-1)^j\)</span> and <span class="math notranslate nohighlight">\(P_j(1)=T_j(1) = 1\)</span>. The first sine function is a bit odd because we need to map the true domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> to the sine function’s computational domain, which is <span class="math notranslate nohighlight">\([0, 1]\)</span>. Also, since Chebyshev polynomials should only be used with a weighted <span class="math notranslate nohighlight">\(L^2_{\omega}([-1, 1])\)</span> inner product, we consider here only the first two bases.</p>
+<p>where the latter two are zero on the boundaries because <span class="math notranslate nohighlight">\(P_j(-1) = T_j(-1) = (-1)^j\)</span> and <span class="math notranslate nohighlight">\(P_j(1)=T_j(1) = 1\)</span>. The first sine function is a bit odd because we need to map the true domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> to the sine function’s computational domain, which is <span class="math notranslate nohighlight">\([0, 1]\)</span>. Also, since Chebyshev polynomials should only be used with a weighted <span class="math notranslate nohighlight">\(L^2_{\omega}(-1, 1)\)</span> inner product, we consider here only the first two bases.</p>
 <p>With the sine basis functions we use Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(47)</a> and obtain</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -710,7 +713,56 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d7777b39bfa5f4527ed10c50a0460baff60ab8f736701bec5c9444a30f0d9b16.png" src="_images/d7777b39bfa5f4527ed10c50a0460baff60ab8f736701bec5c9444a30f0d9b16.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">VN</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">38</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">dumpconfig</span>
+<span class="ne">---&gt; </span><span class="mi">38</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">chebyshev</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">chebyshevu</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">legendre</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">chebyshev</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Functionality for working with Chebyshev bases&quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">la</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.bases</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.matrices</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">chebyshev</span><span class="o">/</span><span class="n">la</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">shenfun.optimization</span> <span class="kn">import</span> <span class="n">runtimeoptimizer</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">shenfun.la</span> <span class="kn">import</span> <span class="n">SparseMatrixSolver</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">shenfun.matrixbase</span> <span class="kn">import</span> <span class="n">TPMatrix</span><span class="p">,</span> <span class="n">SpectralMatrix</span><span class="p">,</span> <span class="n">extract_bc_matrices</span><span class="p">,</span>\
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">get_simplified_tpmatrices</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">optimization</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">18</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">cython</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1">#try:</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">numba</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1">#except ModuleNotFoundError:</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1">#    numba = None</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="sd"> runtimeoptimizer</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="sd"> &quot;&quot;&quot;</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">optimization</span><span class="o">/</span><span class="n">numba</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.diagma</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.threedma</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numba&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
@@ -732,7 +784,7 @@ u'' = f, \quad  u(-1) = u(1) = 0, \, x \in [-1, 1],
 <p>Lets make a minor change and solve Poisson’s equation with non-zero boundary conditions</p>
 <div class="math notranslate nohighlight">
 \[
-u'' = f, \quad x \in [-1, 1], \, u(-1) = a, u(1) = b.
+u'' = f, \quad x \in (-1, 1), \, u(-1) = a, u(1) = b.
 \]</div>
 <p>The problem is nearly the same as before, but we cannot simply use <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> because all the basis functions satisfy <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span>. However, we can do as in <a class="reference internal" href="lecture8.html#sec-boundary-issues"><span class="std std-ref">Boundary issues</span></a> and add a boundary function</p>
 <div class="math notranslate nohighlight">
@@ -752,7 +804,7 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 <p>such that <span class="math notranslate nohighlight">\(\tilde{u}(\pm 1) = 0\)</span>. And then since <span class="math notranslate nohighlight">\(u'' = \tilde{u}''+B'' = \tilde{u}''\)</span>, we can solve</p>
 <div class="math notranslate nohighlight">
 \[
-\tilde{u}'' = f, \quad x\in [-1, 1], \, \tilde{u}(\pm 1) = 0.
+\tilde{u}'' = f, \quad x\in (-1, 1), \, \tilde{u}(\pm 1) = 0.
 \]</div>
 <p>The variational form becomes: find <span class="math notranslate nohighlight">\(\tilde{u}_N \in V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span> such that</p>
 <div class="math notranslate nohighlight">
@@ -803,9 +855,6 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" src="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" />
-</div>
 </div>
 </section>
 <section id="neumann-boundary-conditions">
@@ -813,7 +862,7 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 <p>Poisson’s equation is also often solved with Neumann boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-neumann">
 <span class="eqno">(50)<a class="headerlink" href="#equation-eq-poisson-neumann" title="Permalink to this equation">#</a></span>\[
-u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
+u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 \]</div>
 <p>However, this problem is actually ill-defined because if <span class="math notranslate nohighlight">\(u\)</span> is a solution, then <span class="math notranslate nohighlight">\(u + c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant, is also a solution. This follows since both the equation and both the boundary conditions contain at least one derivative. After all, <span class="math notranslate nohighlight">\((u+c)'' = u'' + c'' = u'' \)</span> and <span class="math notranslate nohighlight">\((u+c)' = u' + c' = u'\)</span>. Bottom line, we need an additional constraint in order to pose a well-defined Neumann problem. A common additional constraint to <a class="reference internal" href="#equation-eq-poisson-neumann">(50)</a> is to require that</p>
 <div class="math notranslate nohighlight" id="equation-eq-neumann-constraint">
@@ -898,9 +947,6 @@ u'' = f, \quad x \in [-1, 1], \, u'(\pm 1) = 0.
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" src="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" />
-</div>
 </div>
 <p>We can do the same for Legendre spaces <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(52)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
@@ -955,9 +1001,6 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" src="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" />
-</div>
 </div>
 <p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi'_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
 <div class="math notranslate nohighlight">
@@ -1015,9 +1058,6 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" src="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" />
-</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1037,9 +1077,6 @@ s_{ij} = \alpha(i) \delta_{ij},
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/0a5f9b364ef6927776e6a101efdaec5ab19a1e9209bd727c3f06cc9c182aa814.png" src="_images/0a5f9b364ef6927776e6a101efdaec5ab19a1e9209bd727c3f06cc9c182aa814.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1153,19 +1190,6 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3]])
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1],
-       [2],
-       [3]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now multiply <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">*</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code> and obtain a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix.</p>
 <div class="cell docutils container">
@@ -1174,28 +1198,11 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
-       [2, 4, 6],
-       [3, 6, 9]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> are first broadcasted to the two <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices that are constant along the first and second axis, respectively. The matrices are extruded along the axis that contains <code class="docutils literal notranslate"><span class="pre">None</span></code>. So <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> is extruded along the first axis and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> along the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3]]),
- array([[1, 1, 1],
-        [2, 2, 2],
-        [3, 3, 3]]))
 </pre></div>
 </div>
 </div>
@@ -1295,9 +1302,6 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/fd38e25c9d8d9456b73bcb9b297a88c52f0b0f2f1971a644c58d80c32c84e990.png" src="_images/fd38e25c9d8d9456b73bcb9b297a88c52f0b0f2f1971a644c58d80c32c84e990.png" />
-</div>
 </div>
 </section>
 </section>
@@ -1309,7 +1313,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </ol>
 <div class="math notranslate nohighlight">
 \[
-u'' + \alpha u = f, \quad x \in [-1, 1], u(\pm 1)=0,
+u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 \]</div>
 <p>using the manufactured solution <span class="math notranslate nohighlight">\(u(x)=(1-x^2)\exp(\cos(x-0.5))\)</span> and <span class="math notranslate nohighlight">\(\alpha=0.1\)</span>. Try also to remove <span class="math notranslate nohighlight">\(1-x^2\)</span> and solve the same problem with inhomogeneous boundary conditions. Plot both the solution and the <span class="math notranslate nohighlight">\(L^2\)</span> error.</p>
 <ol class="arabic simple" start="2">
@@ -1317,7 +1321,7 @@ u'' + \alpha u = f, \quad x \in [-1, 1], u(\pm 1)=0,
 </ol>
 <div class="math notranslate nohighlight">
 \[
-u'' + \frac{1}{\epsilon} u' = 0, \quad x \in [0, 1], u(0) = 0, u(1) = 1.
+u'' + \frac{1}{\epsilon} u' = 0, \quad x \in (0, 1), u(0) = 0, u(1) = 1.
 \]</div>
 <p>The exact solution is here</p>
 <div class="math notranslate nohighlight">

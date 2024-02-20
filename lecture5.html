@@ -424,7 +424,7 @@ document.write(`
 \frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}.
 \]</div>
 <p>We will consider the time and space domains:
-<span class="math notranslate nohighlight">\(t\in[0, T]\)</span>, <span class="math notranslate nohighlight">\(x \in [0, L]\)</span>.</p>
+<span class="math notranslate nohighlight">\(t\in[[0, T]\)</span>, <span class="math notranslate nohighlight">\(x \in [0, L]\)</span>.</p>
 <ul class="simple">
 <li><p>The wave equation is a hyperbolic PDE, so recursive methods are ok.</p></li>
 <li><p>The solutions are waves that can be written as <span class="math notranslate nohighlight">\(u(x+ct)\)</span> and <span class="math notranslate nohighlight">\(u(x-ct)\)</span>.</p></li>
@@ -934,7 +934,7 @@ u^{n+1}_N = 2(1-\overline{c})u^n_N - \frac{1-\underline{c}}{1+\underline{c}}u^{n
 <img alt="_images/e2bd78045f25aa2c0dfed3c465adc14e54c857e2bf64e30c353956eec406b7b9.png" src="_images/e2bd78045f25aa2c0dfed3c465adc14e54c857e2bf64e30c353956eec406b7b9.png" />
 </div>
 </div>
-<p><img alt="tikz" src="_images/periodic2.png" /></p>
+<p><img alt="tikz" src="_images/periodic.png" /></p>
 <p>Periodic boundary conditions simply mean that <span class="math notranslate nohighlight">\(u(0, t) = u(L, t)\)</span>. This means the two red dots above are the same and as such</p>
 <div class="math notranslate nohighlight">
 \[

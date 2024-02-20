@@ -768,12 +768,12 @@ X = A + \frac{B-A}{b-a}(x-a).
 <p>Note that <span class="math notranslate nohighlight">\(\frac{dx}{dX}\)</span> is a constant and since it appears on both sides it cancels out. We can thus write this as</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{j=0}^N  (P_j(X), P_i(X))_{L^2([-1,1])} \, \hat{u}_j = (u(x(X)), P_i(X))_{L^2([-1,1])}
+\sum_{j=0}^N  (P_j(X), P_i(X))_{L^2(-1, 1)} \, \hat{u}_j = (u(x(X)), P_i(X))_{L^2(-1, 1)}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> is written out to highlight that this inner product is over the domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Since <span class="math notranslate nohighlight">\((P_j, P_i)_{L^2([-1,1])} = \frac{2}{2j+1}\delta_{ij}\)</span> we get</p>
+<p>where <span class="math notranslate nohighlight">\(L^2(-1, 1)\)</span> is written out to highlight that this inner product is over the domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Since <span class="math notranslate nohighlight">\((P_j, P_i)_{L^2(-1, 1)} = \frac{2}{2j+1}\delta_{ij}\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{u}_i = \frac{2i+1}{2} \left( u(x(X)), P_i(X) \right)_{L^2([-1,1])} \quad \forall \, i \in \{0, 1, \ldots, N\}.
+\hat{u}_i = \frac{2i+1}{2} \left( u(x(X)), P_i(X) \right)_{L^2(-1, 1)} \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <p>We can rewrite the <code class="docutils literal notranslate"><span class="pre">inner</span></code> function to work for a generic interval <span class="math notranslate nohighlight">\([a, b]\)</span>. Note that it is only the function <span class="math notranslate nohighlight">\(u(x)\)</span> that requires mapping.</p>
 <div class="cell docutils container">
@@ -852,7 +852,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that we have not used any mesh points when computing the Legendre coefficients <span class="math notranslate nohighlight">\((\hat{u}_j)_{j=0}^N\)</span>, only exact integrals.</p>
+<p>Note that we have not used any mesh points when computing the Legendre coefficients <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>, only exact integrals.</p>
 </div>
 <p>In the computations above we have used Sympy and computed the inner product integral exactly. For some functions this may be impossible, or take a very long time. Hence, the inner products are often computed with numerical integration. We can rewrite the inner product above to use numerical integration (from scipy). The results are now almost identical, but no longer exact. See the difference below:</p>
 <div class="cell docutils container">
@@ -1076,7 +1076,7 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 <p>Hence we can easily get the coefficients with the Galerkin method</p>
 <div class="math notranslate nohighlight" id="equation-eq-hatusin">
 <span class="eqno">(19)<a class="headerlink" href="#equation-eq-hatusin" title="Permalink to this equation">#</a></span>\[
-\hat{u}_i = 2 \left( u(x),  \sin((i+1) \pi x) \right)_{L^2([0, 1])}.
+\hat{u}_i = 2 \left( u(x),  \sin((i+1) \pi x) \right)_{L^2(0, 1)}.
 \]</div>
 <p>Lets implement and check the results:</p>
 <div class="cell docutils container">

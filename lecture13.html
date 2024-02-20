@@ -473,7 +473,7 @@ u(\boldsymbol{x}, t_k) \approx u^{k}_N = \sum_{j=0}^N \hat{u}^{k}_j \psi_j(\bold
 \[
 (\mathcal{R}_N, v) = 0, \quad \forall \, v \in V_N.
 \]</div>
-<p>Here <span class="math notranslate nohighlight">\(N_t\)</span> is the number of time steps such that <span class="math notranslate nohighlight">\(N_t \Delta t = T\)</span> and <span class="math notranslate nohighlight">\(t \in [0, T]\)</span>.</p>
+<p>Here <span class="math notranslate nohighlight">\(N_t\)</span> is the number of time steps such that <span class="math notranslate nohighlight">\(N_t \Delta t = T\)</span> and <span class="math notranslate nohighlight">\(t \in (0, T]\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>By initializing <span class="math notranslate nohighlight">\(u_N^0(\boldsymbol{x})=u^0(\boldsymbol{x})\)</span>, we need to project <span class="math notranslate nohighlight">\(u^0(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(V_N\)</span> and store the expansion coefficients <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span>. This is a regular function approximation, like in lectures <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html">8</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture9.html">9</a>. For the finite difference method, on the other hand, initialization is simply to evaluate (interpolate) the solution on the computational mesh: <span class="math notranslate nohighlight">\((u^0(x_i))_{i=0}^N\)</span>. The finite element method can do either project or interpolate, because the FEM is using Lagrange polynomials such that <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p>
@@ -670,10 +670,10 @@ g = 1 + \lambda \Delta t
 </section>
 <section id="the-diffusion-equation">
 <h3>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Permalink to this heading">#</a></h3>
-<p>Consider the diffusion equation with Dirichlet boundary conditions and initial condition <span class="math notranslate nohighlight">\(u(x, 0)=p(x)\)</span></p>
+<p>Consider the diffusion equation with Dirichlet boundary conditions and a prescribed initial condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-diffusion">
 <span class="eqno">(73)<a class="headerlink" href="#equation-eq-diffusion" title="Permalink to this equation">#</a></span>\[
-\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in [0, L] \times [0, T], \, u(0, t) = f(0), u(L, t) = p(L), u(x, 0) = p(x).
+\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in (0, L) \times (0, T], \, u(0, t) = f(0), u(L, t) = p(L), u(x, 0) = p(x).
 \]</div>
 <p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(73)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(71)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
 <div class="math notranslate nohighlight">
@@ -692,7 +692,7 @@ x = L(1+X)/2\quad \text{and} \quad \frac{dx}{dX} = L/2.
 \begin{align*}
 \int_{0}^L\psi'_j(x) \psi'_i(x) dx &amp;= \int_{-1}^1 (P'_{j}(X)-P'_{j+2}(X))\frac{dX}{dx} (P'_{i}(X)-P'_{i+2}(X))\frac{dX}{dx} \frac{dx}{dX}dX, \\ 
 &amp;= \frac{2}{L} \int_{-1}^1 (P'_{j}(X)-P'_{j+2}(X)) (P'_{i}(X)-P'_{i+2}(X))dX, \\
-&amp;= \frac{2}{L}(P'_{j}-P'_{j+2}, P'_{i}-P'_{i+2})_{L^2([-1, 1])}, \\
+&amp;= \frac{2}{L}(P'_{j}-P'_{j+2}, P'_{i}-P'_{i+2})_{L^2(-1, 1)}, \\
 &amp;= \frac{2}{L}(4i+6)\delta_{ij}.
 \end{align*}
 \end{split}\]</div>
@@ -701,7 +701,7 @@ x = L(1+X)/2\quad \text{and} \quad \frac{dx}{dX} = L/2.
 \[\begin{split}
 \begin{align*}
 \int_{0}^L\psi_j(x) \psi_i(x) dx &amp;= \int_{-1}^1 (P_{j}(X)-P_{j+2}(X)) (P_{i}(X)-P_{i+2}(X))\frac{dx}{dX}dX, \\
-&amp;= \frac{L}{2}(P_{j}-P_{j+2}, P_i-P_{i+2})_{L^2([-1, 1])}, \\
+&amp;= \frac{L}{2}(P_{j}-P_{j+2}, P_i-P_{i+2})_{L^2(-1, 1)}, \\
 &amp;= \frac{L}{2}\left( (P_j, P_i) - (P_{j+2}, P_i) - (P_j, P_{i+2}) + (P_{j+2}, P_{i+2}) \right).
 \end{align*}
 \end{split}\]</div>
@@ -982,7 +982,7 @@ g = \frac{1}{1+\Delta t \lambda}.
 <p>Lets consider the wave equation from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html">lecture 5</a> in one spatial dimension</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}, \quad (x, t) \in [0, L] \times [0, T].
+\frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}, \quad (x, t) \in (0, L) \times (0, T].
 \]</div>
 <p>As you may recall, we solved the wave equation with Dirichlet, Neumann and open boundary conditions. The two time derivatives also required that the solution was initialized at two time-steps, or more mathematically precise, that both <span class="math notranslate nohighlight">\(u(\boldsymbol{x}, 0)\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}(\boldsymbol{x}, 0)\)</span> were given.</p>
 <p>We now use finite differences in time such that</p>
