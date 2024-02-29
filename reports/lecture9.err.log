@@ -30,51 +30,48 @@ uh = (2*np.arange(N+1)+1)/2*sf.inner(ue, v, assemble='exact')
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[16], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mshenfun[39;00m [38;5;28;01mas[39;00m [38;5;21;01msf[39;00m
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[16], line 5[0m
 [1;32m      3[0m ue [38;5;241m=[39m [38;5;241m1[39m [38;5;241m/[39m ([38;5;241m1[39m[38;5;241m+[39m[38;5;241m16[39m[38;5;241m*[39mx[38;5;241m*[39m[38;5;241m*[39m[38;5;241m2[39m)
 [1;32m      4[0m N [38;5;241m=[39m [38;5;241m20[39m
+[0;32m----> 5[0m V [38;5;241m=[39m [43msf[49m[38;5;241;43m.[39;49m[43mFunctionSpace[49m[43m([49m[43mN[49m[38;5;241;43m+[39;49m[38;5;241;43m1[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mLegendre[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mdomain[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m-[39;49m[38;5;241;43m1[39;49m[43m,[49m[43m [49m[38;5;241;43m1[39;49m[43m)[49m[43m)[49m
+[1;32m      6[0m v [38;5;241m=[39m sf[38;5;241m.[39mTestFunction(V)
+[1;32m      7[0m uh [38;5;241m=[39m ([38;5;241m2[39m[38;5;241m*[39mnp[38;5;241m.[39marange(N[38;5;241m+[39m[38;5;241m1[39m)[38;5;241m+[39m[38;5;241m1[39m)[38;5;241m/[39m[38;5;241m2[39m[38;5;241m*[39msf[38;5;241m.[39minner(ue, v, assemble[38;5;241m=[39m[38;5;124m'[39m[38;5;124mexact[39m[38;5;124m'[39m)
 
-File [0;32m~/MySoftware/shenfun/shenfun/__init__.py:38[0m
-[1;32m     36[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmpi4py[39;00m [38;5;28;01mimport[39;00m MPI
-[1;32m     37[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mconfig[39;00m [38;5;28;01mimport[39;00m config, dumpconfig
-[0;32m---> 38[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m chebyshev
-[1;32m     39[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m chebyshevu
-[1;32m     40[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m legendre
+File [0;32m~/MySoftware/shenfun/shenfun/forms/arguments.py:233[0m, in [0;36mFunctionSpace[0;34m(N, family, bc, dtype, quad, domain, scaled, padding_factor, basis, dealias_direct, coordinates, **kw)[0m
+[1;32m    230[0m             [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m
+[1;32m    231[0m         B [38;5;241m=[39m bases[[38;5;124m'[39m[38;5;124m'[39m[38;5;241m.[39mjoin(key)]
+[0;32m--> 233[0m     [38;5;28;01mreturn[39;00m [43mB[49m[43m([49m[43mN[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mpar[49m[43m)[49m
+[1;32m    235[0m [38;5;28;01melif[39;00m family[38;5;241m.[39mlower() [38;5;129;01min[39;00m ([38;5;124m'[39m[38;5;124mchebyshevu[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mu[39m[38;5;124m'[39m):
+[1;32m    236[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m [38;5;28;01mimport[39;00m chebyshevu
 
-File [0;32m~/MySoftware/shenfun/shenfun/chebyshev/__init__.py:2[0m
-[1;32m      1[0m [38;5;124;03m"""Functionality for working with Chebyshev bases"""[39;00m
-[0;32m----> 2[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m la
-[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mbases[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
-[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mmatrices[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+File [0;32m~/MySoftware/shenfun/shenfun/legendre/bases.py:115[0m, in [0;36mOrthogonal.__init__[0;34m(self, N, quad, domain, dtype, padding_factor, dealias_direct, coordinates, **kw)[0m
+[1;32m    110[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, N, quad[38;5;241m=[39m[38;5;124m"[39m[38;5;124mLG[39m[38;5;124m"[39m, domain[38;5;241m=[39m([38;5;241m-[39m[38;5;241m1[39m, [38;5;241m1[39m), dtype[38;5;241m=[39m[38;5;28mfloat[39m, padding_factor[38;5;241m=[39m[38;5;241m1[39m,
+[1;32m    111[0m              dealias_direct[38;5;241m=[39m[38;5;28;01mFalse[39;00m, coordinates[38;5;241m=[39m[38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkw):
+[1;32m    112[0m     JacobiBase[38;5;241m.[39m[38;5;21m__init__[39m([38;5;28mself[39m, N, quad[38;5;241m=[39mquad, alpha[38;5;241m=[39m[38;5;241m0[39m, beta[38;5;241m=[39m[38;5;241m0[39m, domain[38;5;241m=[39mdomain, dtype[38;5;241m=[39mdtype,
+[1;32m    113[0m                         padding_factor[38;5;241m=[39mpadding_factor, dealias_direct[38;5;241m=[39mdealias_direct,
+[1;32m    114[0m                         coordinates[38;5;241m=[39mcoordinates)
+[0;32m--> 115[0m     [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mplan[49m[43m([49m[38;5;28;43mint[39;49m[43m([49m[43mpadding_factor[49m[38;5;241;43m*[39;49m[43mN[49m[43m)[49m[43m,[49m[43m [49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[43mdtype[49m[43m,[49m[43m [49m[43m{[49m[43m}[49m[43m)[49m
 
-File [0;32m~/MySoftware/shenfun/shenfun/chebyshev/la.py:5[0m
-[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01mcopy[39;00m [38;5;28;01mimport[39;00m copy
-[1;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m----> 5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01moptimization[39;00m [38;5;28;01mimport[39;00m runtimeoptimizer
-[1;32m      6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mla[39;00m [38;5;28;01mimport[39;00m SparseMatrixSolver
-[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mshenfun[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmatrixbase[39;00m [38;5;28;01mimport[39;00m TPMatrix, SpectralMatrix, extract_bc_matrices,\
-[1;32m      8[0m     get_simplified_tpmatrices
+File [0;32m~/MySoftware/shenfun/shenfun/legendre/bases.py:285[0m, in [0;36mOrthogonal.plan[0;34m(self, shape, axis, dtype, options)[0m
+[1;32m    283[0m threads [38;5;241m=[39m opts[[38;5;124m'[39m[38;5;124mthreads[39m[38;5;124m'[39m]
+[1;32m    284[0m U [38;5;241m=[39m fftw[38;5;241m.[39maligned(shape, dtype[38;5;241m=[39m[38;5;28mfloat[39m)
+[0;32m--> 285[0m xfftn_fwd [38;5;241m=[39m [43mDLT[49m[43m([49m[43mU[49m[43m,[49m[43m [49m[43maxes[49m[38;5;241;43m=[39;49m[43m([49m[43maxis[49m[43m,[49m[43m)[49m[43m,[49m[43m [49m[43mkind[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mscalar product[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mthreads[49m[38;5;241;43m=[39;49m[43mthreads[49m[43m,[49m[43m [49m[43mflags[49m[38;5;241;43m=[39;49m[43mflags[49m[43m)[49m
+[1;32m    286[0m V [38;5;241m=[39m xfftn_fwd[38;5;241m.[39moutput_array
+[1;32m    287[0m xfftn_bck [38;5;241m=[39m DLT(V, axes[38;5;241m=[39m(axis,), kind[38;5;241m=[39m[38;5;124m'[39m[38;5;124mbackward[39m[38;5;124m'[39m, threads[38;5;241m=[39mthreads, flags[38;5;241m=[39mflags, output_array[38;5;241m=[39mU)
 
-File [0;32m~/MySoftware/shenfun/shenfun/optimization/__init__.py:18[0m
-[1;32m     16[0m     cython [38;5;241m=[39m [38;5;28;01mNone[39;00m
-[1;32m     17[0m [38;5;66;03m#try:[39;00m
-[0;32m---> 18[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m numba
-[1;32m     19[0m [38;5;66;03m#except ModuleNotFoundError:[39;00m
-[1;32m     20[0m [38;5;66;03m#    numba = None[39;00m
-[1;32m     23[0m [38;5;124;03m"""[39;00m
-[1;32m     24[0m 
-[1;32m     25[0m [38;5;124;03mruntimeoptimizer[39;00m
-[0;32m   (...)[0m
-[1;32m     35[0m 
-[1;32m     36[0m [38;5;124;03m"""[39;00m
+File [0;32m~/MySoftware/shenfun/shenfun/legendre/dlt.py:101[0m, in [0;36mDLT.__init__[0;34m(self, input_array, s, axes, threads, kind, flags, output_array)[0m
+[1;32m     99[0m [38;5;28;01mdef[39;00m [38;5;21m__init__[39m([38;5;28mself[39m, input_array, s[38;5;241m=[39m[38;5;28;01mNone[39;00m, axes[38;5;241m=[39m([38;5;241m-[39m[38;5;241m1[39m,), threads[38;5;241m=[39m[38;5;241m1[39m, kind[38;5;241m=[39m[38;5;124m'[39m[38;5;124mbackward[39m[38;5;124m'[39m,
+[1;32m    100[0m              flags[38;5;241m=[39m(FFTW_MEASURE, FFTW_PRESERVE_INPUT), output_array[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[0;32m--> 101[0m     [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m fastgl
+[1;32m    102[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(axes, [38;5;28mtuple[39m):
+[1;32m    103[0m         [38;5;28;01massert[39;00m [38;5;28mlen[39m(axes) [38;5;241m==[39m [38;5;241m1[39m
 
-File [0;32m~/MySoftware/shenfun/shenfun/optimization/numba/__init__.py:2[0m
-[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumba[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnb[39;00m
-[1;32m      3[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mdiagma[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
-[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m[38;5;21;01mthreedma[39;00m [38;5;28;01mimport[39;00m [38;5;241m*[39m
+File [0;32m~/MySoftware/shenfun/shenfun/legendre/fastgl/__init__.py:2[0m
+[1;32m      1[0m [38;5;28;01mtry[39;00m:
+[0;32m----> 2[0m     [38;5;28;01mfrom[39;00m [38;5;21;01m.[39;00m [38;5;28;01mimport[39;00m fastgl_wrap
+[1;32m      3[0m [38;5;28;01mexcept[39;00m [38;5;167;01mModuleNotFoundError[39;00m:
+[1;32m      4[0m     [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mfastgl not found[39m[38;5;124m'[39m)
 
-[0;31mModuleNotFoundError[0m: No module named 'numba'
+[0;31mImportError[0m: cannot import name 'fastgl_wrap' from partially initialized module 'shenfun.legendre.fastgl' (most likely due to a circular import) (/Users/mikaelmortensen/MySoftware/shenfun/shenfun/legendre/fastgl/__init__.py)
 
