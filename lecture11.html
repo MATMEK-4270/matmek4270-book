@@ -713,69 +713,7 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">VN</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">VN</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">VN</span><span class="p">)</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/forms/arguments.py:233,</span> in <span class="ni">FunctionSpace</span><span class="nt">(N, family, bc, dtype, quad, domain, scaled, padding_factor, basis, dealias_direct, coordinates, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>         <span class="n">B</span> <span class="o">=</span> <span class="n">bases</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span>
-<span class="ne">--&gt; </span><span class="mi">233</span>     <span class="k">return</span> <span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="o">**</span><span class="n">par</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="k">elif</span> <span class="n">family</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;chebyshevu&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">chebyshevu</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/bases.py:371,</span> in <span class="ni">ShenDirichlet.__init__</span><span class="nt">(self, N, quad, bc, domain, dtype, scaled, padding_factor, dealias_direct, coordinates, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">369</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="s2">&quot;LG&quot;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">370</span>              <span class="n">scaled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">padding_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dealias_direct</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">371</span>     <span class="n">CompositeBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="n">quad</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="n">bc</span><span class="p">,</span> <span class="n">scaled</span><span class="o">=</span><span class="n">scaled</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">372</span>                            <span class="n">padding_factor</span><span class="o">=</span><span class="n">padding_factor</span><span class="p">,</span> <span class="n">dealias_direct</span><span class="o">=</span><span class="n">dealias_direct</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span>                            <span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_stencil</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">375</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_scaled</span><span class="p">():</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/spectralbase.py:1419,</span> in <span class="ni">getCompositeBase.&lt;locals&gt;.CompositeBase.__init__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1417</span> <span class="n">bc</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;bc&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1418</span> <span class="n">scaled</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;scaled&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1419</span> <span class="n">Orthogonal</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1420</span> <span class="k">if</span> <span class="n">bc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1421</span>     <span class="kn">from</span> <span class="nn">shenfun.tensorproductspace</span> <span class="kn">import</span> <span class="n">BoundaryValues</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/bases.py:115,</span> in <span class="ni">Orthogonal.__init__</span><span class="nt">(self, N, quad, domain, dtype, padding_factor, dealias_direct, coordinates, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="s2">&quot;LG&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">padding_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>              <span class="n">dealias_direct</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="n">JacobiBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="n">quad</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>                         <span class="n">padding_factor</span><span class="o">=</span><span class="n">padding_factor</span><span class="p">,</span> <span class="n">dealias_direct</span><span class="o">=</span><span class="n">dealias_direct</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>                         <span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">115</span>     <span class="bp">self</span><span class="o">.</span><span class="n">plan</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">padding_factor</span><span class="o">*</span><span class="n">N</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="p">{})</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/bases.py:285,</span> in <span class="ni">Orthogonal.plan</span><span class="nt">(self, shape, axis, dtype, options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="n">threads</span> <span class="o">=</span> <span class="n">opts</span><span class="p">[</span><span class="s1">&#39;threads&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="n">U</span> <span class="o">=</span> <span class="n">fftw</span><span class="o">.</span><span class="n">aligned</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">285</span> <span class="n">xfftn_fwd</span> <span class="o">=</span> <span class="n">DLT</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="n">axis</span><span class="p">,),</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scalar product&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="n">threads</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="n">V</span> <span class="o">=</span> <span class="n">xfftn_fwd</span><span class="o">.</span><span class="n">output_array</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="n">xfftn_bck</span> <span class="o">=</span> <span class="n">DLT</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="n">axis</span><span class="p">,),</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="n">threads</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">,</span> <span class="n">output_array</span><span class="o">=</span><span class="n">U</span><span class="p">)</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/dlt.py:101,</span> in <span class="ni">DLT.__init__</span><span class="nt">(self, input_array, s, axes, threads, kind, flags, output_array)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,),</span> <span class="n">threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>              <span class="n">flags</span><span class="o">=</span><span class="p">(</span><span class="n">FFTW_MEASURE</span><span class="p">,</span> <span class="n">FFTW_PRESERVE_INPUT</span><span class="p">),</span> <span class="n">output_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">101</span>     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">fastgl</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">legendre</span><span class="o">/</span><span class="n">fastgl</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">fastgl_wrap</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fastgl not found&#39;</span><span class="p">)</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;fastgl_wrap&#39; from partially initialized module &#39;shenfun.legendre.fastgl&#39; (most likely due to a circular import) (/Users/mikaelmortensen/MySoftware/shenfun/shenfun/legendre/fastgl/__init__.py)
-</pre></div>
-</div>
+<img alt="_images/0a9e3d0945a6d456dd4c9079fcf516158058cb1397844199d63966075871b3ba.png" src="_images/0a9e3d0945a6d456dd4c9079fcf516158058cb1397844199d63966075871b3ba.png" />
 </div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
@@ -868,6 +806,9 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" src="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" />
+</div>
 </div>
 </section>
 <section id="neumann-boundary-conditions">
@@ -960,6 +901,9 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" src="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" />
+</div>
 </div>
 <p>We can do the same for Legendre spaces <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(52)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
@@ -1014,6 +958,9 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" src="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" />
+</div>
 </div>
 <p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi'_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
 <div class="math notranslate nohighlight">
@@ -1071,6 +1018,9 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" src="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" />
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1090,6 +1040,9 @@ s_{ij} = \alpha(i) \delta_{ij},
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4d5f5088487768ea0d7bd3386a8e67350c2bcba5a7542f3ff9454b786d101c81.png" src="_images/4d5f5088487768ea0d7bd3386a8e67350c2bcba5a7542f3ff9454b786d101c81.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1203,6 +1156,19 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3]])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1],
+       [2],
+       [3]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now multiply <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">*</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code> and obtain a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix.</p>
 <div class="cell docutils container">
@@ -1211,11 +1177,28 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [2, 4, 6],
+       [3, 6, 9]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> are first broadcasted to the two <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices that are constant along the first and second axis, respectively. The matrices are extruded along the axis that contains <code class="docutils literal notranslate"><span class="pre">None</span></code>. So <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> is extruded along the first axis and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> along the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[1, 2, 3],
+        [1, 2, 3],
+        [1, 2, 3]]),
+ array([[1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3]]))
 </pre></div>
 </div>
 </div>
@@ -1314,6 +1297,9 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">err</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/723fa303d9b7b4c7418afc43e3f4138b81912ab562c874dc45dc41b47b720efb.png" src="_images/723fa303d9b7b4c7418afc43e3f4138b81912ab562c874dc45dc41b47b720efb.png" />
 </div>
 </div>
 </section>

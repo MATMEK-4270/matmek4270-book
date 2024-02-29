@@ -451,7 +451,9 @@ T_{j+1}(x) &amp;= 2xT_{j}(x) - T_{j-1}(x).
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -1066,55 +1068,6 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ue</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">16</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">V</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">v</span> <span class="o">=</span> <span class="n">sf</span><span class="o">.</span><span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">uh</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sf</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">ue</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">assemble</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/forms/arguments.py:233,</span> in <span class="ni">FunctionSpace</span><span class="nt">(N, family, bc, dtype, quad, domain, scaled, padding_factor, basis, dealias_direct, coordinates, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span>         <span class="n">B</span> <span class="o">=</span> <span class="n">bases</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key</span><span class="p">)]</span>
-<span class="ne">--&gt; </span><span class="mi">233</span>     <span class="k">return</span> <span class="n">B</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="o">**</span><span class="n">par</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="k">elif</span> <span class="n">family</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;chebyshevu&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span>     <span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">chebyshevu</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/bases.py:115,</span> in <span class="ni">Orthogonal.__init__</span><span class="nt">(self, N, quad, domain, dtype, padding_factor, dealias_direct, coordinates, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="s2">&quot;LG&quot;</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">padding_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>              <span class="n">dealias_direct</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="n">JacobiBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="n">quad</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>                         <span class="n">padding_factor</span><span class="o">=</span><span class="n">padding_factor</span><span class="p">,</span> <span class="n">dealias_direct</span><span class="o">=</span><span class="n">dealias_direct</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>                         <span class="n">coordinates</span><span class="o">=</span><span class="n">coordinates</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">115</span>     <span class="bp">self</span><span class="o">.</span><span class="n">plan</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">padding_factor</span><span class="o">*</span><span class="n">N</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="p">{})</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/bases.py:285,</span> in <span class="ni">Orthogonal.plan</span><span class="nt">(self, shape, axis, dtype, options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="n">threads</span> <span class="o">=</span> <span class="n">opts</span><span class="p">[</span><span class="s1">&#39;threads&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="n">U</span> <span class="o">=</span> <span class="n">fftw</span><span class="o">.</span><span class="n">aligned</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">285</span> <span class="n">xfftn_fwd</span> <span class="o">=</span> <span class="n">DLT</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="n">axis</span><span class="p">,),</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scalar product&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="n">threads</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="n">V</span> <span class="o">=</span> <span class="n">xfftn_fwd</span><span class="o">.</span><span class="n">output_array</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="n">xfftn_bck</span> <span class="o">=</span> <span class="n">DLT</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="n">axis</span><span class="p">,),</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="n">threads</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">,</span> <span class="n">output_array</span><span class="o">=</span><span class="n">U</span><span class="p">)</span>
-
-<span class="nn">File ~/MySoftware/shenfun/shenfun/legendre/dlt.py:101,</span> in <span class="ni">DLT.__init__</span><span class="nt">(self, input_array, s, axes, threads, kind, flags, output_array)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_array</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,),</span> <span class="n">threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;backward&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span>              <span class="n">flags</span><span class="o">=</span><span class="p">(</span><span class="n">FFTW_MEASURE</span><span class="p">,</span> <span class="n">FFTW_PRESERVE_INPUT</span><span class="p">),</span> <span class="n">output_array</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">101</span>     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">fastgl</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">legendre</span><span class="o">/</span><span class="n">fastgl</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">fastgl_wrap</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fastgl not found&#39;</span><span class="p">)</span>
-
-<span class="ne">ImportError</span>: cannot import name &#39;fastgl_wrap&#39; from partially initialized module &#39;shenfun.legendre.fastgl&#39; (most likely due to a circular import) (/Users/mikaelmortensen/MySoftware/shenfun/shenfun/legendre/fastgl/__init__.py)
-</pre></div>
-</div>
-</div>
 </div>
 <p>The code should be fairly easy to follow. We simply create the function space <code class="docutils literal notranslate"><span class="pre">V</span></code> <span class="math notranslate nohighlight">\(=\text{span}\{P_i\}_{i=0}^{N}\)</span>, then a test function <code class="docutils literal notranslate"><span class="pre">v</span></code> from this space and then we compute the Legendre coefficients using the formula in Eq. <a class="reference internal" href="#equation-eq-leg-coeff">(30)</a>.</p>
 <p>Note that there is a shortcut function <a class="reference external" href="https://shenfun.readthedocs.io/en/latest/shenfun.forms.html#shenfun.forms.project.project">project</a> that projects <span class="math notranslate nohighlight">\(u(x)\)</span> to the chosen space and basis in one line of code.</p>
@@ -1126,6 +1079,9 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">uh</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xj</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d29abc8c7bf6c390af8dd2b0f456dce2b95788cd29352466406d40b7ee00092e.png" src="_images/d29abc8c7bf6c390af8dd2b0f456dce2b95788cd29352466406d40b7ee00092e.png" />
 </div>
 </div>
 <p>Notice how the error oscillates all throughout the domain. This is typical of spectral methods.</p>
@@ -1150,6 +1106,9 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/c271e1a2662fe230e003acc350424a70524a57cf3eb4c75204682e442a29e7e5.png" src="_images/c271e1a2662fe230e003acc350424a70524a57cf3eb4c75204682e442a29e7e5.png" />
+</div>
 </div>
 <p>We see that the error is very similar to the Legendre, but slightly better towards the edges.</p>
 <p>Two- and three-dimensional problems can also be solved using shenfun and tensor products. Lets try to approximate <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2)\)</span> using Legendre polynomials in both directions and a tensor product function space.</p>
@@ -1172,10 +1131,18 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/d7c15b6fd7c9762fdf9d64f5f6f61d512f4871573c036f53b2e1ef3015ecb12f.png" src="_images/d7c15b6fd7c9762fdf9d64f5f6f61d512f4871573c036f53b2e1ef3015ecb12f.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">uh</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.165842587697159e-10
 </pre></div>
 </div>
 </div>
@@ -1216,6 +1183,15 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.   ,  1.   ,  1.   ,  1.   ,  1.   ,  1.   ],
+       [ 1.   ,  0.707,  0.   , -0.707, -1.   , -0.707],
+       [ 1.   ,  0.   , -1.   , -0.   ,  1.   ,  0.   ],
+       [ 1.   , -0.707, -0.   ,  0.707, -1.   ,  0.707],
+       [ 1.   , -1.   ,  1.   , -1.   ,  1.   , -1.   ]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now the column <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\text{T}\)</span> represents the numbers <span class="math notranslate nohighlight">\((T_j(x_i))_{i=0}^N\)</span>, that is, the basis function <span class="math notranslate nohighlight">\(T_j\)</span> evaluated on the mesh points <span class="math notranslate nohighlight">\((x_i)_{i=0}^N\)</span>.</p>
 <p>We can now evaluate <a class="reference internal" href="#equation-eq-chebvander">(34)</a> for any <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}\)</span> simply as</p>
@@ -1223,6 +1199,11 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">T</span> <span class="o">@</span> <span class="n">uhat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3.   , -0.707,  0.   ,  0.707, -3.   ])
 </pre></div>
 </div>
 </div>
@@ -1303,10 +1284,21 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.12 times longer than the fastest. This could mean that an intermediate result is being cached.
+55.1 µs ± 36.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 uj = T @ uhat
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>105 µs ± 48.6 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
