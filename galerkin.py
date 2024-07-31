@@ -488,7 +488,6 @@ def test_convection_diffusion():
         u = TrialFunction(V)
         v = TestFunction(V)
         A = inner(u.diff(2), v) + (1/eps)*inner(u.diff(1), v)
-        from IPython import embed; embed()
         b = inner(f-((1/eps)*V.B.x.diff(x, 1)), v)
         u_tilde = np.linalg.solve(A, b)
         err = L2_error(u_tilde, ue, V)
