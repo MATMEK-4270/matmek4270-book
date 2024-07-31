@@ -69,7 +69,7 @@ def PolyDerivative(xj, m):
     #D = Derivative(xj) # compute it directly below because W and X are needed
     D = np.zeros((N+1, N+1))
     W = w[None, :] / w[:, None]
-    X = xj[:, None]-xj[None, :]
+    X = xj[:, None] - xj[None, :]
     np.fill_diagonal(X, 1)
     D[:] = W / X
     np.fill_diagonal(D, 0)
