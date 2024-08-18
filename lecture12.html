@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lecture 12 &#8212; Lecture notes MATMEK-4270</title>
   
@@ -19,52 +18,49 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture12';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 13" href="lecture13.html" />
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -168,12 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
-<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -191,8 +199,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
 </ul>
 
     </div>
@@ -346,6 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -355,6 +364,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -401,12 +411,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-12">
-<h1>Lecture 12<a class="headerlink" href="#lecture-12" title="Permalink to this heading">#</a></h1>
+<h1>Lecture 12<a class="headerlink" href="#lecture-12" title="Link to this heading">#</a></h1>
 <section id="solving-pdes-with-the-finite-element-method">
-<h2>Solving PDEs with the finite element method<a class="headerlink" href="#solving-pdes-with-the-finite-element-method" title="Permalink to this heading">#</a></h2>
+<h2>Solving PDEs with the finite element method<a class="headerlink" href="#solving-pdes-with-the-finite-element-method" title="Link to this heading">#</a></h2>
 <p>The procedure for solving differential equations with the finite element method is much the same as for global basis functions. However</p>
 <ul class="simple">
 <li><p>Basis functions are local</p></li>
@@ -427,11 +437,11 @@ a_{ij} = (\psi_j, \psi_i) = \sum_{e=0}^{N_e-1} \int_{\Omega^{(e)}} \psi_j \psi_i
 \]</div>
 <p>In this lecture we move one step further and use the FEM to solve differential equations. Exactly like in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> this means that we want to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-gen">
-<span class="eqno">(56)<a class="headerlink" href="#equation-eq-galerkin-gen" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(58)<a class="headerlink" href="#equation-eq-galerkin-gen" title="Link to this equation">#</a></span>\[
 (\mathcal{R}_N, v) = 0, \quad \forall \, v \in V_N,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{R}_N = \mathcal{L}(u_N)-f\)</span> is a residual and <span class="math notranslate nohighlight">\(\mathcal{L}(u)\)</span> is some mathematical operator acting on <span class="math notranslate nohighlight">\(u\)</span>. See <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html#solving-pdes-with-the-method-of-weighted-residuals">lecture 11</a>.</p>
-<p>The finite element method as defined here is a Galerkin method, which is also classified as a method of weighted residuals (MWR). We remember from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> that for MWR the test space in Eq. <a class="reference internal" href="#equation-eq-galerkin-gen">(56)</a> may also take other forms, but here we will focus on Galerkin.</p>
+<p>The finite element method as defined here is a Galerkin method, which is also classified as a method of weighted residuals (MWR). We remember from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> that for MWR the test space in Eq. <a class="reference internal" href="#equation-eq-galerkin-gen">(58)</a> may also take other forms, but here we will focus on Galerkin.</p>
 <p>We will start this lecture by considering Poisson’s equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -449,7 +459,7 @@ u'' = f, \quad x \in (0, L), \, u(0) = a, u(L) = b,
 \]</div>
 <p>Inserting for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> we get the linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-poisson">
-<span class="eqno">(57)<a class="headerlink" href="#equation-eq-fem-poisson" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(59)<a class="headerlink" href="#equation-eq-fem-poisson" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N(\psi'_j, \psi'_i) \hat{u}_j = -(f, \psi_i) + \left(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\right).
 \]</div>
 <p>The boundary term <span class="math notranslate nohighlight">\(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\)</span> can be used to specify Neumann boundary conditions, and we will get back to that. But first we consider only Dirichlet conditions. How can these be implemented? The boundary terms contain only the derivatives <span class="math notranslate nohighlight">\(u'_N\)</span> and not <span class="math notranslate nohighlight">\(u(0)\)</span> or u(L), so this cannot be used. However, remember that the finite element solution is using Lagrange polynomials that are such that</p>
@@ -467,10 +477,10 @@ u(0) = u_N(x_0) = \sum_{j=0}^N \hat{u}_j \psi_j(x_0) = \psi_0(x_0) \hat{u}_0 = \
 \[
 u(L) = u_N(x_N) = \sum_{j=0}^N \hat{u}_j \psi_j(x_N) = \psi_N(x_N) \hat{u}_N = \hat{u}_N = b.
 \]</div>
-<p>So the two expansion coefficients <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span> are known. That means that we only need to solve <a class="reference internal" href="#equation-eq-fem-poisson">(57)</a> for <span class="math notranslate nohighlight">\(i = 1, 2, \ldots, N-1\)</span>. And the boundary terms <span class="math notranslate nohighlight">\(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\)</span> are only (possibly) nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(i=N\)</span>, because only <span class="math notranslate nohighlight">\(\psi_0\)</span> and <span class="math notranslate nohighlight">\(\psi_N\)</span> are nonzero at the edges (at <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(x_N\)</span>). That is, the only nonzero terms are <span class="math notranslate nohighlight">\(u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0)\)</span> and as such the boundary terms will only enter the assembled equations <a class="reference internal" href="#equation-eq-fem-poisson">(57)</a> for the unknowns <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>. But these are not unknown, so with Dirichlet boundary conditions we can simply neglect the boundary terms! We will get back to these boundary term for Neumann boundary conditions though.</p>
+<p>So the two expansion coefficients <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span> are known. That means that we only need to solve <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> for <span class="math notranslate nohighlight">\(i = 1, 2, \ldots, N-1\)</span>. And the boundary terms <span class="math notranslate nohighlight">\(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\)</span> are only (possibly) nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(i=N\)</span>, because only <span class="math notranslate nohighlight">\(\psi_0\)</span> and <span class="math notranslate nohighlight">\(\psi_N\)</span> are nonzero at the edges (at <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(x_N\)</span>). That is, the only nonzero terms are <span class="math notranslate nohighlight">\(u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0)\)</span> and as such the boundary terms will only enter the assembled equations <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> for the unknowns <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>. But these are not unknown, so with Dirichlet boundary conditions we can simply neglect the boundary terms! We will get back to these boundary term for Neumann boundary conditions though.</p>
 <div class="admonition note" id="sec-12-note1">
 <p class="admonition-title">Note</p>
-<p>Remember that in the linear algebra problem <a class="reference internal" href="#equation-eq-fem-poisson">(57)</a> each row represents a linear equation. And <span class="math notranslate nohighlight">\(i=0\)</span> represents the equation for the left boundary, whereas <span class="math notranslate nohighlight">\(i=N\)</span> represents the equation for the right boundary. Since Dirichlet boundary conditions dictate that <span class="math notranslate nohighlight">\(\hat{u}_0=a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N=b\)</span>, we ident the two rows and put <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> in the right hand side vector.</p>
+<p>Remember that in the linear algebra problem <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> each row represents a linear equation. And <span class="math notranslate nohighlight">\(i=0\)</span> represents the equation for the left boundary, whereas <span class="math notranslate nohighlight">\(i=N\)</span> represents the equation for the right boundary. Since Dirichlet boundary conditions dictate that <span class="math notranslate nohighlight">\(\hat{u}_0=a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N=b\)</span>, we ident the two rows and put <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> in the right hand side vector.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -497,7 +507,7 @@ b
 \end{bmatrix}
 \end{split}\]</div>
 </div>
-<p>To solve <a class="reference internal" href="#equation-eq-fem-poisson">(57)</a>, the right hand side is treated exactly as in <a class="reference internal" href="lecture10.html#fem-assemble-vector"><span class="std std-ref">lecture 10</span></a>, whereas we need to assemble the stiffness matrix</p>
+<p>To solve <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a>, the right hand side is treated exactly as in <a class="reference internal" href="lecture10.html#fem-assemble-vector"><span class="std std-ref">lecture 10</span></a>, whereas we need to assemble the stiffness matrix</p>
 <div class="math notranslate nohighlight">
 \[
 s_{ij} = (\psi'_j, \psi'_i) = \sum_{e=0}^{N_e-1} \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega.
@@ -521,7 +531,7 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
  &amp;= \int_{-1}^1 \frac{d \ell_s(X)}{dX} \frac{dX}{dx} \frac{d \ell_r(X)}{dX} \frac{dX}{dx} \frac{dx}{dX}dX
 \end{align*}
 \end{split}\]</div>
-<p>With the linear mapping <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(39)</a> we get that</p>
+<p>With the linear mapping <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(41)</a> we get that</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{dx}{dX} = \frac{h}{2}, 
@@ -691,39 +701,39 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/db0caeb3e9875e58944385b549f36f5185383653a471ca26326651cd7a96a5e9.png" src="_images/db0caeb3e9875e58944385b549f36f5185383653a471ca26326651cd7a96a5e9.png" />
+<img alt="_images/694ff6d09e819d5183d037fd93b9249f46b622913b0482dcedfb293f81e88dcf.png" src="_images/694ff6d09e819d5183d037fd93b9249f46b622913b0482dcedfb293f81e88dcf.png" />
 </div>
 </div>
 </section>
 <section id="neumann-boundary-conditions">
-<h2>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<h2>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Link to this heading">#</a></h2>
 <p>We will now solve a Helmholtz equation with Neumann boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-helmholtz-neumann">
-<span class="eqno">(58)<a class="headerlink" href="#equation-eq-helmholtz-neumann" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(60)<a class="headerlink" href="#equation-eq-helmholtz-neumann" title="Link to this equation">#</a></span>\[
 u'' + \alpha u= f, \quad x \in (0, L), \, u'(0) = a, u'(L) = b.
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If <span class="math notranslate nohighlight">\(\alpha=0\)</span>, then Eq. <a class="reference internal" href="#equation-eq-helmholtz-neumann">(58)</a> becomes Poisson’s equation. In this case the problem is ill-defined and we need to add another constraint, like in <a class="reference internal" href="lecture11.html#sec-lecture11-neumann"><span class="std std-ref">lecture 11</span></a>. The Helmholtz problem is well-defined and does not require a constraint.</p>
+<p>If <span class="math notranslate nohighlight">\(\alpha=0\)</span>, then Eq. <a class="reference internal" href="#equation-eq-helmholtz-neumann">(60)</a> becomes Poisson’s equation. In this case the problem is ill-defined and we need to add another constraint, like in <a class="reference internal" href="lecture11.html#sec-lecture11-neumann"><span class="std std-ref">lecture 11</span></a>. The Helmholtz problem is well-defined and does not require a constraint.</p>
 </div>
 <p>The Neumann problem is solved with the same Lagrange polynomials and space <span class="math notranslate nohighlight">\(V_N\)</span> as the Dirichlet problem. With the Galerkin method we get the variational form</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-helmholtz0">
-<span class="eqno">(59)<a class="headerlink" href="#equation-eq-fem-helmholtz0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(61)<a class="headerlink" href="#equation-eq-fem-helmholtz0" title="Link to this equation">#</a></span>\[
 -(u_N', v') + \alpha(u_N, v) = (f, v) - [u_N'v]_{x=0}^{x=L}, \quad \forall \, v \in V_N.
 \]</div>
 <p>Here we already know how to assemble <span class="math notranslate nohighlight">\((u_N', v'), (u_N, v)\)</span> and <span class="math notranslate nohighlight">\((f, v)\)</span>. The only new issue is boundary conditions. We no longer know <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> or <span class="math notranslate nohighlight">\(\hat{u}_N\)</span>, but we do know that <span class="math notranslate nohighlight">\(u'(0)=a\)</span> and <span class="math notranslate nohighlight">\(u'(L)=b\)</span>.
 If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v = \psi_i\)</span> and manipulate just a little bit we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-helmholtz1">
-<span class="eqno">(60)<a class="headerlink" href="#equation-eq-fem-helmholtz1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(62)<a class="headerlink" href="#equation-eq-fem-helmholtz1" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N \left(-(\psi'_j, \psi'_i) +\alpha(\psi_j, \psi_i)\right)  \hat{u}_j = (f, \psi_i) - \left(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\right).
 \]</div>
 <p>The two boundary conditions can be inserted into the two boundary terms above and we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-helmholtz2">
-<span class="eqno">(61)<a class="headerlink" href="#equation-eq-fem-helmholtz2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(63)<a class="headerlink" href="#equation-eq-fem-helmholtz2" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N \left(-(\psi'_j, \psi'_i) +\alpha(\psi_j, \psi_i)\right)  \hat{u}_j = (f, \psi_i) - b\psi_i(L) + a\psi_i(0),
 \]</div>
 <p>which is the Helmholtz equation to solve with Neumann boundary conditions. Note that the boundary conditions will enter the equations for <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span>, because <span class="math notranslate nohighlight">\(\psi_i(0)\)</span> and <span class="math notranslate nohighlight">\(\psi_i(L)\)</span> are only nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>, respectively. In fact, <span class="math notranslate nohighlight">\(\psi_0(0)=1\)</span> and <span class="math notranslate nohighlight">\(\psi_N(L)=1\)</span>.</p>
-<p>We solve Eq. <a class="reference internal" href="#equation-eq-fem-helmholtz2">(61)</a> as a linear algebra problem</p>
+<p>We solve Eq. <a class="reference internal" href="#equation-eq-fem-helmholtz2">(63)</a> as a linear algebra problem</p>
 <div class="math notranslate nohighlight">
 \[
 (-S+\alpha A) \boldsymbol{\hat{u}} = \boldsymbol{b}, 
@@ -775,7 +785,7 @@ If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9f3451115867da93d74ce55fd8131e91ea99fe783e54cfef87d90b9b14ad56bd.png" src="_images/9f3451115867da93d74ce55fd8131e91ea99fe783e54cfef87d90b9b14ad56bd.png" />
+<img alt="_images/4ac9d69b3229de6df5fd7f25df01e05dbe7635efb623d686ff97643e623f6330.png" src="_images/4ac9d69b3229de6df5fd7f25df01e05dbe7635efb623d686ff97643e623f6330.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -784,7 +794,7 @@ If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span>
 </div>
 </section>
 <section id="fem-in-multiple-dimensions">
-<h2>FEM in multiple dimensions<a class="headerlink" href="#fem-in-multiple-dimensions" title="Permalink to this heading">#</a></h2>
+<h2>FEM in multiple dimensions<a class="headerlink" href="#fem-in-multiple-dimensions" title="Link to this heading">#</a></h2>
 <p>The finite element method is particularly useful in 2D or 3D because the method can handle geometrically complex domains <span class="math notranslate nohighlight">\(\Omega\)</span> with ease. The method is still exactly as in 1D, but now the basis functions are multidimensional</p>
 <div class="math notranslate nohighlight">
 \[
@@ -860,9 +870,9 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 <p>in 2D and three sums over three basis functions in 3D.</p>
 <p>The multidimensional basis functions are usually defined on reference elements. Remember that we earlier in 1D mapped all elements to a <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture10.html#mapping-to-reference-domain">reference domain</a> <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span>. In 2D and 3D we use instead reference triangles and tetrahedra as shown in <a class="reference internal" href="#p1-1d2d3d"><span class="std std-numref">Fig. 6</span></a></p>
 <figure class="align-center" id="p1-1d2d3d">
-<a class="reference internal image-reference" href="_images/P1-1d2d3d.png"><img alt="_images/P1-1d2d3d.png" src="_images/P1-1d2d3d.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="P1-1d2d3d.png"><img alt="P1-1d2d3d.png" src="P1-1d2d3d.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">P1 finite element reference elements in 1D, 2D and 3D. The dots are the nodes in the elements.</span><a class="headerlink" href="#p1-1d2d3d" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">P1 finite element reference elements in 1D, 2D and 3D. The dots are the nodes in the elements.</span><a class="headerlink" href="#p1-1d2d3d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The piecewise linear basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span> now live on a 2D mesh consisting of triangles, but <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_i)\)</span> is still 1 if <span class="math notranslate nohighlight">\(i=j\)</span> and 0 otherwise. In other words the piecewise linear basis functions are still defined such that</p>
@@ -872,9 +882,9 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 \]</div>
 <p>for all nodes <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> in the computational mesh. This leads to the “tent” basis function that is nicely illustrated in <a class="reference internal" href="#basisfunc-2d"><span class="std std-numref">Fig. 7</span></a></p>
 <figure class="align-center" id="basisfunc-2d">
-<a class="reference internal image-reference" href="_images/demo2D_basisfunc.png"><img alt="_images/demo2D_basisfunc.png" src="_images/demo2D_basisfunc.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="demo2D_basisfunc.png"><img alt="demo2D_basisfunc.png" src="demo2D_basisfunc.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Illustration of one single basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span>, where the node in the center of the “tent” is <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> such that <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_j)=1\)</span> at this node only and zero on all the others.</span><a class="headerlink" href="#basisfunc-2d" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Illustration of one single basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span>, where the node in the center of the “tent” is <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> such that <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_j)=1\)</span> at this node only and zero on all the others.</span><a class="headerlink" href="#basisfunc-2d" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The reference triangle has three nodes <span class="math notranslate nohighlight">\(\boldsymbol{X}_0= (0, 0), \boldsymbol{X}_1= (1, 0)\)</span> and <span class="math notranslate nohighlight">\( \boldsymbol{X}_2 = (0, 1)\)</span>, and the three nonzero reference basis functions on this element are</p>
@@ -882,27 +892,27 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 \[
 \tilde{\psi}_0(X, Y) = 1-X-Y, \quad \tilde{\psi}_1(X, Y) = X, \quad \tilde{\psi}_2(X, Y) = Y.
 \]</div>
-<p>This should be compared with the Lagrange polynomials on the 1D reference element <a class="reference internal" href="lecture10.html#equation-eq-lagrange-p1">(40)</a>. Note that the reference basis functions are mapped as</p>
+<p>This should be compared with the Lagrange polynomials on the 1D reference element <a class="reference internal" href="lecture10.html#equation-eq-lagrange-p1">(42)</a>. Note that the reference basis functions are mapped as</p>
 <div class="math notranslate nohighlight">
 \[
 \psi_{q(e, r)}(\boldsymbol{x}) = \tilde{\psi}_r(\boldsymbol{X}).
 \]</div>
-<p>There is a mapping <span class="math notranslate nohighlight">\(q(e, r)\)</span> from local to global degrees of freedom also in multiple dimensions, but the mapping is not as easy as <a class="reference internal" href="lecture10.html#equation-eq-mapping-q">(38)</a>. Normally, the finite element in multiple dimensions is implemented in an unstructured manner, and the map from a local node <span class="math notranslate nohighlight">\(r\)</span> on a global element <span class="math notranslate nohighlight">\(e\)</span>, <span class="math notranslate nohighlight">\(q(e, r)\)</span>, needs to be stored in lists.</p>
+<p>There is a mapping <span class="math notranslate nohighlight">\(q(e, r)\)</span> from local to global degrees of freedom also in multiple dimensions, but the mapping is not as easy as <a class="reference internal" href="lecture10.html#equation-eq-mapping-q">(40)</a>. Normally, the finite element in multiple dimensions is implemented in an unstructured manner, and the map from a local node <span class="math notranslate nohighlight">\(r\)</span> on a global element <span class="math notranslate nohighlight">\(e\)</span>, <span class="math notranslate nohighlight">\(q(e, r)\)</span>, needs to be stored in lists.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We write boldface <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> for a point in physical space and <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> for a point in reference space. For a global node <span class="math notranslate nohighlight">\(i = q(e,r)\)</span> on local node <span class="math notranslate nohighlight">\(r\)</span> on element <span class="math notranslate nohighlight">\(e\)</span>, the node is <span class="math notranslate nohighlight">\(\boldsymbol{x}_i = \boldsymbol{x}_{q(e, r)}\)</span>. For local node <span class="math notranslate nohighlight">\(r\)</span> the reference point is <span class="math notranslate nohighlight">\(\boldsymbol{X}_r\)</span>. In 2D  and 3D <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> is respectively <span class="math notranslate nohighlight">\((x_i, y_i)\)</span> and <span class="math notranslate nohighlight">\((x_i, y_i, z_i)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{X}_r\)</span> is <span class="math notranslate nohighlight">\((X_r, Y_r)\)</span> and <span class="math notranslate nohighlight">\((X_r, Y_r, Z_r)\)</span>. We will also use <span class="math notranslate nohighlight">\(\boldsymbol{x} = (x_0, x_1, x_2)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{X} = (X_0, X_1, X_2)\)</span> if we need to loop over coordinates.</p>
 </div>
 <p>We can map from the reference coordinate <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span> to the physical coordinate <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> using</p>
 <div class="math notranslate nohighlight" id="equation-eq-map-x">
-<span class="eqno">(62)<a class="headerlink" href="#equation-eq-map-x" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(64)<a class="headerlink" href="#equation-eq-map-x" title="Link to this equation">#</a></span>\[
 \boldsymbol{x} = \sum_{r} \tilde{\psi}_r(\boldsymbol{X}) \boldsymbol{x}_{q(e, r)},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(r\)</span> runs over the number of vertices on the reference element, i.e., 2 on lines, 3 on triangles and 4 on tetrahedra. You should try to convince yourself that <a class="reference internal" href="#equation-eq-map-x">(62)</a> is the same as Eq. <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(39)</a> on a line.</p>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> runs over the number of vertices on the reference element, i.e., 2 on lines, 3 on triangles and 4 on tetrahedra. You should try to convince yourself that <a class="reference internal" href="#equation-eq-map-x">(64)</a> is the same as Eq. <a class="reference internal" href="lecture10.html#equation-eq-affine-map">(41)</a> on a line.</p>
 <section id="assembly-of-element-matrices-in-2d-or-3d">
-<h3>Assembly of element matrices in 2D or 3D<a class="headerlink" href="#assembly-of-element-matrices-in-2d-or-3d" title="Permalink to this heading">#</a></h3>
+<h3>Assembly of element matrices in 2D or 3D<a class="headerlink" href="#assembly-of-element-matrices-in-2d-or-3d" title="Link to this heading">#</a></h3>
 <p>Lets consider the assembly of the element stiffness matrix</p>
 <div class="math notranslate nohighlight" id="equation-eq-assembly1">
-<span class="eqno">(63)<a class="headerlink" href="#equation-eq-assembly1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(65)<a class="headerlink" href="#equation-eq-assembly1" title="Link to this equation">#</a></span>\[
 \int_{\Omega^{(e)}} \nabla \psi_j(\boldsymbol{x}) \cdot \nabla \psi_i(\boldsymbol{x}) \, d\Omega,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span> is the basis function <span class="math notranslate nohighlight">\(j\)</span> defined in physical space. Suppose that we now want to compute this integral using the reference elements <span class="math notranslate nohighlight">\(\tilde{\Omega}^{(r)}\)</span> and the reference basis functions <span class="math notranslate nohighlight">\(\tilde{\psi}_r(\boldsymbol{X}) = \psi_{q(e, r)}(\boldsymbol{x}) = \psi_j(\boldsymbol{x})\)</span>.</p>
@@ -916,7 +926,7 @@ d\Omega = \text{det}J \, d\tilde{\Omega},
 \[
 J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} = \frac{\partial X_j}{\partial x_i}.
 \]</div>
-<p>We also need to transform the derivatives present in the integral <a class="reference internal" href="#equation-eq-assembly1">(63)</a>. The <span class="math notranslate nohighlight">\(i\)</span>’th component of the gradient in physical space can be written as</p>
+<p>We also need to transform the derivatives present in the integral <a class="reference internal" href="#equation-eq-assembly1">(65)</a>. The <span class="math notranslate nohighlight">\(i\)</span>’th component of the gradient in physical space can be written as</p>
 <div class="math notranslate nohighlight">
 \[
 (\nabla \psi_j)_i = \frac{\partial \psi_j}{ \partial x_i}, 
@@ -928,7 +938,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
 \]</div>
 <p>with summation implied by repeating indices. Using the inverse Jacobian we can write the last term as</p>
 <div class="math notranslate nohighlight" id="equation-eq-dpsidx">
-<span class="eqno">(64)<a class="headerlink" href="#equation-eq-dpsidx" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(66)<a class="headerlink" href="#equation-eq-dpsidx" title="Link to this equation">#</a></span>\[
 \frac{\partial \tilde{\psi}_r}{\partial X_j}\frac{\partial X_j}{\partial x_i} = J_{ij}^{-1}  \frac{\partial \tilde{\psi}_r}{\partial X_j}.
 \]</div>
 <p>We can also define this on matrix form using</p>
@@ -942,12 +952,12 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
 \frac{\partial u}{\partial Y} \\[0.1cm]
  \frac{\partial u}{\partial Z} \end{bmatrix}.
 \end{split}\]</div>
-<p>We then get <a class="reference internal" href="#equation-eq-dpsidx">(64)</a> as</p>
+<p>We then get <a class="reference internal" href="#equation-eq-dpsidx">(66)</a> as</p>
 <div class="math notranslate nohighlight">
 \[
 \nabla \psi_{q(e, r)} = J^{-1} \cdot \nabla_X \tilde{\psi}_r
 \]</div>
-<p>Inserted into <a class="reference internal" href="#equation-eq-assembly1">(63)</a> we get</p>
+<p>Inserted into <a class="reference internal" href="#equation-eq-assembly1">(65)</a> we get</p>
 <div class="math notranslate nohighlight">
 \[
 \int_{\Omega^{(e)}} \nabla \psi_{q(e, s)}(\boldsymbol{x}) \cdot \nabla \psi_{q(e, r)}(\boldsymbol{x}) \, d\Omega = \int_{\tilde{\Omega}^{(r)}} \left(J^{-1} \cdot \nabla_X \tilde{\psi}_s(\boldsymbol{X})\right) \cdot \left(J^{-1} \cdot \nabla_X \tilde{\psi}_r(\boldsymbol{X})\right) \, \text{det}J\, d\tilde{\Omega}.
@@ -974,16 +984,16 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "book"
+            mode: "python"
         },
         kernelOptions: {
-            name: "book",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'book'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -993,7 +1003,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture11.html"
@@ -1021,6 +1031,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1055,6 +1066,7 @@ By Mikael Mortensen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1081,8 +1093,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

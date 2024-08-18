@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lecture 13 &#8212; Lecture notes MATMEK-4270</title>
   
@@ -19,55 +18,52 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture13';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Mandatory assignment due 16/10-2023" href="mandatory1.html" />
+    <link rel="next" title="1. Mandatory assignment due 11/10-2024" href="mandatory1.html" />
     <link rel="prev" title="Lecture 12" href="lecture12.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -168,12 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
-<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -191,8 +199,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
 </ul>
 
     </div>
@@ -346,6 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -355,6 +364,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -407,12 +417,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-13">
-<h1>Lecture 13<a class="headerlink" href="#lecture-13" title="Permalink to this heading">#</a></h1>
+<h1>Lecture 13<a class="headerlink" href="#lecture-13" title="Link to this heading">#</a></h1>
 <section id="time-dependent-variational-methods">
-<h2>Time-dependent variational methods<a class="headerlink" href="#time-dependent-variational-methods" title="Permalink to this heading">#</a></h2>
+<h2>Time-dependent variational methods<a class="headerlink" href="#time-dependent-variational-methods" title="Link to this heading">#</a></h2>
 <p>In <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture12.html">lecture 12</a> we have focused on the spatial discretization of steady (time-independent) differential equations. We will now add time-dependence and thus consider equations like</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -434,7 +444,7 @@ u(\boldsymbol{x}, t) \approx u_N(\boldsymbol{x}, t) = \sum_{j=0}^N \hat{u}_j(t) 
 \]</div>
 <p>with the forward Euler method in time, we discretize first as</p>
 <div class="math notranslate nohighlight" id="equation-eq-forward-euler1">
-<span class="eqno">(65)<a class="headerlink" href="#equation-eq-forward-euler1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(67)<a class="headerlink" href="#equation-eq-forward-euler1" title="Link to this equation">#</a></span>\[
 \frac{u^{n+1}-u^n}{\Delta t}  = \mathcal{L}(u^n) + f^n,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(u^n = u(\boldsymbol{x}, t_n)\)</span>, <span class="math notranslate nohighlight">\(f^n = f(\boldsymbol{x}, t_n)\)</span> and <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span>. The solution <span class="math notranslate nohighlight">\(u^n\)</span> is known and <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown we are after. As always the Euler method needs to initialize the solution <span class="math notranslate nohighlight">\(u^0\)</span> in order to get started.</p>
@@ -479,11 +489,11 @@ u(\boldsymbol{x}, t_k) \approx u^{k}_N = \sum_{j=0}^N \hat{u}^{k}_j \psi_j(\bold
 <p>By initializing <span class="math notranslate nohighlight">\(u_N^0(\boldsymbol{x})=u^0(\boldsymbol{x})\)</span>, we need to project <span class="math notranslate nohighlight">\(u^0(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(V_N\)</span> and store the expansion coefficients <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span>. This is a regular function approximation, like in lectures <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html">8</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture9.html">9</a>. For the finite difference method, on the other hand, initialization is simply to evaluate (interpolate) the solution on the computational mesh: <span class="math notranslate nohighlight">\((u^0(x_i))_{i=0}^N\)</span>. The finite element method can do either project or interpolate, because the FEM is using Lagrange polynomials such that <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p>
 </div>
 <section id="stability">
-<span id="sec-stability-1"></span><h3>Stability<a class="headerlink" href="#stability" title="Permalink to this heading">#</a></h3>
+<span id="sec-stability-1"></span><h3>Stability<a class="headerlink" href="#stability" title="Link to this heading">#</a></h3>
 <p>Just like for the finite difference method we need to be very careful with the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, in order to obtain a stable solution. A stable solution is one that remains bounded as <span class="math notranslate nohighlight">\(t \longrightarrow \infty\)</span>. However, there is one major difference from the finite difference or collocation methods. The Galerkin method described above does not involve a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>! So the Courant number is not defined. How do we overcome this problem? In order to describe this problem it is helpful to first revisit the stability of the finite difference method.</p>
 <section id="stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">
-<h4>Stability of the forward Euler method for finite difference spatial discretizations<a class="headerlink" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations" title="Permalink to this heading">#</a></h4>
-<p>We start by considering <a class="reference internal" href="#equation-eq-forward-euler1">(65)</a> with finite difference discretizations for both temporal and spatial derivatives:</p>
+<h4>Stability of the forward Euler method for finite difference spatial discretizations<a class="headerlink" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations" title="Link to this heading">#</a></h4>
+<p>We start by considering <a class="reference internal" href="#equation-eq-forward-euler1">(67)</a> with finite difference discretizations for both temporal and spatial derivatives:</p>
 <div class="math notranslate nohighlight">
 \[
 u_j^{n+1} - u_j^n = {\Delta t}\mathcal{L}(\boldsymbol{u}^n)_j,
@@ -516,13 +526,13 @@ g^{n+1}\boldsymbol{u}^0 - g^n \boldsymbol{u}^0 = {\Delta t} g^n D^{(m)} \boldsym
 \]</div>
 <p>Divide by <span class="math notranslate nohighlight">\(g^n\)</span> to obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-gmin1">
-<span class="eqno">(66)<a class="headerlink" href="#equation-eq-gmin1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(68)<a class="headerlink" href="#equation-eq-gmin1" title="Link to this equation">#</a></span>\[
 (g-1)\boldsymbol{u}^0 = \Delta t D^{(m)} \boldsymbol{u}^0.
 \]</div>
 <p>Stability requires that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>. However, unlike the decay equation discussed in lectures 1 and 2, it is not always a requirement that <span class="math notranslate nohighlight">\(g&gt;0\)</span>, because the solution may be oscillatory.</p>
 <p>In order to say something more specific about stability, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with periodic boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-d2-dir">
-<span class="eqno">(67)<a class="headerlink" href="#equation-eq-d2-dir" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(69)<a class="headerlink" href="#equation-eq-d2-dir" title="Link to this equation">#</a></span>\[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
 -2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 1  \\
 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
@@ -533,7 +543,7 @@ D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(67)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
+<p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(69)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
 <div class="math notranslate nohighlight">
 \[
 (g-1)\boldsymbol{u}^0 = \frac{\Delta t}{\Delta x^2} \tilde{D}^{(2)} \boldsymbol{u}^0,
@@ -555,12 +565,12 @@ g = 1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right).
 \]</div>
 <p>We still want <span class="math notranslate nohighlight">\(|g|\le 1\)</span>, so we need</p>
 <div class="math notranslate nohighlight" id="equation-eq-limit0">
-<span class="eqno">(68)<a class="headerlink" href="#equation-eq-limit0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(70)<a class="headerlink" href="#equation-eq-limit0" title="Link to this equation">#</a></span>\[
 |1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right)| \le 1,
 \]</div>
 <p>and since <span class="math notranslate nohighlight">\(\sin^2\left(k \Delta x/2\right) \le 1\)</span> and positive, we get that <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> is always less than 1. However, <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> can be smaller than <span class="math notranslate nohighlight">\(-1\)</span>, and that gives us the limit</p>
 <div class="math notranslate nohighlight" id="equation-eq-limit1">
-<span class="eqno">(69)<a class="headerlink" href="#equation-eq-limit1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(71)<a class="headerlink" href="#equation-eq-limit1" title="Link to this equation">#</a></span>\[
 1- \frac{4 \Delta t}{\Delta x^2} \ge -1,
 \]</div>
 <p>which is satisfied if <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 \le 1/2\)</span>. This is the absolute stability limit for the forward Euler method for the diffusion equation. Note that it involves both <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
@@ -569,7 +579,7 @@ g = 1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right).
 \[
 D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 \]</div>
-<p>We can insert this into <a class="reference internal" href="#equation-eq-gmin1">(66)</a> to obtain</p>
+<p>We can insert this into <a class="reference internal" href="#equation-eq-gmin1">(68)</a> to obtain</p>
 <div class="math notranslate nohighlight">
 \[
 (g-1)\boldsymbol{u}^0 = \Delta t \lambda \boldsymbol{u}^0.
@@ -598,7 +608,7 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.9962066574740924
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.996206657474091
 </pre></div>
 </div>
 </div>
@@ -608,23 +618,23 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 \[
 |1- 4\frac{\Delta t}{\Delta x^2}| \le 1.
 \]</div>
-<p>which is the same result as <a class="reference internal" href="#equation-eq-limit0">(68)</a> if we set <span class="math notranslate nohighlight">\(\sin^2(k \Delta x/2)\)</span> to its maximum value of 1.</p>
+<p>which is the same result as <a class="reference internal" href="#equation-eq-limit0">(70)</a> if we set <span class="math notranslate nohighlight">\(\sin^2(k \Delta x/2)\)</span> to its maximum value of 1.</p>
 </section>
 <section id="stability-of-the-forward-euler-method-for-variational-forms">
-<h4>Stability of the forward Euler method for variational forms<a class="headerlink" href="#stability-of-the-forward-euler-method-for-variational-forms" title="Permalink to this heading">#</a></h4>
+<h4>Stability of the forward Euler method for variational forms<a class="headerlink" href="#stability-of-the-forward-euler-method-for-variational-forms" title="Link to this heading">#</a></h4>
 <p>As described in the start of <a class="reference internal" href="#sec-stability-1"><span class="std std-ref">Stability</span></a>, the variational methods do not include a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>. However, we can use the eigenvalue approach described above without defining a mesh size and we will now use this to find stability limits for variational forms.</p>
 <p>First of all we make the same ansatz and assume that the solution <span class="math notranslate nohighlight">\(u_N^{n+1}\)</span> can be computed from <span class="math notranslate nohighlight">\(u_N^n\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-un-g">
-<span class="eqno">(70)<a class="headerlink" href="#equation-eq-un-g" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(72)<a class="headerlink" href="#equation-eq-un-g" title="Link to this equation">#</a></span>\[
 u_N^{n+1} = g u_N^n \quad \text{and thus} \quad u^{n}_N = g^n u^0_N. 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an amplification factor independent of spatial coordinate <span class="math notranslate nohighlight">\(x\)</span>. As always a stable method is one where <span class="math notranslate nohighlight">\(|g| &lt; 1\)</span>.</p>
 <p>For the forward Euler method we now consider the discretized Galerkin equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-forward-gal">
-<span class="eqno">(71)<a class="headerlink" href="#equation-eq-euler-forward-gal" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(73)<a class="headerlink" href="#equation-eq-euler-forward-gal" title="Link to this equation">#</a></span>\[
 \left(u^{n+1}_N, v\right) = \left(u^{n}_N, v\right) + \Delta t \left(\mathcal{L}(u^n_N), v\right)
 \]</div>
-<p>and insert for Eq. <a class="reference internal" href="#equation-eq-un-g">(70)</a></p>
+<p>and insert for Eq. <a class="reference internal" href="#equation-eq-un-g">(72)</a></p>
 <div class="math notranslate nohighlight">
 \[
 \left(g^{n+1}u^{0}_N, v\right) = \left(g^n u^{0}_N, v\right) + \Delta t \left(\mathcal{L}(g^n u^0_N), v\right)
@@ -646,7 +656,7 @@ g A \boldsymbol{\hat{u}}^0 = A \boldsymbol{\hat{u}}^0 + \Delta t M \boldsymbol{\
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the mass matrix and <span class="math notranslate nohighlight">\(m_{ij} = \left( \mathcal{L}(\psi_j), \psi_i\right)\)</span> and <span class="math notranslate nohighlight">\(M=(m_{ij})_{i,j=0}^N\)</span>. Multiply from the left by <span class="math notranslate nohighlight">\(A^{-1}\)</span> to obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-g2">
-<span class="eqno">(72)<a class="headerlink" href="#equation-eq-g2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(74)<a class="headerlink" href="#equation-eq-g2" title="Link to this equation">#</a></span>\[
 g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \Delta t A^{-1}M \boldsymbol{\hat{u}}^0
 \]</div>
 <p>We can compute the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of the matrix <span class="math notranslate nohighlight">\(H = A^{-1}M\)</span> such that</p>
@@ -654,7 +664,7 @@ g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \Delta t A^{-1}M \boldsymbol
 \[
 H \boldsymbol{\hat{u}}^0 = \lambda \boldsymbol{\hat{u}}^0,
 \]</div>
-<p>which can be inserted into  <a class="reference internal" href="#equation-eq-g2">(72)</a></p>
+<p>which can be inserted into  <a class="reference internal" href="#equation-eq-g2">(74)</a></p>
 <div class="math notranslate nohighlight">
 \[
 g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \lambda \Delta t \boldsymbol{\hat{u}}^0.
@@ -669,13 +679,13 @@ g = 1 + \lambda \Delta t
 </section>
 </section>
 <section id="the-diffusion-equation">
-<h3>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Permalink to this heading">#</a></h3>
+<h3>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Link to this heading">#</a></h3>
 <p>Consider the diffusion equation with Dirichlet boundary conditions and a prescribed initial condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-diffusion">
-<span class="eqno">(73)<a class="headerlink" href="#equation-eq-diffusion" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(75)<a class="headerlink" href="#equation-eq-diffusion" title="Link to this equation">#</a></span>\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in (0, L) \times (0, T], \, u(0, t) = f(0), u(L, t) = p(L), u(x, 0) = p(x).
 \]</div>
-<p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(73)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(71)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
+<p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(75)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(73)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n+1}_j = \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n}_j - \Delta t\left( \sum_{j=0}^N (\psi'_j, \psi'_i) \hat{u}^{n}_j - [u^n_N \psi_i]_{x=0}^{x=L} \right).
@@ -686,7 +696,7 @@ g = 1 + \lambda \Delta t
 \[
 x = L(1+X)/2\quad \text{and} \quad \frac{dx}{dX} = L/2.
 \]</div>
-<p>The stiffness matrix <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i)\)</span> was given in Eq. <a class="reference internal" href="lecture11.html#equation-eq-stiffness-legendre-dir">(49)</a>, but it needs to be modified for the mapping</p>
+<p>The stiffness matrix <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i)\)</span> was given in Eq. <a class="reference internal" href="lecture11.html#equation-eq-stiffness-legendre-dir">(51)</a>, but it needs to be modified for the mapping</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -836,7 +846,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/95dc458c74b2651d1d1c00c576e09483bf267c9e3bd1e00032670b8cef1eee0c.png" src="_images/95dc458c74b2651d1d1c00c576e09483bf267c9e3bd1e00032670b8cef1eee0c.png" />
+<img alt="_images/c78052313924db192fb3f892d219ff85e706c8d6e6b6cff67f458783e6b3a6ee.png" src="_images/c78052313924db192fb3f892d219ff85e706c8d6e6b6cff67f458783e6b3a6ee.png" />
 </div>
 </div>
 <p>The solution is nice and smooth and the time step is</p>
@@ -847,7 +857,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 2.1980578790345163e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 2.1980578790345177e-05
 </pre></div>
 </div>
 </div>
@@ -861,7 +871,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f8a6a468f96f77c17ce1b0bec1c0b383d44ec238c43d5d21be110f1197a7ce22.png" src="_images/f8a6a468f96f77c17ce1b0bec1c0b383d44ec238c43d5d21be110f1197a7ce22.png" />
+<img alt="_images/cc8542b2c67cc99a2a426ba26f8cb30a691a7e8eff8b987a1f437f1f8dc8c9b1.png" src="_images/cc8542b2c67cc99a2a426ba26f8cb30a691a7e8eff8b987a1f437f1f8dc8c9b1.png" />
 </div>
 </div>
 <p>Obviously, the solver is now unstable and the solution diverges.</p>
@@ -908,7 +918,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b99e12f77eec3c34d8e6c717a86a966d5724d07b33f3688530516e275d88941c.png" src="_images/b99e12f77eec3c34d8e6c717a86a966d5724d07b33f3688530516e275d88941c.png" />
+<img alt="_images/e1985bc29fef555b70ff1451b32f6546c6aa521525e3589943582c9659f7a8d7.png" src="_images/e1985bc29fef555b70ff1451b32f6546c6aa521525e3589943582c9659f7a8d7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -918,7 +928,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 1.2332249161314773e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 1.2332249161314778e-05
 </pre></div>
 </div>
 </div>
@@ -928,13 +938,13 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <p class="admonition-title">Stiffness matrix for Chebyshev basis</p>
 <p>Note that in the implementation we have used <span class="math notranslate nohighlight">\(s_{ij} = -(\psi''_j, \psi_i)_{\omega}\)</span> and</p>
 <div class="math notranslate nohighlight" id="equation-eq-stiffness-cheb">
-<span class="eqno">(74)<a class="headerlink" href="#equation-eq-stiffness-cheb" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(76)<a class="headerlink" href="#equation-eq-stiffness-cheb" title="Link to this equation">#</a></span>\[\begin{split}
 (\psi''_j, \psi_i)_{\omega} = \frac{2}{L}\begin{cases} 2 \pi (i+1)(i+2), \quad &amp;i=j, \\
 4 \pi (i+1), \quad &amp;j=i+2, i+4, \ldots, N  \\
 0, \quad &amp;j &lt; i \text{ or } i+j \text{ odd}  
 \end{cases}
 \end{split}\]</div>
-<p>because it is quite expensive to compute the matrix using the <code class="docutils literal notranslate"><span class="pre">inner(u.diff(2),</span> <span class="pre">v)</span></code> function that loops over all <span class="math notranslate nohighlight">\(i,j \in \mathcal{I}_N^2\)</span>. Equation <a class="reference internal" href="#equation-eq-stiffness-cheb">(74)</a> can be derived using</p>
+<p>because it is quite expensive to compute the matrix using the <code class="docutils literal notranslate"><span class="pre">inner(u.diff(2),</span> <span class="pre">v)</span></code> function that loops over all <span class="math notranslate nohighlight">\(i,j \in \mathcal{I}_N^2\)</span>. Equation <a class="reference internal" href="#equation-eq-stiffness-cheb">(76)</a> can be derived using</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2) T_j,
@@ -944,10 +954,10 @@ T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2
 </div>
 </section>
 <section id="backward-euler">
-<h3>Backward Euler<a class="headerlink" href="#backward-euler" title="Permalink to this heading">#</a></h3>
+<h3>Backward Euler<a class="headerlink" href="#backward-euler" title="Link to this heading">#</a></h3>
 <p>The forward Euler method requires a very short time step for the diffusion equation. How about the backward Euler method</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-backward-gal">
-<span class="eqno">(75)<a class="headerlink" href="#equation-eq-euler-backward-gal" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(77)<a class="headerlink" href="#equation-eq-euler-backward-gal" title="Link to this equation">#</a></span>\[
 \left(u^{n+1}_N, v\right) = \left(u^{n}_N, v\right) + \Delta t \left(\mathcal{L}(u^{n+1}_N), v\right),
 \]</div>
 <p>where the only difference from forward is that <span class="math notranslate nohighlight">\(\left(\mathcal{L}(u^{n+1}_N), v\right)\)</span>  is making use of the unknown <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> and not the known <span class="math notranslate nohighlight">\(u^n_N\)</span>? The linear algebra problem is now</p>
@@ -978,7 +988,7 @@ g = \frac{1}{1+\Delta t \lambda}.
 <p>Since all time steps and eigenvalues are real numbers larger than 0, we find that <span class="math notranslate nohighlight">\(g\)</span> is always less than 1 and the backward Euler method is as such <em>unconditionally</em> stable.</p>
 </section>
 <section id="the-wave-equation">
-<h3>The Wave equation<a class="headerlink" href="#the-wave-equation" title="Permalink to this heading">#</a></h3>
+<h3>The Wave equation<a class="headerlink" href="#the-wave-equation" title="Link to this heading">#</a></h3>
 <p>Lets consider the wave equation from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html">lecture 5</a> in one spatial dimension</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1112,7 +1122,7 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/08bcee2eb36964a31f82378dbb2f5a97b5297b4abf580bf0c166e0fa30dd3077.png" src="_images/08bcee2eb36964a31f82378dbb2f5a97b5297b4abf580bf0c166e0fa30dd3077.png" />
+<img alt="_images/7199606952aa55009d1caab132b7090c41150910c4b31657020a3cb82e8bf221.png" src="_images/7199606952aa55009d1caab132b7090c41150910c4b31657020a3cb82e8bf221.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1122,7 +1132,7 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 0.0066303210767420856
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 0.006630321076742087
 </pre></div>
 </div>
 </div>
@@ -1131,7 +1141,7 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 </section>
 </section>
 <section id="weekly-assignments">
-<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Implement the diffusion equation with the backward Euler scheme.</p></li>
 <li><p>Find the absolute stability limit of the diffusion equation discretized with a Crank-Nicolson scheme. Use both a finite difference method
@@ -1162,16 +1172,16 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "book"
+            mode: "python"
         },
         kernelOptions: {
-            name: "book",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'book'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1181,7 +1191,7 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture12.html"
@@ -1197,7 +1207,7 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 16/10-2023</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 11/10-2024</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1209,6 +1219,7 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1249,6 +1260,7 @@ By Mikael Mortensen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1275,8 +1287,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

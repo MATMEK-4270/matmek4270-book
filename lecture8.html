@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lecture 8 &#8212; Lecture notes MATMEK-4270</title>
   
@@ -19,52 +18,49 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture8';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 9" href="lecture9.html" />
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -168,12 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
-<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -191,8 +199,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
 </ul>
 
     </div>
@@ -346,6 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -355,6 +364,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -403,12 +413,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-8">
-<h1>Lecture 8<a class="headerlink" href="#lecture-8" title="Permalink to this heading">#</a></h1>
+<h1>Lecture 8<a class="headerlink" href="#lecture-8" title="Link to this heading">#</a></h1>
 <section id="function-approximation-with-global-functions">
-<h2>Function approximation with global functions<a class="headerlink" href="#function-approximation-with-global-functions" title="Permalink to this heading">#</a></h2>
+<h2>Function approximation with global functions<a class="headerlink" href="#function-approximation-with-global-functions" title="Link to this heading">#</a></h2>
 <p>Consider a generic function in one dimension <span class="math notranslate nohighlight">\(u(x)\)</span>. <span class="math notranslate nohighlight">\(u(x)\)</span> can be anything, a polynomial, harmonic, exponential, etc., and it can be defined on the entire real line <span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span> or simply a part of it <span class="math notranslate nohighlight">\(x \in [a, b]\)</span> for some real numbers <span class="math notranslate nohighlight">\(a &lt; b\)</span>. Sometimes you will see a notation like <span class="math notranslate nohighlight">\(u(x): [a, b] \rightarrow \mathbb{R}\)</span>. This means that the function <span class="math notranslate nohighlight">\(u(x)\)</span> is defined on the domain <span class="math notranslate nohighlight">\(x\in[a,b]\)</span> and outputs a real number.</p>
 <p>We now want to approximate this function <span class="math notranslate nohighlight">\(u(x)\)</span> using other functions <span class="math notranslate nohighlight">\(\psi_j(x)\)</span>, such that</p>
 <div class="math notranslate nohighlight">
@@ -450,7 +460,7 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/61b2417f62769197e7bdfa723c57586cbad8ecf1a14ff1fd6ae6026b9f0ec58b.png" src="_images/61b2417f62769197e7bdfa723c57586cbad8ecf1a14ff1fd6ae6026b9f0ec58b.png" />
+<img alt="_images/9ce18e96e94f16ff49e43c54dd3e3952514a39076a823cd5d306f0a9e088ae33.png" src="_images/9ce18e96e94f16ff49e43c54dd3e3952514a39076a823cd5d306f0a9e088ae33.png" />
 </div>
 </div>
 <p>Now create a functionspace consisting of all straight lines</p>
@@ -473,7 +483,7 @@ u_N(x) = \hat{u}_0 + \hat{u}_1 x.
 <p>where the first two are variational methods and the last is an interpolation method. We will briefly mention the least squares method and focus on the last two. All methods will allow us to find the best possible <span class="math notranslate nohighlight">\(u_N(x)\)</span>, but with slightly different approaches. All methods will provide us with <span class="math notranslate nohighlight">\(N+1\)</span> equations that can be used to find the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^N\)</span>.</p>
 <p>For the first two methods we need to define the <span class="math notranslate nohighlight">\(L^2\)</span> inner product</p>
 <div class="math notranslate nohighlight" id="equation-eq-l2-inner">
-<span class="eqno">(10)<a class="headerlink" href="#equation-eq-l2-inner" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(12)<a class="headerlink" href="#equation-eq-l2-inner" title="Link to this equation">#</a></span>\[
 \left(f, g \right) = \int_{\Omega} f(x)g(x) d\Omega,
 \]</div>
 <p>for two real functions <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(g(x)\)</span> (complex functions have a slightly different inner product). The symbol <span class="math notranslate nohighlight">\(\Omega\)</span> here represents the domain of interest. For our first example <span class="math notranslate nohighlight">\(\Omega = [1, 2]\)</span>.</p>
@@ -483,7 +493,7 @@ u_N(x) = \hat{u}_0 + \hat{u}_1 x.
 </div>
 <p>The inner product is used in defining the <span class="math notranslate nohighlight">\(L^2\)</span> error norm. If we define the error in the approximation as</p>
 <div class="math notranslate nohighlight" id="equation-eq-error-u">
-<span class="eqno">(11)<a class="headerlink" href="#equation-eq-error-u" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(13)<a class="headerlink" href="#equation-eq-error-u" title="Link to this equation">#</a></span>\[
 e(x) = u(x)-u_N(x),
 \]</div>
 <p>then the <span class="math notranslate nohighlight">\(L^2\)</span> error norm is <span class="math notranslate nohighlight">\(\sqrt{(e, e)} = |e|\)</span>, or sometimes <span class="math notranslate nohighlight">\(|e|_{L^2}\)</span>. We will also use</p>
@@ -501,7 +511,7 @@ E = (e, e).
 </div>
 </div>
 <section id="the-least-squares-method">
-<h3>The least squares method<a class="headerlink" href="#the-least-squares-method" title="Permalink to this heading">#</a></h3>
+<h3>The least squares method<a class="headerlink" href="#the-least-squares-method" title="Link to this heading">#</a></h3>
 <p>The least squares method requires that we solve</p>
 <div class="math notranslate nohighlight">
 \[
@@ -553,12 +563,12 @@ E = (e, e).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/28a7848a64638011b12c43051556e2217080428d6bee55c6bce4703c3684f363.png" src="_images/28a7848a64638011b12c43051556e2217080428d6bee55c6bce4703c3684f363.png" />
+<img alt="_images/ae66d082dac3e0d21d46a169ba60153e000c13fce300e9e0a019e3a9f856df04.png" src="_images/ae66d082dac3e0d21d46a169ba60153e000c13fce300e9e0a019e3a9f856df04.png" />
 </div>
 </div>
 </section>
 <section id="the-galerkin-method">
-<h3>The Galerkin method<a class="headerlink" href="#the-galerkin-method" title="Permalink to this heading">#</a></h3>
+<h3>The Galerkin method<a class="headerlink" href="#the-galerkin-method" title="Link to this heading">#</a></h3>
 <p>The Galerkin method requires that the error is orthogonal to the basis functions (for the <span class="math notranslate nohighlight">\(L^2\)</span> inner product). That is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -600,13 +610,13 @@ E = (e, e).
 <p>The Galerkin method can be formulated as:</p>
 <p>Find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-a">
-<span class="eqno">(12)<a class="headerlink" href="#equation-eq-galerkin-a" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(14)<a class="headerlink" href="#equation-eq-galerkin-a" title="Link to this equation">#</a></span>\[
 (e, v) = 0, \quad \forall \, v \in V_N,
 \]</div>
 <p>which means exactly the same as:</p>
 <p>Find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-b">
-<span class="eqno">(13)<a class="headerlink" href="#equation-eq-galerkin-b" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(15)<a class="headerlink" href="#equation-eq-galerkin-b" title="Link to this equation">#</a></span>\[
 (e, \psi_i) = 0, \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <div class="admonition note">
@@ -616,7 +626,7 @@ E = (e, e).
 \[
 \sum_{j=0}^N (e, \psi_j) \hat{v}_j =0.
 \]</div>
-<p>In order for this to always be satisfied, we require that <span class="math notranslate nohighlight">\((e, \psi_j)=0\)</span> for all <span class="math notranslate nohighlight">\(j=0,1,\ldots, N\)</span>. Hence the equality between the two above formulations <a class="reference internal" href="#equation-eq-galerkin-a">(12)</a> and <a class="reference internal" href="#equation-eq-galerkin-b">(13)</a>.</p>
+<p>In order for this to always be satisfied, we require that <span class="math notranslate nohighlight">\((e, \psi_j)=0\)</span> for all <span class="math notranslate nohighlight">\(j=0,1,\ldots, N\)</span>. Hence the equality between the two above formulations <a class="reference internal" href="#equation-eq-galerkin-a">(14)</a> and <a class="reference internal" href="#equation-eq-galerkin-b">(15)</a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -677,7 +687,7 @@ A \boldsymbol{x} = \boldsymbol{b},
 <p>is a basis for the space of all polynomials. However, it is not a good basis. This is because the basis functions are not orthogonal and the mass matrix <span class="math notranslate nohighlight">\(A\)</span> is ill conditioned.</p>
 <p>A much better polynomial basis are the Legendre polynomials that are defined on the domain <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-legrecursive">
-<span class="eqno">(14)<a class="headerlink" href="#equation-eq-legrecursive" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(16)<a class="headerlink" href="#equation-eq-legrecursive" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 P_0(x) &amp;= 1, \\
 P_1(x) &amp;= x, \\
@@ -709,12 +719,12 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b671c256f67fcbfb2d450dfbf5e0d91bfac0f4e1368811b805c31b1f040fd278.png" src="_images/b671c256f67fcbfb2d450dfbf5e0d91bfac0f4e1368811b805c31b1f040fd278.png" />
+<img alt="_images/243f7a6a3d8795e7e302f86144de6e905872a88b4b87d6de3d0d007147ced9bb.png" src="_images/243f7a6a3d8795e7e302f86144de6e905872a88b4b87d6de3d0d007147ced9bb.png" />
 </div>
 </div>
 <p>The Legendre polynomials are <span class="math notranslate nohighlight">\(L^2\)</span> orthogonal on <span class="math notranslate nohighlight">\(\Omega=[-1, 1]\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-legortho">
-<span class="eqno">(15)<a class="headerlink" href="#equation-eq-legortho" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(17)<a class="headerlink" href="#equation-eq-legortho" title="Link to this equation">#</a></span>\[
 (P_j, P_i) =  \frac{2}{2j+1}\delta_{ij}.
 \]</div>
 <p>A slightly complicating factor, though, is that the computational domain needs to be <span class="math notranslate nohighlight">\([-1, 1]\)</span>. So if the actual domain of <span class="math notranslate nohighlight">\(u(x)\)</span> is <span class="math notranslate nohighlight">\([a, b]\)</span>, then this needs to be mapped to the computational domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>.</p>
@@ -728,14 +738,14 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 <p>Let <span class="math notranslate nohighlight">\(X\)</span> be the coordinate in the computational (reference) domain <span class="math notranslate nohighlight">\([A, B]\)</span>, where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are real numbers. A linear (affine) mapping, from the computational coordinate <span class="math notranslate nohighlight">\(X\)</span> to the physical coordinate <span class="math notranslate nohighlight">\(x\)</span> is then</p>
 <div class="math notranslate nohighlight" id="equation-eq-x">
-<span class="eqno">(16)<a class="headerlink" href="#equation-eq-x" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(18)<a class="headerlink" href="#equation-eq-x" title="Link to this equation">#</a></span>\[
 \begin{equation}
 x = a + \frac{b-a}{B-A}(X-A).
 \end{equation}
 \]</div>
 <p>The reverse mapping is</p>
 <div class="math notranslate nohighlight" id="equation-eq-xmap">
-<span class="eqno">(17)<a class="headerlink" href="#equation-eq-xmap" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(19)<a class="headerlink" href="#equation-eq-xmap" title="Link to this equation">#</a></span>\[
 \begin{equation}
 X = A + \frac{B-A}{b-a}(x-a).
 \end{equation}
@@ -828,7 +838,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fcd4d10e36d89ff4a86aa2f485580c8c556d54e9d499a521fe40a294711aa236.png" src="_images/fcd4d10e36d89ff4a86aa2f485580c8c556d54e9d499a521fe40a294711aa236.png" />
+<img alt="_images/f47f3ed19834c74760b8325035ebba93c6f2ea7c29116df0b9f48247664ba672.png" src="_images/f47f3ed19834c74760b8325035ebba93c6f2ea7c29116df0b9f48247664ba672.png" />
 </div>
 </div>
 <p>We see that the result is exactly as before, which is not so strange since the span of this Legendre basis is still the space of all linear functions. But add one more Legendre coefficient and the approximation becomes exact because <span class="math notranslate nohighlight">\(u(x)\)</span> is a second order polynomial.</p>
@@ -843,7 +853,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/963670c91ed71d0a2b3033fda478bb8c015ded5915fdc3ffd8fb80d8bbb21334.png" src="_images/963670c91ed71d0a2b3033fda478bb8c015ded5915fdc3ffd8fb80d8bbb21334.png" />
+<img alt="_images/91c45bde3194609795350d29f7468dd40ffd343798da3b9b0daf0537d2ae7a0c.png" src="_images/91c45bde3194609795350d29f7468dd40ffd343798da3b9b0daf0537d2ae7a0c.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -872,7 +882,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 2.333333333333334)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 2.3333333333333335)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 5.0)
@@ -883,7 +893,7 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 <p>The numerical integration routine <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html">quad</a> is using adaptive quadrature in order to solve the integral. This adaptive integration routine is using a gradually finer mesh until the results of the integration are no longer improving more than a certain tolerance. The default tolerances (both relative and absolute) are <span class="math notranslate nohighlight">\(1.49 \cdot 10^{-8}\)</span>, but may also be set by the user.</p>
 </section>
 <section id="the-collocation-method">
-<h3>The collocation method<a class="headerlink" href="#the-collocation-method" title="Permalink to this heading">#</a></h3>
+<h3>The collocation method<a class="headerlink" href="#the-collocation-method" title="Link to this heading">#</a></h3>
 <p>The collocation method takes a very different approach, but the objective is still to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -950,7 +960,7 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ab7d52e679ed2e84e8b43e95be51a8104f626325937593e5bf22cc8b119d98f7.png" src="_images/ab7d52e679ed2e84e8b43e95be51a8104f626325937593e5bf22cc8b119d98f7.png" />
+<img alt="_images/d6f4dd786bcf83cdf1bdec380a07fc471d1181062ecac6fc09f98a169d5bec2f.png" src="_images/d6f4dd786bcf83cdf1bdec380a07fc471d1181062ecac6fc09f98a169d5bec2f.png" />
 </div>
 </div>
 <p>So this seems to be less accurate than the Galerkin method or the least squares method. However, we have not done any integration, and the lower accuracy has come very easily. We can also very easily use one more point and end up with a perfect approximation:</p>
@@ -967,7 +977,7 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/106f4b9632fdc6eeb8d00e22264225e91f4d6773e76416076ceb83f19fa7a8dd.png" src="_images/106f4b9632fdc6eeb8d00e22264225e91f4d6773e76416076ceb83f19fa7a8dd.png" />
+<img alt="_images/adbc2a5235a1f353b976add303d3b3d3e8db33b92ce97eed736d1a08b53b8fec.png" src="_images/adbc2a5235a1f353b976add303d3b3d3e8db33b92ce97eed736d1a08b53b8fec.png" />
 </div>
 </div>
 <p>Lets consider a more difficult function</p>
@@ -1002,7 +1012,7 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1],
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8c57cdafeac12a6d3efd1a2a443ec349fb050bb74f89e4d481ca3e2ed35acb95.png" src="_images/8c57cdafeac12a6d3efd1a2a443ec349fb050bb74f89e4d481ca3e2ed35acb95.png" />
+<img alt="_images/b0d6aeb6b0014b403c4dc5b9c2d6afeeaac554b712892fe8e8cba8515f5fca75.png" src="_images/b0d6aeb6b0014b403c4dc5b9c2d6afeeaac554b712892fe8e8cba8515f5fca75.png" />
 </div>
 </div>
 <p>Ok, so that did not work out well! Large over and under-shoots in between the mesh points. So Lagrange polynomials are bad, right?</p>
@@ -1027,13 +1037,13 @@ x_j = \cos(j \pi / N), \quad j \in \{0, 1, \ldots, N\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bfc5c5933fca248bddbad6a3309320fb1b3b2d084772205c66e305c2c66b80fd.png" src="_images/bfc5c5933fca248bddbad6a3309320fb1b3b2d084772205c66e305c2c66b80fd.png" />
+<img alt="_images/685e29d97f5a5b561731da0e4286fc758924073c31b829314fd1629d819f0286.png" src="_images/685e29d97f5a5b561731da0e4286fc758924073c31b829314fd1629d819f0286.png" />
 </div>
 </div>
 <p>The agreement is now much better. And the agreement will become better and better the more points you use. Whereas for a uniform grid the agreement will become worse and worse the more points you use.</p>
 <p>How about Legendre polynomials? The domain is <span class="math notranslate nohighlight">\([-1, 1]\)</span> so we can get the Legendre coefficients without any mapping simply as</p>
 <div class="math notranslate nohighlight" id="equation-eq-legcoeff">
-<span class="eqno">(18)<a class="headerlink" href="#equation-eq-legcoeff" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(20)<a class="headerlink" href="#equation-eq-legcoeff" title="Link to this equation">#</a></span>\[
 \hat{u}_i = \frac{2i+1}{2}(u, P_i).
 \]</div>
 <p>Compute the first 40 Legendre coefficients and plot them</p>
@@ -1055,13 +1065,13 @@ x_j = \cos(j \pi / N), \quad j \in \{0, 1, \ldots, N\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9b030b7857a68a2a45fd8cac75061b5288276d4d361d45ef7b981985175b3251.png" src="_images/9b030b7857a68a2a45fd8cac75061b5288276d4d361d45ef7b981985175b3251.png" />
+<img alt="_images/5e249eb655df6c6f87b71d7cd9ccfaf5ee218cda44322dfa6a0d329fa88dab26.png" src="_images/5e249eb655df6c6f87b71d7cd9ccfaf5ee218cda44322dfa6a0d329fa88dab26.png" />
 </div>
 </div>
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
 </section>
 <section id="boundary-issues">
-<span id="sec-boundary-issues"></span><h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Permalink to this heading">#</a></h3>
+<span id="sec-boundary-issues"></span><h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Link to this heading">#</a></h3>
 <p>Lets consider a slightly different problem</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1075,7 +1085,7 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 \]</div>
 <p>Hence we can easily get the coefficients with the Galerkin method</p>
 <div class="math notranslate nohighlight" id="equation-eq-hatusin">
-<span class="eqno">(19)<a class="headerlink" href="#equation-eq-hatusin" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-hatusin" title="Link to this equation">#</a></span>\[
 \hat{u}_i = 2 \left( u(x),  \sin((i+1) \pi x) \right)_{L^2(0, 1)}.
 \]</div>
 <p>Lets implement and check the results:</p>
@@ -1105,7 +1115,7 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/91d193c07215dfda30323a21733ec4f2171d208216cad6ddba234eae870b54bf.png" src="_images/91d193c07215dfda30323a21733ec4f2171d208216cad6ddba234eae870b54bf.png" />
+<img alt="_images/0808b7702cb4444a0ab15a1891df26990351d0e19031aad5a3a468df188ed570.png" src="_images/0808b7702cb4444a0ab15a1891df26990351d0e19031aad5a3a468df188ed570.png" />
 </div>
 </div>
 <p>Evidently, we get large oscillations and the solution does not seem to converge. The problem is that the basis functions are all such that</p>
@@ -1121,7 +1131,7 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 <p>will always lead to <span class="math notranslate nohighlight">\(u_N(0) = 0\)</span> and <span class="math notranslate nohighlight">\(u_N(1) = 0\)</span>. We have a problem with the basis functions having the wrong values at the boundaries.</p>
 <p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
 <div class="math notranslate nohighlight" id="equation-eq-un0">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eq-un0" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-un0" title="Link to this equation">#</a></span>\[
 u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(B(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=B(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(B(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
@@ -1129,7 +1139,7 @@ u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 <p class="admonition-title">Note</p>
 <p>The function <span class="math notranslate nohighlight">\(B(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
 </div>
-<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(20)</a>)</p>
+<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(22)</a>)</p>
 <div class="math notranslate nohighlight">
 \[
 (u_N+B-u, v) = 0, \quad \forall \, v \in V_N,
@@ -1144,7 +1154,7 @@ u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \[
 \hat{u}_i = 2 \left(u-B, \sin((i+1)\pi x) \right) \quad i \in \{0, 1, \ldots, N\}.
 \]</div>
-<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(19)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
+<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(21)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1169,7 +1179,7 @@ u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7f241dfd6a2bcc9af661b984dca8ddcb02038a86ac79cd0c844679aeefa5ad0e.png" src="_images/7f241dfd6a2bcc9af661b984dca8ddcb02038a86ac79cd0c844679aeefa5ad0e.png" />
+<img alt="_images/138f9ffb948b22f54de6360eeb1502031890863e92f28e24e49012e5094b4b15.png" src="_images/138f9ffb948b22f54de6360eeb1502031890863e92f28e24e49012e5094b4b15.png" />
 </div>
 </div>
 <p>Notice the very good agreement. The expansion coefficients are now converging, which we can see by printing out the 15 computed values</p>
@@ -1230,7 +1240,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 </section>
 </section>
 <section id="weekly-assignments">
-<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
 <p>Experiment with the Galerkin and collocation methods and approximate the global functions</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(u(x) = |x|, \quad x \in [-1, 1]\)</span></p></li>
@@ -1239,7 +1249,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 <li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
 </ol>
-<p>where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the <span class="xref myst">Bessel function</span> of the first kind. The Bessel function is available both in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.jv.html#scipy.special.jv">Scipy</a> and <a class="reference external" href="https://docs.sympy.org/latest/modules/functions/special.html#sympy.functions.special.bessel.besselj">Sympy</a>.</p>
+<p>where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the <a class="reference internal" href="#"><span class="xref myst">Bessel function</span></a> of the first kind. The Bessel function is available both in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.jv.html#scipy.special.jv">Scipy</a> and <a class="reference external" href="https://docs.sympy.org/latest/modules/functions/special.html#sympy.functions.special.bessel.besselj">Sympy</a>.</p>
 <p>Experiment using either Legendre polynomials or sines as basis functions for the Galerkin method and Lagrange polynomials for the collocation method. Use both exact and numerical integration for the Galerkin method. Measure the error as a function of <span class="math notranslate nohighlight">\(N\)</span> by computing an <span class="math notranslate nohighlight">\(L^2\)</span> error norm.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -1259,16 +1269,16 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "book"
+            mode: "python"
         },
         kernelOptions: {
-            name: "book",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'book'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1278,7 +1288,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture7.html"
@@ -1306,6 +1316,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1342,6 +1353,7 @@ By Mikael Mortensen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1368,8 +1380,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

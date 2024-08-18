@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lecture 10 &#8212; Lecture notes MATMEK-4270</title>
   
@@ -19,52 +18,49 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture10';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 11" href="lecture11.html" />
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -168,12 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
-<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -191,8 +199,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
 </ul>
 
     </div>
@@ -346,6 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -355,6 +364,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -403,12 +413,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-10">
-<h1>Lecture 10<a class="headerlink" href="#lecture-10" title="Permalink to this heading">#</a></h1>
+<h1>Lecture 10<a class="headerlink" href="#lecture-10" title="Link to this heading">#</a></h1>
 <section id="function-approximation-by-the-finite-element-method">
-<h2>Function approximation by the finite element method<a class="headerlink" href="#function-approximation-by-the-finite-element-method" title="Permalink to this heading">#</a></h2>
+<h2>Function approximation by the finite element method<a class="headerlink" href="#function-approximation-by-the-finite-element-method" title="Link to this heading">#</a></h2>
 <p>We have seen that a function <span class="math notranslate nohighlight">\(u(x)\)</span> can be approximated as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -419,7 +429,7 @@ u(x) \approx u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 <figure class="align-left" id="dolfin-mesh">
 <a class="reference internal image-reference" href="_images/dolfin_mesh.png"><img alt="_images/dolfin_mesh.png" src="_images/dolfin_mesh.png" style="width: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Example of finite element mesh.</span><a class="headerlink" href="#dolfin-mesh" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Example of finite element mesh.</span><a class="headerlink" href="#dolfin-mesh" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>For such domains, like the dolfin mesh, it is not possible to use basis functions that are defined everywhere. It is also very difficult, if not impossible, to use finite difference methods. Just imagine, how would you implement a Laplacian, like</p>
@@ -438,7 +448,7 @@ u(x) \approx u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega.
 <figure class="align-center" id="fem-1d-mesh-p1">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_P1.png"><img alt="_images/fe_mesh1D_P1.png" src="_images/fe_mesh1D_P1.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Finite element mesh with 5 elements and 6 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p1" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Finite element mesh with 5 elements and 6 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>These smaller subdomains are now referred to as <strong>elements</strong>.
@@ -448,22 +458,22 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 <figure class="align-center" id="fem-1d-mesh-p2">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_P2.png"><img alt="_images/fe_mesh1D_P2.png" src="_images/fe_mesh1D_P2.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Finite element mesh with 2 elements and 5 nodes.</span><a class="headerlink" href="#fem-1d-mesh-p2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The <a class="reference internal" href="#dolfin-mesh"><span class="std std-ref">dolfin mesh</span></a> of course is a more complicated triangulation, where every triangle represents an element. It is also quite common to use rectangles in 2D. For 3D problems a finite element is usually in the shape of a tetrahedron.</p>
 <section id="finite-element-basis-functions">
-<h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Permalink to this heading">#</a></h3>
+<h3>Finite element basis functions<a class="headerlink" href="#finite-element-basis-functions" title="Link to this heading">#</a></h3>
 <p>The FEM makes use of <em>local</em> basis functions that are only non-zero on some of the elements. Furthermore, the basis functions that we will make use of in this class are continuous piecewise polynomials. In the simplest possible form, this means that the basis functions are piecewise linear. For example, for the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> two of the 6 basis functions will be as shown below:</p>
 <figure class="align-center" id="fem-1d-mesh-phi">
 <a class="reference internal image-reference" href="_images/fe_mesh1D_phi_2_3.png"><img alt="_images/fe_mesh1D_phi_2_3.png" src="_images/fe_mesh1D_phi_2_3.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Finite element mesh with 5 elements, 6 nodes and two of the 6 basis functions.</span><a class="headerlink" href="#fem-1d-mesh-phi" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
-<span class="eqno">(36)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Link to this equation">#</a></span>\[
 (u-u_N, v) = 0 \quad \forall \, v \in V_N.
 \]</div>
 <p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with continuous piecewise polynomial basis functions.</p>
@@ -508,15 +518,15 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span>  <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">xj</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span>  <span class="n">xj</span><span class="o">-</span><span class="n">j</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$\Omega^</span><span class="se">{{</span><span class="s1">(</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">)</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">);</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">Omega^</span><span class="se">{{</span><span class="s1">(</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">)</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">psi_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">psi_</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1be086269fa6c846741d8d519a2b6c7405c44d66ab6a5a370c370373a5673858.png" src="_images/1be086269fa6c846741d8d519a2b6c7405c44d66ab6a5a370c370373a5673858.png" />
+<img alt="_images/014e23addf8ba79e168a658d1e321467aef5093b60c46e333ccae326be328e76.png" src="_images/014e23addf8ba79e168a658d1e321467aef5093b60c46e333ccae326be328e76.png" />
 </div>
 </div>
 <p>So all the internal basis functions, i.e., <span class="math notranslate nohighlight">\(\{\psi_j(x)\}_{j=1}^{4}\)</span>, are nonzero in two elements each and zero elsewhere. The two boundary basis functions <span class="math notranslate nohighlight">\(\psi_0(x)\)</span> and <span class="math notranslate nohighlight">\(\psi_5(x)\)</span> are only nonzero on one element each.</p>
@@ -547,15 +557,15 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
     <span class="n">c</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span>  <span class="p">(</span><span class="n">yj</span><span class="o">-</span><span class="n">yj</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">yj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yj</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$\Omega^</span><span class="se">{{</span><span class="s1">(</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">)</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$\psi_</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">);</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">Omega^</span><span class="se">{{</span><span class="s1">(</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s1">)</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">psi_</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">psi_</span><span class="si">{</span><span class="mi">5</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/bea56b2523b57867d1e5ceaf4fc7b2b578e61161230793eaff131a6721aa3827.png" src="_images/bea56b2523b57867d1e5ceaf4fc7b2b578e61161230793eaff131a6721aa3827.png" />
+<img alt="_images/dcf4b1b8f8c5fa4ece0a7d5412a98dd01f1283a9c013174cd28814a4ae5a92e1.png" src="_images/dcf4b1b8f8c5fa4ece0a7d5412a98dd01f1283a9c013174cd28814a4ae5a92e1.png" />
 </div>
 </div>
 <p>The flexibility when it comes to mesh is one of the major advantages of the finite element method, which can be used with any kind of <a class="reference external" href="https://en.wikipedia.org/wiki/Unstructured_grid">unstructured mesh</a>.</p>
@@ -576,7 +586,7 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 \]</div>
 <p>In other words, we need to solve the follow linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-femmat">
-<span class="eqno">(37)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(39)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}_j = (u, \psi_i), \quad \forall\,  i = 0, 1, \ldots, N.
 \]</div>
 <p>This is identical to the Galerkin problem already presented in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html#the-galerkin-method">lecture 8</a>. Again, the only difference is the choice of function spaces and basis.</p>
@@ -613,7 +623,7 @@ A = \sum_{e=0}^{N_e-1} A^{(e)}.
 \]</div>
 <p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 3</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
 <div class="math notranslate nohighlight" id="equation-eq-mapping-q">
-<span class="eqno">(38)<a class="headerlink" href="#equation-eq-mapping-q" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(40)<a class="headerlink" href="#equation-eq-mapping-q" title="Link to this equation">#</a></span>\[
 q(e, r) = de+r.
 \]</div>
 <div class="admonition note">
@@ -629,12 +639,12 @@ a_{q(e,r),q(e, s)} \mathop{+}= \tilde{a}^{(e)}_{r,s}, \quad (r, s) \in \mathcal{
 <figure class="align-center" id="mov-assemble-mass">
 <a class="reference internal image-reference" href="_images/movie.gif"><img alt="assemble" src="_images/movie.gif" style="width: 400px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Finite element assembly of the local element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> into the global matrix <span class="math notranslate nohighlight">\(A\)</span>. Note the mapping of local to global indices above the matrix <span class="math notranslate nohighlight">\(A\)</span>.</span><a class="headerlink" href="#mov-assemble-mass" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Finite element assembly of the local element matrices <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> into the global matrix <span class="math notranslate nohighlight">\(A\)</span>. Note the mapping of local to global indices above the matrix <span class="math notranslate nohighlight">\(A\)</span>.</span><a class="headerlink" href="#mov-assemble-mass" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="mapping-to-reference-domain">
-<h3>Mapping to reference domain<a class="headerlink" href="#mapping-to-reference-domain" title="Permalink to this heading">#</a></h3>
+<h3>Mapping to reference domain<a class="headerlink" href="#mapping-to-reference-domain" title="Link to this heading">#</a></h3>
 <p>In assembling the matrix <span class="math notranslate nohighlight">\(A\)</span> we need to compute the element matrix <span class="math notranslate nohighlight">\(\tilde{A}^{(e)}\)</span> many times. Is this really necessary? The integrals</p>
 <div class="math notranslate nohighlight">
 \[
@@ -656,8 +666,8 @@ a_{q(e,r),q(e, s)} \mathop{+}= \tilde{a}^{(e)}_{r,s}, \quad (r, s) \in \mathcal{
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span> <span class="n">l0</span><span class="p">(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span>
          <span class="n">yj</span><span class="p">,</span> <span class="n">l1</span><span class="p">(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;$\psi_{i+1}(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;$\psi_</span><span class="si">{i}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">psi_{i+1}(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">psi_</span><span class="si">{i}</span><span class="s2">(x)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$i$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;${i+1}$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
@@ -668,13 +678,13 @@ a_{q(e,r),q(e, s)} \mathop{+}= \tilde{a}^{(e)}_{r,s}, \quad (r, s) \in \mathcal{
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/77ff19ce222dfd8a38645032341a10b6e8d981b6f744e92247afd842d03dfbce.png" src="_images/77ff19ce222dfd8a38645032341a10b6e8d981b6f744e92247afd842d03dfbce.png" />
+<img alt="_images/731507f45470b3b4ba0e50ad51525e8513c2a20d1e324bc58d2358c9315eb0bf.png" src="_images/731507f45470b3b4ba0e50ad51525e8513c2a20d1e324bc58d2358c9315eb0bf.png" />
 </div>
 </div>
 <p>So the basis functions always look the same regardless of domain, regardless of what <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> are. Hence it should be possible to perform the integration once, in a reference domain, and then reuse this result for all elements. This can be achieved by mapping to a reference domain, which has already been used for both Legendre and Chebyshev polynomials, but for slightly different reasons. For those two, we needed to map because the polynomials and weight functions were only defined on a reference domain.</p>
 <p>We will now use this linear (affine) mapping and the same reference domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> as the Chebyshev/Legendre polynomials. In this domain the mapping  from physical coordinate <span class="math notranslate nohighlight">\(x \in \Omega^{(e)} = [x_{q(e,0)}, x_{q(e, d)}] = [x_L, x_R]\)</span> to computational (or reference) coordinate <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span> can be written as</p>
 <div class="math notranslate nohighlight" id="equation-eq-affine-map">
-<span class="eqno">(39)<a class="headerlink" href="#equation-eq-affine-map" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(41)<a class="headerlink" href="#equation-eq-affine-map" title="Link to this equation">#</a></span>\[
 x = \frac{1}{2}(x_L+x_R) + \frac{1}{2}(x_R-x_L)X. 
 \]</div>
 <p>Note that <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_R\)</span> are the left and right boundary points of the domain <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span>. If we introduce the center of the element as <span class="math notranslate nohighlight">\(x_m = (x_L+x_R)/2\)</span> and the element length <span class="math notranslate nohighlight">\(h = x_R-x_L\)</span>, then the mapping can be written simply as</p>
@@ -699,12 +709,12 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 \]</div>
 <p>We get the reference basis functions for linear elements</p>
 <div class="math notranslate nohighlight" id="equation-eq-lagrange-p1">
-<span class="eqno">(40)<a class="headerlink" href="#equation-eq-lagrange-p1" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(42)<a class="headerlink" href="#equation-eq-lagrange-p1" title="Link to this equation">#</a></span>\[
 \ell_0(X) = \frac{1}{2}(1-X) \quad \text{and} \quad \ell_1(X) = \frac{1}{2}(1+X)
 \]</div>
 <p>and for quadratic</p>
 <div class="math notranslate nohighlight" id="equation-eq-lagrange-p2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-eq-lagrange-p2" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(43)<a class="headerlink" href="#equation-eq-lagrange-p2" title="Link to this equation">#</a></span>\[
 \ell_0(X) = \frac{1}{2}X(1-X), \quad
 \ell_1(X) = (1-X^2) \quad \text{and} \quad
 \ell_2(X) = \frac{1}{2}X(1+X).
@@ -726,9 +736,9 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
          <span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l1</span><span class="p">)(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span>
          <span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l2</span><span class="p">)(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;$\ell_2(X)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;$\ell_0(X)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="s2">&quot;$\ell_1(X)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">ell_2(X)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">ell_0(X)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="s2">&quot;$</span><span class="se">\\</span><span class="s2">ell_1(X)$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$-1$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$0$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$1$&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
@@ -738,7 +748,7 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/9722c81adf81fb3111acfa97976fef556c098ad3d67ce9348dc34d1648bf3f65.png" src="_images/9722c81adf81fb3111acfa97976fef556c098ad3d67ce9348dc34d1648bf3f65.png" />
+<img alt="_images/0b948547bf67bfeda190571884716278cbe2d17d278c64e80a176ee49457f15a.png" src="_images/0b948547bf67bfeda190571884716278cbe2d17d278c64e80a176ee49457f15a.png" />
 </div>
 </div>
 <p>The mapping should now be used in a change of variables for the inner product:</p>
@@ -880,7 +890,7 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5c49efeb9343f408e797746ba53566f9ce46a3041cec70f9e773cf01b9c7caad.png" src="_images/5c49efeb9343f408e797746ba53566f9ce46a3041cec70f9e773cf01b9c7caad.png" />
+<img alt="_images/c9c7b7676e7cd708c7d29cb14b68a3a0404b961554ec1a8887e1d1125e099152.png" src="_images/c9c7b7676e7cd708c7d29cb14b68a3a0404b961554ec1a8887e1d1125e099152.png" />
 </div>
 </div>
 <p>Note that there is a big difference between nodes on the boundaries between elements and internal nodes. The rows in <span class="math notranslate nohighlight">\(A\)</span> above corresponding to internal nodes have only three nonzero items, whereas the nodes on element boundaries have 5. This is because the basis functions on the element boundaries belong to two elements, whereas the internal nodes only belong to one.</p>
@@ -890,8 +900,8 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </div>
 </section>
 <section id="finite-element-assembly-of-a-vector">
-<span id="fem-assemble-vector"></span><h3>Finite element assembly of a vector<a class="headerlink" href="#finite-element-assembly-of-a-vector" title="Permalink to this heading">#</a></h3>
-<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">(37)</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i = 0, 1, \ldots, N\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
+<span id="fem-assemble-vector"></span><h3>Finite element assembly of a vector<a class="headerlink" href="#finite-element-assembly-of-a-vector" title="Link to this heading">#</a></h3>
+<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">(39)</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i = 0, 1, \ldots, N\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[
 b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i = 0, 1, \ldots, N,
@@ -967,7 +977,7 @@ b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i = 0, 1, \ldots, N,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/942f20ff1c86e49d07cb92a83d9d2fa11c2c6ca37a1b08e33ce10f8df21b456d.png" src="_images/942f20ff1c86e49d07cb92a83d9d2fa11c2c6ca37a1b08e33ce10f8df21b456d.png" />
+<img alt="_images/dff3753c6ffa78c60d51844a622c17a9a0673fbb5493bfdd1124de071df21827.png" src="_images/dff3753c6ffa78c60d51844a622c17a9a0673fbb5493bfdd1124de071df21827.png" />
 </div>
 </div>
 <p>Not bad, but clearly not exact since the FEM solution is piecewise linear between the 5 mesh points. How about second order? We have implemented <code class="docutils literal notranslate"><span class="pre">assemble</span></code> to use higher order, so it should be straight forward. Just to check that a non-uniform mesh works as well we create a mesh where the element boundaries in the physical domain <span class="math notranslate nohighlight">\([1, 2]\)</span> are computed as</p>
@@ -999,19 +1009,19 @@ x_{2i+1} = \frac{x_{2i}+x_{2(i+1)}}{2}, \quad i = 0, 1, \ldots, N/2-1.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/97b35fa6ad276b9368d072452b049ab5a7450b26966eed0c8fe625e8a9166d99.png" src="_images/97b35fa6ad276b9368d072452b049ab5a7450b26966eed0c8fe625e8a9166d99.png" />
+<img alt="_images/9e52ea0ce4817acb685030a66eb57273343fb01a131dace5dc4ba28e2299c64d.png" src="_images/9e52ea0ce4817acb685030a66eb57273343fb01a131dace5dc4ba28e2299c64d.png" />
 </div>
 </div>
 <p>But what happened here? The results still look like piecewise linear polynomials and it looks no better than before. The problem now is not accuracy of the FEM approximation, though, it has more to do with postprocessing and finite element evaluation. We compute and plot the finite element solution <span class="math notranslate nohighlight">\((\hat{u}_j)_{j=0}^N\)</span>, but then matplotlib simply fills in the gaps between the points with linear profiles. The correct approach would be to evaluate the finite element function</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-sol">
-<span class="eqno">(42)<a class="headerlink" href="#equation-eq-fem-sol" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(44)<a class="headerlink" href="#equation-eq-fem-sol" title="Link to this equation">#</a></span>\[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega,
 \]</div>
 <p>in between the mesh points.</p>
 </section>
 <section id="finite-element-evaluation">
-<h3>Finite element evaluation<a class="headerlink" href="#finite-element-evaluation" title="Permalink to this heading">#</a></h3>
-<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">(42)</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
+<h3>Finite element evaluation<a class="headerlink" href="#finite-element-evaluation" title="Link to this heading">#</a></h3>
+<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">(44)</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
 <ol class="arabic simple">
 <li><p>at a mesh point <span class="math notranslate nohighlight">\(x_i\)</span>, in which case <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p></li>
 <li><p>in between mesh points and inside one and only one element.</p></li>
@@ -1188,13 +1198,13 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/851db3bd0b3f5d76f51585e956935652dafb5025e355e51b05a82c964e01395c.png" src="_images/851db3bd0b3f5d76f51585e956935652dafb5025e355e51b05a82c964e01395c.png" />
+<img alt="_images/f2e674d2047dd776a86eb5a412c99eb4a04f10739963a53a5e0bc1318df4e491.png" src="_images/f2e674d2047dd776a86eb5a412c99eb4a04f10739963a53a5e0bc1318df4e491.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="weekly-assignments">
-<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
 <p>In the lecture notes above most functions have been implemented to work for finite elements of any order. However, <a class="reference internal" href="#assemble-mass"><span class="std std-ref">assemble_mass</span></a> makes use of <code class="docutils literal notranslate"><span class="pre">Ae</span></code>, which is currently only implemented for <span class="math notranslate nohighlight">\(d=\)</span> 1 and 2. Modify <code class="docutils literal notranslate"><span class="pre">assemble_mass</span></code> to work for arbitrary orders, by adding a function <code class="docutils literal notranslate"><span class="pre">Ade</span></code> that returns the element mass matrix of order <span class="math notranslate nohighlight">\(d\)</span>. The returned matrix should be a Sympy Matrix including the element length <code class="docutils literal notranslate"><span class="pre">h</span></code>, as used for <code class="docutils literal notranslate"><span class="pre">A1e</span></code> and <code class="docutils literal notranslate"><span class="pre">A2e</span></code> above.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Ade</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="o">...</span>
@@ -1228,16 +1238,16 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "book"
+            mode: "python"
         },
         kernelOptions: {
-            name: "book",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'book'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1247,7 +1257,7 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture9.html"
@@ -1275,6 +1285,7 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1311,6 +1322,7 @@ By Mikael Mortensen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1337,8 +1349,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

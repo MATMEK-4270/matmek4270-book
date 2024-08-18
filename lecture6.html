@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lecture 6 &#8212; Lecture notes MATMEK-4270</title>
   
@@ -19,52 +18,49 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture6';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 7" href="lecture7.html" />
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -168,12 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -191,8 +199,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
 </ul>
 
     </div>
@@ -346,6 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -355,6 +364,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -414,12 +424,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-6">
-<h1>Lecture 6<a class="headerlink" href="#lecture-6" title="Permalink to this heading">#</a></h1>
+<h1>Lecture 6<a class="headerlink" href="#lecture-6" title="Link to this heading">#</a></h1>
 <section id="two-dimensional-spatial-domain">
-<h2>Two-dimensional spatial domain<a class="headerlink" href="#two-dimensional-spatial-domain" title="Permalink to this heading">#</a></h2>
+<h2>Two-dimensional spatial domain<a class="headerlink" href="#two-dimensional-spatial-domain" title="Link to this heading">#</a></h2>
 <p>We will now consider equations within a simple two-dimensional spatial domain. To get started we will look at the Poisson equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -482,12 +492,12 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/db403cd1a1a585532e32f3d00e77172b4cc05bb6fc5c17ab111bdbeb836c3bac.png" src="_images/db403cd1a1a585532e32f3d00e77172b4cc05bb6fc5c17ab111bdbeb836c3bac.png" />
+<img alt="_images/e0501d4539f6487b86a61f0812b50182f053a9bdc74dee58e163023eecd316d0.png" src="_images/e0501d4539f6487b86a61f0812b50182f053a9bdc74dee58e163023eecd316d0.png" />
 </div>
 </div>
 </section>
 <section id="discretization">
-<h2>Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">#</a></h2>
+<h2>Discretization<a class="headerlink" href="#discretization" title="Link to this heading">#</a></h2>
 <p>We discretize the mesh using two lines, one in the <span class="math notranslate nohighlight">\(x\)</span>-direction and one in the <span class="math notranslate nohighlight">\(y\)</span>-direction:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -507,7 +517,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 \boldsymbol{y} = (y_0, y_1, \ldots, y_{N_y})
 \]</div>
 <section id="cartesian-products">
-<h3>Cartesian products<a class="headerlink" href="#cartesian-products" title="Permalink to this heading">#</a></h3>
+<h3>Cartesian products<a class="headerlink" href="#cartesian-products" title="Link to this heading">#</a></h3>
 <p>In order to create a two-dimensional mesh, like the one seen above, we use a Cartesian product. The Cartesian product is most easily explained through an example. Consider the two arrays <span class="math notranslate nohighlight">\(\boldsymbol{u}=[1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{v}=[4, 5]\)</span>. We can compute the Cartesian product of these two arrays using the Python package <a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -575,7 +585,33 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/54a137d9402a7c77a4a6c413aa912afd71baaddb3169f6733cbf04619f36a0b0.png" src="_images/54a137d9402a7c77a4a6c413aa912afd71baaddb3169f6733cbf04619f36a0b0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5371/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5371/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5371/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5371/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5371/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5371/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+  Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
+</pre></div>
+</div>
+<img alt="_images/019e99cd83c6122e497ab0c64093a18ac3390db7714c30f8aecf21658552bfa5.png" src="_images/019e99cd83c6122e497ab0c64093a18ac3390db7714c30f8aecf21658552bfa5.png" />
 </div>
 </div>
 <p>Note that there are <span class="math notranslate nohighlight">\(4 \cdot 3 = 12\)</span> pairs of numbers. If we drop <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span> from the pairs and use only the integers in front of them, we get with itertools:</p>
@@ -623,13 +659,13 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ea686a3f6b330ca3a1753b5464033b3af46bef8ebc95d0a139d97d52a90ea7c3.png" src="_images/ea686a3f6b330ca3a1753b5464033b3af46bef8ebc95d0a139d97d52a90ea7c3.png" />
+<img alt="_images/5c1abbfce25176e53f2a3841603f9ba9e67e065ac9b4bf8f49d13f205bc6d321.png" src="_images/5c1abbfce25176e53f2a3841603f9ba9e67e065ac9b4bf8f49d13f205bc6d321.png" />
 </div>
 </div>
 <p>Note that if this mesh was a two-dimensional matrix, then <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((i, j)\)</span> would represent column and row, respectively, which is counterintuitive. We normally think about a matrix <span class="math notranslate nohighlight">\(A\)</span> with items <span class="math notranslate nohighlight">\(a_{ij}\)</span>, where the first index <span class="math notranslate nohighlight">\(i\)</span> represents row and the second index <span class="math notranslate nohighlight">\(j\)</span> represents column. This is a complicating factor for the Cartesian mesh that is important to be aware of. But it is not a mistake. The numbers in the plot above are not indices of a matrix, they represent <span class="math notranslate nohighlight">\((x, y)\)</span> in a Cartesian mesh.</p>
 </section>
 <section id="meshgrid">
-<h3>meshgrid<a class="headerlink" href="#meshgrid" title="Permalink to this heading">#</a></h3>
+<h3>meshgrid<a class="headerlink" href="#meshgrid" title="Link to this heading">#</a></h3>
 <p>The Cartesian mesh gives both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> coordinates for the entire two-dimensional mesh and it is created from a Cartesian product of one-dimensional meshes along <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions. Luckily for us Numpy has a function that computes this mesh for us and we do not have to use itertools directly.</p>
 <p>Let us now compute the Cartesian mesh for</p>
 <div class="math notranslate nohighlight">
@@ -708,7 +744,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e89cb326f4dd26a85bf82ce95eac1f9059760463e125aa5ae3e5fc01466082bc.png" src="_images/e89cb326f4dd26a85bf82ce95eac1f9059760463e125aa5ae3e5fc01466082bc.png" />
+<img alt="_images/554e809834abb374a9f759d817294f762bd40b22b9bf99a8d554d6671c7d53e0.png" src="_images/554e809834abb374a9f759d817294f762bd40b22b9bf99a8d554d6671c7d53e0.png" />
 </div>
 </div>
 <p>This is opposite to a Cartesian mesh that has <span class="math notranslate nohighlight">\(x\)</span> varying along the horizontal direction and <span class="math notranslate nohighlight">\(y\)</span> varying along the vertical direction:</p>
@@ -728,7 +764,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/6a67e256311705af2ac05add3706c6edfe0b8c2c08ea2bca34238aa556f90609.png" src="_images/6a67e256311705af2ac05add3706c6edfe0b8c2c08ea2bca34238aa556f90609.png" />
+<img alt="_images/11c19dc24f1b5ab2974b56d506081a28141331cb318fd4af1ebcc3efeb113831.png" src="_images/11c19dc24f1b5ab2974b56d506081a28141331cb318fd4af1ebcc3efeb113831.png" />
 </div>
 </div>
 <p>However, there is no mistake. This is how matrices are stored, with the first index <span class="math notranslate nohighlight">\(i\)</span> representing <span class="math notranslate nohighlight">\(x\)</span> and the second index <span class="math notranslate nohighlight">\(j\)</span> representing <span class="math notranslate nohighlight">\(y\)</span>. And if we make contour plots using the meshes <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code> it all comes out in a Cartesian plot exactly as expected. Below we create contour plots of both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and we notice that <span class="math notranslate nohighlight">\(x\)</span> increases along the horizontal axis, whereas <span class="math notranslate nohighlight">\(y\)</span> increases in the vertical direction. Just as expected:-)</p>
@@ -748,12 +784,12 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/681fc5a45e62d2b26d3c15be34061e53d0bc382b8138e15f1d5984dddd516a65.png" src="_images/681fc5a45e62d2b26d3c15be34061e53d0bc382b8138e15f1d5984dddd516a65.png" />
+<img alt="_images/7305e99d3b084c4d2983a06780f463f824c6b2f3ebf81525f82350c6fb7b472c.png" src="_images/7305e99d3b084c4d2983a06780f463f824c6b2f3ebf81525f82350c6fb7b472c.png" />
 </div>
 </div>
 </section>
 <section id="sparse-meshgrid-and-broadcasting">
-<h3>Sparse meshgrid and broadcasting<a class="headerlink" href="#sparse-meshgrid-and-broadcasting" title="Permalink to this heading">#</a></h3>
+<h3>Sparse meshgrid and broadcasting<a class="headerlink" href="#sparse-meshgrid-and-broadcasting" title="Link to this heading">#</a></h3>
 <p>The meshgrid creates arrays where all rows are identical for <code class="docutils literal notranslate"><span class="pre">xij</span></code> and all columns for <code class="docutils literal notranslate"><span class="pre">yij</span></code>. This is unnecessary waste of memory, but luckily it is possible to store these 2D arrays using only the memory of one single array. Lets recreate the meshgrid with keyword <code class="docutils literal notranslate"><span class="pre">sparse=True</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -843,7 +879,7 @@ f(x, y) = x + y
 </div>
 </section>
 <section id="two-dimensional-mesh-function">
-<h3>Two-dimensional mesh function<a class="headerlink" href="#two-dimensional-mesh-function" title="Permalink to this heading">#</a></h3>
+<h3>Two-dimensional mesh function<a class="headerlink" href="#two-dimensional-mesh-function" title="Link to this heading">#</a></h3>
 <p>A mesh function on the two-dimensional domain will now be denoted as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -867,7 +903,7 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 </div>
 </section>
 <section id="row-major-computer-storage">
-<h3>Row-major computer storage<a class="headerlink" href="#row-major-computer-storage" title="Permalink to this heading">#</a></h3>
+<h3>Row-major computer storage<a class="headerlink" href="#row-major-computer-storage" title="Link to this heading">#</a></h3>
 <p>In Python (which is written in C) a matrix is row-major. This means that the matrix is stored in memory with a long sequence of numbers row by row like</p>
 <div class="math notranslate nohighlight">
 \[
@@ -944,7 +980,7 @@ u_{N_x, 0} &amp; u_{N_x, 1} &amp; \cdots &amp; u_{N_x, N_y} \\
 </section>
 </section>
 <section id="finite-differences-in-2d">
-<h2>Finite differences in 2D<a class="headerlink" href="#finite-differences-in-2d" title="Permalink to this heading">#</a></h2>
+<h2>Finite differences in 2D<a class="headerlink" href="#finite-differences-in-2d" title="Link to this heading">#</a></h2>
 <p>Let us move back to the Poisson equation</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1137,29 +1173,29 @@ U (D^{(2)})^T
 <p>Again we get the correct result across the entire mesh.</p>
 </section>
 <section id="matrix-form-of-poisson-s-equation">
-<h2>Matrix form of Poisson’s equation<a class="headerlink" href="#matrix-form-of-poisson-s-equation" title="Permalink to this heading">#</a></h2>
+<h2>Matrix form of Poisson’s equation<a class="headerlink" href="#matrix-form-of-poisson-s-equation" title="Link to this heading">#</a></h2>
 <p>Using now that <span class="math notranslate nohighlight">\(\partial^2 u/\partial x^2 = D_x^{(2)}U\)</span> and <span class="math notranslate nohighlight">\(\partial^2 u/\partial y^2 = U(D_y^{(2)})^T\)</span> we can write Poisson’s equation on discretized (and matrix) form as</p>
 <div class="math notranslate nohighlight" id="equation-mat-equation">
-<span class="eqno">(4)<a class="headerlink" href="#equation-mat-equation" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(6)<a class="headerlink" href="#equation-mat-equation" title="Link to this equation">#</a></span>\[
 D_x^{(2)} U + U (D_y^{(2)})^T = F,
 \]</div>
 <p>where the mesh function <span class="math notranslate nohighlight">\(F = (f(x_i, y_j))_{i,j=0}^{N_x, N_y}\)</span>.</p>
 <p>However, how can we solve this equation for the unknown <span class="math notranslate nohighlight">\(U\)</span>?</p>
-<p>The problem now is that we cannot (apparently) write Eq. <a class="reference internal" href="#equation-mat-equation">(4)</a> as we normally do for a linear algebra problem</p>
+<p>The problem now is that we cannot (apparently) write Eq. <a class="reference internal" href="#equation-mat-equation">(6)</a> as we normally do for a linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-axb">
-<span class="eqno">(5)<a class="headerlink" href="#equation-axb" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(7)<a class="headerlink" href="#equation-axb" title="Link to this equation">#</a></span>\[
 Ax = b,
 \]</div>
 <p>or on index form</p>
 <div class="math notranslate nohighlight" id="equation-axbindex">
-<span class="eqno">(6)<a class="headerlink" href="#equation-axbindex" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(8)<a class="headerlink" href="#equation-axbindex" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^{N}a_{ij} x_j = b_i,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the coefficient matrix, <span class="math notranslate nohighlight">\(x\)</span> is the unknown vector and <span class="math notranslate nohighlight">\(b\)</span> is the right hand side vector.</p>
-<p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(4)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(5)</a>. This operation is called vectorization, or the vec-trick.</p>
+<p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(6)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(7)</a>. This operation is called vectorization, or the vec-trick.</p>
 </section>
 <section id="vectorization-the-vec-trick">
-<h2>Vectorization (the vec-trick)<a class="headerlink" href="#vectorization-the-vec-trick" title="Permalink to this heading">#</a></h2>
+<h2>Vectorization (the vec-trick)<a class="headerlink" href="#vectorization-the-vec-trick" title="Link to this heading">#</a></h2>
 <p>Consider first for simplicity a  <span class="math notranslate nohighlight">\(2 \times 2\)</span> matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1256,7 +1292,7 @@ It turns out that for any valid triple matrix product of matrices <span class="m
 </div>
 </section>
 <section id="the-kronecker-product">
-<span id="sec-kronecker"></span><h2>The Kronecker product<a class="headerlink" href="#the-kronecker-product" title="Permalink to this heading">#</a></h2>
+<span id="sec-kronecker"></span><h2>The Kronecker product<a class="headerlink" href="#the-kronecker-product" title="Link to this heading">#</a></h2>
 <p>In general, if <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are matrices of dimensions <span class="math notranslate nohighlight">\(p \times q\)</span> and <span class="math notranslate nohighlight">\(r \times s\)</span>, respectively, then <span class="math notranslate nohighlight">\(A \otimes B\)</span> is the matrix
 of dimension <span class="math notranslate nohighlight">\(pr \times qs\)</span>, with <span class="math notranslate nohighlight">\(p \times q\)</span> block form, where the <span class="math notranslate nohighlight">\(i, j\)</span> block is <span class="math notranslate nohighlight">\(a_{ij}B\)</span>. The Kronecker product is most simply illustrated for two small matrices of shape <span class="math notranslate nohighlight">\(2 \times 2\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1361,7 +1397,7 @@ of dimension <span class="math notranslate nohighlight">\(pr \times qs\)</span>,
 \end{split}\]</div>
 </section>
 <section id="partial-derivatives">
-<h2>Partial derivatives<a class="headerlink" href="#partial-derivatives" title="Permalink to this heading">#</a></h2>
+<h2>Partial derivatives<a class="headerlink" href="#partial-derivatives" title="Link to this heading">#</a></h2>
 <p>Let us try this new theory for partial derivatives. Create first a mesh using meshgrid, then define a function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1465,7 +1501,7 @@ D^{(2)} U
 </div>
 </section>
 <section id="the-laplace-operator">
-<h2>The Laplace operator<a class="headerlink" href="#the-laplace-operator" title="Permalink to this heading">#</a></h2>
+<h2>The Laplace operator<a class="headerlink" href="#the-laplace-operator" title="Link to this heading">#</a></h2>
 <p>The Laplace operator <span class="math notranslate nohighlight">\(\nabla^2\)</span> applied to a two-dimensional field <span class="math notranslate nohighlight">\(u(x, y)\)</span> in Cartesian coordinates is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1537,7 +1573,7 @@ u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y)),
 </div>
 </div>
 <section id="boundary-conditions">
-<h3>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h3>
+<h3>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h3>
 <p>We need to fix the solution at all boundary points. But where are all the boundary points? How do we manipulate A in order to fix Dirichlet boundary conditions?</p>
 <p>In order to set Dirichlet boundary conditions we need to set the value of <span class="math notranslate nohighlight">\(U\)</span> to zero on all four boundaries:</p>
 <div class="math notranslate nohighlight">
@@ -1562,7 +1598,7 @@ u_{i, N_y} = 0 \quad i \in \{0, 1, \ldots, N_x\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0005a429e2397044f9279ba8a6fe4845e1f68c3eea5219ce47959aef05a8c62b.png" src="_images/0005a429e2397044f9279ba8a6fe4845e1f68c3eea5219ce47959aef05a8c62b.png" />
+<img alt="_images/3a9e466c6f44d9a91207b78bbc7e9f351aba1554c75aa539b11a27201591f1e2.png" src="_images/3a9e466c6f44d9a91207b78bbc7e9f351aba1554c75aa539b11a27201591f1e2.png" />
 </div>
 </div>
 <p>Now find all the indices in the ravelled (vectorized) array <code class="docutils literal notranslate"><span class="pre">vec(B)</span></code> that equals 1.</p>
@@ -1608,7 +1644,7 @@ u_{i, N_y} = 0 \quad i \in \{0, 1, \ldots, N_x\}.
 </div>
 </section>
 <section id="solve-the-problem">
-<h3>Solve the problem<a class="headerlink" href="#solve-the-problem" title="Permalink to this heading">#</a></h3>
+<h3>Solve the problem<a class="headerlink" href="#solve-the-problem" title="Link to this heading">#</a></h3>
 <p>We have now set up the problem as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1631,7 +1667,7 @@ Ax = b,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/781d69173343f10428faccec9fa24fe14d587b02eaa600b06be609c75fb7cb66.png" src="_images/781d69173343f10428faccec9fa24fe14d587b02eaa600b06be609c75fb7cb66.png" />
+<img alt="_images/0efaa3539f87fe64840881a2395b2d0cb783ee81584f150dc0d3178b97c4822b.png" src="_images/0efaa3539f87fe64840881a2395b2d0cb783ee81584f150dc0d3178b97c4822b.png" />
 </div>
 </div>
 <p>and check that the solution is close to the exact analytical solution</p>
@@ -1644,7 +1680,7 @@ Ax = b,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0003880705640305097
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00038807056403051686
 </pre></div>
 </div>
 </div>
@@ -1663,16 +1699,16 @@ Ax = b,
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "book"
+            mode: "python"
         },
         kernelOptions: {
-            name: "book",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'book'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1682,7 +1718,7 @@ Ax = b,
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture5.html"
@@ -1710,6 +1746,7 @@ Ax = b,
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1757,6 +1794,7 @@ By Mikael Mortensen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1783,8 +1821,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

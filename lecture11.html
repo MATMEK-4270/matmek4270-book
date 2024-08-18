@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Lecture 11 &#8212; Lecture notes MATMEK-4270</title>
   
@@ -19,52 +18,49 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lecture11';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 12" href="lecture12.html" />
@@ -78,10 +74,9 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -122,11 +117,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -141,9 +139,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="intro.html">
+  
   
   
   
@@ -153,12 +153,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -168,12 +179,9 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notation</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notation.html">Common symbols and notation</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
-<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -191,8 +199,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 16/10-2023</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 10 November - 2023</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
 </ul>
 
     </div>
@@ -346,6 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -355,6 +364,7 @@ document.write(`
   </button>
 `);
 </script>
+
 
 <script>
 document.write(`
@@ -408,19 +418,19 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-11">
-<h1>Lecture 11<a class="headerlink" href="#lecture-11" title="Permalink to this heading">#</a></h1>
+<h1>Lecture 11<a class="headerlink" href="#lecture-11" title="Link to this heading">#</a></h1>
 <section id="solving-pdes-with-the-method-of-weighted-residuals">
-<h2>Solving PDEs with the method of weighted residuals<a class="headerlink" href="#solving-pdes-with-the-method-of-weighted-residuals" title="Permalink to this heading">#</a></h2>
+<h2>Solving PDEs with the method of weighted residuals<a class="headerlink" href="#solving-pdes-with-the-method-of-weighted-residuals" title="Link to this heading">#</a></h2>
 <p>Up until now we have considered how to approximate a generic function <span class="math notranslate nohighlight">\(f(x)\)</span> in a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>. We have considered both variational formulations (Galerkin and least squares) and collocation (interpolation). But the underlying original problem has simply been to find some function <span class="math notranslate nohighlight">\(u \approx u_N = \sum_{j=0}^N\hat{u}_j \psi_j\)</span> such that <span class="math notranslate nohighlight">\(u = f\)</span>.</p>
 <p>We will now take it one step further and solve ordinary differential equations with a method that is almost identical. Instead of finding just <span class="math notranslate nohighlight">\(u=f\)</span>, we will now attempt to find the solution to</p>
 <div class="math notranslate nohighlight" id="equation-eq-l-op">
-<span class="eqno">(43)<a class="headerlink" href="#equation-eq-l-op" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(45)<a class="headerlink" href="#equation-eq-l-op" title="Link to this equation">#</a></span>\[
 \mathcal{L}(u) = f,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is a generic operator acting on the function <span class="math notranslate nohighlight">\(u\)</span>. Hence <span class="math notranslate nohighlight">\(\mathcal{L}(u)\)</span>  can by anything, including just <span class="math notranslate nohighlight">\(\mathcal{L}(u)=u\)</span>, and by <a class="reference internal" href="#equation-eq-l-op">(43)</a> we could for example mean any one of</p>
+<p>where <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is a generic operator acting on the function <span class="math notranslate nohighlight">\(u\)</span>. Hence <span class="math notranslate nohighlight">\(\mathcal{L}(u)\)</span>  can by anything, including just <span class="math notranslate nohighlight">\(\mathcal{L}(u)=u\)</span>, and by <a class="reference internal" href="#equation-eq-l-op">(45)</a> we could for example mean any one of</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -431,7 +441,7 @@ u'' +\alpha u' + \lambda u  &amp;= f, \\
 \frac{d}{dx}\left(\alpha \frac{d u}{dx}\right) &amp;= f,
 \end{align*}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are either constant parameters or functions of <span class="math notranslate nohighlight">\(x\)</span>. From <a class="reference internal" href="#equation-eq-l-op">(43)</a> we can also define a residual (or an error, like in <a class="reference internal" href="lecture8.html#equation-eq-error-u">(11)</a>)</p>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are either constant parameters or functions of <span class="math notranslate nohighlight">\(x\)</span>. From <a class="reference internal" href="#equation-eq-l-op">(45)</a> we can also define a residual (or an error, like in <a class="reference internal" href="lecture8.html#equation-eq-error-u">(13)</a>)</p>
 <div class="math notranslate nohighlight">
 \[
 \mathcal{R} = \mathcal{L}(u)-f,
@@ -459,24 +469,24 @@ u'' +\alpha u' + \lambda u  &amp;= f, \\
 <p>This means that also the LSM is a MWR where <span class="math notranslate nohighlight">\(W = \text{span}\{\frac{\partial \mathcal{R}_N}{\partial \hat{u}_j}\}_{j=0}^N\)</span>.</p>
 <p>More surprisingly, the collocation method can also be considered a MWR. The collocation method is simply</p>
 <div class="math notranslate nohighlight" id="equation-eq-coll-r">
-<span class="eqno">(44)<a class="headerlink" href="#equation-eq-coll-r" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(46)<a class="headerlink" href="#equation-eq-coll-r" title="Link to this equation">#</a></span>\[
 \mathcal{R}_N(x_j) = 0, \quad j = 0, 1, \ldots, N.
 \]</div>
 <p>By choosing test functions <span class="math notranslate nohighlight">\(v = \delta(x-x_j)\)</span>, where <span class="math notranslate nohighlight">\(\delta(x)\)</span> is Dirac’s delta function, we can write this equivalently as a MWR:</p>
 <div class="math notranslate nohighlight" id="equation-eq-coll-gal">
-<span class="eqno">(45)<a class="headerlink" href="#equation-eq-coll-gal" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(47)<a class="headerlink" href="#equation-eq-coll-gal" title="Link to this equation">#</a></span>\[
 (\mathcal{R}_N, \delta(x-x_j)) = 0, \quad j = 0, 1, \ldots, N.
 \]</div>
-<p>The equality of <a class="reference internal" href="#equation-eq-coll-r">(44)</a> with <a class="reference internal" href="#equation-eq-coll-gal">(45)</a> follows since</p>
+<p>The equality of <a class="reference internal" href="#equation-eq-coll-r">(46)</a> with <a class="reference internal" href="#equation-eq-coll-gal">(47)</a> follows since</p>
 <div class="math notranslate nohighlight">
 \[
 \int_{\Omega} \mathcal{R}_N(x) \delta(x-x_j) dx = \mathcal{R}_N(x_j).
 \]</div>
 <section id="poisson-s-equation">
-<h3>Poisson’s equation<a class="headerlink" href="#poisson-s-equation" title="Permalink to this heading">#</a></h3>
+<h3>Poisson’s equation<a class="headerlink" href="#poisson-s-equation" title="Link to this heading">#</a></h3>
 <p>Lets consider a well-known example</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-1d">
-<span class="eqno">(46)<a class="headerlink" href="#equation-eq-poisson-1d" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(48)<a class="headerlink" href="#equation-eq-poisson-1d" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align}
 u''(x) &amp;= f(x), \quad x \in (-1, 1), \\
 u(-1) &amp;= u(1) = 0,
@@ -485,7 +495,7 @@ u(-1) &amp;= u(1) = 0,
 <p>which is Poisson’s equation, where <span class="math notranslate nohighlight">\(\mathcal{L}(u) = u''\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There is one significant difference in Eq. <a class="reference internal" href="#equation-eq-poisson-1d">(46)</a> from merely function approximation, since this equation needs to be solved with boundary conditions! Since there are 2 derivatives, we need two boundary conditions.</p>
+<p>There is one significant difference in Eq. <a class="reference internal" href="#equation-eq-poisson-1d">(48)</a> from merely function approximation, since this equation needs to be solved with boundary conditions! Since there are 2 derivatives, we need two boundary conditions.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -498,7 +508,7 @@ u(-1) &amp;= u(1) = 0,
 \]</div>
 <p>Insert for <span class="math notranslate nohighlight">\(u_N\)</span> and <span class="math notranslate nohighlight">\(v\)</span> and obtain the linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-gal">
-<span class="eqno">(47)<a class="headerlink" href="#equation-eq-poisson-gal" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(49)<a class="headerlink" href="#equation-eq-poisson-gal" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N \left(\psi''_j, \psi_i  \right) \hat{u}_j = (f, \psi_i), \quad i = 0, 1, \ldots, N.
 \]</div>
 <div class="admonition-integration-by-parts admonition" id="sec-integration-by-parts">
@@ -524,9 +534,9 @@ u(-1) &amp;= u(1) = 0,
 \left(\psi''_j, \psi_i  \right) = -\left( \psi'_j, \psi'_i \right).
 \]</div>
 </div>
-<p>Using integration by parts we can get the alternative form of Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(47)</a></p>
+<p>Using integration by parts we can get the alternative form of Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(49)</a></p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-gal-ibp">
-<span class="eqno">(48)<a class="headerlink" href="#equation-eq-poisson-gal-ibp" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(50)<a class="headerlink" href="#equation-eq-poisson-gal-ibp" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N \left(\psi'_j, \psi'_i  \right) \hat{u}_j = -(f, \psi_i), \quad i = 0, 1, \ldots, N.
 \]</div>
 <div class="admonition note">
@@ -543,7 +553,7 @@ u(-1) &amp;= u(1) = 0,
 \end{align*}
 \end{split}\]</div>
 <p>where the latter two are zero on the boundaries because <span class="math notranslate nohighlight">\(P_j(-1) = T_j(-1) = (-1)^j\)</span> and <span class="math notranslate nohighlight">\(P_j(1)=T_j(1) = 1\)</span>. The first sine function is a bit odd because we need to map the true domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> to the sine function’s computational domain, which is <span class="math notranslate nohighlight">\([0, 1]\)</span>. Also, since Chebyshev polynomials should only be used with a weighted <span class="math notranslate nohighlight">\(L^2_{\omega}(-1, 1)\)</span> inner product, we consider here only the first two bases.</p>
-<p>With the sine basis functions we use Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(47)</a> and obtain</p>
+<p>With the sine basis functions we use Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(49)</a> and obtain</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -552,7 +562,7 @@ u(-1) &amp;= u(1) = 0,
     &amp;= -\frac{(j+1)^2 \pi^2}{4} \delta_{ij}.
 \end{align*}
 \end{split}\]</div>
-<p>Since this matrix is diagonal Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(47)</a> is solved easily with</p>
+<p>Since this matrix is diagonal Eq. <a class="reference internal" href="#equation-eq-poisson-gal">(49)</a> is solved easily with</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = \frac{-4}{(i+1)^2 \pi^2}(f, \sin( \pi (i+1)(x+1)/2)).
@@ -593,7 +603,13 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9a4366dd2d473dbf526ba34b7555b64c057926b08391212592896fe9ccff3622.png" src="_images/9a4366dd2d473dbf526ba34b7555b64c057926b08391212592896fe9ccff3622.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:29: SyntaxWarning: invalid escape sequence &#39;\h&#39;
+&lt;&gt;:29: SyntaxWarning: invalid escape sequence &#39;\h&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5302/3805849696.py:29: SyntaxWarning: invalid escape sequence &#39;\h&#39;
+  ax2.set_title(&#39;$|\hat{u}|$&#39;);
+</pre></div>
+</div>
+<img alt="_images/f968f48bea28594c8c6c138cb9128b6e80b5408b21dcb99f1a3484edcd9e834d.png" src="_images/f968f48bea28594c8c6c138cb9128b6e80b5408b21dcb99f1a3484edcd9e834d.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -623,7 +639,17 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/28c65c4be1cdf1d7d31c5475335bc8a704c81ed818900cbe9c8548c350e32aa2.png" src="_images/28c65c4be1cdf1d7d31c5475335bc8a704c81ed818900cbe9c8548c350e32aa2.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+&lt;&gt;:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5302/3418302496.py:9: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+  ax1.legend([f&quot;$\psi_{i}(x)$&quot; for i in range(0, 6, 2)]);
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5302/3418302496.py:10: SyntaxWarning: invalid escape sequence &#39;\p&#39;
+  ax2.legend([f&quot;$\psi_{i}(x)$&quot; for i in range(1, 6, 2)]);
+</pre></div>
+</div>
+<img alt="_images/706dbda1f425b5e832856e965f977903d9fcf78401b6b44a7b3cfd13191eb1c6.png" src="_images/706dbda1f425b5e832856e965f977903d9fcf78401b6b44a7b3cfd13191eb1c6.png" />
 </div>
 </div>
 <p>Lets solve the same problem with Legendre polynomials instead and basis functions <span class="math notranslate nohighlight">\(\psi_i(x) = P_i(x)-P_{i+2}(x)\)</span>. The first 4 of these basis functions are shown below. Note that even numbered basis functions 0 and 2 are even, whereas the odd numbered basis functions are odd.</p>
@@ -640,17 +666,17 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" src="_images/48f1656fa0d61103285b1c4a5c4115baf92b99b250318369a7049e4369cacb10.png" />
+<img alt="_images/56e5fd11fe7ca1eb68ecf37800a501f12a659c7f26b239dde8e4817cab6a4285.png" src="_images/56e5fd11fe7ca1eb68ecf37800a501f12a659c7f26b239dde8e4817cab6a4285.png" />
 </div>
 </div>
-<p>The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now a subspace of <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. The subspace can also be denoted as <span class="math notranslate nohighlight">\(V_N=\{v \in \mathbb{P}_{N+2} | v(\pm 1)=0\}\)</span>. In order to solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(48)</a> we need to assemble the stiffness matrix and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
+<p>The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now a subspace of <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. The subspace can also be denoted as <span class="math notranslate nohighlight">\(V_N=\{v \in \mathbb{P}_{N+2} | v(\pm 1)=0\}\)</span>. In order to solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(50)</a> we need to assemble the stiffness matrix and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
 <div class="math notranslate nohighlight">
 \[
 (2j+3)P_{j+1} = P'_{j+2}-P'_{j}.
 \]</div>
 <p>We get that</p>
 <div class="math notranslate nohighlight" id="equation-eq-stiffness-legendre-dir">
-<span class="eqno">(49)<a class="headerlink" href="#equation-eq-stiffness-legendre-dir" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(51)<a class="headerlink" href="#equation-eq-stiffness-legendre-dir" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \left(\psi'_j, \psi'_i\right) &amp;= \left(P'_j-P'_{j+2}, P'_i - P'_{i+2}\right), \\
   &amp;=\left(-(2j+3)P_{j+1}, -(2i+3)P_{i+1}\right), \\
@@ -658,7 +684,7 @@ u(-1) &amp;= u(1) = 0,
   &amp;= (4i+6) \delta_{ij},
 \end{align*}
 \end{split}\]</div>
-<p>since <span class="math notranslate nohighlight">\(\delta_{i+1,j+1}=\delta_{i,j}\)</span> and <span class="math notranslate nohighlight">\((P_{j+1}, P_{i+1}) = \frac{2}{2i+3}\delta_{i+1,j+1}\)</span>. So the stiffness matrix is diagonal also for Legendre polynomials. We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(48)</a> as</p>
+<p>since <span class="math notranslate nohighlight">\(\delta_{i+1,j+1}=\delta_{i,j}\)</span> and <span class="math notranslate nohighlight">\((P_{j+1}, P_{i+1}) = \frac{2}{2i+3}\delta_{i+1,j+1}\)</span>. So the stiffness matrix is diagonal also for Legendre polynomials. We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(50)</a> as</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = \frac{-1}{4i+6}\left(f, \psi_i\right).
@@ -691,7 +717,13 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f6300d758d9c716d716226ddb2074fc2e73f2326664c63c4b20fad343faa86e5.png" src="_images/f6300d758d9c716d716226ddb2074fc2e73f2326664c63c4b20fad343faa86e5.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:21: SyntaxWarning: invalid escape sequence &#39;\h&#39;
+&lt;&gt;:21: SyntaxWarning: invalid escape sequence &#39;\h&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5302/2766006411.py:21: SyntaxWarning: invalid escape sequence &#39;\h&#39;
+  ax2.set_title(&#39;$|\hat{u}|$&#39;);
+</pre></div>
+</div>
+<img alt="_images/6127fffaf08c07308746fad9c949fcaf74c84296000f8fe0a1c94c3edc897bfe.png" src="_images/6127fffaf08c07308746fad9c949fcaf74c84296000f8fe0a1c94c3edc897bfe.png" />
 </div>
 </div>
 <p>We note that less than 30 Legendre basis functions are required for full machine precision (<span class="math notranslate nohighlight">\(\approx 10^{-16}\)</span>). And exactly like for the sine basis functions all the odd coefficients are zero.</p>
@@ -713,7 +745,56 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0a9e3d0945a6d456dd4c9079fcf516158058cb1397844199d63966075871b3ba.png" src="_images/0a9e3d0945a6d456dd4c9079fcf516158058cb1397844199d63966075871b3ba.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">VN</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">38</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">,</span> <span class="n">dumpconfig</span>
+<span class="ne">---&gt; </span><span class="mi">38</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">chebyshev</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">chebyshevu</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">legendre</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">chebyshev</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Functionality for working with Chebyshev bases&quot;&quot;&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">la</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.bases</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.matrices</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">chebyshev</span><span class="o">/</span><span class="n">la</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">shenfun.optimization</span> <span class="kn">import</span> <span class="n">runtimeoptimizer</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">shenfun.la</span> <span class="kn">import</span> <span class="n">SparseMatrixSolver</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span> <span class="nn">shenfun.matrixbase</span> <span class="kn">import</span> <span class="n">TPMatrix</span><span class="p">,</span> <span class="n">SpectralMatrix</span><span class="p">,</span> <span class="n">extract_bc_matrices</span><span class="p">,</span>\
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">get_simplified_tpmatrices</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">optimization</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">18</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">cython</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1">#try:</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">numba</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1">#except ModuleNotFoundError:</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1">#    numba = None</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="sd"> runtimeoptimizer</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="sd"> &quot;&quot;&quot;</span>
+
+<span class="n">File</span> <span class="o">~/</span><span class="n">MySoftware</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">shenfun</span><span class="o">/</span><span class="n">optimization</span><span class="o">/</span><span class="n">numba</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">.diagma</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.threedma</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numba&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
@@ -729,9 +810,9 @@ u(-1) &amp;= u(1) = 0,
 </div>
 <p>Note that the matrix <code class="docutils literal notranslate"><span class="pre">S</span></code> <span class="math notranslate nohighlight">\( \in \mathbb{R}^{(N+1)\times (N+1)}\)</span> as expected, whereas <code class="docutils literal notranslate"><span class="pre">uh</span></code> <span class="math notranslate nohighlight">\( \in \mathbb{R}^{N+3}\)</span> and <code class="docutils literal notranslate"><span class="pre">b</span></code> <span class="math notranslate nohighlight">\(\in \mathbb{R}^{N+3}\)</span>. This has to do with the two (possibly nonzero) boundary conditions, which are then stored in <code class="docutils literal notranslate"><span class="pre">uh[-2]</span></code> and <code class="docutils literal notranslate"><span class="pre">uh[-1]</span></code>. Also, note that because of these two boundary conditions shenfun created the space <span class="math notranslate nohighlight">\(V_N=\text{span}\{P_i-P_{i+2}\}_{i=0}^{N}\)</span> using the first argument <span class="math notranslate nohighlight">\(N+3\)</span> and not <span class="math notranslate nohighlight">\(N+1\)</span>.</p>
 <section id="boundary-conditions">
-<h4>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this heading">#</a></h4>
+<h4>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h4>
 <section id="inhomogeneous-dirichlet">
-<h5>Inhomogeneous Dirichlet<a class="headerlink" href="#inhomogeneous-dirichlet" title="Permalink to this heading">#</a></h5>
+<h5>Inhomogeneous Dirichlet<a class="headerlink" href="#inhomogeneous-dirichlet" title="Link to this heading">#</a></h5>
 <p>Lets make a minor change and solve Poisson’s equation with non-zero boundary conditions</p>
 <div class="math notranslate nohighlight">
 \[
@@ -806,21 +887,18 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" src="_images/43e07c744abce14716fcd64964de27cf3b0bc20029a0973ffcf919b835db98d5.png" />
-</div>
 </div>
 </section>
 <section id="neumann-boundary-conditions">
-<span id="sec-lecture11-neumann"></span><h5>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Permalink to this heading">#</a></h5>
+<span id="sec-lecture11-neumann"></span><h5>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Link to this heading">#</a></h5>
 <p>Poisson’s equation is also often solved with Neumann boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-neumann">
-<span class="eqno">(50)<a class="headerlink" href="#equation-eq-poisson-neumann" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(52)<a class="headerlink" href="#equation-eq-poisson-neumann" title="Link to this equation">#</a></span>\[
 u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 \]</div>
-<p>However, this problem is actually ill-defined because if <span class="math notranslate nohighlight">\(u\)</span> is a solution, then <span class="math notranslate nohighlight">\(u + c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant, is also a solution. This follows since both the equation and both the boundary conditions contain at least one derivative. After all, <span class="math notranslate nohighlight">\((u+c)'' = u'' + c'' = u'' \)</span> and <span class="math notranslate nohighlight">\((u+c)' = u' + c' = u'\)</span>. Bottom line, we need an additional constraint in order to pose a well-defined Neumann problem. A common additional constraint to <a class="reference internal" href="#equation-eq-poisson-neumann">(50)</a> is to require that</p>
+<p>However, this problem is actually ill-defined because if <span class="math notranslate nohighlight">\(u\)</span> is a solution, then <span class="math notranslate nohighlight">\(u + c\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is a constant, is also a solution. This follows since both the equation and both the boundary conditions contain at least one derivative. After all, <span class="math notranslate nohighlight">\((u+c)'' = u'' + c'' = u'' \)</span> and <span class="math notranslate nohighlight">\((u+c)' = u' + c' = u'\)</span>. Bottom line, we need an additional constraint in order to pose a well-defined Neumann problem. A common additional constraint to <a class="reference internal" href="#equation-eq-poisson-neumann">(52)</a> is to require that</p>
 <div class="math notranslate nohighlight" id="equation-eq-neumann-constraint">
-<span class="eqno">(51)<a class="headerlink" href="#equation-eq-neumann-constraint" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(53)<a class="headerlink" href="#equation-eq-neumann-constraint" title="Link to this equation">#</a></span>\[
 (u, 1) = \int_{\Omega} u(x) dx = c,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c\)</span> is still a constant.</p>
@@ -830,14 +908,14 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 </div>
 <p>The Neumann problem can be solved with basis functions</p>
 <div class="math notranslate nohighlight" id="equation-eq-basis-neumann">
-<span class="eqno">(52)<a class="headerlink" href="#equation-eq-basis-neumann" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(54)<a class="headerlink" href="#equation-eq-basis-neumann" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 \psi_j(x) &amp;= \cos(\pi j(x+1)/2), \\
 \psi_j(x) &amp;= P_j - \frac{j(j+1)}{(j+2)(j+3)}P_{j+2},
 \end{align*}
 \end{split}\]</div>
-<p>because they all satisfy <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>. However, note that for both the cosine and the Legendre bases we get that <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> since <span class="math notranslate nohighlight">\(\cos(0) = P_0 = 1\)</span>. This basis function is such that <span class="math notranslate nohighlight">\(\psi'_0=0\)</span> and it will as such lead to a zero column in  the stiffness matrix since <span class="math notranslate nohighlight">\((\psi''_0, \psi_i) = 0\)</span>. Hence this basis function cannot be used for solving Poisson’s equation directly. It can, however, be used to fix the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(51)</a>.</p>
-<p>We solve the Neumann problem with the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, but in order to also specify the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(51)</a> we will need to use a modified function space <span class="math notranslate nohighlight">\(\{u_N \in V_N | (u_N, 1) = c \}\)</span>. Since <span class="math notranslate nohighlight">\((\psi_j, 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(j \in \{1, 2, \ldots, N\}\)</span>, we get that</p>
+<p>because they all satisfy <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>. However, note that for both the cosine and the Legendre bases we get that <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> since <span class="math notranslate nohighlight">\(\cos(0) = P_0 = 1\)</span>. This basis function is such that <span class="math notranslate nohighlight">\(\psi'_0=0\)</span> and it will as such lead to a zero column in  the stiffness matrix since <span class="math notranslate nohighlight">\((\psi''_0, \psi_i) = 0\)</span>. Hence this basis function cannot be used for solving Poisson’s equation directly. It can, however, be used to fix the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(53)</a>.</p>
+<p>We solve the Neumann problem with the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, but in order to also specify the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(53)</a> we will need to use a modified function space <span class="math notranslate nohighlight">\(\{u_N \in V_N | (u_N, 1) = c \}\)</span>. Since <span class="math notranslate nohighlight">\((\psi_j, 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(j \in \{1, 2, \ldots, N\}\)</span>, we get that</p>
 <div class="math notranslate nohighlight">
 \[
 (u_N, 1) = \sum_{j=0}^N (\psi_j, 1) \hat{u}_j = (\psi_0, 1)\hat{u}_0 = c,
@@ -857,7 +935,7 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
   &amp;= - \frac{\pi^2 j^2}{4} \delta_{ij}.
 \end{align*}
 \end{split}\]</div>
-<p>We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(50)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
+<p>We can thus solve Eq. <a class="reference internal" href="#equation-eq-poisson-neumann">(52)</a> for all <span class="math notranslate nohighlight">\(i&gt;0\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[
 \hat{u}_i = -\frac{4}{\pi^2 i^2} \left(f, \cos(\pi i (x+1)/2) \right), \quad i = 1, 2, \ldots, N,
@@ -901,18 +979,15 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" src="_images/7a921629f80aa7238c9f20d798e6e672e5697db2ecac5603579df92df0b10c70.png" />
 </div>
-</div>
-<p>We can do the same for Legendre spaces <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(52)</a>. The stiffness matrix is then</p>
+<p>We can do the same for Legendre spaces <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(54)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
 \[
 s_{ij} = -(\psi''_j, \psi_i) = (\psi'_j, \psi'_i),
 \]</div>
 <p>and it can be shown with a lot of tedious work that</p>
 <div class="math notranslate nohighlight" id="equation-eq-neumann-stiffness">
-<span class="eqno">(53)<a class="headerlink" href="#equation-eq-neumann-stiffness" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(55)<a class="headerlink" href="#equation-eq-neumann-stiffness" title="Link to this equation">#</a></span>\[
 s_{ij} = \alpha(i) \delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\alpha(i) = i(i+1)-\frac{i^2(i+1)^2}{(i+2)(i+3)}\)</span>. Since the stiffness matrix is diagonal we can easily solve for the unknown expansion coefficients</p>
@@ -958,16 +1033,13 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" src="_images/28df86b7ccc09b800646557a3fecdef58a54610f335ddb1219fef57bbe2b5354.png" />
-</div>
 </div>
 <p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi'_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
 <div class="math notranslate nohighlight">
 \[
 (u'', v) = -(u', v') + [u' v]_{-1}^1.
 \]</div>
-<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 \)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(53)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) \ne 0\)</span>.</p>
+<p>Now, since <span class="math notranslate nohighlight">\(u'(\pm 1) = 0\)</span>, we can specify this boundary condition simply by neglecting <span class="math notranslate nohighlight">\([u' v]_{-1}^1 \)</span> and thus use <span class="math notranslate nohighlight">\((u'', v) = -(u', v')\)</span>. This actually enforces the Neumann boundary condition weakly and as such there is no need to set it twice. However, it evidently does not hurt either, and it is only through the use of Neumann basis functions that we obtain a diagonal stiffness matrix in Eq. <a class="reference internal" href="#equation-eq-neumann-stiffness">(55)</a>. If we simply use the basis functions <span class="math notranslate nohighlight">\(\psi_j = P_j\)</span>, then the stiffness matrix turns out to be not diagonal we need to set up and solve a linear algebra problem. Let us try this approach as well, just to illustrate that the Neumann condition is now satisfied even though the basis functions <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) \ne 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
@@ -1018,9 +1090,6 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" src="_images/099036baedc970cfe425c03ba85ace83a4ee516933d2988bdcb8e4f22a28692d.png" />
-</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1041,9 +1110,6 @@ s_{ij} = \alpha(i) \delta_{ij},
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/4d5f5088487768ea0d7bd3386a8e67350c2bcba5a7542f3ff9454b786d101c81.png" src="_images/4d5f5088487768ea0d7bd3386a8e67350c2bcba5a7542f3ff9454b786d101c81.png" />
-</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1053,7 +1119,7 @@ s_{ij} = \alpha(i) \delta_{ij},
 </section>
 </section>
 <section id="collocation">
-<h3>Collocation<a class="headerlink" href="#collocation" title="Permalink to this heading">#</a></h3>
+<h3>Collocation<a class="headerlink" href="#collocation" title="Link to this heading">#</a></h3>
 <p>The collocation method is very popular mainly because it is intuitive and easy to implement (it requires no integration). However, it is not very often used for solving PDEs as a global method. The main reason for this is that it is less efficient and requires more memory than a well planned <em>modal</em> Galerkin method. The Galerkin methods we have seen above have all, with one exception, led to diagonal stiffness matrices for Poisson’s equation. While this may not be the case for other equations, the modal methods will usually lead to banded matrices that are easy to invert. We will see below that the collocation method leads to a dense stiffness matrix.</p>
 <p>We will now solve Poisson’s equation using collocation and Lagrange polynomials. The procedure is exactly like for function approximation, but now we satisfy a differential equation instead of an algebraic, and we apply the boundary conditions <span class="math notranslate nohighlight">\(u(-1)=a\)</span> and <span class="math notranslate nohighlight">\(u(1)=b\)</span> at the two edges. We thus attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that the following <span class="math notranslate nohighlight">\(N+1\)</span> equations are satisfied</p>
 <div class="math notranslate nohighlight">
@@ -1070,7 +1136,7 @@ u_N(-1) &amp;=  a \quad \text{and} \quad u_N(1) = b.
 \end{split}\]</div>
 <p>Inserting for the Lagrange polynomials and <span class="math notranslate nohighlight">\(u_N\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_N(x_i)=0\)</span> we get the <span class="math notranslate nohighlight">\(N-1\)</span> equations</p>
 <div class="math notranslate nohighlight" id="equation-eq-poisson-coll">
-<span class="eqno">(54)<a class="headerlink" href="#equation-eq-poisson-coll" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(56)<a class="headerlink" href="#equation-eq-poisson-coll" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N \ell''_j(x_i) \hat{u}_j = f(x_i), \quad i = 1, 2, \ldots, N-1, 
 \]</div>
 <p>plus the two boundary conditions that lead to <span class="math notranslate nohighlight">\(\hat{u}_0 = a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N = b\)</span>. This follows since all basis functions are Lagrange polynomials and thus <span class="math notranslate nohighlight">\(\ell_j(x_i) = \delta_{ij}\)</span>. For the boundary nodes we thus have</p>
@@ -1098,7 +1164,7 @@ u(1) = u(x_N) = \sum_{j=0}^N \hat{u}_j \ell_j(x_N) = \hat{u}_N = b.
 \[
 \frac{d^n}{dx^n}\boldsymbol{u} = D^{(n)} \boldsymbol{u},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(54)</a> can as such be assembled as</p>
+<p>where <span class="math notranslate nohighlight">\(D^{(n)} = (d^{(n)}_{ij})_{i,j=0}^N\)</span>. The Poisson problem <a class="reference internal" href="#equation-eq-poisson-coll">(56)</a> can as such be assembled as</p>
 <div class="math notranslate nohighlight">
 \[
 \tilde{D}^{(2)} \boldsymbol{\hat{u}} = \boldsymbol{f},
@@ -1119,7 +1185,7 @@ w_j &amp;= \frac{1}{\prod^N_{\substack{i=0 \\ i \neq j}} (x_j - x_i)}, \quad j =
 \end{split}\]</div>
 <p>Here <span class="math notranslate nohighlight">\((w_j)_{j=0}^N\)</span> are often referred to as barycentric weights. These weights are readily available from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">scipy.interpolate.BarycentricInterpolator</a>. We can then obtain the derivative matrix <span class="math notranslate nohighlight">\(d_{ij} = \ell'_j(x_i)\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-derivative-coll">
-<span class="eqno">(55)<a class="headerlink" href="#equation-eq-derivative-coll" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(57)<a class="headerlink" href="#equation-eq-derivative-coll" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 d_{ij} &amp;= \frac{w_j}{w_i(x_i-x_j)}, \quad i \, \neq j, \\
 d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
@@ -1142,7 +1208,7 @@ d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
 </div>
 </div>
 </div>
-<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(55)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">Derivative</span></code> we use vectorization and Numpy broadcasting to implement <a class="reference internal" href="#equation-eq-derivative-coll">(57)</a> efficiently. To elaborate, we compute a dense matrix <code class="docutils literal notranslate"><span class="pre">W</span></code> of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> with indices</p>
 <div class="math notranslate nohighlight">
 \[
 W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
@@ -1156,19 +1222,6 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3]])
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1],
-       [2],
-       [3]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now multiply <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">*</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code> and obtain a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix.</p>
 <div class="cell docutils container">
@@ -1177,28 +1230,11 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
-       [2, 4, 6],
-       [3, 6, 9]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> are first broadcasted to the two <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices that are constant along the first and second axis, respectively. The matrices are extruded along the axis that contains <code class="docutils literal notranslate"><span class="pre">None</span></code>. So <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> is extruded along the first axis and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> along the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[1, 2, 3],
-        [1, 2, 3],
-        [1, 2, 3]]),
- array([[1, 1, 1],
-        [2, 2, 2],
-        [3, 3, 3]]))
 </pre></div>
 </div>
 </div>
@@ -1298,14 +1334,11 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/723fa303d9b7b4c7418afc43e3f4138b81912ab562c874dc45dc41b47b720efb.png" src="_images/723fa303d9b7b4c7418afc43e3f4138b81912ab562c874dc45dc41b47b720efb.png" />
-</div>
 </div>
 </section>
 </section>
 <section id="weekly-assignments">
-<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Permalink to this heading">#</a></h2>
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
 <p>In this weeks assignments you may choose the method of implementation: Galerkin, collocation, or both. Also, if you use a Galerkin method, then choose either Legendre or Chebyshev polynomials or both. You are also encouraged to try to implement the problems both on you own and by using <a class="reference external" href="https://github.com/spectralDNS/shenfun">shenfun</a>.</p>
 <ol class="arabic simple">
 <li><p>Solve the inhomogeneous Helmholtz equation</p></li>
@@ -1348,16 +1381,16 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "book"
+            mode: "python"
         },
         kernelOptions: {
-            name: "book",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'book'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -1367,7 +1400,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
               
               
                 <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                  
 <div class="prev-next-area">
     <a class="left-prev"
        href="lecture10.html"
@@ -1395,6 +1428,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1436,6 +1470,7 @@ By Mikael Mortensen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2024.
@@ -1462,8 +1497,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
