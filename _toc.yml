@@ -9,7 +9,7 @@ parts:
   - file: notation
 - caption: The Finite Difference Method
   chapters:
-  #- file: lecture1
+  - file: lecture1
   - file: lecture3
   - file: lecture4
   - file: lecture5

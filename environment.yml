@@ -11,3 +11,5 @@ dependencies:
   - sympy
   - ipykernel
   - numba
+  - plotly
+  - pandas
