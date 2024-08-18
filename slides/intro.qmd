@@ -5,11 +5,9 @@ author: "Prof. Mikael Mortensen, University of Oslo"
 format:
   revealjs: 
     slide-number: true
-    chalkboard: 
-      theme: whiteboard
-      buttons: false
     preview-links: auto
     css: styles.css
+    embed-resources: true
 pandoc:
   to: revealjs
   output-file: introduction.html
@@ -336,7 +334,7 @@ $$
 u'(t_n) \approx \frac{u^{n+1}-u^{n}}{t_{n+1}-t_n}
 $$
 
-![](figures/fd_forward.png){.absolute top=300 left=250 width=550}
+![](../figures/fd_forward.png){.absolute top=300 left=250 width=550}
 
 ## Step 3: Replacing derivatives by finite differences {.smaller}
 
@@ -401,7 +399,7 @@ $$
 u'(t_n) \approx \frac{u^{n}-u^{n-1}}{t_{n}-t_{n-1}}
 $$
 
-![](figures/fd_backward.png){.absolute top=280 left=250 width=550}
+![](../figures/fd_backward.png){.absolute top=280 left=250 width=550}
 
 ## The Backward Euler scheme {.smaller}
 
@@ -426,7 +424,7 @@ We use $u^{n+1}$ as unknown and rename $u^n \longrightarrow u^{n+1}$ and $u^{n-1
 Centered differences are better approximations than forward or
 backward differences.
 
-![](figures/fd_centered_CN){.absolute top=200 left=250 width=550}
+![](../figures/fd_centered_CN){.absolute top=200 left=250 width=550}
 
 ## The Crank-Nicolson scheme; ideas {.smaller}
 

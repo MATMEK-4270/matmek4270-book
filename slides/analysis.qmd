@@ -5,11 +5,9 @@ author: "Prof. Mikael Mortensen, University of Oslo"
 format:
   revealjs: 
     slide-number: true
-    chalkboard: 
-      theme: whiteboard
-      buttons: false
     preview-links: auto
     css: styles.css
+    embed-resources: true
 pandoc:
   to: revealjs
   output-file: analysis.html
