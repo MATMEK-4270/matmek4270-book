@@ -372,7 +372,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -388,6 +390,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -400,6 +410,36 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-2">
 <h1>Lecture 2<a class="headerlink" href="#lecture-2" title="Link to this heading">#</a></h1>
 <p>See the presentation given <a class="reference external" href="https://matmek-4270.github.io/matmek4270-pres/analysis.html#/title-slide">here</a>. Or as <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-pres/blob/main/pdfs/analysis.pdf">pdf</a>.</p>
+<section id="weekly-assignments">
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
+<p>The first assignments are <a class="reference internal" href="#hplgit.github.io/decay-book/doc/pub/book/html/._decay-book005.html#decay:exer:dudt"><span class="xref myst">Exercise 1.1, 1.2 and 2.2</span></a>  of the exponential decay book. The assignments are for weeks 34 and 35, so there is plenty of time. The group session for these assignments is on Wednesday 28/8.</p>
+<p>​We will partly use these assignments to learn about github and automatic testing of code through the use of <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> and <a class="reference external" href="https://github.com/features/actions">github actions</a> (which can do much more than just test code). Note that there is a lot of information in these links and you’re not expected to read or understand all of it.</p>
+<p>To get everybody started I have created a github repository <a class="reference internal" href="#github.com/MATMEK-4270/course-projects"><span class="xref myst">course-projects</span></a>. You will need to have your own github user account in order to complete the tasks below. If you do not already have one, then create one here.</p>
+<p>If you run into any problems with the assignments or if you’re just in need of help, then I would very much prefer if you could create an issue on the main repository instead of sending me an email.</p>
+<p>Now, to get started:</p>
+<p>Fork the repository <a class="reference external" href="mailto:git&#37;&#52;&#48;github&#46;com">git<span>&#64;</span>github<span>&#46;</span>com</a>:MATMEK-4270/course-projects.git. This is achieved simply by pressing the Fork button on the original repository. You will notice that in the <a class="reference external" href="http://README.md">README.md</a> file there is a red badge</p>
+<p><img alt="" src="https://github.com/MATMEK-4270/matmek4270-projects/actions/workflows/matmek4270.yml/badge.svg" /></p>
+<p>which indicates that some tests in the repository are failing. The first two assignments (1.1 and 1.2) will be finished when you manage to obtain a positive badge</p>
+<p><img alt="" src="_images/badge.svg" /></p>
+<p>indicating that all tests have passed.</p>
+<p>The tests in question are found in the python files <a class="reference internal" href="#github.com/MATMEK-4270/course-projects/blob/main/projects/python/decay_v3.py"><span class="xref myst">decay_v3.py</span></a>, <a class="reference internal" href="#github.com/MATMEK-4270/course-projects/blob/main/projects/python/mesh_function.py"><span class="xref myst">mesh_function.py</span></a> and <a class="reference internal" href="#github.com/MATMEK-4270/course-projects/blob/main/projects/python/differentiate.py"><span class="xref myst">differentiate.py</span></a>. In each file there is a function with a name starting with <code class="docutils literal notranslate"><span class="pre">test</span></code>. These functions are run by <code class="docutils literal notranslate"><span class="pre">pytest</span></code> on every push to the github repository. It is set up to do so in the file <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/.github/workflows/matmek4270.yml">matmek4270.yml</a>. Note that this github actions file generates an environment where <code class="docutils literal notranslate"><span class="pre">pytest,</span> <span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> are available. This is achieved on <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/198a35f1c6a31c95d4fbf52dfd3c945dd0c6abf9/.github/workflows/matmek4270.yml#L26">this line</a>. The tests are run <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/198a35f1c6a31c95d4fbf52dfd3c945dd0c6abf9/.github/workflows/matmek4270.yml#L30">here</a>.</p>
+<p>In order to complete the assignment you need to get all three tests working and you need to push the working code to your forked repository. The test in <code class="docutils literal notranslate"><span class="pre">decay_v3.py</span></code> is already working, so this leaves the remaining two. In order to understand these two tests, please see <a class="reference internal" href="#hplgit.github.io/decay-book/doc/pub/book/html/._decay-book005.html#decay:exer:dudt"><span class="xref myst">Exercise 1.1 and 1.2</span></a>.</p>
+<p>Before you continue it is important that you enable workflows for the newly forked repository (which is <a class="github reference external" href="https://github.com/"></a><your github username>/course-projects/):</p>
+<ul class="simple">
+<li><p>Press the <code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab in the fork and enable workflows</p></li>
+</ul>
+<p>Now, in order to work with the code you should not really edit files in the forked repository on <a class="reference external" href="http://Github.com">Github.com</a>, even though it is possible. The regular procedure now would be to clone the fork to your local computer and then work locally and push code to the global repository (the fork) intermittently (git commit and git push). However, if you’re not used to this workflow, github now comes with a new and brilliant feature called <a class="reference internal" href="#github.com/features/codespaces"><span class="xref myst">codespaces</span></a>, which allows you to both code and run interactively in the clouds and also inside a very nice visual studio code environment:-) To use it simply press the green <code class="docutils literal notranslate"><span class="pre">Code</span></code> button and then choose codespaces. Create a codespace and you should then soon find yourself in a working environment. From here you can modify code, test with pytest, commit and then push back to <a class="reference external" href="http://Github.com">Github.com</a>. Note that you only have up to 60 hours of free use per month. However, this is a very easy way to get started if you are inexperienced with the use of github and environments.</p>
+<p>Alternatively, the green button with <code class="docutils literal notranslate"><span class="pre">Code</span></code> tells you how to clone the forked repository locally. In a terminal on your local computer (where you want the code stored) do</p>
+<p>Open mesh_function.py and <a class="reference external" href="http://differentiate.py">differentiate.py</a> and make changes such that the tests work (test locally with pytest). When you are satisfied that the tests work, make a commit and push the code to github.</p>
+<p>This should set the github actions started and the tests will be run. See under the <code class="docutils literal notranslate"><span class="pre">Actions</span></code> tab for the repository in the browser.</p>
+<p>However, the status badge will still be red even though you now have fixed all the tests. This is because this badge still reflects the original repository. If you press <code class="docutils literal notranslate"><span class="pre">edit</span></code> on the <a class="reference external" href="http://README.md">README.md</a> you will see that the badge is:</p>
+<p><a class="reference external" href="https://github.com/MATMEK-4270/course-projects/actions/workflows/matmek4270.yml"><img alt="Test MAT-MEK4270 projects" src="https://github.com/MATMEK-4270/course-projects/actions/workflows/matmek4270.yml/badge.svg" /></a></p>
+<p>Change this badge to:</p>
+<p>[![Test MAT-MEK4270 projects](<a class="github reference external" href="https://github.com/"></a><your github username>/course-projects/actions/workflows/matmek4270.yml/badge.svg)](<a class="github reference external" href="https://github.com/"></a><your github username>/course-projects/actions/workflows/matmek4270.yml)</p>
+<p>The badge will be green when all tests in the fork’s workflow pass.</p>
+<p>The second part of the assignments is <a class="reference internal" href="#hplgit.github.io/decay-book/doc/pub/book/html/._decay-book006.html#decay:analysis:exer:growth"><span class="xref myst">problem 2.2</span></a>. For this assignment there is no test, but you are encouraged to solve the problem using a <a class="reference external" href="https://jupyter.org/">jupyter notebook</a>. Note that the hint in this assignment is referring to some old code that is making use of scitools. This code is no longer maintained and will probably not work. However, this hint should still be useful.</p>
+<p>These first assignments are not mandatory and will not need to be submitted for approval.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -457,7 +497,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
