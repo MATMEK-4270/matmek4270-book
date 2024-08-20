@@ -63,7 +63,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 3" href="lecture3.html" />
+    <link rel="next" title="Lecture 2" href="lecture2.html" />
     <link rel="prev" title="Lecture Notes MATMEK-4270" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -182,6 +182,7 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
@@ -401,35 +402,35 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-discretization">Step 1 - discretization</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-fulfilling-the-equation-at-discrete-time-points">Step 2 - fulfilling the equation at discrete time points</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-replacing-derivatives-by-finite-differences">Step 3: Replacing derivatives by finite differences</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-formulating-a-recursive-algorithm">Step 4: Formulating a recursive algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-euler-scheme">The Forward Euler scheme</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-apply-the-scheme-by-hand">Let us apply the scheme by hand</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-formulating-a-recursive-algorithm">Step 4: Formulating a recursive algorithm</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-backward-difference">A backward difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-backward-euler-scheme">The Backward Euler scheme</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-centered-difference">A centered difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-ideas">The Crank-Nicolson scheme; ideas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-result">The Crank-Nicolson scheme; result</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-unifying-theta-rule">The unifying <span class="math notranslate nohighlight">\(\theta\)</span>-rule</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-time-step">Constant time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-euler-scheme">The Forward Euler scheme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-apply-the-scheme-by-hand">Let us apply the scheme by hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-backward-difference">A backward difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-backward-euler-scheme">The Backward Euler scheme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-centered-difference">A centered difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-ideas">The Crank-Nicolson scheme; ideas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-result">The Crank-Nicolson scheme; result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-unifying-theta-rule">The unifying <span class="math notranslate nohighlight">\(\theta\)</span>-rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-time-step">Constant time step</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-of-a-program">Requirements of a program</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm">Algorithm</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-vectorization">Why vectorization?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-solution">Plot the solution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plotly-is-a-very-good-alternative">Plotly is a very good alternative</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verifying-the-implementation">Verifying the implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-of-a-program">Requirements of a program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm">Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-vectorization">Why vectorization?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-solution">Plot the solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotly-is-a-very-good-alternative">Plotly is a very good alternative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifying-the-implementation">Verifying the implementation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-exact-numerical-solution">Comparison with exact numerical solution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-test-based-on-an-exact-numerical-solution">Making a test based on an exact numerical solution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-few-numerical-steps-by-hand">Run a few numerical steps by hand</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-test-based-on-exact-numerical-solution">The test based on exact numerical solution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-the-error">Quantifying the error</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-norm-of-the-error">Computing the norm of the error</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-the-error">Quantifying the error</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-norm-of-the-error">Computing the norm of the error</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#norms-of-mesh-functions">Norms of mesh functions</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#norms-notice">Norms - notice!</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-error-norm">Implementation of the error norm</a></li>
@@ -461,6 +462,7 @@ document.write(`
 <li><p>Error norms</p></li>
 <li><p>Convergence rates</p></li>
 </ul>
+<p>This first lecture may be easier to follow as the <a class="reference internal" href="#"><span class="xref myst">slides</span></a> that were presented on the first day.</p>
 <section id="finite-difference-models-for-exponential-decay">
 <h2>Finite difference models for exponential decay<a class="headerlink" href="#finite-difference-models-for-exponential-decay" title="Link to this heading">#</a></h2>
 <p>A model for exponential decay is</p>
@@ -561,15 +563,17 @@ u'(t_n) \approx \frac{u^{n+1}-u^{n}}{t_{n+1}-t_n}
 <li><p>compute <span class="math notranslate nohighlight">\(u^3\)</span> from <span class="math notranslate nohighlight">\(u^2\)</span> (and so forth)</p></li>
 </ul>
 <p>In general: we have <span class="math notranslate nohighlight">\(u^n\)</span> and seek <span class="math notranslate nohighlight">\(u^{n+1}\)</span></p>
+</section>
+</section>
 <section id="the-forward-euler-scheme">
-<h5>The Forward Euler scheme<a class="headerlink" href="#the-forward-euler-scheme" title="Link to this heading">#</a></h5>
+<h3>The Forward Euler scheme<a class="headerlink" href="#the-forward-euler-scheme" title="Link to this heading">#</a></h3>
 <p>Solve wrt <span class="math notranslate nohighlight">\(u^{n+1}\)</span> to get the computational formula:
 $<span class="math notranslate nohighlight">\(
 u^{n+1} = u^n - a(t_{n+1} -t_n)u^n
 \)</span>$</p>
 </section>
 <section id="let-us-apply-the-scheme-by-hand">
-<h5>Let us apply the scheme by hand<a class="headerlink" href="#let-us-apply-the-scheme-by-hand" title="Link to this heading">#</a></h5>
+<h3>Let us apply the scheme by hand<a class="headerlink" href="#let-us-apply-the-scheme-by-hand" title="Link to this heading">#</a></h3>
 <p>Assume constant time spacing: <span class="math notranslate nohighlight">\(\Delta t = t_{n+1}-t_n=\text{const}\)</span> such that <span class="math notranslate nohighlight">\(u^{n+1} = u^n (1- a \Delta t)\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -583,9 +587,8 @@ u^{N} &amp;= I(1-a\Delta t)^{N}
 \end{split}\]</div>
 <p>Ooops - we can find the numerical solution by hand (in this simple example)! No need for a computer (yet)…</p>
 </section>
-</section>
 <section id="a-backward-difference">
-<h4>A backward difference<a class="headerlink" href="#a-backward-difference" title="Link to this heading">#</a></h4>
+<h3>A backward difference<a class="headerlink" href="#a-backward-difference" title="Link to this heading">#</a></h3>
 <p>Here is another finite difference approximation to the derivative (backward difference):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -594,7 +597,7 @@ u'(t_n) \approx \frac{u^{n}-u^{n-1}}{t_{n}-t_{n-1}}
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/fd_backward.png"><img alt="Forward difference" class="bg-primary mb-1 align-center" src="_images/fd_backward.png" style="width: 400px;" /></a>
 </section>
 <section id="the-backward-euler-scheme">
-<h4>The Backward Euler scheme<a class="headerlink" href="#the-backward-euler-scheme" title="Link to this heading">#</a></h4>
+<h3>The Backward Euler scheme<a class="headerlink" href="#the-backward-euler-scheme" title="Link to this heading">#</a></h3>
 <p>Inserting the finite difference approximation in <span class="math notranslate nohighlight">\(u'(t_n)=-au(t_n)\)</span> yields the Backward Euler (BE) scheme:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -607,12 +610,12 @@ u^{n+1} = \frac{1}{1+ a(t_{n+1}-t_n)} u^n
 \]</div>
 </section>
 <section id="a-centered-difference">
-<h4>A centered difference<a class="headerlink" href="#a-centered-difference" title="Link to this heading">#</a></h4>
+<h3>A centered difference<a class="headerlink" href="#a-centered-difference" title="Link to this heading">#</a></h3>
 <p>Centered differences are better approximations than forward or backward differences.</p>
 <a class="bg-primary mb-1 reference internal image-reference" href="_images/fd_centered_CN.png"><img alt="Forward difference" class="bg-primary mb-1 align-center" src="_images/fd_centered_CN.png" style="width: 400px;" /></a>
 </section>
 <section id="the-crank-nicolson-scheme-ideas">
-<h4>The Crank-Nicolson scheme; ideas<a class="headerlink" href="#the-crank-nicolson-scheme-ideas" title="Link to this heading">#</a></h4>
+<h3>The Crank-Nicolson scheme; ideas<a class="headerlink" href="#the-crank-nicolson-scheme-ideas" title="Link to this heading">#</a></h3>
 <p>Idea 1: let the ODE hold at <span class="math notranslate nohighlight">\(t_{n+\half}\)</span>. With <span class="math notranslate nohighlight">\(N+1\)</span> points, that is <span class="math notranslate nohighlight">\(N\)</span> equations for <span class="math notranslate nohighlight">\(n=0, 1, \ldots N-1\)</span></p>
 <div class="math notranslate nohighlight">
 \[
@@ -631,7 +634,7 @@ u(t_{n+\half}) \approx \frac{1}{2} (u^n + u^{n+1})
 \]</div>
 </section>
 <section id="the-crank-nicolson-scheme-result">
-<h4>The Crank-Nicolson scheme; result<a class="headerlink" href="#the-crank-nicolson-scheme-result" title="Link to this heading">#</a></h4>
+<h3>The Crank-Nicolson scheme; result<a class="headerlink" href="#the-crank-nicolson-scheme-result" title="Link to this heading">#</a></h3>
 <p>Result:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -645,7 +648,7 @@ u^{n+1} = \frac{1-\frac{1}{2} a(t_{n+1}-t_n)}{1 + \frac{1}{2} a(t_{n+1}-t_n)}u^n
 <p>This is a Crank-Nicolson (CN) scheme or a midpoint or centered scheme.</p>
 </section>
 <section id="the-unifying-theta-rule">
-<h4>The unifying <span class="math notranslate nohighlight">\(\theta\)</span>-rule<a class="headerlink" href="#the-unifying-theta-rule" title="Link to this heading">#</a></h4>
+<h3>The unifying <span class="math notranslate nohighlight">\(\theta\)</span>-rule<a class="headerlink" href="#the-unifying-theta-rule" title="Link to this heading">#</a></h3>
 <p>The Forward Euler, Backward Euler, and Crank-Nicolson schemes can be formulated as one scheme with a varying parameter <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -664,7 +667,7 @@ u^{n+1} = \frac{1 - (1-\theta) a(t_{n+1}-t_n)}{1 + \theta a(t_{n+1}-t_n)} u^n
 \]</div>
 </section>
 <section id="constant-time-step">
-<h4>Constant time step<a class="headerlink" href="#constant-time-step" title="Link to this heading">#</a></h4>
+<h3>Constant time step<a class="headerlink" href="#constant-time-step" title="Link to this heading">#</a></h3>
 <p>Very common assumption (not important, but exclusively used for
 simplicity hereafter): constant time step <span class="math notranslate nohighlight">\(t_{n+1}-t_n\equiv\Delta t\)</span></p>
 <p>Summary of schemes for constant time step</p>
@@ -680,7 +683,7 @@ u^{n+1} &amp;= \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n \quad (\
 </section>
 </section>
 <section id="implementation">
-<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h3>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
 <p>Model:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -698,7 +701,7 @@ u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n
 <li><p><span class="math notranslate nohighlight">\(\theta=1/2\)</span> gives Crank-Nicolson</p></li>
 </ul>
 <section id="requirements-of-a-program">
-<h4>Requirements of a program<a class="headerlink" href="#requirements-of-a-program" title="Link to this heading">#</a></h4>
+<h3>Requirements of a program<a class="headerlink" href="#requirements-of-a-program" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Compute the numerical solution <span class="math notranslate nohighlight">\(u^n\)</span>, <span class="math notranslate nohighlight">\(n=1,2,\ldots,N\)</span></p></li>
 <li><p>Display the numerical and exact solution <span class="math notranslate nohighlight">\(u_e(t)=e^{-at}\)</span></p></li>
@@ -709,7 +712,7 @@ u^{n+1} = \frac{1 - (1-\theta) a\Delta t}{1 + \theta a\Delta t}u^n
 </ul>
 </section>
 <section id="algorithm">
-<h4>Algorithm<a class="headerlink" href="#algorithm" title="Link to this heading">#</a></h4>
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Store <span class="math notranslate nohighlight">\(u^n\)</span>, <span class="math notranslate nohighlight">\(n=0,1,\ldots,N\)</span> in an array <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span>.</p></li>
 <li><p>Algorithm:</p>
@@ -839,7 +842,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </section>
 <section id="why-vectorization">
-<h4>Why vectorization?<a class="headerlink" href="#why-vectorization" title="Link to this heading">#</a></h4>
+<h3>Why vectorization?<a class="headerlink" href="#why-vectorization" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Python for-loops are slow!</p></li>
 <li><p>Python for-loops usually requires more lines of code.</p></li>
@@ -875,7 +878,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 2.24 µs ± 433 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.95 µs ± 109 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -887,7 +890,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 2.07 µs ± 47.7 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.94 µs ± 26.8 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -926,7 +929,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 2.57 µs ± 382 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 2.5 µs ± 65.9 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -938,7 +941,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 19.2 µs ± 491 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 18.4 µs ± 267 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -965,7 +968,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.07 µs ± 1.11 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.51 µs ± 1.25 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -977,7 +980,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 205 µs ± 6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 198 µs ± 5.86 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -985,7 +988,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 <p>Vectorized code takes the same time! Only overhead costs, not the actual computation.</p>
 </section>
 <section id="plot-the-solution">
-<h4>Plot the solution<a class="headerlink" href="#plot-the-solution" title="Link to this heading">#</a></h4>
+<h3>Plot the solution<a class="headerlink" href="#plot-the-solution" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
@@ -1023,7 +1026,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </section>
 <section id="plotly-is-a-very-good-alternative">
-<h4>Plotly is a very good alternative<a class="headerlink" href="#plotly-is-a-very-good-alternative" title="Link to this heading">#</a></h4>
+<h3>Plotly is a very good alternative<a class="headerlink" href="#plotly-is-a-very-good-alternative" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -1055,9 +1058,9 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
         });
         }
         </script>
-        </div><div class="output text_html"><div>                            <div id="61d40b4b-6443-4749-9ad4-3bbfc5a029bb" class="plotly-graph-div" style="height:400px; width:600px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("61d40b4b-6443-4749-9ad4-3bbfc5a029bb")) {                    Plotly.newPlot(                        "61d40b4b-6443-4749-9ad4-3bbfc5a029bb",                        [{"hovertemplate":"Time=%{x}\u003cbr\u003eu(t)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","line":{"color":"#1F77B4","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"","orientation":"v","showlegend":false,"x":[0.0,0.8,1.6,2.4000000000000004,3.2,4.0,4.800000000000001,5.6000000000000005,6.4,7.2,8.0],"xaxis":"x","y":[1.0,0.3846153846153846,0.14792899408284022,0.05689576695493854,0.021882987290360974,0.008416533573215758,0.003237128297390676,0.00124504934515026,0.00047886513275009995,0.00018417889721157688,7.083803738906803e-05],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Time"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"u(t)"}},"legend":{"tracegroupgap":0},"title":{"text":"Decay"},"height":400,"width":600},                        {"responsive": true}                    ).then(function(){
+        </div><div class="output text_html"><div>                            <div id="e30f5fa6-728a-4f5a-ae91-a9e565ab9e5a" class="plotly-graph-div" style="height:400px; width:600px;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("e30f5fa6-728a-4f5a-ae91-a9e565ab9e5a")) {                    Plotly.newPlot(                        "e30f5fa6-728a-4f5a-ae91-a9e565ab9e5a",                        [{"hovertemplate":"Time=%{x}\u003cbr\u003eu(t)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","line":{"color":"#1F77B4","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"","orientation":"v","showlegend":false,"x":[0.0,0.8,1.6,2.4000000000000004,3.2,4.0,4.800000000000001,5.6000000000000005,6.4,7.2,8.0],"xaxis":"x","y":[1.0,0.3846153846153846,0.14792899408284022,0.05689576695493854,0.021882987290360974,0.008416533573215758,0.003237128297390676,0.00124504934515026,0.00047886513275009995,0.00018417889721157688,7.083803738906803e-05],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Time"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"u(t)"}},"legend":{"tracegroupgap":0},"title":{"text":"Decay"},"height":400,"width":600},                        {"responsive": true}                    ).then(function(){
                             
-var gd = document.getElementById('61d40b4b-6443-4749-9ad4-3bbfc5a029bb');
+var gd = document.getElementById('e30f5fa6-728a-4f5a-ae91-a9e565ab9e5a');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -1083,14 +1086,13 @@ if (outputEl) {{
 </div>
 </section>
 <section id="verifying-the-implementation">
-<h4>Verifying the implementation<a class="headerlink" href="#verifying-the-implementation" title="Link to this heading">#</a></h4>
+<h3>Verifying the implementation<a class="headerlink" href="#verifying-the-implementation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Verification = bring evidence that the program works</p></li>
 <li><p>Find suitable test problems</p></li>
 <li><p>Make function for each test problem</p></li>
 <li><p>Later: put the verification tests in a professional testing framework</p></li>
 </ul>
-</section>
 <section id="comparison-with-exact-numerical-solution">
 <h4>Comparison with exact numerical solution<a class="headerlink" href="#comparison-with-exact-numerical-solution" title="Link to this heading">#</a></h4>
 <p>Repeated use of the <span class="math notranslate nohighlight">\(\theta\)</span>-rule gives exact numerical solution:</p>
@@ -1166,10 +1168,11 @@ u^3 &amp;=Au^2= 0.00265290804728
 </div>
 </div>
 </section>
+</section>
 <section id="quantifying-the-error">
-<h4>Quantifying the error<a class="headerlink" href="#quantifying-the-error" title="Link to this heading">#</a></h4>
+<h3>Quantifying the error<a class="headerlink" href="#quantifying-the-error" title="Link to this heading">#</a></h3>
 <section id="computing-the-norm-of-the-error">
-<h5>Computing the norm of the error<a class="headerlink" href="#computing-the-norm-of-the-error" title="Link to this heading">#</a></h5>
+<h4>Computing the norm of the error<a class="headerlink" href="#computing-the-norm-of-the-error" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(e^n = u^n - u_e(t_n)\)</span> is a <strong>mesh function</strong></p></li>
 <li><p>Usually we want one number for the error</p></li>
@@ -1184,7 +1187,6 @@ u^3 &amp;=Au^2= 0.00265290804728
 ||f||_{L^\infty} &amp;= \max_{t\in [0,T]}|f(t)|
 \end{align}
 \end{split}\]</div>
-</section>
 </section>
 <section id="norms-of-mesh-functions">
 <h4>Norms of mesh functions<a class="headerlink" href="#norms-of-mesh-functions" title="Link to this heading">#</a></h4>
@@ -1281,11 +1283,11 @@ E = ||e^n||_{\ell^2}  = \sqrt{\Delta t\sum_{n=0}^{N} (e^n)^2}
       </div>
     </a>
     <a class="right-next"
-       href="lecture3.html"
+       href="lecture2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 3</p>
+        <p class="prev-next-title">Lecture 2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1310,35 +1312,35 @@ E = ||e^n||_{\ell^2}  = \sqrt{\Delta t\sum_{n=0}^{N} (e^n)^2}
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-discretization">Step 1 - discretization</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-fulfilling-the-equation-at-discrete-time-points">Step 2 - fulfilling the equation at discrete time points</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-replacing-derivatives-by-finite-differences">Step 3: Replacing derivatives by finite differences</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-formulating-a-recursive-algorithm">Step 4: Formulating a recursive algorithm</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-euler-scheme">The Forward Euler scheme</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-apply-the-scheme-by-hand">Let us apply the scheme by hand</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-formulating-a-recursive-algorithm">Step 4: Formulating a recursive algorithm</a></li>
 </ul>
 </li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-backward-difference">A backward difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-backward-euler-scheme">The Backward Euler scheme</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-centered-difference">A centered difference</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-ideas">The Crank-Nicolson scheme; ideas</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-result">The Crank-Nicolson scheme; result</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-unifying-theta-rule">The unifying <span class="math notranslate nohighlight">\(\theta\)</span>-rule</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-time-step">Constant time step</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-forward-euler-scheme">The Forward Euler scheme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-us-apply-the-scheme-by-hand">Let us apply the scheme by hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-backward-difference">A backward difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-backward-euler-scheme">The Backward Euler scheme</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-centered-difference">A centered difference</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-ideas">The Crank-Nicolson scheme; ideas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-crank-nicolson-scheme-result">The Crank-Nicolson scheme; result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-unifying-theta-rule">The unifying <span class="math notranslate nohighlight">\(\theta\)</span>-rule</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constant-time-step">Constant time step</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-of-a-program">Requirements of a program</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm">Algorithm</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-vectorization">Why vectorization?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-solution">Plot the solution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plotly-is-a-very-good-alternative">Plotly is a very good alternative</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verifying-the-implementation">Verifying the implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements-of-a-program">Requirements of a program</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm">Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-vectorization">Why vectorization?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-solution">Plot the solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotly-is-a-very-good-alternative">Plotly is a very good alternative</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verifying-the-implementation">Verifying the implementation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-exact-numerical-solution">Comparison with exact numerical solution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-test-based-on-an-exact-numerical-solution">Making a test based on an exact numerical solution</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-few-numerical-steps-by-hand">Run a few numerical steps by hand</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-test-based-on-exact-numerical-solution">The test based on exact numerical solution</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-the-error">Quantifying the error</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-norm-of-the-error">Computing the norm of the error</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantifying-the-error">Quantifying the error</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-the-norm-of-the-error">Computing the norm of the error</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#norms-of-mesh-functions">Norms of mesh functions</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#norms-notice">Norms - notice!</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-error-norm">Implementation of the error norm</a></li>
