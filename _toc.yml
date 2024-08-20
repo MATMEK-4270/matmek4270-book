@@ -10,6 +10,7 @@ parts:
 - caption: The Finite Difference Method
   chapters:
   - file: lecture1
+  - file: lecture2
   - file: lecture3
   - file: lecture4
   - file: lecture5
