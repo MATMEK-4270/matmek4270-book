@@ -59,12 +59,10 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture3';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture3_old';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 4" href="lecture4.html" />
-    <link rel="prev" title="Lecture 2" href="lecture2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -126,6 +124,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -172,10 +172,10 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
@@ -248,7 +248,7 @@
       
       
       
-      <li><a href="_sources/lecture3.ipynb" target="_blank"
+      <li><a href="_sources/lecture3_old.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -344,6 +344,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibration-equation">Vibration equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusted-solver">Adjusted solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solution-optional">Method of manufactured solution (optional)</a></li>
 </ul>
             </nav>
         </div>
@@ -362,7 +363,7 @@ document.write(`
 <h2>Vibration equation<a class="headerlink" href="#vibration-equation" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-3-319-55456-3_1">vibration equation</a> can be written as</p>
 <div class="math notranslate nohighlight" id="equation-helmholtz">
-<span class="eqno">(3)<a class="headerlink" href="#equation-helmholtz" title="Link to this equation">#</a></span>\[ 
+<span class="eqno">()<a class="headerlink" href="#equation-helmholtz" title="Link to this equation">#</a></span>\[ 
 \begin{equation}
 u^{''} + \omega^2 u = 0, \, t \in (0, T], \, u(0)=I, u'(0) = 0,
 \end{equation}
@@ -647,6 +648,114 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 </section>
+<section id="method-of-manufactured-solution-optional">
+<h2>Method of manufactured solution (optional)<a class="headerlink" href="#method-of-manufactured-solution-optional" title="Link to this heading">#</a></h2>
+<p>We will now use the method of manufactured solutions (MMS) to verify that the solver works. This is a method that will be used a lot throughout the course.</p>
+<p>With the MMS we first need to assume that we know the solution. For example, we assume that the solution is</p>
+<div class="math notranslate nohighlight">
+\[ u(t) = t^2. \]</div>
+<p>It is important that the solution satisfies the boundary conditions: <span class="math notranslate nohighlight">\(u(0)=0\)</span> and <span class="math notranslate nohighlight">\(u'(0)=0\)</span>. However, if we plug the solution into the Helmholtz equation, we do not get a zero right hand side</p>
+<div class="math notranslate nohighlight">
+\[ u'' + \omega^2 u = 2 + \omega^2 t^2 \ne 0. \]</div>
+<p>So we need to use a nonzero right hand side of Eq. <a class="reference internal" href="#equation-helmholtz">()</a>. Since in this case <span class="math notranslate nohighlight">\(u=t^2\)</span> we get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+u'' + {\omega^2 u} &amp;= 2 + \omega^2 u, \\
+u'' &amp;= 2. \\
+\end{align*}
+\end{split}\]</div>
+<p>We also know that a second order accurate finite difference solution should be exact for a second order polynomial. Check:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">uc</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">uc</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The numerical solution is exact!</p>
+<p>Assume now that the solution is</p>
+<div class="math notranslate nohighlight">
+\[ u(t) = t^4. \]</div>
+<p>Initial conditions still ok. Now the equation becomes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{align*}
+u'' + \omega^2 u &amp;= 12 t^2 + \omega^2 t^4, \\
+u'' &amp;= 12 t^2.
+\end{align*}
+\end{split}\]</div>
+<p>Since the solution is a fourth order polynomial, the second order numerical solution will not be exact, but it will converge</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">uc</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">uc</span><span class="o">-</span><span class="mi">12</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
+ 0.02]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a closer look at the numerical accuracy. The finite differece expression for <span class="math notranslate nohighlight">\(u''\)</span> comes from two Taylor expansions around <span class="math notranslate nohighlight">\(t_n\)</span></p>
+<div class="math notranslate nohighlight" id="equation-t0">
+<span class="eqno">()<a class="headerlink" href="#equation-t0" title="Link to this equation">#</a></span>\[
+u^{n+1} = u^n + \Delta t u' + \frac{\Delta t^2}{2}u'' + \frac{\Delta t^3}{6}u''' + \frac{\Delta t^4}{24}u'''' + \cdots 
+\]</div>
+<div class="math notranslate nohighlight" id="equation-t1">
+<span class="eqno">()<a class="headerlink" href="#equation-t1" title="Link to this equation">#</a></span>\[
+u^{n-1} = u^n - \Delta t u' + \frac{\Delta t^2}{2}u'' - \frac{\Delta t^3}{6}u''' + \frac{\Delta t^4}{24}u'''' + \cdots
+\]</div>
+<p>Adding now <a class="reference internal" href="#equation-t0">()</a> and <a class="reference internal" href="#equation-t1">()</a> and we get</p>
+<div class="math notranslate nohighlight">
+\[
+u^{n+1} - 2u^n + u^{n-1} = \Delta t^2 u'' + \frac{\Delta t^4}{12}u'''' + \cdots
+\]</div>
+<p>such that</p>
+<div class="math notranslate nohighlight">
+\[
+u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' + \cdots
+\]</div>
+<p>There is a second order error proportional to <span class="math notranslate nohighlight">\(u''''\)</span>. For <span class="math notranslate nohighlight">\(u=t^2\)</span> we have that <span class="math notranslate nohighlight">\(u''''=0\)</span>, and as such no numerical error for our scheme. For <span class="math notranslate nohighlight">\(u=t^4\)</span> the numerical error is <span class="math notranslate nohighlight">\(2 \Delta t^2\)</span></p>
+<p>We can put the numerical expression into our equation and get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+ u'' + \omega^2 u &amp;= 0, \\
+ \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' + \omega^2 u &amp;= 0, \\
+ \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} + \omega^2 u &amp;= \frac{\Delta t^2}{12}u''''. 
+\end{align*}
+\end{split}\]</div>
+<p>The residual is <span class="math notranslate nohighlight">\(\Delta t^2 u'''' / 12\)</span>.</p>
+<p>Go back and check that the solution for <span class="math notranslate nohighlight">\(u=t^4\)</span> correspond exactly to this residual:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">uc</span><span class="o">-</span><span class="mi">12</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is exact because the next error term will be proportional to the sixth derivative of <span class="math notranslate nohighlight">\(u\)</span>, which is zero for <span class="math notranslate nohighlight">\(u=t^4\)</span>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -679,24 +788,6 @@ A simple, recursive, finite difference method for solving the vibration equation
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="lecture2.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 2</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="lecture4.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 4</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -715,6 +806,7 @@ A simple, recursive, finite difference method for solving the vibration equation
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibration-equation">Vibration equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusted-solver">Adjusted solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solution-optional">Method of manufactured solution (optional)</a></li>
 </ul>
   </nav></div>
 

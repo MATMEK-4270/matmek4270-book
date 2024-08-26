@@ -543,17 +543,17 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 &lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_30680/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_32106/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_30680/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_32106/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_30680/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_32106/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_30680/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_32106/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_30680/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_32106/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_30680/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_32106/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
 </pre></div>
 </div>
@@ -1122,23 +1122,23 @@ U (D^{(2)})^T
 <h2>Matrix form of Poisson’s equation<a class="headerlink" href="#matrix-form-of-poisson-s-equation" title="Link to this heading">#</a></h2>
 <p>Using now that <span class="math notranslate nohighlight">\(\partial^2 u/\partial x^2 = D_x^{(2)}U\)</span> and <span class="math notranslate nohighlight">\(\partial^2 u/\partial y^2 = U(D_y^{(2)})^T\)</span> we can write Poisson’s equation on discretized (and matrix) form as</p>
 <div class="math notranslate nohighlight" id="equation-mat-equation">
-<span class="eqno">(6)<a class="headerlink" href="#equation-mat-equation" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4)<a class="headerlink" href="#equation-mat-equation" title="Link to this equation">#</a></span>\[
 D_x^{(2)} U + U (D_y^{(2)})^T = F,
 \]</div>
 <p>where the mesh function <span class="math notranslate nohighlight">\(F = (f(x_i, y_j))_{i,j=0}^{N_x, N_y}\)</span>.</p>
 <p>However, how can we solve this equation for the unknown <span class="math notranslate nohighlight">\(U\)</span>?</p>
-<p>The problem now is that we cannot (apparently) write Eq. <a class="reference internal" href="#equation-mat-equation">(6)</a> as we normally do for a linear algebra problem</p>
+<p>The problem now is that we cannot (apparently) write Eq. <a class="reference internal" href="#equation-mat-equation">(4)</a> as we normally do for a linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-axb">
-<span class="eqno">(7)<a class="headerlink" href="#equation-axb" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5)<a class="headerlink" href="#equation-axb" title="Link to this equation">#</a></span>\[
 Ax = b,
 \]</div>
 <p>or on index form</p>
 <div class="math notranslate nohighlight" id="equation-axbindex">
-<span class="eqno">(8)<a class="headerlink" href="#equation-axbindex" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6)<a class="headerlink" href="#equation-axbindex" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^{N}a_{ij} x_j = b_i,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the coefficient matrix, <span class="math notranslate nohighlight">\(x\)</span> is the unknown vector and <span class="math notranslate nohighlight">\(b\)</span> is the right hand side vector.</p>
-<p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(6)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(7)</a>. This operation is called vectorization, or the vec-trick.</p>
+<p>However, there is an operation that will help us transform <a class="reference internal" href="#equation-mat-equation">(4)</a> into a regular matrix problem like <a class="reference internal" href="#equation-axb">(5)</a>. This operation is called vectorization, or the vec-trick.</p>
 </section>
 <section id="vectorization-the-vec-trick">
 <h2>Vectorization (the vec-trick)<a class="headerlink" href="#vectorization-the-vec-trick" title="Link to this heading">#</a></h2>
