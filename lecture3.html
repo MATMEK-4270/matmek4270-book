@@ -508,7 +508,7 @@ A simple, recursive, finite difference method for solving the vibration equation
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">P</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">w</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">w</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">w</span> <span class="c1"># Half the stability limit</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">P</span><span class="o">*</span><span class="n">num_periods</span>
     <span class="n">dt_values</span><span class="p">,</span> <span class="n">E_values</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
@@ -533,15 +533,15 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([0.5812225474380722, 1.9588768683386768, 2.012815118570204],
- [4.529736371839108,
-  3.0276628089765527,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1.9588768683386768, 2.012815118570204, 2.005023881055473],
+ [3.0276628089765527,
   0.7788015566949965,
-  0.19297857027753343],
- [5.714285714285714,
-  2.857142857142857,
+  0.19297857027753343,
+  0.04807693295792429],
+ [2.857142857142857,
   1.4285714285714286,
-  0.7142857142857143])
+  0.7142857142857143,
+  0.35714285714285715])
 </pre></div>
 </div>
 </div>
@@ -551,19 +551,19 @@ A simple, recursive, finite difference method for solving the vibration equation
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergence of finite difference method&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t^2)$&#39;</span><span class="p">])</span>
 <span class="kn">from</span> <span class="nn">plotslopes</span> <span class="kn">import</span> <span class="n">slope_marker</span>
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f642f4ec831b832b3e7575f324f18707d5f412f2a74a5d3e593dd881ccf671fa.png" src="_images/f642f4ec831b832b3e7575f324f18707d5f412f2a74a5d3e593dd881ccf671fa.png" />
+<img alt="_images/9e24411a0482ff4ec44548be88e79b9cf1af99273b452604c5687b4ef43a0033.png" src="_images/9e24411a0482ff4ec44548be88e79b9cf1af99273b452604c5687b4ef43a0033.png" />
 </div>
 </div>
 <p>We see that the error has the same slope as <span class="math notranslate nohighlight">\(\Delta t^2\)</span>.</p>
@@ -613,8 +613,7 @@ A simple, recursive, finite difference method for solving the vibration equation
 <span class="sd">    u : array_like</span>
 <span class="sd">        The solution at discrete times t</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
@@ -632,20 +631,20 @@ A simple, recursive, finite difference method for solving the vibration equation
 <span class="n">r2</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">dt2</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">adj_solver</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt2</span><span class="p">,</span> <span class="n">E2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dt</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergence of finite difference method&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Error modified&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t^2)$&#39;</span><span class="p">])</span>
 <span class="kn">from</span> <span class="nn">plotslopes</span> <span class="kn">import</span> <span class="n">slope_marker</span>
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/496f04089451f7a782a1177e0d26843936980839279a84df859ed89dc6ed054c.png" src="_images/496f04089451f7a782a1177e0d26843936980839279a84df859ed89dc6ed054c.png" />
+<img alt="_images/2a1ecd801605a8b242a9f1d1baae36da1e970d4a35185797b165949382ba9989.png" src="_images/2a1ecd801605a8b242a9f1d1baae36da1e970d4a35185797b165949382ba9989.png" />
 </div>
 </div>
 </section>
