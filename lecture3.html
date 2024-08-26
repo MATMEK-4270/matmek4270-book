@@ -343,8 +343,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibration-equation">Vibration equation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solution">Method of manufactured solution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusted-solver">Adjusted solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solution-optional">Method of manufactured solution (optional)</a></li>
 </ul>
             </nav>
         </div>
@@ -358,6 +358,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-3">
 <h1>Lecture 3<a class="headerlink" href="#lecture-3" title="Link to this heading">#</a></h1>
+<p>The presentation for lecture 3 is given <a class="reference external" href="https://matmek-4270.github.io/matmek4270-pres/vibration.html#/title-slide">here</a>.</p>
 <section id="vibration-equation">
 <h2>Vibration equation<a class="headerlink" href="#vibration-equation" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-3-319-55456-3_1">vibration equation</a> can be written as</p>
@@ -404,8 +405,7 @@ A simple, recursive, finite difference method for solving the vibration equation
 <span class="sd">    u : array_like</span>
 <span class="sd">        The solution at discrete times t</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
@@ -480,7 +480,7 @@ A simple, recursive, finite difference method for solving the vibration equation
 <p>and then compute the convergence rates</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convergence_rates</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">dt0</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">num_periods</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">solver</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convergence_rates</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">num_periods</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">solver</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return m-1 empirical estimates of the convergence rate</span>
 <span class="sd">    based on m simulations, where the time step is halved</span>
@@ -490,8 +490,6 @@ A simple, recursive, finite difference method for solving the vibration equation
 <span class="sd">    ----------</span>
 <span class="sd">    m : int</span>
 <span class="sd">        The number of mesh levels</span>
-<span class="sd">    dt0 : int, optional</span>
-<span class="sd">        Time steps per period on coarsest level</span>
 <span class="sd">    num_periods : int, optional</span>
 <span class="sd">        Size of domain is num_periods * 2pi / w</span>
 <span class="sd">    w, I : float, optional</span>
@@ -510,7 +508,7 @@ A simple, recursive, finite difference method for solving the vibration equation
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">P</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">w</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="n">P</span><span class="o">/</span><span class="n">dt0</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">w</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">P</span><span class="o">*</span><span class="n">num_periods</span>
     <span class="n">dt_values</span><span class="p">,</span> <span class="n">E_values</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
@@ -535,15 +533,15 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([2.0036366687367098, 2.000949732819596, 2.0002401060595334],
- [0.13526035155205304,
-  0.033729955960525936,
-  0.008426939670390836,
-  0.0021063843253281175],
- [0.5983986006837702,
-  0.2991993003418851,
-  0.14959965017094254,
-  0.07479982508547127])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([0.5812225474380722, 1.9588768683386768, 2.012815118570204],
+ [4.529736371839108,
+  3.0276628089765527,
+  0.7788015566949965,
+  0.19297857027753343],
+ [5.714285714285714,
+  2.857142857142857,
+  1.4285714285714286,
+  0.7142857142857143])
 </pre></div>
 </div>
 </div>
@@ -565,16 +563,16 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d693097a7bdd45ba77501d917194f7bc2be7c6c7bab0a349417eaad82314cd26.png" src="_images/d693097a7bdd45ba77501d917194f7bc2be7c6c7bab0a349417eaad82314cd26.png" />
+<img alt="_images/f642f4ec831b832b3e7575f324f18707d5f412f2a74a5d3e593dd881ccf671fa.png" src="_images/f642f4ec831b832b3e7575f324f18707d5f412f2a74a5d3e593dd881ccf671fa.png" />
 </div>
 </div>
 <p>We see that the error has the same slope as <span class="math notranslate nohighlight">\(\Delta t^2\)</span>.</p>
 <p>We can write a test for the order of accuracy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_order</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
-    <span class="n">r</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_order</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">num_periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">solver</span><span class="p">):</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">num_periods</span><span class="o">=</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">sol</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-2</span>
 </pre></div>
 </div>
 </div>
@@ -591,8 +589,68 @@ A simple, recursive, finite difference method for solving the vibration equation
 <p>The tolerance in <code class="docutils literal notranslate"><span class="pre">test_order</span></code> is set low <span class="math notranslate nohighlight">\((~10^{-2})\)</span>, because this is a limiting order. Normally, the total error gets contributions from many trailing terms in a Taylor series, scaling as <span class="math notranslate nohighlight">\(\Delta t^2, \Delta t^3, \ldots\)</span>, and all these errors contribute to the total error that we measure. However, as <span class="math notranslate nohighlight">\(\Delta t \rightarrow 0\)</span> the leading error term dominates and we approach an integer order. If we use more and smaller time steps in <code class="docutils literal notranslate"><span class="pre">convergence_rates</span></code>, then we can also set the tolerance lower.</p>
 </div>
 </section>
-<section id="method-of-manufactured-solution">
-<h2>Method of manufactured solution<a class="headerlink" href="#method-of-manufactured-solution" title="Link to this heading">#</a></h2>
+<section id="adjusted-solver">
+<h2>Adjusted solver<a class="headerlink" href="#adjusted-solver" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adj_solver</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Solve Eq. (1)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dt : float</span>
+<span class="sd">        Time step</span>
+<span class="sd">    T : float</span>
+<span class="sd">        End time</span>
+<span class="sd">    I, w : float, optional</span>
+<span class="sd">        Model parameters</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    t : array_like</span>
+<span class="sd">        Discrete times (0, dt, 2*dt, ..., T)</span>
+<span class="sd">    u : array_like</span>
+<span class="sd">        The solution at discrete times t</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+    <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">24</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nt</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">24</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">solver</span><span class="p">)</span>
+<span class="n">r2</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">dt2</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">adj_solver</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt2</span><span class="p">,</span> <span class="n">E2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergence of finite difference method&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Error modified&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t^2)$&#39;</span><span class="p">])</span>
+<span class="kn">from</span> <span class="nn">plotslopes</span> <span class="kn">import</span> <span class="n">slope_marker</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/496f04089451f7a782a1177e0d26843936980839279a84df859ed89dc6ed054c.png" src="_images/496f04089451f7a782a1177e0d26843936980839279a84df859ed89dc6ed054c.png" />
+</div>
+</div>
+</section>
+<section id="method-of-manufactured-solution-optional">
+<h2>Method of manufactured solution (optional)<a class="headerlink" href="#method-of-manufactured-solution-optional" title="Link to this heading">#</a></h2>
 <p>We will now use the method of manufactured solutions (MMS) to verify that the solver works. This is a method that will be used a lot throughout the course.</p>
 <p>With the MMS we first need to assume that we know the solution. For example, we assume that the solution is</p>
 <div class="math notranslate nohighlight">
@@ -699,66 +757,6 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
 </div>
 <p>It is exact because the next error term will be proportional to the sixth derivative of <span class="math notranslate nohighlight">\(u\)</span>, which is zero for <span class="math notranslate nohighlight">\(u=t^4\)</span>.</p>
 </section>
-<section id="adjusted-solver">
-<h2>Adjusted solver<a class="headerlink" href="#adjusted-solver" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adj_solver</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Solve Eq. (1)</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    dt : float</span>
-<span class="sd">        Time step</span>
-<span class="sd">    T : float</span>
-<span class="sd">        End time</span>
-<span class="sd">    I, w : float, optional</span>
-<span class="sd">        Model parameters</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    t : array_like</span>
-<span class="sd">        Discrete times (0, dt, 2*dt, ..., T)</span>
-<span class="sd">    u : array_like</span>
-<span class="sd">        The solution at discrete times t</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-    <span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
-    <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">24</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nt</span><span class="p">):</span>
-        <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">24</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">solver</span><span class="p">)</span>
-<span class="n">r2</span><span class="p">,</span> <span class="n">E2</span><span class="p">,</span> <span class="n">dt2</span> <span class="o">=</span> <span class="n">convergence_rates</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">sol</span><span class="o">=</span><span class="n">adj_solver</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">E</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt2</span><span class="p">,</span> <span class="n">E2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergence of finite difference method&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Error&#39;</span><span class="p">,</span> <span class="s1">&#39;Error modified&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">mathcal</span><span class="si">{O}</span><span class="s1">(</span><span class="se">\\</span><span class="s1">Delta t^2)$&#39;</span><span class="p">])</span>
-<span class="kn">from</span> <span class="nn">plotslopes</span> <span class="kn">import</span> <span class="n">slope_marker</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">E2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/12e8ff74245efd893524043d92554d775826e889857388e78df40e94efa027bc.png" src="_images/12e8ff74245efd893524043d92554d775826e889857388e78df40e94efa027bc.png" />
-</div>
-</div>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -826,8 +824,8 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibration-equation">Vibration equation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solution">Method of manufactured solution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusted-solver">Adjusted solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solution-optional">Method of manufactured solution (optional)</a></li>
 </ul>
   </nav></div>
 
