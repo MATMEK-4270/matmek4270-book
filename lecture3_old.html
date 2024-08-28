@@ -657,65 +657,21 @@ A simple, recursive, finite difference method for solving the vibration equation
 <p>It is important that the solution satisfies the boundary conditions: <span class="math notranslate nohighlight">\(u(0)=0\)</span> and <span class="math notranslate nohighlight">\(u'(0)=0\)</span>. However, if we plug the solution into the Helmholtz equation, we do not get a zero right hand side</p>
 <div class="math notranslate nohighlight">
 \[ u'' + \omega^2 u = 2 + \omega^2 t^2 \ne 0. \]</div>
-<p>So we need to use a nonzero right hand side of Eq. <a class="reference internal" href="#equation-helmholtz">()</a>. Since in this case <span class="math notranslate nohighlight">\(u=t^2\)</span> we get</p>
+<p>So we need to use a nonzero right hand side of Eq. <a class="reference internal" href="#equation-helmholtz">()</a>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align*}
-u'' + {\omega^2 u} &amp;= 2 + \omega^2 u, \\
-u'' &amp;= 2. \\
-\end{align*}
-\end{split}\]</div>
-<p>We also know that a second order accurate finite difference solution should be exact for a second order polynomial. Check:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">uc</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">uc</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The numerical solution is exact!</p>
+\[
+u'' + {\omega^2 u} = 2 + \omega^2 t^2,
+\]</div>
+<p>The point with the manufactured solution is that is satisfies the equation above, which is the same as the original, but with an additional source term. Source terms are not differentiated, so they do not pose any additional difficulty.</p>
 <p>Assume now that the solution is</p>
 <div class="math notranslate nohighlight">
 \[ u(t) = t^4. \]</div>
 <p>Initial conditions still ok. Now the equation becomes</p>
 <div class="math notranslate nohighlight">
-\[\begin{split} 
-\begin{align*}
-u'' + \omega^2 u &amp;= 12 t^2 + \omega^2 t^4, \\
-u'' &amp;= 12 t^2.
-\end{align*}
-\end{split}\]</div>
-<p>Since the solution is a fourth order polynomial, the second order numerical solution will not be exact, but it will converge</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">Nt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">))</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nt</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span> <span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">4</span>
-<span class="n">uc</span> <span class="o">=</span> <span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">u</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">uc</span><span class="o">-</span><span class="mi">12</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02
- 0.02]
-</pre></div>
-</div>
-</div>
-</div>
+\[ 
+u'' + \omega^2 u &amp;= 12 t^2 + \omega^2 t^4, 
+\]</div>
+<p>Since the solution is a fourth order polynomial, the second order numerical method will not be exact, but it will converge to the right solution.</p>
 <p>Let’s take a closer look at the numerical accuracy. The finite differece expression for <span class="math notranslate nohighlight">\(u''\)</span> comes from two Taylor expansions around <span class="math notranslate nohighlight">\(t_n\)</span></p>
 <div class="math notranslate nohighlight" id="equation-t0">
 <span class="eqno">()<a class="headerlink" href="#equation-t0" title="Link to this equation">#</a></span>\[
@@ -750,6 +706,16 @@ u'' = \frac{u^{n+1} - 2u^n + u^{n-1}}{\Delta t^2} - \frac{\Delta t^2}{12}u'''' +
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">uc</span><span class="o">-</span><span class="mi">12</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">uc</span><span class="o">-</span><span class="mi">12</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;uc&#39; is not defined
 </pre></div>
 </div>
 </div>

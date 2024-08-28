@@ -344,6 +344,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibration-equation">Vibration equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusted-solver">Adjusted solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solutions">Method of manufactured solutions</a></li>
 </ul>
             </nav>
         </div>
@@ -647,6 +648,53 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 </section>
+<section id="method-of-manufactured-solutions">
+<h2>Method of manufactured solutions<a class="headerlink" href="#method-of-manufactured-solutions" title="Link to this heading">#</a></h2>
+<p>We will now use the method of manufactured solutions (MMS) to verify that the solver works. This is a method that will be used a lot throughout the course.</p>
+<p>With the MMS we first need to assume that we know the solution. For example, we assume that the solution is</p>
+<div class="math notranslate nohighlight">
+\[ 
+u(t) = t^2. 
+\]</div>
+<p>It is important that the solution satisfies the boundary conditions: <span class="math notranslate nohighlight">\(u(0)=0\)</span> and <span class="math notranslate nohighlight">\(u'(0)=0\)</span>. However, if we plug the solution into the Helmholtz equation, we do not get a zero right hand side</p>
+<div class="math notranslate nohighlight">
+\[ 
+u''(t) + \omega^2 u(t) = 2 + \omega^2 t^2 \ne 0.
+\]</div>
+<p>So we need to use a nonzero right hand side of Eq. <a class="reference internal" href="lecture3_old.html#equation-helmholtz">()</a>:</p>
+<div class="math notranslate nohighlight">
+\[
+u''(t) + \omega^2 u(t) = f(t),
+\]</div>
+<p>where for the chosen manufactured solution <span class="math notranslate nohighlight">\(f(t) = 2 + \omega^2 t^2\)</span>.</p>
+<p>The point with the manufactured solution is that is satisfies the equation above, which is the same as the original, but with an additional source term. Source terms are not differentiated, so they do not pose any additional difficulty.</p>
+<p>Assume now that the solution is</p>
+<div class="math notranslate nohighlight">
+\[ 
+u(t) = t^4.
+\]</div>
+<p>Initial conditions are still ok. Now the equation that satisfies this manufactured solution becomes</p>
+<div class="math notranslate nohighlight">
+\[ 
+u'' + \omega^2 u = 12 t^2 + \omega^2 t^4, 
+\]</div>
+<p>so <span class="math notranslate nohighlight">\(f(t) = 12 t^2 + \omega^2 t^4\)</span>. Since the solution is a fourth order polynomial, the second order numerical method will not be exact, but it will converge to the right solution.</p>
+<p>For the MMS we need to create a solver such that</p>
+<div class="math notranslate nohighlight">
+\[ 
+u^{''} + \omega^2 u = f, \, t \in (0, T], \, u(0)=I, u'(0) = 0,
+\]</div>
+<p>The recursive method becomes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+  u^0 &amp;= I\\
+  u^{1} &amp;= u^0 - \frac{1}{2}\Delta t^2 \omega^2 u^0 + \frac{\Delta}{2} t^2 f^0 \\
+  u^{n+1} &amp;= 2u^n - u^{n-1} - \Delta t^2 \omega^2 u^{n} + \Delta t^2 f^n, \quad n = 1, 2, \ldots, N_t-1,
+\end{align*}
+\end{split}\]</div>
+<p>And the numerical solution obtained can now be compared, using the <span class="math notranslate nohighlight">\(\ell^2\)</span> error norm, with the manufactured solution!</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -715,6 +763,7 @@ A simple, recursive, finite difference method for solving the vibration equation
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibration-equation">Vibration equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjusted-solver">Adjusted solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-manufactured-solutions">Method of manufactured solutions</a></li>
 </ul>
   </nav></div>
 
