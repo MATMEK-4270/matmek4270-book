@@ -897,7 +897,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14e65f7d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1513a1b20&gt;
 </pre></div>
 </div>
 <img alt="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" src="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" />
@@ -1003,9 +1003,9 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e83aa20&gt;,
- &lt;matplotlib.lines.Line2D at 0x14e83a7e0&gt;,
- &lt;matplotlib.lines.Line2D at 0x14e83a9f0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x15147a690&gt;,
+ &lt;matplotlib.lines.Line2D at 0x15147a510&gt;,
+ &lt;matplotlib.lines.Line2D at 0x15147a660&gt;]
 </pre></div>
 </div>
 <img alt="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" src="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" />
@@ -1254,7 +1254,7 @@ $<span class="math notranslate nohighlight">\(
 and set Dirichlet boundary conditions exactly like in 1. for rows 0 and N.</p>
 <p>Note that it is a little bit more difficult to prove fourth order convergence than second. This is because the error disappears fast, and also because even though the error in the finite difference method is leading fourth order, this does not mean that the fifth order is negligible. And the fifth order error is closer to the fourth than the third order is to the second. So you may need to use higher tolerance (tol) for the test_order function.</p>
 </li>
-<li><p>Finally, we would like to extend the solvers to work for any analytical (manufactured) solution.  To this end we need to solve the vibration equation with a non-zero right hand side
+<li><p>Finally, we would like to extend the solvers to work for any <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture3.html#method-of-manufactured-solutions">analytical (manufactured) solution</a>.  To this end we need to solve the vibration equation with a non-zero right hand side
 $<span class="math notranslate nohighlight">\(
  u''+\omega^2 u = f
  \)</span><span class="math notranslate nohighlight">\(
