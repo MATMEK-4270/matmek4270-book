@@ -897,7 +897,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1513a1b20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12816db20&gt;
 </pre></div>
 </div>
 <img alt="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" src="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" />
@@ -1003,9 +1003,9 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x15147a690&gt;,
- &lt;matplotlib.lines.Line2D at 0x15147a510&gt;,
- &lt;matplotlib.lines.Line2D at 0x15147a660&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x128236c60&gt;,
+ &lt;matplotlib.lines.Line2D at 0x128236810&gt;,
+ &lt;matplotlib.lines.Line2D at 0x128236b10&gt;]
 </pre></div>
 </div>
 <img alt="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" src="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" />
@@ -1247,22 +1247,25 @@ C = \begin{bmatrix}
 \[
     \frac{-u^{n+2} + 16u^{n+1}-30u^{n}+16 u^{n-1}-u^{n-2}}{12\Delta t^2} + \omega^2 u^{n}=0, \quad n\in (2, \ldots, N-2) 
     \]</div>
-<p>For <span class="math notranslate nohighlight">\(n=1\)</span> and <span class="math notranslate nohighlight">\(n=N-1\)</span> use a skewed scheme:
-$<span class="math notranslate nohighlight">\(
- \frac{u^{n+4}-6 u^{n+3}+14 u^{n+2}- 4u^{n+1}-15 u^{n} + 10 u^{n-1}}{12 \Delta t^2}
- \)</span>$
-and set Dirichlet boundary conditions exactly like in 1. for rows 0 and N.</p>
+<p>For <span class="math notranslate nohighlight">\(n=1\)</span> and <span class="math notranslate nohighlight">\(n=N-1\)</span> use a skewed scheme:</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{u^{n+4}-6 u^{n+3}+14 u^{n+2}- 4u^{n+1}-15 u^{n} + 10 u^{n-1}}{12 \Delta t^2}
+    \]</div>
+<p>and set Dirichlet boundary conditions exactly like in 1. for rows 0 and N.</p>
 <p>Note that it is a little bit more difficult to prove fourth order convergence than second. This is because the error disappears fast, and also because even though the error in the finite difference method is leading fourth order, this does not mean that the fifth order is negligible. And the fifth order error is closer to the fourth than the third order is to the second. So you may need to use higher tolerance (tol) for the test_order function.</p>
 </li>
-<li><p>Finally, we would like to extend the solvers to work for any <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture3.html#method-of-manufactured-solutions">analytical (manufactured) solution</a>.  To this end we need to solve the vibration equation with a non-zero right hand side
-$<span class="math notranslate nohighlight">\(
- u''+\omega^2 u = f
- \)</span><span class="math notranslate nohighlight">\(
- where \)</span>f(t)<span class="math notranslate nohighlight">\( will depend on the chosen manufactured solution \)</span>u_e(t)<span class="math notranslate nohighlight">\(. Modify the solver VibFD2 such that the modified vibration equation is solved and verify the implementation. It should still be second order accurate. Test using both \)</span>u(t)=t^4<span class="math notranslate nohighlight">\( and \)</span>u(t)=\exp(\sin t)<span class="math notranslate nohighlight">\(. Note: do not use a too big domain and set the boundary conditions using the exact \)</span>u(0)<span class="math notranslate nohighlight">\( and \)</span>u(T)$. This way T does not need to be n*pi/w, which is required for the exact cosine solution.</p>
-<p>For this equation you should use sympy, both to set the exact solution and to compute <span class="math notranslate nohighlight">\(f(t)\)</span>. The numerical scheme is 
-$<span class="math notranslate nohighlight">\(
- \frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^{n}=f^n, \quad n\in (1, 2, \ldots, N-1)
- \)</span>$</p>
+<li><p>Finally, we would like to extend the solvers to work for any <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture3.html#method-of-manufactured-solutions">analytical (manufactured) solution</a>.  To this end we need to solve the vibration equation with a non-zero right hand side</p>
+<div class="math notranslate nohighlight">
+\[
+    u''+\omega^2 u = f
+    \]</div>
+<p>where <span class="math notranslate nohighlight">\(f(t)\)</span> will depend on the chosen manufactured solution <span class="math notranslate nohighlight">\(u_e(t)\)</span>. Modify the solver VibFD2 such that the modified vibration equation is solved and verify the implementation. It should still be second order accurate. Test using both <span class="math notranslate nohighlight">\(u(t)=t^4\)</span> and <span class="math notranslate nohighlight">\(u(t)=\exp(\sin t)\)</span>. Note: do not use a too big domain and set the boundary conditions using the exact <span class="math notranslate nohighlight">\(u(0)\)</span> and <span class="math notranslate nohighlight">\(u(T)\)</span>. This way T does not need to be n*pi/w, which is required for the exact cosine solution.</p>
+<p>For this equation you should use sympy, both to set the exact solution and to compute <span class="math notranslate nohighlight">\(f(t)\)</span>. The numerical scheme is</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^{n}=f^n, \quad n\in (1, 2, \ldots, N-1)
+    \]</div>
 <p>Note: This assignment is exactly like 1., except that you need to include <span class="math notranslate nohighlight">\(f^n\)</span> in the assembled right hand side vector.</p>
 </li>
 </ol>
