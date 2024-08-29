@@ -342,9 +342,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-finite-difference-method">The Finite difference method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-approach">Matrix approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-vibration-problem">The vibration problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-value-problems-ivps">Initial Value Problems (IVPs)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-value-problems-bvps">Boundary Value Problems (BVPs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-vibration-problem">The vibration problem</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differentiation-matrices">Finite differentiation matrices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-derivative">First derivative</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-equations-using-fd-matrices">Solve equations using FD matrices</a></li>
@@ -363,15 +365,14 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-4">
 <h1>Lecture 4<a class="headerlink" href="#lecture-4" title="Link to this heading">#</a></h1>
-<section id="the-finite-difference-method">
-<h2>The Finite difference method<a class="headerlink" href="#the-finite-difference-method" title="Link to this heading">#</a></h2>
-<p>The finite difference method divides (in 1D) the line into a mesh and solves equations only for specific locations (nodes) in the mesh. A mesh is created with <span class="math notranslate nohighlight">\(t = 0, \Delta t, 2\Delta t, \ldots, N \Delta t\)</span>, where <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span> and <span class="math notranslate nohighlight">\(T=t_N = N \Delta t\)</span>.</p>
-<p><img alt="tikz" src="_images/line.png" /></p>
-<p>Up until now we have solved equations by using a recurrence approach. This is very easy to implement intuitively using for-loops. However, the most common and general use of finite difference methods is through explicit assembling of matrices.</p>
-<p>Consider the decay model first</p>
+<section id="initial-value-problems-ivps">
+<h2>Initial Value Problems (IVPs)<a class="headerlink" href="#initial-value-problems-ivps" title="Link to this heading">#</a></h2>
+<p>Up until now we have considered the exponential decay model and the vibration equation. We have studied the problems as recurrence relations, or marching problems. Such problems specify initial conditions at the outset of the simulation, and then moves the solution forward in time from that point. Such problems are also classified as Initial Value Problems (IVPs).</p>
+<p>The marching methods are very easy to implement intuitively using for-loops. The solution at <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is simply computed from the previous solutions <span class="math notranslate nohighlight">\(u^n, u^{n-1}, \ldots\)</span> and there is really no need for linear algebra.</p>
+<p>We have previously considered the decay model</p>
 <div class="math notranslate nohighlight">
 \[ u' + au = 0, t \in (0, T], \, u(0)=I. \]</div>
-<p>We create a solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^0, u^1, \ldots, u^{N_t})\)</span>. To solve recursively, we start by setting <span class="math notranslate nohighlight">\(u^0=I\)</span>, and then recursively solve</p>
+<p>In order to solve this problem we create a solution vector <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^0, u^1, \ldots, u^{N_t})\)</span>, set <span class="math notranslate nohighlight">\(u^0=I\)</span> and continue to solve the recurrence relation</p>
 <div class="math notranslate nohighlight">
 \[ \frac{u^{n+1}-u^n}{\Delta t} = -a (\theta u^{n+1} + (1-\theta) u^n) \quad \text{for}\, n=1, 2, \ldots, N.\]</div>
 <p>Rearranged</p>
@@ -418,39 +419,16 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="matrix-approach">
-<h2>Matrix approach<a class="headerlink" href="#matrix-approach" title="Link to this heading">#</a></h2>
-<p>The recursive approach never assembles the <span class="math notranslate nohighlight">\(N+1\)</span> linear equations, it just steps forward, solving <span class="math notranslate nohighlight">\(u^{n+1}\)</span> from <span class="math notranslate nohighlight">\(u^n\)</span>. The matrix approach is simply an approach where all the linear equations are assembled first as a matrix problem. The matrix formulation for the generic problem is</p>
+<section id="boundary-value-problems-bvps">
+<h2>Boundary Value Problems (BVPs)<a class="headerlink" href="#boundary-value-problems-bvps" title="Link to this heading">#</a></h2>
+<p>Boundary Value Problems are classified as problems where the solution is known at the entire boundary. For one-dimensional equations in a domain <span class="math notranslate nohighlight">\(x\in [0, T]\)</span> this means that the solution <span class="math notranslate nohighlight">\(u(t)\)</span> is known both at <span class="math notranslate nohighlight">\(t=0\)</span> and at <span class="math notranslate nohighlight">\(t=T\)</span>. BVPs demand a different kind of numerical method than IVPs, but we can still use finite differences. Contrary to IVPs, BVPs make heavy use of linear algebra.</p>
+<p>The exponential decay problem is not really considered a BVP, because the solution is only specified at one edge of the domain. This is sufficient because the equation contains only one derivative, and thus one boundary condition is enough. However, we can still look at the exponential decay problem using a linear algebra approach, where all equations to solve are assembled first into matrices and vectors, and then solved in the end.</p>
+<p>A generic matrix problem is often formulated as</p>
 <div class="math notranslate nohighlight">
 \[
 A \boldsymbol{u} = \boldsymbol{b},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} \in \mathbb{R}^{N+1}\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol{b} \in \mathbb{R}^{N+1}\)</span> and  the matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(N+1) \times (N+1)}\)</span> is the coefficient matrix, that for the decay problem is</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-A = \begin{bmatrix} 
- 1  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
- -g  &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
- 0  &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
- 0  &amp; 0 &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
- 0  &amp; 0 &amp; 0 &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
- 0  &amp; 0 &amp; 0 &amp; 0 &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0  \\
- 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -g &amp; 1 &amp; 0 &amp; 0  \\
- 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -g &amp; 1 &amp; 0  \\
- 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -g &amp; 1  
-\end{bmatrix}
-\end{split}\]</div>
-<p>We have a linear algebra problem</p>
-<div class="math notranslate nohighlight">
-\[
-A \boldsymbol{u} = \boldsymbol{b},
-\]</div>
-<p>which is trivially solved by Gaussian elimination or simply a forward elimination.</p>
-<div class="math notranslate nohighlight">
-\[
-\boldsymbol{u} = A^{-1} \boldsymbol{b}.
-\]</div>
-<p>The system to solve looks like</p>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} \in \mathbb{R}^{N+1}\)</span> is the unknown solution vector, <span class="math notranslate nohighlight">\(\boldsymbol{b} \in \mathbb{R}^{N+1}\)</span> and the matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{(N+1) \times (N+1)}\)</span> is the generic coefficient matrix. It should be relatively easy to see that the decay problem above may be assembled into the linear algebra problem</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
  \underbrace{
@@ -474,8 +452,7 @@ u^4 \\
 u^5 \\
 u^6 \\
 u^7 \\
-u^8 \\
-u^9
+u^8 
 \end{bmatrix}}_{\boldsymbol{u}} = 
 \underbrace{\begin{bmatrix}
 I \\
@@ -489,12 +466,31 @@ I \\
 0 
 \end{bmatrix}}_{\boldsymbol{b}}
 \end{split}\]</div>
-<p>Notice the boundary condition in row 0. The remaining <span class="math notranslate nohighlight">\(N\)</span> rows (equations) use the same stencil.</p>
+<p>Notice the boundary condition in row 0. The remaining <span class="math notranslate nohighlight">\(N\)</span> rows (equations) use exactly the same stencil. The fact that this is still the same recurrence problem may perhaps be more easily understood if you realize that the matrix-vector product <span class="math notranslate nohighlight">\(A \boldsymbol{u}\)</span> becomes the vector</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A\boldsymbol{u} = \begin{bmatrix}
+u^0 \\
+-gu^0+u^1 \\
+-gu^1+u^2 \\
+-gu^2+u^3 \\
+-gu^3+u^4 \\
+-gu^4+u^5 \\
+-gu^5+u^6 \\
+-gu^6+u^7 \\
+-gu^7+u^8 
+\end{bmatrix}
+\end{split}\]</div>
+<p>The linear algebra problem is trivially solved by Gaussian elimination or simply a forward elimination.</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{u} = A^{-1} \boldsymbol{b}.
+\]</div>
 <p>We can assemble the matrix <span class="math notranslate nohighlight">\(A\)</span> using the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.html">scipy.sparse</a> package</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="n">g</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;csr&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;csr&#39;</span><span class="p">)</span>
 <span class="n">A</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -538,7 +534,7 @@ I \\
 </div>
 </div>
 </div>
-<p>The solution is the same as before:</p>
+<p>The solution is exactly the same as computed with the recurrence relation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">un</span><span class="o">-</span><span class="n">u</span>
@@ -551,28 +547,23 @@ I \\
 </div>
 </div>
 </div>
-</section>
+<p>This linear algebra approach seems to take more effort than the simple marching methods, so why do we need it? Well, sometimes it makes more sense to specify boundary conditions on both sides of the domain and in that case the marching methods may not be optimal. The vibration problem from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture3.html">lecture 3</a> is actually more common to solve as a boundary value problem. Consider a guitar string that vibrates. We know that the guitar string is kept still at both edges of the domain and as such we would like to specify the solution at both these points. Like a Boundary Value Problem.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Shooting_method">shooting method</a> reduces a BVP to an IVP and iteratively solves the problem using marching methods. The target of the iterations is to “hit” the correct boundary value at the end of the domain, which explains the name <code class="docutils literal notranslate"><span class="pre">shooting</span> <span class="pre">method</span></code>.</p>
+</div>
 <section id="the-vibration-problem">
-<h2>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Link to this heading">#</a></h2>
+<h3>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Link to this heading">#</a></h3>
+<p>Lets consider the vibration problem as a boundary value problem</p>
 <div class="math notranslate nohighlight">
 \[
-u'' + \omega^2 u = 0,\, t \in (0, T] \quad u(0) = I, u'(0) = 0,
+u'' + \omega^2 u = 0,\, t \in (0, T) \quad u(0) = u(T) = I.
 \]</div>
-<p>is solved using a central difference for <span class="math notranslate nohighlight">\(n=1, 2, \ldots, N-1\)</span></p>
+<p>Boundary value problems cannot be solved easily using marching methods, but the linear algebra FD approach is perfect.  Lets solve the problem using a central difference for <span class="math notranslate nohighlight">\(n=1, 2, \ldots, N-1\)</span> and specify the solution for <span class="math notranslate nohighlight">\(n=0\)</span> and <span class="math notranslate nohighlight">\(n=N\)</span>. For all internal nodes the equation to solve is</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^n = 0.
 \]</div>
-<p>The recurrence algorithm is</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(u^0 = I\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(u^1 = u^0(1 - 0.5 \omega^2 \Delta t^2)\)</span></p></li>
-<li><p>for n = 1, 2, … , N-1</p>
-<ul>
-<li><p><span class="math notranslate nohighlight">\(u^{n+1} = (2-\omega^2 \Delta t^2 ) u^n - u^{n-1}\)</span></p></li>
-</ul>
-</li>
-</ul>
 <p>The algebraic problem</p>
 <div class="math notranslate nohighlight">
 \[ A \boldsymbol{u} = \boldsymbol{b}, \]</div>
@@ -581,14 +572,14 @@ u'' + \omega^2 u = 0,\, t \in (0, T] \quad u(0) = I, u'(0) = 0,
 \[\begin{split}
 \begin{bmatrix} 
  1  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
- -{g}/{2} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
  1  &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
  0  &amp; 1 &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
  0  &amp; 0 &amp; 1 &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
  0  &amp; 0 &amp; 0 &amp; 1 &amp; -g &amp; 1 &amp; 0 &amp; 0 &amp; 0  \\
  0  &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -g &amp; 1 &amp; 0 &amp; 0  \\
  0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -g &amp; 1 &amp; 0  \\
- 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -g &amp; 1  
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; -g &amp; 1  \\
+ 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1  
 \end{bmatrix}
 \begin{bmatrix}
 u^0 \\
@@ -599,12 +590,11 @@ u^4 \\
 u^5 \\
 u^6 \\
 u^7 \\
-u^8 \\
-u^9
+u^8
 \end{bmatrix}
 =
 \begin{bmatrix}
-I \\
+0 \\
 0 \\
 0 \\
 0 \\
@@ -617,12 +607,9 @@ I \\
 \end{split}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Notice that the matrix is lower triangular. Matrices that are lower or upper triangular are especially quick to solve for using forward or backward substitution.</p>
+<p>Notice that the matrix contains items both over and under the main diagonal, which characterizes an <strong>implicit</strong> method. Compare this with the <strong>explicit</strong> marching method, where all the matrix items were on the main diagonal or below (lower triangular).</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The matrices are here lower triangular because the 2 boundary conditions are specified at one end of the domain. The scheme is explicit, the unknown <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is not used in computing the source term.</p>
-</div>
+</section>
 </section>
 <section id="finite-differentiation-matrices">
 <h2>Finite differentiation matrices<a class="headerlink" href="#finite-differentiation-matrices" title="Link to this heading">#</a></h2>
@@ -773,7 +760,7 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 <p>Try the same, but with only first order accurate edges</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2e</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2e</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
 <span class="n">D2e</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
 <span class="n">D2e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">D2e</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -851,7 +838,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
 <span class="n">D1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
 <span class="n">D1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
 <span class="n">D1</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
@@ -897,7 +884,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12816db20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b955b20&gt;
 </pre></div>
 </div>
 <img alt="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" src="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" />
@@ -968,7 +955,7 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
 <span class="n">D1</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span> <span class="c1"># Fix boundaries with second order accurate stencil</span>
 <span class="n">D1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
 <span class="n">D1</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
@@ -998,16 +985,11 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x128236c60&gt;,
- &lt;matplotlib.lines.Line2D at 0x128236810&gt;,
- &lt;matplotlib.lines.Line2D at 0x128236b10&gt;]
-</pre></div>
-</div>
 <img alt="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" src="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" />
 </div>
 </div>
@@ -1018,34 +1000,34 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 <p>It is possible to derive finite difference stencils of any order from the Taylor expansions around a point in both positive and negative directions. The generic Taylor expansion around <span class="math notranslate nohighlight">\(x=x_0\)</span> reads</p>
 <div class="math notranslate nohighlight">
 \[
-u(x) = \sum_{i=0}^{N} \frac{(x-x_0)^i}{i!} u^{(i)}(x_0) + \mathcal{O}((x-x_0)^{N+1}),
+u(x) = \sum_{i=0}^{M} \frac{(x-x_0)^i}{i!} u^{(i)}(x_0) + \mathcal{O}((x-x_0)^{M+1}),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(u^{(i)}(x_0) = \frac{d^{i}u}{dx^{i}}|_{x=x_0}\)</span>.</p>
-<p>With the finite difference method we only evaluate this expansion for certain points around <span class="math notranslate nohighlight">\(x_0\)</span>. That is, we use only <span class="math notranslate nohighlight">\(x=x_0+mh\)</span>, where <span class="math notranslate nohighlight">\(m\)</span> is an integer and <span class="math notranslate nohighlight">\(h\)</span> is a constant (time step or mesh size). We get</p>
+<p>where <span class="math notranslate nohighlight">\(u^{(i)}(x_0) = \frac{d^{i}u}{dx^{i}}|_{x=x_0}\)</span> and the order of the approximation is <span class="math notranslate nohighlight">\(M+1\)</span>.</p>
+<p>With the finite difference method we only evaluate this expansion for certain points around <span class="math notranslate nohighlight">\(x_0\)</span>. That is, we use only <span class="math notranslate nohighlight">\(x=x_0+ph\)</span>, where <span class="math notranslate nohighlight">\(p\)</span> is an integer and <span class="math notranslate nohighlight">\(h\)</span> is a constant (time step or mesh size). We get</p>
 <div class="math notranslate nohighlight">
 \[
-u(x_0+mh) = \sum_{i=0}^{N} \frac{(mh)^i}{i!} u^{(i)}(x_0) + \mathcal{O}(h^{N+1}),
+u(x_0+ph) = \sum_{i=0}^{M} \frac{(ph)^i}{i!} u^{(i)}(x_0) + \mathcal{O}(h^{M+1}),
 \]</div>
-<p>where we usually use the finite difference notation <span class="math notranslate nohighlight">\(u^{n+m} = u(x_0+mh)\)</span>. Note that the equation above is a matrix vector product, because <span class="math notranslate nohighlight">\(\frac{(mh)^i}{i!}\)</span> has two indices <span class="math notranslate nohighlight">\(m, i\)</span> like a matrix and <span class="math notranslate nohighlight">\(u^{(i)}(x_0)\)</span> and <span class="math notranslate nohighlight">\(u(x_0+mh)\)</span> have both only one (<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(m\)</span>, respectively). With <span class="math notranslate nohighlight">\(c_{mi} = \frac{(mh)^i}{i!}\)</span> and <span class="math notranslate nohighlight">\(du_i = u^{(i)}(x_0)\)</span> and neglecting the <span class="math notranslate nohighlight">\(\mathcal{O}(h^{N+1})\)</span> terms we get</p>
+<p>where we usually use the finite difference notation <span class="math notranslate nohighlight">\(u^{n+p} = u(x_0+ph)\)</span>. Note that the equation above is a matrix vector product, because <span class="math notranslate nohighlight">\(\frac{(ph)^i}{i!}\)</span> has two indices <span class="math notranslate nohighlight">\(p, i\)</span> like a matrix and <span class="math notranslate nohighlight">\(u^{(i)}(x_0)\)</span> and <span class="math notranslate nohighlight">\(u(x_0+ph)\)</span> have both only one (<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(p\)</span>, respectively). With <span class="math notranslate nohighlight">\(c_{pi} = \frac{(ph)^i}{i!}\)</span> and <span class="math notranslate nohighlight">\(du_i = u^{(i)}(x_0)\)</span> and neglecting the <span class="math notranslate nohighlight">\(\mathcal{O}(h^{M+1})\)</span> terms we get</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+m} = \sum_{i=0}^{N} c_{mi} du_i,
+u^{n+p} = \sum_{i=0}^{M} c_{pi} du_i,
 \]</div>
 <p>or in matrix notation</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol{u} = C \boldsymbol{du},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^{n+m})_{m=m_0}^{N+m_0}\)</span>, <span class="math notranslate nohighlight">\(C = (c_{m+m_0,i})_{m,i=0}^{N,N}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{du}=(du_i)_{i=0}^N\)</span>. Here <span class="math notranslate nohighlight">\(m_0\)</span> is an integer representing the lowest value of <span class="math notranslate nohighlight">\(m\)</span> in the stencil.</p>
-<p>We can set up a system of equations for <span class="math notranslate nohighlight">\(m_0=-2\)</span> and <span class="math notranslate nohighlight">\(N=4\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} = (u^{n+p})_{p=p_0}^{M+p_0}\)</span>, <span class="math notranslate nohighlight">\(C = (c_{p+p_0,i})_{p,i=0}^{M,M}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{du}=(du_i)_{i=0}^M\)</span>. Here <span class="math notranslate nohighlight">\(p_0\)</span> is an integer representing the lowest value of <span class="math notranslate nohighlight">\(p\)</span> in the stencil.</p>
+<p>We can set up a system of equations for <span class="math notranslate nohighlight">\(p_0=-2\)</span> and <span class="math notranslate nohighlight">\(M=4\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-u^{n-2} &amp;= \sum_{i=0}^{N} \frac{(-2h)^i}{i!} du_i  \\
-u^{n-1} &amp;= \sum_{i=0}^{N} \frac{(-h)^i}{i!} du_i  \\
+u^{n-2} &amp;= \sum_{i=0}^{M} \frac{(-2h)^i}{i!} du_i  \\
+u^{n-1} &amp;= \sum_{i=0}^{M} \frac{(-h)^i}{i!} du_i  \\
 u^{n} &amp;= u^{n} \\
-u^{n+1} &amp;= \sum_{i=0}^{N} \frac{(h)^i}{i!} du_i  \\
-u^{n+2} &amp;= \sum_{i=0}^{N} \frac{(2h)^i}{i!} du_i  \\
+u^{n+1} &amp;= \sum_{i=0}^{M} \frac{(h)^i}{i!} du_i  \\
+u^{n+2} &amp;= \sum_{i=0}^{M} \frac{(2h)^i}{i!} du_i  \\
 \end{align*}
 \end{split}\]</div>
 <p>These 5 equations can be written in matrix form as</p>
@@ -1083,12 +1065,12 @@ du_4
 \[
 \boldsymbol{du} = C^{-1} \boldsymbol{u}.
 \]</div>
-<p>For example, for a second order accurate scheme (with <span class="math notranslate nohighlight">\(m=-1, 0, 1\)</span>) we should have</p>
+<p>For example, for a second order accurate scheme (with <span class="math notranslate nohighlight">\(p=-1, 0, 1\)</span>) we should have</p>
 <div class="math notranslate nohighlight">
 \[
 du_2 = u^{(2)}(x_0) = \frac{u^{n+1}-2u^n+u^{n-1}}{h^2}.
 \]</div>
-<p>Let’s derive this with the approach above. The scheme is central so we use <span class="math notranslate nohighlight">\(m=(-1, 0, 1)\)</span> and second order so use <span class="math notranslate nohighlight">\(N=2\)</span>. The <span class="math notranslate nohighlight">\(C\)</span> matrix is then</p>
+<p>Let’s derive this with the approach above. The scheme is central so we use <span class="math notranslate nohighlight">\(m=(-1, 0, 1)\)</span> and second order so use <span class="math notranslate nohighlight">\(M=2\)</span>. The <span class="math notranslate nohighlight">\(C\)</span> matrix is then</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 C = \begin{bmatrix}
@@ -1124,7 +1106,7 @@ C = \begin{bmatrix}
 \[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 0\\- \frac{1}{2 h} &amp; 0 &amp; \frac{1}{2 h}\\\frac{1}{h^{2}} &amp; - \frac{2}{h^{2}} &amp; \frac{1}{h^{2}}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
-<p>The second order central schemes are found in the last two rows. Row 1 is the first derivative, row 2 the second derivative (i.e., row one is <span class="math notranslate nohighlight">\(du_1\)</span> and row 2 <span class="math notranslate nohighlight">\(du_2\)</span>). We can also print out the scheme by computing</p>
+<p>The second order central schemes are found in the last two rows. Row 1 is the first derivative, row 2 the second derivative (i.e., row 1 is <span class="math notranslate nohighlight">\(du_1\)</span> and row 2 <span class="math notranslate nohighlight">\(du_2\)</span>). We can also print out the scheme by computing</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol{du} = C^{-1} \boldsymbol{u}.
@@ -1132,7 +1114,7 @@ C = \begin{bmatrix}
 <p>For given order 2 we get</p>
 <div class="math notranslate nohighlight">
 \[
-du_2 = \sum_{i=0}^N c_{2i} u^{n-i-1}.
+du_2 = \sum_{i=0}^2 c_{2i} u^{n-i-1}.
 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1147,7 +1129,39 @@ du_2 = \sum_{i=0}^N c_{2i} u^{n-i-1}.
 \[\displaystyle \left[\begin{matrix}- \frac{2 u{\left(x \right)}}{h^{2}} + \frac{u{\left(- h + x \right)}}{h^{2}} + \frac{u{\left(h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
 </div>
 </div>
-<p>We can get any finite difference scheme using all the points that we like. For example, to create a forward difference of the second derivative using inly <span class="math notranslate nohighlight">\(u^n, u^{n+1}\)</span> and <span class="math notranslate nohighlight">\(u^{n+2}\)</span> we can use <span class="math notranslate nohighlight">\(m=0, 1, 2\)</span> and <span class="math notranslate nohighlight">\(N=2\)</span></p>
+<p>We can get any finite difference scheme using all the points that we like. To this end let us create a function that computes the matrix <span class="math notranslate nohighlight">\(C\)</span> given any <span class="math notranslate nohighlight">\(m_0\)</span> and <span class="math notranslate nohighlight">\(N\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Cmat</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+<span class="w">  </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Return Taylor expansion matrix C</span>
+
+<span class="sd">  .. math::</span>
+
+<span class="sd">    c_{p0+p, i} = (pi)^{i}/i! \in \mathbb{R}^{M+1 \times M+1}</span>
+<span class="sd">      </span>
+<span class="sd">    where p = (p0, p0+1, ..., p0+M) and i = 0, 1, ..., M-1</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  p0 : int</span>
+<span class="sd">    The lowest index in the stencil</span>
+<span class="sd">  M : int</span>
+<span class="sd">    The shape of the returned matrix is M+1 x M+1</span>
+
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  Matrix of type object and shape M+1 x M+1</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">p0</span><span class="o">+</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+      <span class="n">C</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">**</span><span class="n">i</span> <span class="o">/</span> <span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+  <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example, to create a forward difference of the second derivative using inly <span class="math notranslate nohighlight">\(u^n, u^{n+1}\)</span> and <span class="math notranslate nohighlight">\(u^{n+2}\)</span> we can use <span class="math notranslate nohighlight">\(p=0, 1, 2\)</span> and <span class="math notranslate nohighlight">\(M=2\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 C = \begin{bmatrix}
@@ -1158,7 +1172,7 @@ C = \begin{bmatrix}
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">Cmat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">coef</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">),</span> <span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)])</span>
 <span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
 </pre></div>
@@ -1169,7 +1183,7 @@ C = \begin{bmatrix}
 \[\displaystyle \left[\begin{matrix}\frac{u{\left(x \right)}}{h^{2}} - \frac{2 u{\left(h + x \right)}}{h^{2}} + \frac{u{\left(2 h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
 </div>
 </div>
-<p>However, this scheme will only be first order accurate, because it is not central. A second order scheme needs to use one more point, and thus <span class="math notranslate nohighlight">\(m=0,1,2,3\)</span> and <span class="math notranslate nohighlight">\(N=3\)</span></p>
+<p>However, this scheme will only be first order accurate, because it is not central. A second order scheme needs to use one more point, and thus <span class="math notranslate nohighlight">\(p=0,1,2,3\)</span> and <span class="math notranslate nohighlight">\(M=3\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 C = \begin{bmatrix}
@@ -1181,7 +1195,7 @@ C = \begin{bmatrix}
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">9</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">27</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">Cmat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1203,9 +1217,10 @@ C = \begin{bmatrix}
 \[\displaystyle \left[\begin{matrix}\frac{2 u{\left(x \right)}}{h^{2}} - \frac{5 u{\left(h + x \right)}}{h^{2}} + \frac{4 u{\left(2 h + x \right)}}{h^{2}} - \frac{u{\left(3 h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
 </div>
 </div>
+<p>Backward difference:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">9</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">27</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">Cmat</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1337,9 +1352,11 @@ C = \begin{bmatrix}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-finite-difference-method">The Finite difference method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-approach">Matrix approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-vibration-problem">The vibration problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-value-problems-ivps">Initial Value Problems (IVPs)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-value-problems-bvps">Boundary Value Problems (BVPs)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-vibration-problem">The vibration problem</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-differentiation-matrices">Finite differentiation matrices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-derivative">First derivative</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-equations-using-fd-matrices">Solve equations using FD matrices</a></li>
