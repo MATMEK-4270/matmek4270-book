@@ -613,7 +613,7 @@ I
 <p class="admonition-title">Note</p>
 <p>We have applied boundary conditions <span class="math notranslate nohighlight">\(u^0=I\)</span> and <span class="math notranslate nohighlight">\(u^N=I\)</span> by modifying the first and last row of <span class="math notranslate nohighlight">\(A\)</span> as well al setting <span class="math notranslate nohighlight">\(b^0=b^N=I\)</span>.</p>
 </div>
-<p>All that remains is to implement and solve the problem:</p>
+<p>All that remains is to implement and solve the linear algebra problem:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> 
@@ -622,13 +622,13 @@ I
 <span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
 <span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">Id</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;lil&#39;</span><span class="p">)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">D2</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Id</span><span class="p">)</span><span class="o">.</span><span class="n">to_lil</span><span class="p">()</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">D2</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Id</span><span class="p">)</span><span class="o">.</span><span class="n">tolil</span><span class="p">()</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1"># Fix first row</span>
 <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># Fix last row</span>
 <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
 <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
-<span class="n">u2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">tocsr</span><span class="p">(),</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">I</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Numerical&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
@@ -636,25 +636,14 @@ I
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">Id</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;lil&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">D2</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Id</span><span class="p">)</span><span class="o">.</span><span class="n">to_lil</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1"># Fix first row</span>
-
-<span class="ne">AttributeError</span>: &#39;csr_matrix&#39; object has no attribute &#39;to_lil&#39;
-</pre></div>
-</div>
+<img alt="_images/c5eec8b1e9d31a7c20cacf2a90394b384d8647603b138337219332ed16935689.png" src="_images/c5eec8b1e9d31a7c20cacf2a90394b384d8647603b138337219332ed16935689.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="finite-differentiation-matrices">
 <h2>Finite differentiation matrices<a class="headerlink" href="#finite-differentiation-matrices" title="Link to this heading">#</a></h2>
-<p>We will now use Taylor expansions more orderly to obtain differentiation matrices. To this end let us first use the following expansions, three which are forward, and one backward:</p>
+<p>We will now use Taylor expansions more generically to obtain differentiation matrices. To this end let us first use the following expansions, three which are forward, and one backward:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -733,6 +722,17 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.,  1.,  0., ...,  0.,  0.,  0.],
+       [ 1., -2.,  1., ...,  0.,  0.,  0.],
+       [ 0.,  1., -2., ...,  0.,  0.,  0.],
+       ...,
+       [ 0.,  0.,  0., ..., -2.,  1.,  0.],
+       [ 0.,  0.,  0., ...,  1., -2.,  1.],
+       [ 0.,  0.,  0., ...,  0.,  1., -2.]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Fix the first and last rows</p>
 <div class="cell docutils container">
@@ -741,6 +741,17 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 <span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
 <span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># don&#39;t forget h</span>
 <span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2., -5.,  4., ...,  0.,  0.,  0.],
+       [ 1., -2.,  1., ...,  0.,  0.,  0.],
+       [ 0.,  1., -2., ...,  0.,  0.,  0.],
+       ...,
+       [ 0.,  0.,  0., ..., -2.,  1.,  0.],
+       [ 0.,  0.,  0., ...,  1., -2.,  1.],
+       [ 0.,  0.,  0., ...,  4., -5.,  2.]])
 </pre></div>
 </div>
 </div>
@@ -753,11 +764,26 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.   , 0.007, 0.029, 0.066, 0.118, 0.184, 0.264, 0.36 , 0.47 ,
+       0.595, 0.735, 0.889, 1.058, 1.242, 1.44 , 1.653, 1.881, 2.123,
+       2.38 , 2.652, 2.939, 3.24 , 3.556, 3.887, 4.232, 4.592, 4.967,
+       5.356, 5.76 , 6.179, 6.612, 7.06 , 7.523, 8.001, 8.493, 9.   ])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2f</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span>
 <span class="n">d2f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2., 2.])
 </pre></div>
 </div>
 </div>
@@ -770,6 +796,13 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 <span class="n">D2e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">D2e</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">D2e</span> <span class="o">@</span> <span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2., 2.,
+       2., 2.])
 </pre></div>
 </div>
 </div>
@@ -791,6 +824,9 @@ u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' +
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd order&#39;</span><span class="p">,</span> <span class="s1">&#39;1st order&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/40773dff0ab5e4a23a0caa4641fd2837e7759dabe41b838a6be978fb565ff55f.png" src="_images/40773dff0ab5e4a23a0caa4641fd2837e7759dabe41b838a6be978fb565ff55f.png" />
 </div>
 </div>
 </section>
@@ -843,11 +879,29 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-3.,  4., -1., ...,  0.,  0.,  0.],
+       [-1.,  0.,  1., ...,  0.,  0.,  0.],
+       [ 0., -1.,  0., ...,  0.,  0.,  0.],
+       ...,
+       [ 0.,  0.,  0., ...,  0.,  1.,  0.],
+       [ 0.,  0.,  0., ..., -1.,  0.,  1.],
+       [ 0.,  0.,  0., ...,  1., -4.,  3.]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">t</span>
 <span class="n">D1</span> <span class="o">@</span> <span class="n">f</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,
+       1., 1.])
 </pre></div>
 </div>
 </div>
@@ -862,12 +916,29 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1249530b0&gt;
+</pre></div>
+</div>
+<img alt="_images/afc2c1acb3f1a7e6881326fb28e57e72cf5d632b6b53d2496ae4bf6e2d1e6c85.png" src="_images/afc2c1acb3f1a7e6881326fb28e57e72cf5d632b6b53d2496ae4bf6e2d1e6c85.png" />
+</div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">D2</span></code> is not equal to <code class="docutils literal notranslate"><span class="pre">(D1)^2</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2n</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">@</span> <span class="n">D1</span>
 <span class="n">D2n</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.25, -2.75,  1.75, ...,  0.  ,  0.  ,  0.  ],
+       [ 0.75, -1.25,  0.25, ...,  0.  ,  0.  ,  0.  ],
+       [ 0.25,  0.  , -0.5 , ...,  0.  ,  0.  ,  0.  ],
+       ...,
+       [ 0.  ,  0.  ,  0.  , ..., -0.5 ,  0.  ,  0.25],
+       [ 0.  ,  0.  ,  0.  , ...,  0.25, -1.25,  0.75],
+       [ 0.  ,  0.  ,  0.  , ...,  1.75, -2.75,  1.25]])
 </pre></div>
 </div>
 </div>
@@ -879,6 +950,11 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 <span class="n">e2</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span> <span class="o">-</span> <span class="n">d2fe</span>
 <span class="n">en</span> <span class="o">=</span> <span class="n">D2n</span> <span class="o">@</span> <span class="n">f</span> <span class="o">-</span> <span class="n">d2fe</span>
 <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">e2</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">en</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.016757325050133623, 0.09739328389407816)
 </pre></div>
 </div>
 </div>
@@ -923,6 +999,17 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  1.   ,   0.   ,   0.   , ...,   0.   ,   0.   ,   0.   ],
+       [ -5.833,   2.   ,   5.833, ...,   0.   ,   0.   ,   0.   ],
+       [  0.   ,  -5.833,   2.   , ...,   0.   ,   0.   ,   0.   ],
+       ...,
+       [  0.   ,   0.   ,   0.   , ...,   2.   ,   5.833,   0.   ],
+       [  0.   ,   0.   ,   0.   , ...,  -5.833,   2.   ,   5.833],
+       [  0.   ,   0.   ,   0.   , ...,   5.833, -23.333,  19.5  ]])
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -930,6 +1017,60 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">u1</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">);</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/matplotlib/pyplot.py:3590,</span> in <span class="ni">plot</span><span class="nt">(scalex, scaley, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3582</span> <span class="nd">@_copy_docstring_and_deprecators</span><span class="p">(</span><span class="n">Axes</span><span class="o">.</span><span class="n">plot</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3583</span> <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3584</span>     <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">ArrayLike</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3588</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3589</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Line2D</span><span class="p">]:</span>
+<span class="ne">-&gt; </span><span class="mi">3590</span>     <span class="k">return</span> <span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3591</span>         <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3592</span>         <span class="n">scalex</span><span class="o">=</span><span class="n">scalex</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3593</span>         <span class="n">scaley</span><span class="o">=</span><span class="n">scaley</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3594</span>         <span class="o">**</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span> <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}),</span>
+<span class="g g-Whitespace">   </span><span class="mi">3595</span>         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3596</span>     <span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/matplotlib/axes/_axes.py:1724,</span> in <span class="ni">Axes.plot</span><span class="nt">(self, scalex, scaley, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1481</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1482</span><span class="sd"> Plot y versus x as lines and/or markers.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1483</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1721</span><span class="sd"> (``&#39;green&#39;``) or hex strings (``&#39;#008000&#39;``).</span>
+<span class="g g-Whitespace">   </span><span class="mi">1722</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1723</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">cbook</span><span class="o">.</span><span class="n">normalize_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1724</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1725</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1726</span>     <span class="bp">self</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/matplotlib/axes/_base.py:303,</span> in <span class="ni">_process_plot_var_args.__call__</span><span class="nt">(self, axes, data, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="n">this</span> <span class="o">+=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="ne">--&gt; </span><span class="mi">303</span> <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plot_args</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>     <span class="n">axes</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">ambiguous_fmt_datakey</span><span class="o">=</span><span class="n">ambiguous_fmt_datakey</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/matplotlib/axes/_base.py:499,</span> in <span class="ni">_process_plot_var_args._plot_args</span><span class="nt">(self, axes, tup, kwargs, return_kwargs, ambiguous_fmt_datakey)</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>     <span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">update_units</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+<span class="ne">--&gt; </span><span class="mi">499</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x and y must have same first dimension, but &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span>                      <span class="sa">f</span><span class="s2">&quot;have shapes </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x and y can be no greater than 2D, but have &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span>                      <span class="sa">f</span><span class="s2">&quot;shapes </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: x and y must have same first dimension, but have shapes (36,) and (9,)
+</pre></div>
+</div>
+<img alt="_images/ed677fe7b0f5f38d48caa0ab8c4daf4732bb40f161b78a8109858b641c89bf0d.png" src="_images/ed677fe7b0f5f38d48caa0ab8c4daf4732bb40f161b78a8109858b641c89bf0d.png" />
 </div>
 </div>
 <p>The scheme is not fully implicit in the source term. However, it is using three neighbouring points for every equation, which is more stable than using merely two.</p>
