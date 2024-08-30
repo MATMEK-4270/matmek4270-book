@@ -362,11 +362,9 @@ document.write(`
 <section id="vibration-equation">
 <h2>Vibration equation<a class="headerlink" href="#vibration-equation" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://link.springer.com/chapter/10.1007/978-3-319-55456-3_1">vibration equation</a> can be written as</p>
-<div class="math notranslate nohighlight" id="equation-helmholtz">
-<span class="eqno">(3)<a class="headerlink" href="#equation-helmholtz" title="Link to this equation">#</a></span>\[ 
-\begin{equation}
+<div class="math notranslate nohighlight" id="equation-eq-helmholtz">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-helmholtz" title="Link to this equation">#</a></span>\[ 
 u^{''} + \omega^2 u = 0, \, t \in (0, T], \, u(0)=I, u'(0) = 0,
-\end{equation}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\omega\)</span> and <span class="math notranslate nohighlight">\(I\)</span> are given constants. This equation is often also referred to as the Helmholtz equation.
 A simple, recursive, finite difference method for solving the vibration equation is</p>
@@ -661,7 +659,7 @@ u(t) = t^2.
 \[ 
 u''(t) + \omega^2 u(t) = 2 + \omega^2 t^2 \ne 0.
 \]</div>
-<p>So we need to use a nonzero right hand side of Eq. <a class="reference internal" href="#equation-helmholtz">(3)</a>:</p>
+<p>So we need to use a nonzero right hand side of Eq. <a class="reference internal" href="#equation-eq-helmholtz">(3)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
 u''(t) + \omega^2 u(t) = f(t),
