@@ -392,7 +392,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span>
@@ -518,6 +518,7 @@ u^0 \\
 </div>
 </div>
 </div>
+<p>And solve the linear algebra problem using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.linalg.html">scipy.sparse.linalg</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -528,8 +529,7 @@ u^0 \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.000e+00, 3.333e-01, 1.111e-01, 3.704e-02, 1.235e-02, 4.115e-03,
-       1.372e-03, 4.572e-04, 1.524e-04])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1.   , 0.333, 0.111, 0.037, 0.012, 0.004, 0.001, 0.   , 0.   ])
 </pre></div>
 </div>
 </div>
@@ -550,7 +550,7 @@ u^0 \\
 <p>This linear algebra approach seems to take more effort than the simple marching methods, so why do we need it? Well, sometimes it makes more sense to specify boundary conditions on both sides of the domain and in that case the marching methods may not be optimal. The vibration problem from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture3.html">lecture 3</a> is actually more common to solve as a boundary value problem. Consider a guitar string that vibrates. We know that the guitar string is kept still at both edges of the domain and as such we would like to specify the solution at both these points. Like a Boundary Value Problem.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Shooting_method">shooting method</a> reduces a BVP to an IVP and iteratively solves the problem using marching methods. The target of the iterations is to “hit” the correct boundary value at the end of the domain, which explains the name <code class="docutils literal notranslate"><span class="pre">shooting</span> <span class="pre">method</span></code>.</p>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Shooting_method">shooting method</a> reduces a BVP to an IVP and iteratively solves the problem using marching methods. The target of the iterations is to “hit” the correct boundary value at the end of the domain, which explains the name.</p>
 </div>
 <section id="the-vibration-problem">
 <h3>The vibration problem<a class="headerlink" href="#the-vibration-problem" title="Link to this heading">#</a></h3>
@@ -594,6 +594,7 @@ u^8
 \end{bmatrix}
 =
 \begin{bmatrix}
+I \\
 0 \\
 0 \\
 0 \\
@@ -601,13 +602,53 @@ u^8
 0 \\
 0 \\
 0 \\
-0 \\
-0
+I
 \end{bmatrix}
 \end{split}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Notice that the matrix contains items both over and under the main diagonal, which characterizes an <strong>implicit</strong> method. Compare this with the <strong>explicit</strong> marching method, where all the matrix items were on the main diagonal or below (lower triangular).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have applied boundary conditions <span class="math notranslate nohighlight">\(u^0=I\)</span> and <span class="math notranslate nohighlight">\(u^N=I\)</span> by modifying the first and last row of <span class="math notranslate nohighlight">\(A\)</span> as well al setting <span class="math notranslate nohighlight">\(b^0=b^N=I\)</span>.</p>
+</div>
+<p>All that remains is to implement and solve the problem:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> 
+<span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">I</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mf">1.</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N</span> 
+<span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">Id</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">D2</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Id</span><span class="p">)</span><span class="o">.</span><span class="n">to_lil</span><span class="p">()</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1"># Fix first row</span>
+<span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># Fix last row</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">I</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Numerical&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">Id</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;lil&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">D2</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">Id</span><span class="p">)</span><span class="o">.</span><span class="n">to_lil</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1"># Fix first row</span>
+
+<span class="ne">AttributeError</span>: &#39;csr_matrix&#39; object has no attribute &#39;to_lil&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -692,19 +733,6 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 1., -2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  1., -2.,  1.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  1., -2.,  1.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  1., -2.,  1.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  1., -2.,  1.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  1., -2.,  1.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -2.,  1.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  1., -2.]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Fix the first and last rows</p>
 <div class="cell docutils container">
@@ -713,19 +741,6 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 <span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
 <span class="n">D2</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># don&#39;t forget h</span>
 <span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2., -5.,  4., -1.,  0.,  0.,  0.,  0.,  0.],
-       [ 1., -2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  1., -2.,  1.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  1., -2.,  1.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  1., -2.,  1.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  1., -2.,  1.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  1., -2.,  1.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -2.,  1.],
-       [ 0.,  0.,  0.,  0.,  0., -1.,  4., -5.,  2.]])
 </pre></div>
 </div>
 </div>
@@ -738,21 +753,11 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.  ,  0.25,  1.  ,  2.25,  4.  ,  6.25,  9.  , 12.25, 16.  ])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2f</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span>
 <span class="n">d2f</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2., 2., 2., 2., 2.])
 </pre></div>
 </div>
 </div>
@@ -765,11 +770,6 @@ D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
 <span class="n">D2e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
 <span class="n">D2e</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">D2e</span> <span class="o">@</span> <span class="n">f</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 2., 2., 2., 2., 2., 2., 2.])
 </pre></div>
 </div>
 </div>
@@ -791,9 +791,6 @@ u'' = \frac{u^{n+2}-2u^{n+1}+u^n}{h^2} - h u''' - \frac{7 h^2}{12}u'''' +
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span> <span class="s1">&#39;2nd order&#39;</span><span class="p">,</span> <span class="s1">&#39;1st order&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/1e1a2d0aed319fed55695c2ae5b158af817b7ae23d676f3d74c56a0753b88483.png" src="_images/1e1a2d0aed319fed55695c2ae5b158af817b7ae23d676f3d74c56a0753b88483.png" />
 </div>
 </div>
 </section>
@@ -846,29 +843,11 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-3.,  4., -1.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [-1.,  0.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0., -1.,  0.,  1.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0., -1.,  0.,  1.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0., -1.,  0.,  1.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0., -1.,  0.,  1.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0., -1.,  0.,  1.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0., -1.,  0.,  1.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -4.,  3.]])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="n">t</span>
 <span class="n">D1</span> <span class="o">@</span> <span class="n">f</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1., 1., 1., 1., 1.])
 </pre></div>
 </div>
 </div>
@@ -883,31 +862,12 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b955b20&gt;
-</pre></div>
-</div>
-<img alt="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" src="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" />
-</div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">D2</span></code> is not equal to <code class="docutils literal notranslate"><span class="pre">(D1)^2</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2n</span> <span class="o">=</span> <span class="n">D1</span> <span class="o">@</span> <span class="n">D1</span>
 <span class="n">D2n</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.25, -2.75,  1.75, -0.25,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],
-       [ 0.75, -1.25,  0.25,  0.25,  0.  ,  0.  ,  0.  ,  0.  ,  0.  ],
-       [ 0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ,  0.  ,  0.  ,  0.  ],
-       [ 0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ,  0.  ,  0.  ],
-       [ 0.  ,  0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ,  0.  ],
-       [ 0.  ,  0.  ,  0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25,  0.  ],
-       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.25,  0.  , -0.5 ,  0.  ,  0.25],
-       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  ,  0.25,  0.25, -1.25,  0.75],
-       [ 0.  ,  0.  ,  0.  ,  0.  ,  0.  , -0.25,  1.75, -2.75,  1.25]])
 </pre></div>
 </div>
 </div>
@@ -919,11 +879,6 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 <span class="n">e2</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">@</span> <span class="n">f</span> <span class="o">-</span> <span class="n">d2fe</span>
 <span class="n">en</span> <span class="o">=</span> <span class="n">D2n</span> <span class="o">@</span> <span class="n">f</span> <span class="o">-</span> <span class="n">d2fe</span>
 <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">e2</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">en</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.16216463185914778, 0.3704509025277197)
 </pre></div>
 </div>
 </div>
@@ -968,19 +923,6 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [-1.,  2.,  1.,  0.,  0.,  0.,  0.,  0.,  0.],
-       [ 0., -1.,  2.,  1.,  0.,  0.,  0.,  0.,  0.],
-       [ 0.,  0., -1.,  2.,  1.,  0.,  0.,  0.,  0.],
-       [ 0.,  0.,  0., -1.,  2.,  1.,  0.,  0.,  0.],
-       [ 0.,  0.,  0.,  0., -1.,  2.,  1.,  0.,  0.],
-       [ 0.,  0.,  0.,  0.,  0., -1.,  2.,  1.,  0.],
-       [ 0.,  0.,  0.,  0.,  0.,  0., -1.,  2.,  1.],
-       [ 0.,  0.,  0.,  0.,  0.,  0.,  1., -4.,  5.]])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -988,9 +930,6 @@ u' + au = 0, \, t \in (0, T], u(0)=I.
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;k&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" src="_images/f990b2e4bbe12aed5adcfa9513cedfdacfbce1fd540b367b8a949381e7bdb336.png" />
 </div>
 </div>
 <p>The scheme is not fully implicit in the source term. However, it is using three neighbouring points for every equation, which is more stable than using merely two.</p>
@@ -1089,10 +1028,6 @@ C = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; - h &amp; \frac{h^{2}}{2}\\1 &amp; 0 &amp; 0\\1 &amp; h &amp; \frac{h^{2}}{2}\end{matrix}\right]\end{split}\]</div>
-</div>
 </div>
 <p>Take the inverse</p>
 <div class="cell docutils container">
@@ -1100,10 +1035,6 @@ C = \begin{bmatrix}
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 0\\- \frac{1}{2 h} &amp; 0 &amp; \frac{1}{2 h}\\\frac{1}{h^{2}} &amp; - \frac{2}{h^{2}} &amp; \frac{1}{h^{2}}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <p>The second order central schemes are found in the last two rows. Row 1 is the first derivative, row 2 the second derivative (i.e., row 1 is <span class="math notranslate nohighlight">\(du_1\)</span> and row 2 <span class="math notranslate nohighlight">\(du_2\)</span>). We can also print out the scheme by computing</p>
@@ -1123,10 +1054,6 @@ du_2 = \sum_{i=0}^2 c_{2i} u^{n-i-1}.
 <span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left[\begin{matrix}- \frac{2 u{\left(x \right)}}{h^{2}} + \frac{u{\left(- h + x \right)}}{h^{2}} + \frac{u{\left(h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
 </div>
 </div>
 <p>We can get any finite difference scheme using all the points that we like. To this end let us create a function that computes the matrix <span class="math notranslate nohighlight">\(C\)</span> given any <span class="math notranslate nohighlight">\(m_0\)</span> and <span class="math notranslate nohighlight">\(N\)</span></p>
@@ -1178,10 +1105,6 @@ C = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left[\begin{matrix}\frac{u{\left(x \right)}}{h^{2}} - \frac{2 u{\left(h + x \right)}}{h^{2}} + \frac{u{\left(2 h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
-</div>
 </div>
 <p>However, this scheme will only be first order accurate, because it is not central. A second order scheme needs to use one more point, and thus <span class="math notranslate nohighlight">\(p=0,1,2,3\)</span> and <span class="math notranslate nohighlight">\(M=3\)</span></p>
 <div class="math notranslate nohighlight">
@@ -1200,10 +1123,6 @@ C = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0\\- \frac{11}{6 h} &amp; \frac{3}{h} &amp; - \frac{3}{2 h} &amp; \frac{1}{3 h}\\\frac{2}{h^{2}} &amp; - \frac{5}{h^{2}} &amp; \frac{4}{h^{2}} &amp; - \frac{1}{h^{2}}\\- \frac{1}{h^{3}} &amp; \frac{3}{h^{3}} &amp; - \frac{3}{h^{3}} &amp; \frac{1}{h^{3}}\end{matrix}\right]\end{split}\]</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1211,10 +1130,6 @@ C = \begin{bmatrix}
 <span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">2</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left[\begin{matrix}\frac{2 u{\left(x \right)}}{h^{2}} - \frac{5 u{\left(h + x \right)}}{h^{2}} + \frac{4 u{\left(2 h + x \right)}}{h^{2}} - \frac{u{\left(3 h + x \right)}}{h^{2}}\end{matrix}\right]\]</div>
 </div>
 </div>
 <p>Backward difference:</p>
@@ -1225,10 +1140,6 @@ C = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\begin{split}\displaystyle \left[\begin{matrix}0 &amp; 0 &amp; 0 &amp; 1\\- \frac{1}{3 h} &amp; \frac{3}{2 h} &amp; - \frac{3}{h} &amp; \frac{11}{6 h}\\- \frac{1}{h^{2}} &amp; \frac{4}{h^{2}} &amp; - \frac{5}{h^{2}} &amp; \frac{2}{h^{2}}\\- \frac{1}{h^{3}} &amp; \frac{3}{h^{3}} &amp; - \frac{3}{h^{3}} &amp; \frac{1}{h^{3}}\end{matrix}\right]\end{split}\]</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1236,10 +1147,6 @@ C = \begin{bmatrix}
 <span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">inv</span><span class="p">())[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">@</span> <span class="n">coef</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle \left[\begin{matrix}\frac{11 u{\left(x \right)}}{6 h} - \frac{u{\left(- 3 h + x \right)}}{3 h} + \frac{3 u{\left(- 2 h + x \right)}}{2 h} - \frac{3 u{\left(- h + x \right)}}{h}\end{matrix}\right]\]</div>
 </div>
 </div>
 <p>This is the stencil used for the first and last row of the second derivative matrix for the vibration problem.</p>
