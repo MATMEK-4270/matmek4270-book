@@ -616,16 +616,14 @@ I
 <p>All that remains is to implement and solve the linear algebra problem:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> 
-<span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">I</span> <span class="o">=</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mf">1.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N</span> 
 <span class="n">g</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>    <span class="c1"># Fix first row</span>
 <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># Fix last row</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
-<span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span><span class="p">,</span> <span class="n">I</span>
 <span class="n">u2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">tocsr</span><span class="p">(),</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">I</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
@@ -916,7 +914,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1278239e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x12b8c9e50&gt;
 </pre></div>
 </div>
 <img alt="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" src="_images/538aef109750249bf0b27cea1c310ffb94cf5fa817d421e8cc3d3184d7eed158.png" />
@@ -1286,9 +1284,9 @@ C = \begin{bmatrix}
 \[
     \frac{u^{n+1}-2u^n+u^{n-1}}{\Delta t^2} + \omega^2 u^{n}=0, \quad n\in (1, 2, \ldots, N-1)
     \]</div>
-<p>and then use Dirichlet boundary conditions for both sides of the domain: <span class="math notranslate nohighlight">\(u(0)=0\)</span> and <span class="math notranslate nohighlight">\(u(T)=0\)</span>, where <span class="math notranslate nohighlight">\(T=N \Delta t\)</span>. Dirichlet boundary conditions are set by modifying the first and last rows of the assembled matrix.</p>
+<p>and then use Dirichlet boundary conditions for both sides of the domain: <span class="math notranslate nohighlight">\(u(0)=u(T)=I\)</span>, where <span class="math notranslate nohighlight">\(T=N \Delta t\)</span>. Dirichlet boundary conditions are set by modifying the first and last rows of the assembled matrix.</p>
 </li>
-<li><p>For VibFD3 use the same central difference scheme, but modify the boundary conditions to: <span class="math notranslate nohighlight">\(u(0)=0\)</span> and u’(T)=0. Here you only need to modify the last row of the assembled matrix from assignment 1.</p></li>
+<li><p>For VibFD3 use the same central difference scheme, but modify the boundary conditions to: <span class="math notranslate nohighlight">\(u(0)=I\)</span> and u’(T)=0. Here you only need to modify the last row of the assembled matrix from assignment 1.</p></li>
 <li><p>For VibFD4 use a fourth order central difference scheme</p>
 <div class="math notranslate nohighlight">
 \[

@@ -380,12 +380,18 @@ document.write(`
 \frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}.
 \]</div>
 <p>We will consider the time and space domains:
-<span class="math notranslate nohighlight">\(t\in[[0, T]\)</span>, <span class="math notranslate nohighlight">\(x \in [0, L]\)</span>.</p>
+<span class="math notranslate nohighlight">\(t\in[0, T]\)</span>, <span class="math notranslate nohighlight">\(x \in [0, L]\)</span>.</p>
 <ul class="simple">
-<li><p>The wave equation is a hyperbolic PDE, so recursive methods are ok.</p></li>
+<li><p>The wave equation is an initial-boundary value problem. As such it can be solved using a mixture of marching methods in time and a differentiation matrix in space.</p></li>
 <li><p>The solutions are waves that can be written as <span class="math notranslate nohighlight">\(u(x+ct)\)</span> and <span class="math notranslate nohighlight">\(u(x-ct)\)</span>.</p></li>
 </ul>
-<p>The two derivatives in space require two boundary conditions:</p>
+<p>The two derivatives in time require two initial conditions, both specified at <span class="math notranslate nohighlight">\(t=0\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t=0) = I(x) \quad \text{and} \quad
+\frac{\partial u}{\partial t}(x, t=0) = V(x),
+\]</div>
+<p>for some functions <span class="math notranslate nohighlight">\(I(x)\)</span> and <span class="math notranslate nohighlight">\(V(x)\)</span>. We will normally use <span class="math notranslate nohighlight">\(V(x)=0\)</span> for simplicity.</p>
 <section id="dirichlet-fixed-end">
 <h3>Dirichlet (Fixed end)<a class="headerlink" href="#dirichlet-fixed-end" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
@@ -439,13 +445,6 @@ u(0, t) = u(L, t) = 0
         ></iframe>
         </div></div>
 </div>
-<p>The two derivatives in time also require two conditions, but these are both set at <span class="math notranslate nohighlight">\(t=0\)</span> since the PDE is hyperbolic</p>
-<div class="math notranslate nohighlight">
-\[
-u(x, t=0) = I(x) \quad \text{and} \quad
-\frac{\partial u}{\partial t}(x, t=0) = V(x),
-\]</div>
-<p>for some functions <span class="math notranslate nohighlight">\(I(x)\)</span> and <span class="math notranslate nohighlight">\(V(x)\)</span>.</p>
 </section>
 </section>
 <section id="discretization">
@@ -750,6 +749,10 @@ u^{n} &amp;\leftarrow u^{n+1}
 \end{align*}
 \end{split}\]</div>
 <p>If the PDE is only used for initial points <span class="math notranslate nohighlight">\(j=1, 2, \ldots, N-1\)</span>, then it is not necessary to set <span class="math notranslate nohighlight">\(u^{n+1}_0 = u^{n+1}_N = 0\)</span> every time step. It is sufficient to fix them at the start of the simulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There is also another way to implement the Dirichlet boundary conditions, by using the differentiation matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span>. If the first and last rows of <span class="math notranslate nohighlight">\(D^{(2)}\)</span> are set to zeroes, then <span class="math notranslate nohighlight">\(u^{n+1}_0\)</span> and <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> will never be updated and remains the same value as set for <span class="math notranslate nohighlight">\(u^0_0\)</span> and <span class="math notranslate nohighlight">\(u^0_N\)</span>. See the Neumann boundary conditions about modifying the differentiation matrix.</p>
+</div>
 </section>
 <section id="neumann">
 <h3>Neumann<a class="headerlink" href="#neumann" title="Link to this heading">#</a></h3>
