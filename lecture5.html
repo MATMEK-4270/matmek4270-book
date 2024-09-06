@@ -359,6 +359,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wave-equation-solver">Wave equation solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-considerations-for-the-wave-equation">Stability considerations for the wave equation</a></li>
 </ul>
             </nav>
         </div>
@@ -1108,6 +1109,117 @@ D_p^{(2)} = \begin{bmatrix}
 </div>
 </div>
 </section>
+<section id="stability-considerations-for-the-wave-equation">
+<h2>Stability considerations for the wave equation<a class="headerlink" href="#stability-considerations-for-the-wave-equation" title="Link to this heading">#</a></h2>
+<p>If the initial condition is <span class="math notranslate nohighlight">\(u(x, 0)=I(x)\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}(x, 0)=0\)</span>, then the solution to the wave equation at <span class="math notranslate nohighlight">\(t&gt;0\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t) = \frac{1}{2}\left( I(x-ct) + I(x+ct)\right).
+\]</div>
+<p>These are two waves - one traveling to the left and the other traveling to the right</p>
+<p>If the initial condition <span class="math notranslate nohighlight">\(I(x)=e^{i k x}\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t) = \frac{1}{2} \left(e^{ik(x-ct)} + e^{ik(x+ct)} \right)
+\]</div>
+<p>is a solution. If the initial condition is a sum of waves (superposition, each wave is a solution of the wave equation)</p>
+<div class="math notranslate nohighlight">
+\[
+I(x) = \sum_{k=0}^K a_k e^{i k x} = \sum_{k=0}^K a_k \left(\cos kx + i \sin kx\right)
+\]</div>
+<p>for some <span class="math notranslate nohighlight">\(K\)</span>, then the solution is</p>
+<div class="math notranslate nohighlight">
+\[
+u(x, t) = \frac{1}{2}\sum_{k=0}^K a_k \left(e^{ik(x-ct)} + e^{ik(x+ct)}\right).
+\]</div>
+<p>We will analyze one component <span class="math notranslate nohighlight">\(e^{ik(x-ct)} = e^{ikx- \omega t}\)</span>, where <span class="math notranslate nohighlight">\(\omega = kc\)</span> is the frequency in time. This is very similar to the investigation we did for the numerical frequency for the vibration equation.</p>
+<p>If we assume that the numerical solution is a complex wave</p>
+<div class="math notranslate nohighlight">
+\[
+u(x_j, t_n) = u^{n}_j = e^{ik(x_j-\tilde{\omega} t_n)},
+\]</div>
+<p>then we might ask</p>
+<ul class="simple">
+<li><p>How accurate is <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> compared to the exact <span class="math notranslate nohighlight">\(\omega=kc\)</span>?</p></li>
+<li><p>What can be concluded about stability?</p></li>
+</ul>
+<p>Note that the solution is a recurrence relation</p>
+<div class="math notranslate nohighlight">
+\[
+u^n_j = e^{ikx_j} e^{i\tilde{\omega} n \Delta t} = (e^{i\tilde{\omega} \Delta t})^n e^{ikx_j},   
+\]</div>
+<p>with an amplification factor <span class="math notranslate nohighlight">\(A = e^{i\tilde{\omega} \Delta t}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+u^n_j = A^n e^{ikx_j}.
+\]</div>
+<p>We can find <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> by inserting for <span class="math notranslate nohighlight">\(e^{i\tilde{\omega}t}\)</span> in the discretized wave equation</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}_j - 2u^n_j + u^{n-1}_j}{\Delta t^2} = c^2 \frac{u^n_{j+1}-2 u^{n}_j + u^n_{j-1}}{\Delta x^2}.
+\]</div>
+<p>This is a lot of work, just like it was for the vibration equation. In the end we should get</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{\omega} = \frac{2}{\Delta t} \sin^{-1}\left(C \sin \left(\frac{k \Delta x}{2}\right)\right),
+\]</div>
+<p>where the CFL number is <span class="math notranslate nohighlight">\(C = \frac{c \Delta t}{\Delta x}\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\tilde{\omega}(k, c, \Delta x, \Delta t)\)</span> is the numerical dispersion relation</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega = kc\)</span> is the exact dispersion relation</p></li>
+<li><p>We can compare the two to investigate numerical accuracy and stability</p></li>
+</ul>
+<p>A simpler approach is to insert for <span class="math notranslate nohighlight">\(u^n_j = A^n e^{ikx_j}\)</span> directly in</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{u^{n+1}_j - 2u^n_j + u^{n-1}_j}{\Delta t^2} = c^2 \frac{u^n_{j+1}-2 u^{n}_j + u^n_{j-1}}{\Delta x^2},
+\]</div>
+<p>and solve for <span class="math notranslate nohighlight">\(A\)</span>. We get</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\left(A^{n+1} - 2A^n + A^{n-1} \right) e^{ikx_j}}{\Delta t^2} = c^2 A^n \frac{e^{ik(xj+\Delta x)} - 2e^{ikx_j} + e^{ik(x_j-\Delta x)}}{\Delta x^2}.
+\]</div>
+<p>Divide by <span class="math notranslate nohighlight">\(A^ne^{ikx_j}\)</span>, multiply by <span class="math notranslate nohighlight">\(\Delta t^2\)</span> and use <span class="math notranslate nohighlight">\(C=c\Delta t/\Delta x\)</span> to get</p>
+<div class="math notranslate nohighlight">
+\[
+A -2 + A^{-1} = C^2 (e^{ik \Delta x} - 2 + e^{-ik\Delta x}).
+\]</div>
+<p>Use <span class="math notranslate nohighlight">\(e^{ix}+e^{-ix}=2\cos x\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+A + A^{-1} = 2 + 2 C^2(\cos k\Delta x - 1).
+\]</div>
+<p>This is a quadratic equation to solve for A. Using <span class="math notranslate nohighlight">\(\beta=2(1+C^2 (\cos(k\Delta x)-1))\)</span> we get that</p>
+<div class="math notranslate nohighlight">
+\[
+A = \frac{\beta \pm \sqrt{\beta^2-4}}{2}.
+\]</div>
+<p>We see that <span class="math notranslate nohighlight">\(|A| = 1\)</span> for any real numbers <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span>. For all real numbers <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+|\beta \pm \sqrt{\beta^2-4}| = 2,
+\]</div>
+<p>since <span class="math notranslate nohighlight">\(|\beta \pm \sqrt{\beta^2-4}| = |\beta + i \sqrt{4-\beta^2}| = \sqrt{\beta^2 + 4 - \beta^2} = 2\)</span>. For <span class="math notranslate nohighlight">\(|A| \le 1\)</span> and stability we need <span class="math notranslate nohighlight">\(-2 \le \beta \le 2\)</span> and thus</p>
+<div class="math notranslate nohighlight">
+\[
+-2 \le 2(1+C^2(\cos(k\Delta x)-1)) \le 2.
+\]</div>
+<p>Rearrange to get that</p>
+<div class="math notranslate nohighlight">
+\[
+-2 \le C^2 (\cos (k\Delta x)-1) \le 0.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\cos(k\Delta x)\)</span> can at worst be <span class="math notranslate nohighlight">\(-1\)</span> we get that the positive real CFL number must be smaller than 1</p>
+<div class="math notranslate nohighlight">
+\[
+C \le 1.
+\]</div>
+<p>Hence (since <span class="math notranslate nohighlight">\(C=c\Delta t/\Delta x\)</span>) for stability we require that</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta t \le  \frac{\Delta x}{c}.
+\]</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1191,6 +1303,7 @@ D_p^{(2)} = \begin{bmatrix}
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wave-equation-solver">Wave equation solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-considerations-for-the-wave-equation">Stability considerations for the wave equation</a></li>
 </ul>
   </nav></div>
 
