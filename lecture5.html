@@ -360,6 +360,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wave-equation-solver">Wave equation solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-considerations-for-the-wave-equation">Stability considerations for the wave equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
             </nav>
         </div>
@@ -1220,6 +1221,48 @@ C \le 1.
 \Delta t \le  \frac{\Delta x}{c}.
 \]</div>
 </section>
+<section id="weekly-assignments">
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
+<p>​This week we start with the wave-solver in the file <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/Wave1D.py">Wave1D.py</a>. Study this solver and try to understand how it works. This week we will focus even more on boundary conditions as this is normally the most complicated part of any PDE solver.</p>
+<ol class="arabic">
+<li><p>The wave-solver is implemented by <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/Wave1D.py#L75">explicitly fixing the Dirichlet boundary conditions</a> every time step. Implement these boundary conditions instead by modifying the <code class="docutils literal notranslate"><span class="pre">D2</span></code> matrix. See <a class="reference external" href="https://matmek-4270.github.io/matmek4270-pres/wave.html#/dirichlet-boundary-conditions-summary">presentation</a>.</p></li>
+<li><p>Implement Neumann boundary conditions. See the <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html#neumann">lecture notes</a> about how to implement them.</p></li>
+<li><p>Next assignment is to implement open boundaries. This is also considered in problem 2.12 in the FDM book, but I recommend again looking at the <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html#open-boundaries">lecture notes</a>.</p></li>
+<li><p>Implement <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html#periodic-boundaries">periodic boundary conditions</a>.</p></li>
+<li><p>Modify the solver such that you can use any boundary condition on any side of the domain. That is, you should be able to choose Dirichlet on the left and then Neumann of the right etc.</p>
+<p>Suggestion: Instead of just <code class="docutils literal notranslate"><span class="pre">bc</span></code> (see <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/Wave1D.py#L57">apply_bcs</a>) use a dictionary such that <code class="docutils literal notranslate"><span class="pre">{'left':</span> <span class="pre">0,</span> <span class="pre">'right':</span> <span class="pre">1}</span></code> would indicate Dirichlet on the left and Neumann on the right. The solver is already set to use</p>
+<ul class="simple">
+<li><p>Dirichlet</p></li>
+<li><p>Neumann</p></li>
+<li><p>Open boundary</p></li>
+<li><p>Periodic</p></li>
+</ul>
+<p>You need to modify <code class="docutils literal notranslate"><span class="pre">apply_bcs</span></code> such that both sides are treated individually. You should also modify <code class="docutils literal notranslate"><span class="pre">D2</span></code>, where the Neumann (and Dirichlet through assignment 1.) condition is implemented implicitly in the differentiation matrix. Note that the periodic boundary condition cannot be mixed with other conditions.</p>
+</li>
+<li><p>Verify the implementations of the different boundaries using a Gaussian pulse that travels in both directions. The initial condition is</p>
+<div class="math notranslate nohighlight" id="equation-eq-initialpulse">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-initialpulse" title="Link to this equation">#</a></span>\[
+    u(x, t) = \exp(-200 (x-L/2-ct)^2)
+    \]</div>
+<p>The Wave1D solver is already implemented with this pulse as default initial condition. However, there are still two possibilities and you choose the behaviour with the <code class="docutils literal notranslate"><span class="pre">ic</span></code> keyword when calling the solver.</p>
+<ul class="simple">
+<li><p>ic=0 - uses Eq. <a class="reference internal" href="#equation-eq-initialpulse">(4)</a> for initial condition and in addition</p></li>
+</ul>
+<p>This leads to two pulses that travels in both directions.</p>
+<ul class="simple">
+<li><p>ic=1 - uses Eq. <a class="reference internal" href="#equation-eq-initialpulse">(4)</a> for initial condition AND a second initial condition at <span class="math notranslate nohighlight">\(u(x, \Delta t)\)</span>. This leads to a single pulse that travels in only one direction.</p></li>
+</ul>
+<p>For verification</p>
+<ul class="simple">
+<li><p>The Neumann condition should simply send the wave back exactly as it was only moving in the other direction.</p></li>
+<li><p>The open boundary should see the wave disappear.</p></li>
+</ul>
+<p>All boundary conditions are tested in the function <code class="docutils literal notranslate"><span class="pre">test_pulse_bcs</span></code>. When this function passes the boundary conditions should be implemented correctly (even though the test may be rather simple).</p>
+<p>Compare the implemented boundary conditions also visually with this online solver.
+​</p>
+</li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1304,6 +1347,7 @@ C \le 1.
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wave-equation-solver">Wave equation solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-considerations-for-the-wave-equation">Stability considerations for the wave equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
   </nav></div>
 

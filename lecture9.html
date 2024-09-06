@@ -367,15 +367,15 @@ document.write(`
 <h2>Function approximation with global functions continued<a class="headerlink" href="#function-approximation-with-global-functions-continued" title="Link to this heading">#</a></h2>
 <p>Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j(x)\}_{j=0}^N, x \in [-1, 1]\)</span> form a basis for the space of all polynomials with order smaller than or equal to <span class="math notranslate nohighlight">\(N\)</span>. This space is normally denoted as <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. The Galerkin method for approximating <span class="math notranslate nohighlight">\(u(x)\)</span> in the space of polynomials <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> would normally be formulated as: find <span class="math notranslate nohighlight">\(u_N \in \mathbb{P}_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-project">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eq-project" title="Link to this equation">#</a></span>\[
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-project" title="Link to this equation">#</a></span>\[
 (u-u_N, v) = 0, \quad \forall \, v \in \mathbb{P}_N.
 \]</div>
-<p>Here there is no mentioning of the Legendre polynomials as there is no need for them yet. But the Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j\}_{j=0}^N\)</span> may now be chosen as a basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> and we can solve Eq. <a class="reference internal" href="#equation-eq-project">(21)</a> using this basis. The Legendre polynomials are a very good basis because they are orthogonal in <span class="math notranslate nohighlight">\(L^2(-1, 1)\)</span></p>
+<p>Here there is no mentioning of the Legendre polynomials as there is no need for them yet. But the Legendre polynomials <span class="math notranslate nohighlight">\(\{P_j\}_{j=0}^N\)</span> may now be chosen as a basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span> and we can solve Eq. <a class="reference internal" href="#equation-eq-project">(22)</a> using this basis. The Legendre polynomials are a very good basis because they are orthogonal in <span class="math notranslate nohighlight">\(L^2(-1, 1)\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 \left(P_i, P_j\right)_{L^2(-1, 1)} = \frac{2}{2i+1}\delta_{ij}
 \]</div>
-<p>and very well suited for approximating other smooth functions. However, the Legendre polynomials are not the only possible basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. We can just as easily choose the <span class="math notranslate nohighlight">\(\{x^j\}_{j=0}^N\)</span> and use this basis to solve Eq. <a class="reference internal" href="#equation-eq-project">(21)</a>. But the basis functions <span class="math notranslate nohighlight">\(x^j\)</span> are not orthogonal and the approach is less efficient even though we get exactly the same result. The choice of basis functions is actually very important for the efficiency!</p>
+<p>and very well suited for approximating other smooth functions. However, the Legendre polynomials are not the only possible basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>. We can just as easily choose the <span class="math notranslate nohighlight">\(\{x^j\}_{j=0}^N\)</span> and use this basis to solve Eq. <a class="reference internal" href="#equation-eq-project">(22)</a>. But the basis functions <span class="math notranslate nohighlight">\(x^j\)</span> are not orthogonal and the approach is less efficient even though we get exactly the same result. The choice of basis functions is actually very important for the efficiency!</p>
 <div class="admonition-nodal-vs-modal-basis admonition">
 <p class="admonition-title">Nodal vs modal basis</p>
 <p>The Legendre polynomials are often classified as a <strong>modal</strong> basis. A modal basis is not connected in any way to mesh points. The Lagrange polynomials, on the other hand, are often referred to as a <strong>nodal</strong> basis because they rely on mesh points.</p>
@@ -385,7 +385,7 @@ document.write(`
 <h3>Chebyshev polynomials<a class="headerlink" href="#chebyshev-polynomials" title="Link to this heading">#</a></h3>
 <p>The Chebyshev polynomials can be defined in their most simple and useful form as</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebt">
-<span class="eqno">(22)<a class="headerlink" href="#equation-eq-chebt" title="Link to this equation">#</a></span>\[
+<span class="eqno">(23)<a class="headerlink" href="#equation-eq-chebt" title="Link to this equation">#</a></span>\[
 T_k(x) = \cos(k \cos^{-1}(x)), \quad k = 0, 1, \ldots, N,
 \]</div>
 <p>for <span class="math notranslate nohighlight">\(x \in [-1, 1]\)</span>. Admittedly, this does not look like polynomials at all, it looks like cosine functions! However, an alternative definition is the recursive form</p>
@@ -480,25 +480,25 @@ T_{j+1}(x) &amp;= 2xT_{j}(x) - T_{j-1}(x).
 </div>
 <p>It is noteworthy that all polynomials oscillate between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. And all polynomials (<span class="math notranslate nohighlight">\(j&gt;0\)</span>) have maximum and minimum values of exactly 1 and -1. All the <span class="math notranslate nohighlight">\(N+1\)</span> extrema points of <span class="math notranslate nohighlight">\(T_N(x)\)</span> are</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebpoints">
-<span class="eqno">(23)<a class="headerlink" href="#equation-eq-chebpoints" title="Link to this equation">#</a></span>\[
+<span class="eqno">(24)<a class="headerlink" href="#equation-eq-chebpoints" title="Link to this equation">#</a></span>\[
 x_j = \cos\left(\frac{j \pi}{N}\right), \quad j \in \{0, 1, \ldots, N\},
 \]</div>
 <p>which are called the Chebyshev points. Another set of points are all the roots of <span class="math notranslate nohighlight">\(T_N(x)\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-chebroots">
-<span class="eqno">(24)<a class="headerlink" href="#equation-eq-chebroots" title="Link to this equation">#</a></span>\[
+<span class="eqno">(25)<a class="headerlink" href="#equation-eq-chebroots" title="Link to this equation">#</a></span>\[
 x_j = \cos\left( \frac{(2j+1)\pi}{2N}\right), \quad j \in \{0, 1, \ldots, N-1\}.
 \]</div>
 <p>The roots are often called the Chebyshev-Gauss points because of their importance in numerical integration through <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Gaussian quadrature</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Both the roots and the extrema are cosine functions. If we choose to make a change of variables <span class="math notranslate nohighlight">\(x=\cos \theta, \, \theta \in [0, \pi]\)</span>, then Eq. <a class="reference internal" href="#equation-eq-chebt">(22)</a> becomes</p>
+<p>Both the roots and the extrema are cosine functions. If we choose to make a change of variables <span class="math notranslate nohighlight">\(x=\cos \theta, \, \theta \in [0, \pi]\)</span>, then Eq. <a class="reference internal" href="#equation-eq-chebt">(23)</a> becomes</p>
 <div class="math notranslate nohighlight">
 \[
 T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right) 
 \]</div>
 </div>
-<p>Chebyshev polynomials are very efficient to work with because of the link to the cosine function. The cosine function provides an explicit expression that is easy and efficient to evaluate. The Legendre polynomials, on the other hand, do not have such a nice explicit expression and need to rely on the recursive equation <a class="reference internal" href="lecture8.html#equation-eq-legrecursive">(14)</a> for evaluation.</p>
-<p>The Chebyshev polynomials form a basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>, just like the Legendre polynomials. However, the Chebyshev polynomials are not orthogonal in the <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> space! As such, they are not usually used with the Galerkin formulation in Eq. <a class="reference internal" href="#equation-eq-project">(21)</a>.</p>
+<p>Chebyshev polynomials are very efficient to work with because of the link to the cosine function. The cosine function provides an explicit expression that is easy and efficient to evaluate. The Legendre polynomials, on the other hand, do not have such a nice explicit expression and need to rely on the recursive equation <a class="reference internal" href="lecture8.html#equation-eq-legrecursive">(15)</a> for evaluation.</p>
+<p>The Chebyshev polynomials form a basis for <span class="math notranslate nohighlight">\(\mathbb{P}_N\)</span>, just like the Legendre polynomials. However, the Chebyshev polynomials are not orthogonal in the <span class="math notranslate nohighlight">\(L^2([-1, 1])\)</span> space! As such, they are not usually used with the Galerkin formulation in Eq. <a class="reference internal" href="#equation-eq-project">(22)</a>.</p>
 <p>The Chebyshev polynomials are, on the other hand, orthogonal in a special weighted inner product space. We define the weighted <span class="math notranslate nohighlight">\(L^2_{\omega}(\Omega)\)</span> inner product as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -507,40 +507,40 @@ T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right)
 <p>where <span class="math notranslate nohighlight">\(\omega(x)\)</span> is a special weight function. For Chebyshev polynomials defined in <span class="math notranslate nohighlight">\(\Omega = [-1, 1]\)</span> the weight function <span class="math notranslate nohighlight">\(\omega(x) = 1/\sqrt{1-x^2}\)</span>. For simplicity we will write the weighted inner product as <span class="math notranslate nohighlight">\((f, g)_{\omega}\)</span>.</p>
 <p>The Chebyshev polynomials are orthogonal in <span class="math notranslate nohighlight">\(L^2_{\omega}(-1, 1)\)</span> and we can easily get</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebortho">
-<span class="eqno">(25)<a class="headerlink" href="#equation-eq-chebortho" title="Link to this equation">#</a></span>\[
+<span class="eqno">(26)<a class="headerlink" href="#equation-eq-chebortho" title="Link to this equation">#</a></span>\[
 \left(T_j, T_i \right)_{\omega} = \frac{c_i \pi}{2}\delta_{ij},
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(c_0=2\)</span> and <span class="math notranslate nohighlight">\(c_i = 1\)</span> for <span class="math notranslate nohighlight">\(i &gt; 0\)</span>. The weighted squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of Chebyshev polynomials is <span class="math notranslate nohighlight">\(|T_i|_{\omega}^2 = \frac{c_i \pi}{2}\)</span>.</p>
 <p>For Chebyshev polynomials the approximation problem is now solved with the Galerkin method in the <span class="math notranslate nohighlight">\(L^2_{\omega}(-1, 1)\)</span> space: find <span class="math notranslate nohighlight">\(u_N(x) \in \mathbb{P}_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebproject">
-<span class="eqno">(26)<a class="headerlink" href="#equation-eq-chebproject" title="Link to this equation">#</a></span>\[
+<span class="eqno">(27)<a class="headerlink" href="#equation-eq-chebproject" title="Link to this equation">#</a></span>\[
 (u-u_N, v)_{\omega} = 0, \quad \forall \, v \in \mathbb{P}_N.
 \]</div>
 <p>Other than the special definition of the inner product, the usage is exactly the same as for the Legendre polynomials. Only the integral is changed.</p>
 <p>For a problem where <span class="math notranslate nohighlight">\(x \in [a, b]\)</span> we need to map the true domain to the reference domain, exactly like for the Legendre polynomials. We start with the general definition</p>
 <div class="math notranslate nohighlight" id="equation-eq-weightedgalerkin">
-<span class="eqno">(27)<a class="headerlink" href="#equation-eq-weightedgalerkin" title="Link to this equation">#</a></span>\[
+<span class="eqno">(28)<a class="headerlink" href="#equation-eq-weightedgalerkin" title="Link to this equation">#</a></span>\[
 (u(x)-u_N(x), \psi_i(x))_{\omega} = \int_{a}^b (u(x)-u_N(x)) \psi_i(x) \omega(x) dx = 0, \quad \forall i \in \{0, 1, \ldots, N\}
 \]</div>
 <p>which is just a regular Galerkin method using a weighted inner product. Like for Legendre, we use the basis functions in the reference domain, <span class="math notranslate nohighlight">\(\psi_j(x) = T_j(X)\)</span> and the function <span class="math notranslate nohighlight">\(u(x)\)</span> needs a mapping <span class="math notranslate nohighlight">\(u(x(X))\)</span>, where <span class="math notranslate nohighlight">\(x(X)\)</span> means that we compute the physical coordinate <span class="math notranslate nohighlight">\(x\)</span> from the reference <span class="math notranslate nohighlight">\(X\)</span>. The only new thing is the weight function and this weight function is defined for the reference domain: <span class="math notranslate nohighlight">\(\omega(X(x))\)</span>. Naturally, the Chebyshev weight <span class="math notranslate nohighlight">\(\omega(X) = 1/\sqrt{1-X^2}\)</span> only makes sense for the domain <span class="math notranslate nohighlight">\(X \in (-1, 1)\)</span> because the denominator <span class="math notranslate nohighlight">\(1-X^2\)</span> approaches zero for these two edges.</p>
-<p>With this in mind we perform a change of variables for <a class="reference internal" href="#equation-eq-weightedgalerkin">(27)</a> where only the function <span class="math notranslate nohighlight">\(u(x(X))\)</span> is written with a mapped argument. The remaining functions are all defined for the reference coordinate <span class="math notranslate nohighlight">\(X\)</span></p>
+<p>With this in mind we perform a change of variables for <a class="reference internal" href="#equation-eq-weightedgalerkin">(28)</a> where only the function <span class="math notranslate nohighlight">\(u(x(X))\)</span> is written with a mapped argument. The remaining functions are all defined for the reference coordinate <span class="math notranslate nohighlight">\(X\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{j=0}^N \int_{-1}^1 T_j  T_i \omega \, \frac{dx}{dX} \, dX \, \hat{u}_j =  \int_{-1}^1 u(x(X)) T_i \omega \, \frac{dx}{dX} \, dX, \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <p>As for Legendre the <span class="math notranslate nohighlight">\(dx/dX\)</span> term is constant and can be neglected. We get</p>
 <div class="math notranslate nohighlight" id="equation-eq-cheb0">
-<span class="eqno">(28)<a class="headerlink" href="#equation-eq-cheb0" title="Link to this equation">#</a></span>\[
+<span class="eqno">(29)<a class="headerlink" href="#equation-eq-cheb0" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N  (T_j, T_i)_{L_{\omega}^2([-1,1])} \, \hat{u}_j = (u(x(X)), T_i)_{L_{\omega}^2([-1,1])} \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
-<p>Using the orthogonality <a class="reference internal" href="#equation-eq-chebortho">(25)</a> in <a class="reference internal" href="#equation-eq-cheb0">(28)</a> we get the Chebyshev expansion coefficients</p>
+<p>Using the orthogonality <a class="reference internal" href="#equation-eq-chebortho">(26)</a> in <a class="reference internal" href="#equation-eq-cheb0">(29)</a> we get the Chebyshev expansion coefficients</p>
 <div class="math notranslate nohighlight" id="equation-eq-cheb-coeff">
-<span class="eqno">(29)<a class="headerlink" href="#equation-eq-cheb-coeff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(30)<a class="headerlink" href="#equation-eq-cheb-coeff" title="Link to this equation">#</a></span>\[
 \hat{u}_i = \frac{2}{c_i \pi}\left(u(x(X)), T_i\right)_{\omega} \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <p>This should be compared with the Legendre coefficients:</p>
 <div class="math notranslate nohighlight" id="equation-eq-leg-coeff">
-<span class="eqno">(30)<a class="headerlink" href="#equation-eq-leg-coeff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(31)<a class="headerlink" href="#equation-eq-leg-coeff" title="Link to this equation">#</a></span>\[
 \hat{u}_i = \frac{2i+1}{2} \left( u(x(X)), P_i \right) \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <p>So for both methods it all boils down to one integral.</p>
@@ -561,12 +561,12 @@ T_k(x) = T_k(\cos \theta) =  \cos\left(k \theta \right)
 \]</div>
 <p>Since <span class="math notranslate nohighlight">\(T_i(\cos \theta) = \cos (i \theta)\)</span> we get the much simpler integral</p>
 <div class="math notranslate nohighlight" id="equation-eq-scalarproductt">
-<span class="eqno">(31)<a class="headerlink" href="#equation-eq-scalarproductt" title="Link to this equation">#</a></span>\[
+<span class="eqno">(32)<a class="headerlink" href="#equation-eq-scalarproductt" title="Link to this equation">#</a></span>\[
 (f, T_i)_{\omega} = \int_{0}^{\pi} f(\cos \theta)\cos (i \theta) d\theta.
 \]</div>
 <p>Using this integral, including a mapping of the function <span class="math notranslate nohighlight">\(u(x)\)</span> to the reference domain, we get the Chebyshev coefficients</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebcoeff">
-<span class="eqno">(32)<a class="headerlink" href="#equation-eq-chebcoeff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(33)<a class="headerlink" href="#equation-eq-chebcoeff" title="Link to this equation">#</a></span>\[
 \hat{u}_i = \frac{2}{c_i \pi}\int_{0}^{\pi} u(x(\cos \theta)) \cos(i \theta) d\theta \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <p>Lets try this with a few examples. First we define the exact weighted inner product</p>
@@ -664,7 +664,7 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
 </div>
 </div>
 </div>
-<p>The function <code class="docutils literal notranslate"><span class="pre">uhatn</span></code> computes the Chebyshev expansion coefficients corresponding to Eq. <a class="reference internal" href="#equation-eq-chebcoeff">(32)</a> and we compute the 25 first coefficients below. For comparison we also compute the 25 first Legendre coefficients, corresponding to Eq. <a class="reference internal" href="lecture8.html#equation-eq-legcoeff">(18)</a>.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">uhatn</span></code> computes the Chebyshev expansion coefficients corresponding to Eq. <a class="reference internal" href="#equation-eq-chebcoeff">(33)</a> and we compute the 25 first coefficients below. For comparison we also compute the 25 first Legendre coefficients, corresponding to Eq. <a class="reference internal" href="lecture8.html#equation-eq-legcoeff">(19)</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc</span> <span class="o">=</span> <span class="p">[]</span>
@@ -888,7 +888,7 @@ x &amp; xy
  &amp;= \int_{-1}^1\int_{-1}^1 f(x,y)g(x,y)dxdy.
 \end{align*}
 \end{split}\]</div>
-<p>Note that the generic first line is identical to the definition used for the 1D case <a class="reference internal" href="lecture8.html#equation-eq-l2-inner">(10)</a>, except that <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> now are functions of both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>Note that the generic first line is identical to the definition used for the 1D case <a class="reference internal" href="lecture8.html#equation-eq-l2-inner">(11)</a>, except that <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> now are functions of both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>For simplicity we use Legendre polynomials in both directions with the same dimension and space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i\}_{i=0}^N\)</span> such that <span class="math notranslate nohighlight">\(W = V_N \otimes V_N\)</span>. We now want to find <span class="math notranslate nohighlight">\(u_N \in W\)</span>  such that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -896,13 +896,13 @@ x &amp; xy
 \]</div>
 <p>This means to compute</p>
 <div class="math notranslate nohighlight" id="equation-eq-project2d">
-<span class="eqno">(33)<a class="headerlink" href="#equation-eq-project2d" title="Link to this equation">#</a></span>\[
+<span class="eqno">(34)<a class="headerlink" href="#equation-eq-project2d" title="Link to this equation">#</a></span>\[
 \int_{-1}^1\int_{-1}^1 \left(u - \sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} P_i(x)P_j(y)\right) P_m(x)P_n(y) dx dy = 0, \quad \forall (m, n) \in \mathcal{I}_N^2,
 \]</div>
 <p>where the index set <span class="math notranslate nohighlight">\(\mathcal{I}_N = \{0, 1, \ldots, N\}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{I}_N^2 = \mathcal{I}_N \times \mathcal{I}_N\)</span>. The test function <span class="math notranslate nohighlight">\(v\)</span> is here the tensor product basis function <span class="math notranslate nohighlight">\(P_m(x)P_n(y)\)</span>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Equation <a class="reference internal" href="#equation-eq-project2d">(33)</a> provides <span class="math notranslate nohighlight">\((N+1)^2\)</span> equations for the <span class="math notranslate nohighlight">\((N+1)^2\)</span> unknown in <span class="math notranslate nohighlight">\(\hat{U} = (\hat{u}_{ij})_{i,j=0}^N\)</span>.</p>
+<p>Equation <a class="reference internal" href="#equation-eq-project2d">(34)</a> provides <span class="math notranslate nohighlight">\((N+1)^2\)</span> equations for the <span class="math notranslate nohighlight">\((N+1)^2\)</span> unknown in <span class="math notranslate nohighlight">\(\hat{U} = (\hat{u}_{ij})_{i,j=0}^N\)</span>.</p>
 </div>
 <p>Note that the unknown coefficients <span class="math notranslate nohighlight">\(\hat{u}_{ij}\)</span> are independent of space and we can simplify the double integrals by separating them into one integral for <span class="math notranslate nohighlight">\(x\)</span> and one for <span class="math notranslate nohighlight">\(y\)</span>. We get</p>
 <div class="math notranslate nohighlight">
@@ -914,7 +914,7 @@ x &amp; xy
 \[
 u_{mn} = \int_{-1}^1 \int_{-1}^1 u(x, y) P_m(x)P_n(y) dx dy.
 \]</div>
-<p>We can thus write Eq. <a class="reference internal" href="#equation-eq-project2d">(33)</a> as the linear algebra problem</p>
+<p>We can thus write Eq. <a class="reference internal" href="#equation-eq-project2d">(34)</a> as the linear algebra problem</p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{i=0}^N \sum_{j=0}^N a_{mi}a_{nj} \hat{u}_{ij} = u_{mn}.
@@ -1046,7 +1046,7 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </div>
 </div>
 </div>
-<p>The code should be fairly easy to follow. We simply create the function space <code class="docutils literal notranslate"><span class="pre">V</span></code> <span class="math notranslate nohighlight">\(=\text{span}\{P_i\}_{i=0}^{N}\)</span>, then a test function <code class="docutils literal notranslate"><span class="pre">v</span></code> from this space and then we compute the Legendre coefficients using the formula in Eq. <a class="reference internal" href="#equation-eq-leg-coeff">(30)</a>.</p>
+<p>The code should be fairly easy to follow. We simply create the function space <code class="docutils literal notranslate"><span class="pre">V</span></code> <span class="math notranslate nohighlight">\(=\text{span}\{P_i\}_{i=0}^{N}\)</span>, then a test function <code class="docutils literal notranslate"><span class="pre">v</span></code> from this space and then we compute the Legendre coefficients using the formula in Eq. <a class="reference internal" href="#equation-eq-leg-coeff">(31)</a>.</p>
 <p>Note that there is a shortcut function <a class="reference external" href="https://shenfun.readthedocs.io/en/latest/shenfun.forms.html#shenfun.forms.project.project">project</a> that projects <span class="math notranslate nohighlight">\(u(x)\)</span> to the chosen space and basis in one line of code.</p>
 <p>We can plot the difference between the computed function and the exact function on a uniform mesh of length 1000:</p>
 <div class="cell docutils container">
@@ -1122,7 +1122,7 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 \]</div>
 <p>Normally this can be computed as a matrix vector product</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebvander">
-<span class="eqno">(34)<a class="headerlink" href="#equation-eq-chebvander" title="Link to this equation">#</a></span>\[
+<span class="eqno">(35)<a class="headerlink" href="#equation-eq-chebvander" title="Link to this equation">#</a></span>\[
 \boldsymbol{u} = \text{T} \boldsymbol{\hat{u}},
 \]</div>
 <p>where the Vandermonde matrix <span class="math notranslate nohighlight">\(\text{T} = (t_{ij})_{i,j=0}^N, t_{ij} = T_j(x_i)\)</span> is of shape <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span>. The cost of this operation is <span class="math notranslate nohighlight">\((2N+1)(N+1)\)</span> floating point operations, and of leading order <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>
@@ -1148,7 +1148,7 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 </div>
 </div>
 <p>Now the column <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\text{T}\)</span> represents the numbers <span class="math notranslate nohighlight">\((T_j(x_i))_{i=0}^N\)</span>, that is, the basis function <span class="math notranslate nohighlight">\(T_j\)</span> evaluated on the mesh points <span class="math notranslate nohighlight">\((x_i)_{i=0}^N\)</span>.</p>
-<p>We can now evaluate <a class="reference internal" href="#equation-eq-chebvander">(34)</a> for any <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}\)</span> simply as</p>
+<p>We can now evaluate <a class="reference internal" href="#equation-eq-chebvander">(35)</a> for any <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}\)</span> simply as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -1164,9 +1164,9 @@ u(\boldsymbol{x}) = T_1(\boldsymbol{x}) + T_3(\boldsymbol{x}) + T_5(\boldsymbol{
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{x} = (\cos(i \pi /5))_{i=0}^5\)</span>.</p>
 <p>This matrix vector product is the straight forward approach that costs what it costs to do a matrix vector product. However, since the Vandermonde matrix <span class="math notranslate nohighlight">\(\text{T}\)</span> contains evaluated cosines, we can do better.</p>
-<p>Lets evaluate the Chebyshev series at the Chebyshev points <a class="reference internal" href="#equation-eq-chebpoints">(23)</a>: <span class="math notranslate nohighlight">\(x_i = \cos(i \pi /N), i \in 0, 1, \ldots, N\)</span>. Using the definition of Chebyshev polynomials <a class="reference internal" href="#equation-eq-chebt">(22)</a> we get</p>
+<p>Lets evaluate the Chebyshev series at the Chebyshev points <a class="reference internal" href="#equation-eq-chebpoints">(24)</a>: <span class="math notranslate nohighlight">\(x_i = \cos(i \pi /N), i \in 0, 1, \ldots, N\)</span>. Using the definition of Chebyshev polynomials <a class="reference internal" href="#equation-eq-chebt">(23)</a> we get</p>
 <div class="math notranslate nohighlight" id="equation-eq-uxi">
-<span class="eqno">(35)<a class="headerlink" href="#equation-eq-uxi" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(36)<a class="headerlink" href="#equation-eq-uxi" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{align*}
 u(x_i) &amp;= \sum_{j=0}^N \hat{u}_j \cos(j \cos^{-1}(x_i)), \\
  &amp;= \sum_{j=0}^N \hat{u}_j \cos(j i \pi / N),\\
@@ -1184,12 +1184,12 @@ u(x_i) &amp;= \sum_{j=0}^N \hat{u}_j \cos(j \cos^{-1}(x_i)), \\
 \[
 Y_i = y_0 + (-1)^i y_N + 2 \sum_{j=1}^{N-1} y_j \cos({ji\pi}/{N}), \quad i \in 0, 1, \ldots, N.
 \]</div>
-<p>This is almost the same as <a class="reference internal" href="#equation-eq-uxi">(35)</a>, except that the sum has a factor 2 in front. But we can work around this. A minor reformulation leads to</p>
+<p>This is almost the same as <a class="reference internal" href="#equation-eq-uxi">(36)</a>, except that the sum has a factor 2 in front. But we can work around this. A minor reformulation leads to</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{Y_i + y_0 + (-1)^i y_N}{2} = y_0 + (-1)^i y_N + \sum_{j=1}^{N-1} y_j \cos({ji\pi}/{N}), \quad i \in 0, 1, \ldots, N.
 \]</div>
-<p>where the right hand side now is exactly like in <a class="reference internal" href="#equation-eq-uxi">(35)</a>. So we need to compute</p>
+<p>where the right hand side now is exactly like in <a class="reference internal" href="#equation-eq-uxi">(36)</a>. So we need to compute</p>
 <div class="math notranslate nohighlight">
 \[
 u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u}_N}{2},

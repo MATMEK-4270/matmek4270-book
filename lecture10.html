@@ -419,7 +419,7 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 </figure>
 <p>The finite element method is a variational method. As such we can define the problem of approximating functions exactly the same way as we did for the global approach. Assume that we want to use the finite element method to find an approximation to <span class="math notranslate nohighlight">\(u(x)\)</span> in <span class="math notranslate nohighlight">\(\Omega=[0, 5]\)</span>. If we use the mesh in <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> we get a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^5\)</span>, where <span class="math notranslate nohighlight">\(\psi_j(x)\)</span> are the 6 piecewise linear functions that are 1 on node <span class="math notranslate nohighlight">\(j\)</span>, zero on all the other nodes and linear in between. We then attempt to find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-fem">
-<span class="eqno">(36)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Link to this equation">#</a></span>\[
+<span class="eqno">(37)<a class="headerlink" href="#equation-eq-galerkin-fem" title="Link to this equation">#</a></span>\[
 (u-u_N, v) = 0 \quad \forall \, v \in V_N.
 \]</div>
 <p>It is also possible to use the least squares method, but this is very rare. So for the finite element method we will focus on the Galerkin method with continuous piecewise polynomial basis functions.</p>
@@ -532,7 +532,7 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 \]</div>
 <p>In other words, we need to solve the follow linear algebra problem</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-femmat">
-<span class="eqno">(37)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Link to this equation">#</a></span>\[
+<span class="eqno">(38)<a class="headerlink" href="#equation-eq-galerkin-femmat" title="Link to this equation">#</a></span>\[
 \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}_j = (u, \psi_i), \quad \forall\,  i = 0, 1, \ldots, N.
 \]</div>
 <p>This is identical to the Galerkin problem already presented in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html#the-galerkin-method">lecture 8</a>. Again, the only difference is the choice of function spaces and basis.</p>
@@ -569,7 +569,7 @@ A = \sum_{e=0}^{N_e-1} A^{(e)}.
 \]</div>
 <p>and <span class="math notranslate nohighlight">\(q(e,r)\)</span> is a mapping function that maps a local index <span class="math notranslate nohighlight">\(r\)</span> on the global element <span class="math notranslate nohighlight">\(e\)</span> to a global index. For a structured mesh like <a class="reference internal" href="#fem-1d-mesh-p1"><span class="std std-numref">Fig. 2</span></a> and <a class="reference internal" href="#fem-1d-mesh-p2"><span class="std std-numref">Fig. 3</span></a>, and elements with <span class="math notranslate nohighlight">\(d+1\)</span> nodes in each, we get the mapping</p>
 <div class="math notranslate nohighlight" id="equation-eq-mapping-q">
-<span class="eqno">(38)<a class="headerlink" href="#equation-eq-mapping-q" title="Link to this equation">#</a></span>\[
+<span class="eqno">(39)<a class="headerlink" href="#equation-eq-mapping-q" title="Link to this equation">#</a></span>\[
 q(e, r) = de+r.
 \]</div>
 <div class="admonition note">
@@ -630,7 +630,7 @@ a_{q(e,r),q(e, s)} \mathop{+}= \tilde{a}^{(e)}_{r,s}, \quad (r, s) \in \mathcal{
 <p>So the basis functions always look the same regardless of domain, regardless of what <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> are. Hence it should be possible to perform the integration once, in a reference domain, and then reuse this result for all elements. This can be achieved by mapping to a reference domain, which has already been used for both Legendre and Chebyshev polynomials, but for slightly different reasons. For those two, we needed to map because the polynomials and weight functions were only defined on a reference domain.</p>
 <p>We will now use this linear (affine) mapping and the same reference domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> as the Chebyshev/Legendre polynomials. In this domain the mapping  from physical coordinate <span class="math notranslate nohighlight">\(x \in \Omega^{(e)} = [x_{q(e,0)}, x_{q(e, d)}] = [x_L, x_R]\)</span> to computational (or reference) coordinate <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span> can be written as</p>
 <div class="math notranslate nohighlight" id="equation-eq-affine-map">
-<span class="eqno">(39)<a class="headerlink" href="#equation-eq-affine-map" title="Link to this equation">#</a></span>\[
+<span class="eqno">(40)<a class="headerlink" href="#equation-eq-affine-map" title="Link to this equation">#</a></span>\[
 x = \frac{1}{2}(x_L+x_R) + \frac{1}{2}(x_R-x_L)X. 
 \]</div>
 <p>Note that <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_R\)</span> are the left and right boundary points of the domain <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span>. If we introduce the center of the element as <span class="math notranslate nohighlight">\(x_m = (x_L+x_R)/2\)</span> and the element length <span class="math notranslate nohighlight">\(h = x_R-x_L\)</span>, then the mapping can be written simply as</p>
@@ -655,12 +655,12 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 \]</div>
 <p>We get the reference basis functions for linear elements</p>
 <div class="math notranslate nohighlight" id="equation-eq-lagrange-p1">
-<span class="eqno">(40)<a class="headerlink" href="#equation-eq-lagrange-p1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(41)<a class="headerlink" href="#equation-eq-lagrange-p1" title="Link to this equation">#</a></span>\[
 \ell_0(X) = \frac{1}{2}(1-X) \quad \text{and} \quad \ell_1(X) = \frac{1}{2}(1+X)
 \]</div>
 <p>and for quadratic</p>
 <div class="math notranslate nohighlight" id="equation-eq-lagrange-p2">
-<span class="eqno">(41)<a class="headerlink" href="#equation-eq-lagrange-p2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(42)<a class="headerlink" href="#equation-eq-lagrange-p2" title="Link to this equation">#</a></span>\[
 \ell_0(X) = \frac{1}{2}X(1-X), \quad
 \ell_1(X) = (1-X^2) \quad \text{and} \quad
 \ell_2(X) = \frac{1}{2}X(1+X).
@@ -847,7 +847,7 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </section>
 <section id="finite-element-assembly-of-a-vector">
 <span id="fem-assemble-vector"></span><h3>Finite element assembly of a vector<a class="headerlink" href="#finite-element-assembly-of-a-vector" title="Link to this heading">#</a></h3>
-<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">(37)</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i = 0, 1, \ldots, N\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
+<p>We now know how to compute the mass matrix in <a class="reference internal" href="#equation-eq-galerkin-femmat">(38)</a>, but we also need the right hand side <span class="math notranslate nohighlight">\(b_i = (u, \psi_i), i = 0, 1, \ldots, N\)</span>. This inner product can also be evaluated elementwise, and mapped just like the mass matrix. We define the element vector similarly as the element matrix (<span class="math notranslate nohighlight">\(A^{(e)}\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[
 b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i = 0, 1, \ldots, N,
@@ -960,14 +960,14 @@ x_{2i+1} = \frac{x_{2i}+x_{2(i+1)}}{2}, \quad i = 0, 1, \ldots, N/2-1.
 </div>
 <p>But what happened here? The results still look like piecewise linear polynomials and it looks no better than before. The problem now is not accuracy of the FEM approximation, though, it has more to do with postprocessing and finite element evaluation. We compute and plot the finite element solution <span class="math notranslate nohighlight">\((\hat{u}_j)_{j=0}^N\)</span>, but then matplotlib simply fills in the gaps between the points with linear profiles. The correct approach would be to evaluate the finite element function</p>
 <div class="math notranslate nohighlight" id="equation-eq-fem-sol">
-<span class="eqno">(42)<a class="headerlink" href="#equation-eq-fem-sol" title="Link to this equation">#</a></span>\[
+<span class="eqno">(43)<a class="headerlink" href="#equation-eq-fem-sol" title="Link to this equation">#</a></span>\[
 u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x), \quad x \in \Omega,
 \]</div>
 <p>in between the mesh points.</p>
 </section>
 <section id="finite-element-evaluation">
 <h3>Finite element evaluation<a class="headerlink" href="#finite-element-evaluation" title="Link to this heading">#</a></h3>
-<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">(42)</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
+<p>The finite element solution differs from the finite difference solution in that the solution is automatically defined everywhere within the domain. The finite difference solution is only defined in mesh points and requires interpolation. With FEM we need to evaluate <a class="reference internal" href="#equation-eq-fem-sol">(43)</a>. To this end note that the point <span class="math notranslate nohighlight">\(x\)</span> is either</p>
 <ol class="arabic simple">
 <li><p>at a mesh point <span class="math notranslate nohighlight">\(x_i\)</span>, in which case <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p></li>
 <li><p>in between mesh points and inside one and only one element.</p></li>
