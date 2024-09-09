@@ -1133,11 +1133,11 @@ I(x) = \sum_{k=0}^K a_k e^{i k x} = \sum_{k=0}^K a_k \left(\cos kx + i \sin kx\r
 \[
 u(x, t) = \frac{1}{2}\sum_{k=0}^K a_k \left(e^{ik(x-ct)} + e^{ik(x+ct)}\right).
 \]</div>
-<p>We will analyze one component <span class="math notranslate nohighlight">\(e^{ik(x-ct)} = e^{ikx- \omega t}\)</span>, where <span class="math notranslate nohighlight">\(\omega = kc\)</span> is the frequency in time. This is very similar to the investigation we did for the numerical frequency for the vibration equation.</p>
+<p>We will analyze one component <span class="math notranslate nohighlight">\(e^{ik(x+ct)} = e^{ikx+ \omega t}\)</span>, where <span class="math notranslate nohighlight">\(\omega = kc\)</span> is the frequency in time. This is very similar to the investigation we did for the numerical frequency for the vibration equation.</p>
 <p>If we assume that the numerical solution is a complex wave</p>
 <div class="math notranslate nohighlight">
 \[
-u(x_j, t_n) = u^{n}_j = e^{ik(x_j-\tilde{\omega} t_n)},
+u(x_j, t_n) = u^{n}_j = e^{ik(x_j+\tilde{\omega} t_n)},
 \]</div>
 <p>then we might ask</p>
 <ul class="simple">
@@ -1154,7 +1154,7 @@ u^n_j = e^{ikx_j} e^{i\tilde{\omega} n \Delta t} = (e^{i\tilde{\omega} \Delta t}
 \[
 u^n_j = A^n e^{ikx_j}.
 \]</div>
-<p>We can find <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> by inserting for <span class="math notranslate nohighlight">\(e^{i\tilde{\omega}t}\)</span> in the discretized wave equation</p>
+<p>We can find <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> by inserting for <span class="math notranslate nohighlight">\(e^{ik(x_j+\tilde{\omega}t)}\)</span> in the discretized wave equation</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{u^{n+1}_j - 2u^n_j + u^{n-1}_j}{\Delta t^2} = c^2 \frac{u^n_{j+1}-2 u^{n}_j + u^n_{j-1}}{\Delta x^2}.
@@ -1178,7 +1178,7 @@ u^n_j = A^n e^{ikx_j}.
 <p>and solve for <span class="math notranslate nohighlight">\(A\)</span>. We get</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\left(A^{n+1} - 2A^n + A^{n-1} \right) e^{ikx_j}}{\Delta t^2} = c^2 A^n \frac{e^{ik(xj+\Delta x)} - 2e^{ikx_j} + e^{ik(x_j-\Delta x)}}{\Delta x^2}.
+\frac{\left(A^{n+1} - 2A^n + A^{n-1} \right) e^{ikx_j}}{\Delta t^2} = c^2 A^n \frac{e^{ik(x_j+\Delta x)} - 2e^{ikx_j} + e^{ik(x_j-\Delta x)}}{\Delta x^2}.
 \]</div>
 <p>Divide by <span class="math notranslate nohighlight">\(A^ne^{ikx_j}\)</span>, multiply by <span class="math notranslate nohighlight">\(\Delta t^2\)</span> and use <span class="math notranslate nohighlight">\(C=c\Delta t/\Delta x\)</span> to get</p>
 <div class="math notranslate nohighlight">
