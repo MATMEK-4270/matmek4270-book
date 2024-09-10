@@ -361,6 +361,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-problem">Solve the problem</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
             </nav>
         </div>
@@ -431,6 +432,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="s2">&quot;${u(x, y=0)}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;${u(x, y=L_y)}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
@@ -464,12 +466,12 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 \]</div>
 <section id="cartesian-products">
 <h3>Cartesian products<a class="headerlink" href="#cartesian-products" title="Link to this heading">#</a></h3>
-<p>In order to create a two-dimensional mesh, like the one seen above, we use a Cartesian product. The Cartesian product is most easily explained through an example. Consider the two arrays <span class="math notranslate nohighlight">\(\boldsymbol{u}=[1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{v}=[4, 5]\)</span>. We can compute the Cartesian product of these two arrays using the Python package <a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a></p>
+<p>In order to create a two-dimensional mesh, like the one seen above, we use a Cartesian product. The Cartesian product is most easily explained through an example. Consider the two arrays (or here <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">lists</a>) <span class="math notranslate nohighlight">\(\boldsymbol{u}=[1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{v}=[4, 5]\)</span>. We can compute the Cartesian product of these two arrays using the Python package <a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">u</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">uxv</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 <span class="nb">list</span><span class="p">(</span><span class="n">uxv</span><span class="p">)</span>
 </pre></div>
@@ -513,8 +515,8 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;grey&#39;</span><span class="p">)</span>
 
-<span class="n">Dx</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;$\Delta x$&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;$2 \Delta x$&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;$3\Delta x$&#39;</span> <span class="p">}</span>
-<span class="n">Dy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;$\Delta y$&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;$2 \Delta y$&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;$3\Delta y$&#39;</span> <span class="p">}</span>
+<span class="n">Dx</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\Delta x$&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$2 \Delta x$&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$3\Delta x$&#39;</span> <span class="p">}</span>
+<span class="n">Dy</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$\Delta y$&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$2 \Delta y$&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="sa">r</span><span class="s1">&#39;$3\Delta y$&#39;</span> <span class="p">}</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">)</span>
@@ -531,32 +533,6 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-&lt;&gt;:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94176/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-  Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94176/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-  Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94176/12465253.py:7: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-  Dx = {0: &#39;0&#39;, 1: &#39;$\Delta x$&#39;, 2: &#39;$2 \Delta x$&#39;, 3: &#39;$3\Delta x$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94176/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-  Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94176/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-  Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
-/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94176/12465253.py:8: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-  Dy = {0: &#39;0&#39;, 1: &#39;$\Delta y$&#39;, 2: &#39;$2 \Delta y$&#39;, 3: &#39;$3\Delta y$&#39; }
-</pre></div>
-</div>
 <img alt="_images/019e99cd83c6122e497ab0c64093a18ac3390db7714c30f8aecf21658552bfa5.png" src="_images/019e99cd83c6122e497ab0c64093a18ac3390db7714c30f8aecf21658552bfa5.png" />
 </div>
 </div>
@@ -1634,6 +1610,17 @@ Ax = b,
 <p>Voilà! The solution is correct. You should also verify that the solver works for a variety of spatial discretizations, especially when <span class="math notranslate nohighlight">\(N_x \ne N_y\)</span>.</p>
 </section>
 </section>
+<section id="weekly-assignments">
+<h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
+<p>This week the assignments are to modify <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/poisson.py">poisson.py</a> and <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/poisson2d.py">poisson2d.py</a>. Study the solver in <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/poisson.py">poisson.py</a> and try to understand how it works.</p>
+<ol class="arabic simple">
+<li><p>Modify the function <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/poisson.py#L115">test_poisson</a> by adding an appropriate test for the Poisson solver. You may add one or several tests.</p></li>
+<li><p>Implement a 2D Poisson solver in <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/projects/poisson2d.py">poisson2d.py</a>. Use vectorization, as described in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture6.html#vectorization-the-vec-trick">Lecture 6</a>. The solver should be implemented for a generic right hand side function , such that you can test the solver using the method of manufactured solutions (see the 1D Poisson solver). Implement first the solver for homogeneous Dirichlet boundary conditions. Note that this restricts the possible solutions to all solutions that are zero on the entire boundary.</p></li>
+<li><p>Implement generic Dirichlet boundary conditions for the 2D Poisson solver such that any manufactured solution may be applied.</p></li>
+<li><p>Implement an appropriate test for the solver in the function <a class="reference internal" href="#"><span class="xref myst">test_poisson2d</span></a>.</p></li>
+</ol>
+<p>PS - Remember to add <code class="docutils literal notranslate"><span class="pre">poisson.py</span></code> and <code class="docutils literal notranslate"><span class="pre">poisson2d.py</span></code> to the list of files tested in <a class="reference external" href="https://github.com/MATMEK-4270/course-projects/blob/main/.github/workflows/matmek4270.yml#L30">matmek4270.yml</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1719,6 +1706,7 @@ Ax = b,
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-problem">Solve the problem</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
   </nav></div>
 
