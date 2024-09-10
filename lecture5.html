@@ -643,13 +643,14 @@ u^{n} &amp;\leftarrow u^{n+1}
 </section>
 <section id="initial-conditions">
 <h2>Initial conditions<a class="headerlink" href="#initial-conditions" title="Link to this heading">#</a></h2>
-<p>Initial conditions will need to fix <code class="docutils literal notranslate"><span class="pre">un</span></code> and <code class="docutils literal notranslate"><span class="pre">unm1</span></code>. There are basically two options. If a time dependent function is given for initial conditions, then this function may be used for not only one, but two time steps, at</p>
+<p>Initial conditions will need to fix <code class="docutils literal notranslate"><span class="pre">un</span></code> and <code class="docutils literal notranslate"><span class="pre">unm1</span></code>. There are basically three options. If a time dependent function is given for initial conditions, then this function may be used for not only one, but two time steps, at</p>
 <div class="math notranslate nohighlight">
 \[
 u(x, t=0) \quad \text{and} \quad u(x, t=\Delta t).
 \]</div>
-<p>We will in the implementation then set <code class="docutils literal notranslate"><span class="pre">unm1</span></code>=<span class="math notranslate nohighlight">\(u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code>=<span class="math notranslate nohighlight">\(u(x, \Delta t)\)</span> simply by evaluation.</p>
-<p>The other alternative is to use the actual condition <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}=V(x)\)</span>. In order to implement this with a central scheme and second order accuracy, we use</p>
+<p>We will in the implementation then set <code class="docutils literal notranslate"><span class="pre">unm1</span></code>=<span class="math notranslate nohighlight">\(u(x, 0)\)</span> and <code class="docutils literal notranslate"><span class="pre">un</span></code>=<span class="math notranslate nohighlight">\(u(x, \Delta t)\)</span> simply by evaluation. Note that this approach leads to only one wave traveling in one direction. and is not compatible with <span class="math notranslate nohighlight">\(u_t(x, t)=0\)</span>.</p>
+<p>Another alternative can be used for an initial condition given as <span class="math notranslate nohighlight">\(u(x, 0)=I(x)\)</span> and <span class="math notranslate nohighlight">\(u_t(x, 0)=0\)</span>. Her you can specify first <span class="math notranslate nohighlight">\(u(x_j, 0) = I(x_j)\)</span> for all <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N\)</span> and then <span class="math notranslate nohighlight">\(u(x_j, \Delta t) = 0.5(I(x+c \Delta t) + I(x-c \Delta t))\)</span>. This will lead to a solution with two traveling waves.</p>
+<p>The final alternative is to use the actual condition <span class="math notranslate nohighlight">\(u_t=V(x)\)</span> and the PDE, which also works when <span class="math notranslate nohighlight">\(V(x)\)</span> is nonzero. In order to implement this with a central scheme and second order accuracy, we use</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{\partial u}{\partial t} = \frac{u^1-u^{-1}}{2 \Delta t} = V,
@@ -1040,7 +1041,8 @@ D_p^{(2)} = \begin{bmatrix}
 <span class="sd">        ic : int, optional</span>
 <span class="sd">            Initial conditions</span>
 <span class="sd">            - 0 Specify un = u(x, t=0) and unm1 = u(x, t=-dt)</span>
-<span class="sd">            - 1 Specify un = u(x, t=0) and u_t(x, t=0) = 0</span>
+<span class="sd">            - 1 Specify unm1 = u(x, t=0) and u_t(x, t=0) = 0 using ghost node and PDE for un=u(x, dt)</span>
+<span class="sd">            - 2 Specify unm1 = u(x, t=0) and u_t(x, t=0) = 0 using 0.5*(I(x+c*dt)+I(x-c*dt)) for un=u(x, dt) </span>
 <span class="sd">        save_step : int, optional</span>
 <span class="sd">            Save solution every save_step time step</span>
 
@@ -1063,9 +1065,14 @@ D_p^{(2)} = \begin{bmatrix}
             <span class="n">u0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">dt</span><span class="p">}))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
-        <span class="k">else</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
+        <span class="k">elif</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">C</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">apply_bcs</span><span class="p">(</span><span class="n">bc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">u0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="mi">0</span><span class="p">}))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">+</span><span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+
         <span class="k">if</span> <span class="n">save_step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">plotdata</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
@@ -1095,6 +1102,14 @@ D_p^{(2)} = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">136</span>
+    <span class="k">elif</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
+        <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
 </div>
 <p>Let us try the solver for an initial pulse <span class="math notranslate nohighlight">\(u(x, t) = \exp(-200(x-L/2+ct)^2)\)</span>. We choose 100 time steps with a Courant (CFL) number of unity. Also, we store the result of the simulation avery 10’th time step and plot 10 solutions with offset in the same figure. Notice that the solution flips sign when it reaches the boundaries.</p>
 <div class="cell docutils container">
@@ -1104,9 +1119,6 @@ D_p^{(2)} = \begin{bmatrix}
 <span class="n">sol</span><span class="o">.</span><span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/ecfec4904056c9b9894196f7703f420f1347dae3238b7b0e650a2cf642ad3f33.png" src="_images/ecfec4904056c9b9894196f7703f420f1347dae3238b7b0e650a2cf642ad3f33.png" />
 </div>
 </div>
 </section>
