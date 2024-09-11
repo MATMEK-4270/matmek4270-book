@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'mandatory1';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -317,7 +319,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -333,6 +337,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-s-equation">1.1. Poisson’s equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-the-poisson-solver">1.1.1. Implement the Poisson solver</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-waves">1.2. Stationary waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dirichlet-problem">1.2.1. The Dirichlet problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem">1.2.2. The Neumann problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-solution">1.2.3. Exact solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion-coefficient">1.2.4. Dispersion coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-for-exact-solution">1.2.5. Test for exact solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-movie">1.2.6. Create movie</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -344,7 +368,143 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="mandatory-assignment-due-11-10-2024">
 <h1><span class="section-number">1. </span>Mandatory assignment due 11/10-2024<a class="headerlink" href="#mandatory-assignment-due-11-10-2024" title="Link to this heading">#</a></h1>
-<p>To be announced!</p>
+<ul class="simple">
+<li><p>Please organize you project in a fork of the repository at: <a class="github reference external" href="https://github.com/MATMEK-4270/mandatory1">MATMEK-4270/mandatory1</a>. You should start by changing the badge in the README to reflect your own work.</p></li>
+<li><p>Collaboration/discussion among students is encouraged, but each student need an individual fork of the repository. Please send me an email about your github username if it is not obvious who you are from this username. I can see all the forks, but I cannot necessarily understand who is who.</p></li>
+<li><p>You need a green badge in order to pass the mandatory assignment. You also need to answer a few questions in a report and to place a movie (see <a class="reference internal" href="#assign-6"><span class="std std-numref">Section 1.2.6</span></a>) where I can easily see it on <a class="reference external" href="http://github.com">github.com</a> (without downloading).</p></li>
+</ul>
+<section id="poisson-s-equation">
+<span id="sec-poisson"></span><h2><span class="section-number">1.1. </span>Poisson’s equation<a class="headerlink" href="#poisson-s-equation" title="Link to this heading">#</a></h2>
+<p>Consider Poisson’s equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-poisson">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-eq-poisson" title="Link to this equation">#</a></span>\[
+\begin{equation}
+\nabla^2 u = f,
+\end{equation}
+\]</div>
+<p>for the two-dimensional domain <span class="math notranslate nohighlight">\(\Omega = [0, L]^2\)</span>. Use a uniform mesh of equal length for both directions, such that the mesh can be described as <span class="math notranslate nohighlight">\(\boldsymbol{x} \times \boldsymbol{y}\)</span>, where</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+\boldsymbol{x} = (i h)_{i=0}^{N}, \quad \boldsymbol{y} = (j h)_{j=0}^{N}
+\end{equation}
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(h = L/N\)</span>. There is already the start of an implementation of a solver in <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/759088a470d9baa59c72fccfb6e52d892c2a7ec5/poisson2d.py#L7">Poisson2D</a>. The solver is created such that it takes a Sympy function <code class="docutils literal notranslate"><span class="pre">ue</span></code> as input when creating the solver class (see <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/759088a470d9baa59c72fccfb6e52d892c2a7ec5/poisson2d.py#L18"><code class="docutils literal notranslate"><span class="pre">Poisson2D.__init__</span></code></a>). This manufactured solution <code class="docutils literal notranslate"><span class="pre">ue</span></code> is used to create the right hand side function <span class="math notranslate nohighlight">\(f(x, y)\)</span>, such that when you solve the Poisson problem numerically the resulting mesh function <span class="math notranslate nohighlight">\(u_{ij}\)</span> should converge towards <code class="docutils literal notranslate"><span class="pre">ue</span></code>.</p>
+<section id="implement-the-poisson-solver">
+<span id="assign-0"></span><h3><span class="section-number">1.1.1. </span>Implement the Poisson solver<a class="headerlink" href="#implement-the-poisson-solver" title="Link to this heading">#</a></h3>
+<p>Modify the solver class <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/759088a470d9baa59c72fccfb6e52d892c2a7ec5/poisson2d.py#L7">Poisson2D</a> such that the two tests <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/a1f03918273987650fe7495b2533715fb35632f0/poisson2d.py#L104">test_convergence_poisson2d</a> and <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/759088a470d9baa59c72fccfb6e52d892c2a7ec5/poisson2d.py#L111">test_interpolation</a> passes.</p>
+</section>
+</section>
+<section id="stationary-waves">
+<span id="sec-waves"></span><h2><span class="section-number">1.2. </span>Stationary waves<a class="headerlink" href="#stationary-waves" title="Link to this heading">#</a></h2>
+<p>Consider the wave equation</p>
+<div class="math notranslate nohighlight" id="equation-eq-wave">
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-eq-wave" title="Link to this equation">#</a></span>\[
+\begin{equation}
+\frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u,
+\end{equation}
+\]</div>
+<p>in a two-dimensional spatial domain <span class="math notranslate nohighlight">\(\Omega = [0, 1]^2\)</span> and in time <span class="math notranslate nohighlight">\(t \in [0, T]\)</span>. Use a uniform mesh for the finite difference method in both space and time. Use the same spatial discretization in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions, such that the mesh can be described as in <a class="reference internal" href="#sec-poisson"><span class="std std-numref">Section 1.1</span></a> for <span class="math notranslate nohighlight">\(L=1\)</span>. Time is discretized as <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span> for <span class="math notranslate nohighlight">\(n \in 0, 1, \ldots, N_t\)</span>, and <span class="math notranslate nohighlight">\(\Delta t = T/N_t\)</span>. The CFL number <span class="math notranslate nohighlight">\(C\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{equation}
+C = \frac{c \Delta t}{h}.
+\end{equation}
+\]</div>
+<p>A mesh function will be denoted as</p>
+<div class="math notranslate nohighlight">
+\[
+u^n_{ij} = u(t_n, x_i, y_j)
+\]</div>
+<p>and for a given timestep <span class="math notranslate nohighlight">\(n\)</span> it is useful to use matrix notation for the mesh function:</p>
+<div class="math notranslate nohighlight">
+\[
+U^n = (u^n_{ij})_{i,j=0}^N.
+\]</div>
+<p>All internal points in the computational domain can be discretized using
+central differences in both time and space</p>
+<div class="math notranslate nohighlight" id="equation-eq-wave-disc">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-eq-wave-disc" title="Link to this equation">#</a></span>\[
+\begin{equation}
+\frac{u^{n+1}_{i,j} - 2u^n_{i,j} + u^{n-1}_{i, j}}{\Delta t^2} =
+ c^2 \left(\frac{u^n_{i+1,j} - 2u^n_{i,j} + u^n_{i-1, j}}{h^2} + \frac{u^n_{i,j+1} - 2u^n_{i,j} + u^n_{i, j-1}}{h^2}\right)
+\end{equation}
+\]</div>
+<p>The wave equation admits two real stationary waves as solutions:</p>
+<p>The Dirichlet problem:</p>
+<div class="math notranslate nohighlight" id="equation-eq-sin">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-eq-sin" title="Link to this equation">#</a></span>\[
+\begin{equation}
+u(t, x, y) = \sin(k_x x) \sin(k_y y) \cos(\omega t).
+\end{equation}
+\]</div>
+<p>The Neumann problem:</p>
+<div class="math notranslate nohighlight" id="equation-eq-cos">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-eq-cos" title="Link to this equation">#</a></span>\[
+\begin{equation}
+u(t, x, y) = \cos(k_x x) \cos(k_y y) \cos(\omega t).
+\end{equation}
+\]</div>
+<p>Here <span class="math notranslate nohighlight">\(k_x=m_x\pi\)</span> and <span class="math notranslate nohighlight">\(k_y=m_y\pi\)</span>, where <span class="math notranslate nohighlight">\(m_x\)</span> and <span class="math notranslate nohighlight">\(m_y\)</span> are arbitrary integers, and <span class="math notranslate nohighlight">\(\omega\)</span> is the dispersion coefficient.</p>
+<section id="the-dirichlet-problem">
+<span id="assign-1"></span><h3><span class="section-number">1.2.1. </span>The Dirichlet problem<a class="headerlink" href="#the-dirichlet-problem" title="Link to this heading">#</a></h3>
+<p>There is the beginning of a solver class <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L9">Wave2D</a> for the homogeneous Dirichlet problem using the standing wave in Eq. <a class="reference internal" href="#equation-eq-sin">(1.4)</a> as initial condition.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>A solver for the Dirichlet problem was implemented in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#the-wave-equation-in-2d-plus-time">lecture 7</a>.</p>
+</div>
+<p>Complete the implementation of the <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L9">Wave2D</a> solver and verify the implementation using the analytical solution in <a class="reference internal" href="#equation-eq-sin">(1.4)</a>. Compute the error using the <span class="math notranslate nohighlight">\(\ell^{2}\)</span> norm</p>
+<div class="math notranslate nohighlight">
+\[
+E = \|e^n\|_{\ell^2} = \sqrt{h^2 \sum_{i=0}^N \sum_{j=0}^N (e_{ij}^{n})^2}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(e^n = U^n - U^n_e\)</span>, <span class="math notranslate nohighlight">\(U^n\)</span> is the solution at time <span class="math notranslate nohighlight">\(n \Delta t\)</span> and <span class="math notranslate nohighlight">\(U^n_e\)</span> here is the analytical solution Eq. <a class="reference internal" href="#equation-eq-sin">(1.4)</a> at the mesh at the same time. The solver is verified when <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L132">test_convergence_wave2d</a> passes.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Use either <a class="reference internal" href="#equation-eq-cos">(1.5)</a> or <a class="reference internal" href="#equation-eq-sin">(1.4)</a> as an exact solution of <a class="reference internal" href="#equation-eq-wave">(1.2)</a> and find the dispersion coefficient <span class="math notranslate nohighlight">\(\omega\)</span> as a function of <span class="math notranslate nohighlight">\(c, k_x\)</span> and <span class="math notranslate nohighlight">\(k_y\)</span>. Implement the solution in the property method <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L21"><code class="docutils literal notranslate"><span class="pre">w</span></code></a>.</p>
+</div>
+</section>
+<section id="the-neumann-problem">
+<span id="assign-2"></span><h3><span class="section-number">1.2.2. </span>The Neumann problem<a class="headerlink" href="#the-neumann-problem" title="Link to this heading">#</a></h3>
+<p>There is also the beginning of a solver for the wave equation with Neumann boundary conditions in <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L121">Wave2D_Neumann</a>. This solver should use the standing wave in Eq. <a class="reference internal" href="#equation-eq-cos">(1.5)</a> as initial condition and exact solution. Modify the three class methods that are included in order to make <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L137">test_convergence_wave2d_neumann</a> pass.</p>
+<p>For the remaining questions, please answer in a report placed in the report folder. You can use a notebook or a PDF.</p>
+</section>
+<section id="exact-solution">
+<span id="assign-3"></span><h3><span class="section-number">1.2.3. </span>Exact solution<a class="headerlink" href="#exact-solution" title="Link to this heading">#</a></h3>
+<p>The two stationary solutions to the wave equations are real and imaginary components of the waves</p>
+<div class="math notranslate nohighlight" id="equation-eq-exp">
+<span class="eqno">(1.6)<a class="headerlink" href="#equation-eq-exp" title="Link to this equation">#</a></span>\[
+\begin{equation}
+u(t,x,y) = e^{\imath (k_x x + k_y y - \omega t)}
+\end{equation}
+\]</div>
+<p>where the imaginary unit <span class="math notranslate nohighlight">\(\imath = \sqrt{-1}\)</span>. Show that Eq. <a class="reference internal" href="#equation-eq-exp">(1.6)</a> satisfies the wave equation.</p>
+</section>
+<section id="dispersion-coefficient">
+<span id="assign-4"></span><h3><span class="section-number">1.2.4. </span>Dispersion coefficient<a class="headerlink" href="#dispersion-coefficient" title="Link to this heading">#</a></h3>
+<p>Assume that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> such that <span class="math notranslate nohighlight">\(k_x=k_y=k\)</span>. A discrete version of Eq. <a class="reference internal" href="#equation-eq-exp">(1.6)</a> will then read</p>
+<div class="math notranslate nohighlight" id="equation-eq-exp-disc">
+<span class="eqno">(1.7)<a class="headerlink" href="#equation-eq-exp-disc" title="Link to this equation">#</a></span>\[
+\begin{equation}
+u^n_{ij} = e^{\imath (kh(i+j) - \tilde{\omega} n\Delta t)}
+\end{equation}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> is a numerical dispersion coefficient, i.e., the numerical approximation of the exact <span class="math notranslate nohighlight">\(\omega\)</span>.
+Insert Eq. <a class="reference internal" href="#equation-eq-exp-disc">(1.7)</a> into the discretized Eq. <a class="reference internal" href="#equation-eq-wave-disc">(1.3)</a> and show that for CFL number <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> we get <span class="math notranslate nohighlight">\(\tilde{\omega} = \omega\)</span>.</p>
+</section>
+<section id="test-for-exact-solution">
+<span id="assign-5"></span><h3><span class="section-number">1.2.5. </span>Test for exact solution<a class="headerlink" href="#test-for-exact-solution" title="Link to this heading">#</a></h3>
+<p>Modify the test <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-mandatory1/blob/8bd2e43ac8ab2df733b397c73f99b82493b90615/Wave2D.py#L142">test_exact_wave2d</a> such that it verifies that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> and <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> leads to l2-errors less than <span class="math notranslate nohighlight">\(10^{-12}\)</span> for both the Dirichlet problem and the Neumann problem.</p>
+</section>
+<section id="create-movie">
+<span id="assign-6"></span><h3><span class="section-number">1.2.6. </span>Create movie<a class="headerlink" href="#create-movie" title="Link to this heading">#</a></h3>
+<p>Create a movie of the Neumann problem using <span class="math notranslate nohighlight">\(m_x=m_y=2\)</span> and <span class="math notranslate nohighlight">\(C = 1/\sqrt{2}\)</span>. Call the move <code class="docutils literal notranslate"><span class="pre">neumannwave.gif</span></code> and save it to the report folder of your forked repository. Make sure that the movie is not larger than 1 MB.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>See <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#the-wave-equation-in-2d-plus-time">Lecture 7</a> about how to create an animation and a movie in Python.</p>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -402,7 +562,32 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-s-equation">1.1. Poisson’s equation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implement-the-poisson-solver">1.1.1. Implement the Poisson solver</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-waves">1.2. Stationary waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dirichlet-problem">1.2.1. The Dirichlet problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neumann-problem">1.2.2. The Neumann problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-solution">1.2.3. Exact solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dispersion-coefficient">1.2.4. Dispersion coefficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-for-exact-solution">1.2.5. Test for exact solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-movie">1.2.6. Create movie</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
