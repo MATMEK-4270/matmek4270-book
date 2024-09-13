@@ -375,9 +375,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lecture-6">
 <h1>Lecture 6<a class="headerlink" href="#lecture-6" title="Link to this heading">#</a></h1>
+<p>In lecture 6 we will move from one to two spatial dimensions and discuss how to discretize and solve a boundary value problem (Poisson’s equation). Important topics are</p>
+<ul class="simple">
+<li><p>The Cartesian product - definition and the use for computational meshes</p></li>
+<li><p>The finite difference method in 2D for the Laplace operator</p></li>
+<li><p>The vec-trick (also referred to as vectorization, but not the same as Numpy vectorization)</p></li>
+<li><p>The Kronecker product</p></li>
+</ul>
 <section id="two-dimensional-spatial-domain">
 <h2>Two-dimensional spatial domain<a class="headerlink" href="#two-dimensional-spatial-domain" title="Link to this heading">#</a></h2>
-<p>We will now consider equations within a simple two-dimensional spatial domain. To get started we will look at the Poisson equation</p>
+<p>We will now consider equations within a simple two-dimensional rectangular domain. To get started we will look at the Poisson equation</p>
 <div class="math notranslate nohighlight">
 \[
 \nabla^2 u = f,
