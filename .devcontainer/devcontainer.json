@@ -15,5 +15,5 @@
         ]
       }
     },
-    "postCreateCommand": "conda init"
+    "postCreateCommand": "./.devcontainer/setupenv.sh"
   }
