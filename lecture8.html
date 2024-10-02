@@ -346,6 +346,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-method">The least squares method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-galerkin-method">The Galerkin method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-collocation-method">The collocation method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-s-phenomenon">Runge’s phenomenon</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-issues">Boundary issues</a></li>
 </ul>
 </li>
@@ -442,7 +443,7 @@ u_N(x) = \hat{u}_0 + \hat{u}_1 x.
 <span class="eqno">(12)<a class="headerlink" href="#equation-eq-error-u" title="Link to this equation">#</a></span>\[
 e(x) = u(x)-u_N(x),
 \]</div>
-<p>then the <span class="math notranslate nohighlight">\(L^2\)</span> error norm is <span class="math notranslate nohighlight">\(\sqrt{(e, e)} = |e|\)</span>, or sometimes <span class="math notranslate nohighlight">\(|e|_{L^2}\)</span>. We will also use</p>
+<p>then the <span class="math notranslate nohighlight">\(L^2\)</span> error norm is <span class="math notranslate nohighlight">\(\sqrt{(e, e)} = \|e\|\)</span>, or sometimes <span class="math notranslate nohighlight">\(\|e\|_{L^2}\)</span>. We will also use</p>
 <div class="math notranslate nohighlight">
 \[
 E = (e, e).
@@ -461,9 +462,9 @@ E = (e, e).
 <p>The least squares method requires that we solve</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\partial E}{\partial \hat{u}_j} = 0, \quad j \in \{0, 1, \ldots, N\}.
+\frac{\partial E}{\partial \hat{u}_j} = 0, \quad j = 0, 1, \ldots, N.
 \]</div>
-<p>This gives us <span class="math notranslate nohighlight">\(N+1\)</span> equations for the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\((\hat{u}_j)_{j=0}^{N}\)</span>. For our example, this is a lot of work by hand, but easily achieved using Sympy.</p>
+<p>This gives us <span class="math notranslate nohighlight">\(N+1\)</span> equations for the <span class="math notranslate nohighlight">\(N+1\)</span> unknown <span class="math notranslate nohighlight">\(\{\hat{u}_j\}_{j=0}^{N}\)</span>. For our example, this is a lot of work by hand, but easily achieved using Sympy.</p>
 <p>Find and display the two equations:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -512,13 +513,27 @@ E = (e, e).
 <img alt="_images/ae66d082dac3e0d21d46a169ba60153e000c13fce300e9e0a019e3a9f856df04.png" src="_images/ae66d082dac3e0d21d46a169ba60153e000c13fce300e9e0a019e3a9f856df04.png" />
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Writing</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial E}{\partial \hat{u}_j} = 0, \quad j = 0, 1, \ldots, N,
+\]</div>
+<p>means the same as writing</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial E}{\partial \hat{u}_j} = 0, \quad \forall j \in  \{0, 1, \ldots, N\}.
+\]</div>
+<p>It is just two different ways of writing. Using an index set, like <span class="math notranslate nohighlight">\(\mathcal{I}_N=\{0, 1, \ldots, N\}\)</span> will have its advantages when there are more than one index and we need to use the Cartesian product of the index sets. We can then write <span class="math notranslate nohighlight">\(\mathcal{I}_N \times \mathcal{I}_N\)</span> for two dimensions.</p>
+</div>
 </section>
 <section id="the-galerkin-method">
 <h3>The Galerkin method<a class="headerlink" href="#the-galerkin-method" title="Link to this heading">#</a></h3>
 <p>The Galerkin method requires that the error is orthogonal to the basis functions (for the <span class="math notranslate nohighlight">\(L^2\)</span> inner product). That is</p>
 <div class="math notranslate nohighlight">
 \[
-(e, \psi_j) = 0, \quad \forall \, j \in \{0, 1, \ldots, N\}.
+(e, \psi_j) = 0, \quad  j = 0, 1, \ldots, N.
 \]</div>
 <p>This is not as much work as the least squares method, and even easier to implement in Sympy:</p>
 <div class="cell docutils container">
@@ -563,7 +578,7 @@ E = (e, e).
 <p>Find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight" id="equation-eq-galerkin-b">
 <span class="eqno">(14)<a class="headerlink" href="#equation-eq-galerkin-b" title="Link to this equation">#</a></span>\[
-(e, \psi_i) = 0, \quad \forall \, i \in \{0, 1, \ldots, N\}.
+(e, \psi_i) = 0, \quad  i = 0, 1, \ldots, N.
 \]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -618,12 +633,12 @@ A \boldsymbol{x} = \boldsymbol{b},
 <p>It is more common that the basis functions are <em>orthogonal</em>. In this case the mass matrix becomes</p>
 <div class="math notranslate nohighlight">
 \[
-(\psi_j, \psi_i) = |\psi_i|^2 \delta_{ij},
+(\psi_j, \psi_i) = \|\psi_i\|^2 \delta_{ij},
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(|\psi_i|^2\)</span> is the squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of <span class="math notranslate nohighlight">\(\psi_i\)</span>. We can still easily solve the linear algebra system (because <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix)</p>
+<p>where <span class="math notranslate nohighlight">\(\|\psi_i\|^2\)</span> is the squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of <span class="math notranslate nohighlight">\(\psi_i\)</span>. We can still easily solve the linear algebra system (because <span class="math notranslate nohighlight">\(A\)</span> is a diagonal matrix)</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{u}_i = \frac{(u, \psi_i)}{|\psi_i|^2} \quad \forall \, i \in \{0, 1, \ldots, N\}.
+\hat{u}_i = \frac{(u, \psi_i)}{\|\psi_i\|^2} \quad \forall \, i \in \{0, 1, \ldots, N\}.
 \]</div>
 <p>The monomial basis</p>
 <div class="math notranslate nohighlight">
@@ -709,7 +724,7 @@ X = A + \frac{B-A}{b-a}(x-a).
 <p>We need to be careful with defining the <span class="math notranslate nohighlight">\(L^2\)</span> inner product though, since this requires integration with a change of variables. Consider the Galerkin method on the domain <span class="math notranslate nohighlight">\([a, b]\)</span></p>
 <div class="math notranslate nohighlight">
 \[
-(u(x)-u_N(x), \psi_i(x)) = \int_{a}^b (u(x)-u_N(x)) \psi_i(x) dx = 0, \quad \forall i \in \{0, 1, \ldots, N\}. 
+(u(x)-u_N(x), \psi_i(x))_{L^2(a, b)} = \int_{a}^b (u(x)-u_N(x)) \psi_i(x) dx = 0, \quad \forall i \in \{0, 1, \ldots, N\}. 
 \]</div>
 <p>Insert for <span class="math notranslate nohighlight">\(u_N(x)=\sum_{j=0}^N \hat{u}_j \psi_j(x)\)</span>  and rearrange into</p>
 <div class="math notranslate nohighlight">
@@ -878,7 +893,7 @@ u(x_j) - u_N(x_j) = 0, \quad j \in \{0, 1, \ldots, N\}.
 \[
 \hat{u}_j = u(x_j).
 \]</div>
-<p>There is no integration and the method is often favoured for its simplicity. There is a problem though. How do you choose the collocation points?!</p>
+<p>There is no integration and the method is often favored for its simplicity. There is a problem though. How do you choose the collocation points?!</p>
 <p>Lets return to the example with <span class="math notranslate nohighlight">\(u(x)=10(x-1)^2-1\)</span> and <span class="math notranslate nohighlight">\(x \in [1, 2]\)</span>. The approximation using two collocation points (linear function) is now</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1016,6 +1031,62 @@ x_j = \cos(j \pi / N), \quad j \in \{0, 1, \ldots, N\}.
 </div>
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
 </section>
+<section id="runge-s-phenomenon">
+<h3>Runge’s phenomenon<a class="headerlink" href="#runge-s-phenomenon" title="Link to this heading">#</a></h3>
+<p>Where does the large ove- and undershoots come from on the uniform mesh? What is the cause of Runge’s phenomenon?</p>
+<p>It can be shown that the error in the Lagrange polynomial <span class="math notranslate nohighlight">\(u_N(x)\)</span> using <span class="math notranslate nohighlight">\(\{x_j\}_{j=0}^N\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-eq-lagrangeerror">
+<span class="eqno">(20)<a class="headerlink" href="#equation-eq-lagrangeerror" title="Link to this equation">#</a></span>\[
+u(x)-u_N(x)=\frac{u^{(N)}(\xi)}{(N+1)!}p_N(x),
+\]</div>
+<p>for some <span class="math notranslate nohighlight">\(\xi \in [a, b]\)</span> and the monic polynomial with roots in <span class="math notranslate nohighlight">\(\{x_j\}_{j=0}^N\)</span> defined as</p>
+<div class="math notranslate nohighlight">
+\[
+p_N(x) = \prod_{j=0}^N (x-x_j).
+\]</div>
+<p>From Eq. <code class="docutils literal notranslate"><span class="pre">eqref</span></code>{eq-lagrangeerror}it is evident that large errors occur when <span class="math notranslate nohighlight">\(p_N(x)\)</span> is large or <span class="math notranslate nohighlight">\(u^{(N)}(\xi) = \frac{d^N u}{dx^N}(\xi)\)</span> is large. We cannot do much about <span class="math notranslate nohighlight">\(u^{N}\)</span>, so lets look at <span class="math notranslate nohighlight">\(p_N(x)\)</span>, which is independent of the function <span class="math notranslate nohighlight">\(u(x)\)</span>.</p>
+<p>Lets use both a uniform mesh and Chebyshev points:</p>
+<div class="math notranslate nohighlight">
+\[
+x_j = -1 + \frac{2j}{N} \quad \text{and} \quad x_j = \cos(j \pi / N), \quad j=0, 1, \ldots, N
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">xc</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Uniform grid&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev points&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/0e15669550a0a51ca99d3157416f60b4580faaadd8aac4a650c5116cc065a376.png" src="_images/0e15669550a0a51ca99d3157416f60b4580faaadd8aac4a650c5116cc065a376.png" />
+</div>
+</div>
+<p>We see that Chebyshev points are clustered near the edges. Lets construct <span class="math notranslate nohighlight">\(p_N(x)\)</span> using either the uniform mesh or Chebyshev nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="n">xc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> 
+<span class="n">pp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">xp</span><span class="p">);</span> <span class="n">pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">xc</span><span class="p">)</span>
+<span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="n">xj</span><span class="p">));</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">xj</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;bo&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Uniform grid&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Chebyshev grid&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cb7e842c68167cdffc679a661d4b927114239690867341df2636164037ab6afb.png" src="_images/cb7e842c68167cdffc679a661d4b927114239690867341df2636164037ab6afb.png" />
+</div>
+</div>
+<p>We note that a uniform mesh leads to large oscillations near the edges, whereas Chebyshev points leads to a polynomial with near uniform oscillations.
+The oscillations on the uniform mesh grow even larger when increasing <span class="math notranslate nohighlight">\(N\)</span>. This is the reason why we get Runge oscillations near the edges, whereas Lagrange interpolation on the Chebyshev points are well behaved.</p>
+</section>
 <section id="boundary-issues">
 <span id="sec-boundary-issues"></span><h3>Boundary issues<a class="headerlink" href="#boundary-issues" title="Link to this heading">#</a></h3>
 <p>Lets consider a slightly different problem</p>
@@ -1031,7 +1102,7 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 \]</div>
 <p>Hence we can easily get the coefficients with the Galerkin method</p>
 <div class="math notranslate nohighlight" id="equation-eq-hatusin">
-<span class="eqno">(20)<a class="headerlink" href="#equation-eq-hatusin" title="Link to this equation">#</a></span>\[
+<span class="eqno">(21)<a class="headerlink" href="#equation-eq-hatusin" title="Link to this equation">#</a></span>\[
 \hat{u}_i = 2 \left( u(x),  \sin((i+1) \pi x) \right)_{L^2(0, 1)}.
 \]</div>
 <p>Lets implement and check the results:</p>
@@ -1077,20 +1148,20 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 <p>will always lead to <span class="math notranslate nohighlight">\(u_N(0) = 0\)</span> and <span class="math notranslate nohighlight">\(u_N(1) = 0\)</span>. We have a problem with the basis functions having the wrong values at the boundaries.</p>
 <p>A possible solution to this problem is to add a function to the right hand side above that satisfies the boundary conditions:</p>
 <div class="math notranslate nohighlight" id="equation-eq-un0">
-<span class="eqno">(21)<a class="headerlink" href="#equation-eq-un0" title="Link to this equation">#</a></span>\[
-u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
+<span class="eqno">(22)<a class="headerlink" href="#equation-eq-un0" title="Link to this equation">#</a></span>\[
+u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)= B(x) + \tilde{u}_N(x),
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(B(1) = u(1)\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=B(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(B(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
+<p>where <span class="math notranslate nohighlight">\(B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(B(1) = u(1)\)</span> and <span class="math notranslate nohighlight">\(\tilde{u}_N \in V_N\)</span>. This automatically leads to the correct solution <span class="math notranslate nohighlight">\(u_N(0) = B(0) = u(0)\)</span> and <span class="math notranslate nohighlight">\(u_N(1)=B(1)=u(1)\)</span>. For our example we can simply use use <span class="math notranslate nohighlight">\(B(x) = u(0)(1-x) + u(1)x\)</span>. Hence, there are no new unknowns.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The function <span class="math notranslate nohighlight">\(B(x)\)</span> can always be fixed using two straight lines. However, the exact form will depend on the domain.</p>
 </div>
-<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(u_N \in V_N\)</span> such that (note that <span class="math notranslate nohighlight">\(u_N\)</span> below is only the sum and thus not equal to <span class="math notranslate nohighlight">\(u_N\)</span> in <a class="reference internal" href="#equation-eq-un0">(21)</a>)</p>
+<p>We get the slightly untraditional variational problem: find <span class="math notranslate nohighlight">\(\tilde{u}_N \in V_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-(u_N+B-u, v) = 0, \quad \forall \, v \in V_N,
+(\tilde{u}_N+B-u, v) = 0, \quad \forall \, v \in V_N.
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(V_N = \text{span}\{\sin((j+1)\pi x)\}_{j=0}^N\)</span>. We get</p>
+<p>We get</p>
 <div class="math notranslate nohighlight">
 \[
 \left(\sum_{j=0}^N \hat{u}_j \sin((j+1)\pi x)+B-u, \sin((i+1)\pi x) \right) = 0, \quad i \in \{0, 1, \ldots, N\},
@@ -1100,7 +1171,7 @@ u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x),
 \[
 \hat{u}_i = 2 \left(u-B, \sin((i+1)\pi x) \right) \quad i \in \{0, 1, \ldots, N\}.
 \]</div>
-<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(20)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
+<p>Compared with Eq. <a class="reference internal" href="#equation-eq-hatusin">(21)</a> this is only a minor modification, but it makes a world of difference. Lets implement it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uc</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1274,6 +1345,7 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-least-squares-method">The least squares method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-galerkin-method">The Galerkin method</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-collocation-method">The collocation method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#runge-s-phenomenon">Runge’s phenomenon</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-issues">Boundary issues</a></li>
 </ul>
 </li>

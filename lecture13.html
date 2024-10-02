@@ -390,7 +390,7 @@ u(\boldsymbol{x}, t) \approx u_N(\boldsymbol{x}, t) = \sum_{j=0}^N \hat{u}_j(t) 
 \]</div>
 <p>with the forward Euler method in time, we discretize first as</p>
 <div class="math notranslate nohighlight" id="equation-eq-forward-euler1">
-<span class="eqno">(66)<a class="headerlink" href="#equation-eq-forward-euler1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(67)<a class="headerlink" href="#equation-eq-forward-euler1" title="Link to this equation">#</a></span>\[
 \frac{u^{n+1}-u^n}{\Delta t}  = \mathcal{L}(u^n) + f^n,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(u^n = u(\boldsymbol{x}, t_n)\)</span>, <span class="math notranslate nohighlight">\(f^n = f(\boldsymbol{x}, t_n)\)</span> and <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span>. The solution <span class="math notranslate nohighlight">\(u^n\)</span> is known and <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown we are after. As always the Euler method needs to initialize the solution <span class="math notranslate nohighlight">\(u^0\)</span> in order to get started.</p>
@@ -439,7 +439,7 @@ u(\boldsymbol{x}, t_k) \approx u^{k}_N = \sum_{j=0}^N \hat{u}^{k}_j \psi_j(\bold
 <p>Just like for the finite difference method we need to be very careful with the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, in order to obtain a stable solution. A stable solution is one that remains bounded as <span class="math notranslate nohighlight">\(t \longrightarrow \infty\)</span>. However, there is one major difference from the finite difference or collocation methods. The Galerkin method described above does not involve a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>! So the Courant number is not defined. How do we overcome this problem? In order to describe this problem it is helpful to first revisit the stability of the finite difference method.</p>
 <section id="stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">
 <h4>Stability of the forward Euler method for finite difference spatial discretizations<a class="headerlink" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations" title="Link to this heading">#</a></h4>
-<p>We start by considering <a class="reference internal" href="#equation-eq-forward-euler1">(66)</a> with finite difference discretizations for both temporal and spatial derivatives:</p>
+<p>We start by considering <a class="reference internal" href="#equation-eq-forward-euler1">(67)</a> with finite difference discretizations for both temporal and spatial derivatives:</p>
 <div class="math notranslate nohighlight">
 \[
 u_j^{n+1} - u_j^n = {\Delta t}\mathcal{L}(\boldsymbol{u}^n)_j,
@@ -472,13 +472,13 @@ g^{n+1}\boldsymbol{u}^0 - g^n \boldsymbol{u}^0 = {\Delta t} g^n D^{(m)} \boldsym
 \]</div>
 <p>Divide by <span class="math notranslate nohighlight">\(g^n\)</span> to obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-gmin1">
-<span class="eqno">(67)<a class="headerlink" href="#equation-eq-gmin1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(68)<a class="headerlink" href="#equation-eq-gmin1" title="Link to this equation">#</a></span>\[
 (g-1)\boldsymbol{u}^0 = \Delta t D^{(m)} \boldsymbol{u}^0.
 \]</div>
 <p>Stability requires that <span class="math notranslate nohighlight">\(|g| \le 1\)</span>. However, unlike the decay equation discussed in lectures 1 and 2, it is not always a requirement that <span class="math notranslate nohighlight">\(g&gt;0\)</span>, because the solution may be oscillatory.</p>
 <p>In order to say something more specific about stability, we need to define the finite difference matrix <span class="math notranslate nohighlight">\(D^{(m)}\)</span>. So lets assume for now that <span class="math notranslate nohighlight">\(m=2\)</span> and use the derivative matrix with periodic boundary conditions</p>
 <div class="math notranslate nohighlight" id="equation-eq-d2-dir">
-<span class="eqno">(68)<a class="headerlink" href="#equation-eq-d2-dir" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(69)<a class="headerlink" href="#equation-eq-d2-dir" title="Link to this equation">#</a></span>\[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
 -2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 1  \\
 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
@@ -489,7 +489,7 @@ D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
 1 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
 \end{bmatrix}
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(68)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
+<p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(69)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
 <div class="math notranslate nohighlight">
 \[
 (g-1)\boldsymbol{u}^0 = \frac{\Delta t}{\Delta x^2} \tilde{D}^{(2)} \boldsymbol{u}^0,
@@ -511,12 +511,12 @@ g = 1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right).
 \]</div>
 <p>We still want <span class="math notranslate nohighlight">\(|g|\le 1\)</span>, so we need</p>
 <div class="math notranslate nohighlight" id="equation-eq-limit0">
-<span class="eqno">(69)<a class="headerlink" href="#equation-eq-limit0" title="Link to this equation">#</a></span>\[
+<span class="eqno">(70)<a class="headerlink" href="#equation-eq-limit0" title="Link to this equation">#</a></span>\[
 |1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right)| \le 1,
 \]</div>
 <p>and since <span class="math notranslate nohighlight">\(\sin^2\left(k \Delta x/2\right) \le 1\)</span> and positive, we get that <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> is always less than 1. However, <span class="math notranslate nohighlight">\(1- \frac{4 \Delta t}{\Delta x^2}\)</span> can be smaller than <span class="math notranslate nohighlight">\(-1\)</span>, and that gives us the limit</p>
 <div class="math notranslate nohighlight" id="equation-eq-limit1">
-<span class="eqno">(70)<a class="headerlink" href="#equation-eq-limit1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(71)<a class="headerlink" href="#equation-eq-limit1" title="Link to this equation">#</a></span>\[
 1- \frac{4 \Delta t}{\Delta x^2} \ge -1,
 \]</div>
 <p>which is satisfied if <span class="math notranslate nohighlight">\(\Delta t/\Delta x^2 \le 1/2\)</span>. This is the absolute stability limit for the forward Euler method for the diffusion equation. Note that it involves both <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>.</p>
@@ -525,7 +525,7 @@ g = 1 - \frac{4 \Delta t}{\Delta x^2}\sin^2\left(\frac{k\Delta x}{2}\right).
 \[
 D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 \]</div>
-<p>We can insert this into <a class="reference internal" href="#equation-eq-gmin1">(67)</a> to obtain</p>
+<p>We can insert this into <a class="reference internal" href="#equation-eq-gmin1">(68)</a> to obtain</p>
 <div class="math notranslate nohighlight">
 \[
 (g-1)\boldsymbol{u}^0 = \Delta t \lambda \boldsymbol{u}^0.
@@ -564,23 +564,23 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 \[
 |1- 4\frac{\Delta t}{\Delta x^2}| \le 1.
 \]</div>
-<p>which is the same result as <a class="reference internal" href="#equation-eq-limit0">(69)</a> if we set <span class="math notranslate nohighlight">\(\sin^2(k \Delta x/2)\)</span> to its maximum value of 1.</p>
+<p>which is the same result as <a class="reference internal" href="#equation-eq-limit0">(70)</a> if we set <span class="math notranslate nohighlight">\(\sin^2(k \Delta x/2)\)</span> to its maximum value of 1.</p>
 </section>
 <section id="stability-of-the-forward-euler-method-for-variational-forms">
 <h4>Stability of the forward Euler method for variational forms<a class="headerlink" href="#stability-of-the-forward-euler-method-for-variational-forms" title="Link to this heading">#</a></h4>
 <p>As described in the start of <a class="reference internal" href="#sec-stability-1"><span class="std std-ref">Stability</span></a>, the variational methods do not include a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>. However, we can use the eigenvalue approach described above without defining a mesh size and we will now use this to find stability limits for variational forms.</p>
 <p>First of all we make the same ansatz and assume that the solution <span class="math notranslate nohighlight">\(u_N^{n+1}\)</span> can be computed from <span class="math notranslate nohighlight">\(u_N^n\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-un-g">
-<span class="eqno">(71)<a class="headerlink" href="#equation-eq-un-g" title="Link to this equation">#</a></span>\[
+<span class="eqno">(72)<a class="headerlink" href="#equation-eq-un-g" title="Link to this equation">#</a></span>\[
 u_N^{n+1} = g u_N^n \quad \text{and thus} \quad u^{n}_N = g^n u^0_N. 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an amplification factor independent of spatial coordinate <span class="math notranslate nohighlight">\(x\)</span>. As always a stable method is one where <span class="math notranslate nohighlight">\(|g| &lt; 1\)</span>.</p>
 <p>For the forward Euler method we now consider the discretized Galerkin equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-forward-gal">
-<span class="eqno">(72)<a class="headerlink" href="#equation-eq-euler-forward-gal" title="Link to this equation">#</a></span>\[
+<span class="eqno">(73)<a class="headerlink" href="#equation-eq-euler-forward-gal" title="Link to this equation">#</a></span>\[
 \left(u^{n+1}_N, v\right) = \left(u^{n}_N, v\right) + \Delta t \left(\mathcal{L}(u^n_N), v\right)
 \]</div>
-<p>and insert for Eq. <a class="reference internal" href="#equation-eq-un-g">(71)</a></p>
+<p>and insert for Eq. <a class="reference internal" href="#equation-eq-un-g">(72)</a></p>
 <div class="math notranslate nohighlight">
 \[
 \left(g^{n+1}u^{0}_N, v\right) = \left(g^n u^{0}_N, v\right) + \Delta t \left(\mathcal{L}(g^n u^0_N), v\right)
@@ -602,7 +602,7 @@ g A \boldsymbol{\hat{u}}^0 = A \boldsymbol{\hat{u}}^0 + \Delta t M \boldsymbol{\
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(A\)</span> is the mass matrix and <span class="math notranslate nohighlight">\(m_{ij} = \left( \mathcal{L}(\psi_j), \psi_i\right)\)</span> and <span class="math notranslate nohighlight">\(M=(m_{ij})_{i,j=0}^N\)</span>. Multiply from the left by <span class="math notranslate nohighlight">\(A^{-1}\)</span> to obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-g2">
-<span class="eqno">(73)<a class="headerlink" href="#equation-eq-g2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(74)<a class="headerlink" href="#equation-eq-g2" title="Link to this equation">#</a></span>\[
 g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \Delta t A^{-1}M \boldsymbol{\hat{u}}^0
 \]</div>
 <p>We can compute the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of the matrix <span class="math notranslate nohighlight">\(H = A^{-1}M\)</span> such that</p>
@@ -610,7 +610,7 @@ g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \Delta t A^{-1}M \boldsymbol
 \[
 H \boldsymbol{\hat{u}}^0 = \lambda \boldsymbol{\hat{u}}^0,
 \]</div>
-<p>which can be inserted into  <a class="reference internal" href="#equation-eq-g2">(73)</a></p>
+<p>which can be inserted into  <a class="reference internal" href="#equation-eq-g2">(74)</a></p>
 <div class="math notranslate nohighlight">
 \[
 g \boldsymbol{\hat{u}}^0 = \boldsymbol{\hat{u}}^0 + \lambda \Delta t \boldsymbol{\hat{u}}^0.
@@ -628,10 +628,10 @@ g = 1 + \lambda \Delta t
 <h3>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Link to this heading">#</a></h3>
 <p>Consider the diffusion equation with Dirichlet boundary conditions and a prescribed initial condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-diffusion">
-<span class="eqno">(74)<a class="headerlink" href="#equation-eq-diffusion" title="Link to this equation">#</a></span>\[
+<span class="eqno">(75)<a class="headerlink" href="#equation-eq-diffusion" title="Link to this equation">#</a></span>\[
 \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in (0, L) \times (0, T], \, u(0, t) = f(0), u(L, t) = p(L), u(x, 0) = p(x).
 \]</div>
-<p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(74)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(72)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
+<p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(75)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(73)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
 <div class="math notranslate nohighlight">
 \[
 \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n+1}_j = \sum_{j=0}^N(\psi_j, \psi_i) \hat{u}^{n}_j - \Delta t\left( \sum_{j=0}^N (\psi'_j, \psi'_i) \hat{u}^{n}_j - [u^n_N \psi_i]_{x=0}^{x=L} \right).
@@ -642,7 +642,7 @@ g = 1 + \lambda \Delta t
 \[
 x = L(1+X)/2\quad \text{and} \quad \frac{dx}{dX} = L/2.
 \]</div>
-<p>The stiffness matrix <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i)\)</span> was given in Eq. <a class="reference internal" href="lecture11.html#equation-eq-stiffness-legendre-dir">(50)</a>, but it needs to be modified for the mapping</p>
+<p>The stiffness matrix <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i)\)</span> was given in Eq. <a class="reference internal" href="lecture11.html#equation-eq-stiffness-legendre-dir">(51)</a>, but it needs to be modified for the mapping</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
@@ -884,13 +884,13 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <p class="admonition-title">Stiffness matrix for Chebyshev basis</p>
 <p>Note that in the implementation we have used <span class="math notranslate nohighlight">\(s_{ij} = -(\psi''_j, \psi_i)_{\omega}\)</span> and</p>
 <div class="math notranslate nohighlight" id="equation-eq-stiffness-cheb">
-<span class="eqno">(75)<a class="headerlink" href="#equation-eq-stiffness-cheb" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(76)<a class="headerlink" href="#equation-eq-stiffness-cheb" title="Link to this equation">#</a></span>\[\begin{split}
 (\psi''_j, \psi_i)_{\omega} = \frac{2}{L}\begin{cases} 2 \pi (i+1)(i+2), \quad &amp;i=j, \\
 4 \pi (i+1), \quad &amp;j=i+2, i+4, \ldots, N  \\
 0, \quad &amp;j &lt; i \text{ or } i+j \text{ odd}  
 \end{cases}
 \end{split}\]</div>
-<p>because it is quite expensive to compute the matrix using the <code class="docutils literal notranslate"><span class="pre">inner(u.diff(2),</span> <span class="pre">v)</span></code> function that loops over all <span class="math notranslate nohighlight">\(i,j \in \mathcal{I}_N^2\)</span>. Equation <a class="reference internal" href="#equation-eq-stiffness-cheb">(75)</a> can be derived using</p>
+<p>because it is quite expensive to compute the matrix using the <code class="docutils literal notranslate"><span class="pre">inner(u.diff(2),</span> <span class="pre">v)</span></code> function that loops over all <span class="math notranslate nohighlight">\(i,j \in \mathcal{I}_N^2\)</span>. Equation <a class="reference internal" href="#equation-eq-stiffness-cheb">(76)</a> can be derived using</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2) T_j,
@@ -903,7 +903,7 @@ T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2
 <h3>Backward Euler<a class="headerlink" href="#backward-euler" title="Link to this heading">#</a></h3>
 <p>The forward Euler method requires a very short time step for the diffusion equation. How about the backward Euler method</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-backward-gal">
-<span class="eqno">(76)<a class="headerlink" href="#equation-eq-euler-backward-gal" title="Link to this equation">#</a></span>\[
+<span class="eqno">(77)<a class="headerlink" href="#equation-eq-euler-backward-gal" title="Link to this equation">#</a></span>\[
 \left(u^{n+1}_N, v\right) = \left(u^{n}_N, v\right) + \Delta t \left(\mathcal{L}(u^{n+1}_N), v\right),
 \]</div>
 <p>where the only difference from forward is that <span class="math notranslate nohighlight">\(\left(\mathcal{L}(u^{n+1}_N), v\right)\)</span>  is making use of the unknown <span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> and not the known <span class="math notranslate nohighlight">\(u^n_N\)</span>? The linear algebra problem is now</p>
