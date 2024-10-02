@@ -4,6 +4,9 @@
       "cpus": 2
     },
     "waitFor": "onCreateCommand",
+    "remoteEnv": {
+      "PYTHONPATH": "/opt/conda/envs/l2copenblas/lib/python3.12/site-packages"
+   },
     "updateContentCommand": ["/bin/bash", "-c", "conda env create --file environment.yml && source activate matmek4270 && python -m ipykernel install --user --name matmek4270 --display-name 'Python (matmek4270)'"],
     "customizations": {
       "codespaces": {
