@@ -14,7 +14,7 @@
       },
       "vscode": {
         "settings": {
-          "python.defaultInterpreterPath": "/opt/conda/envs/matmek4270/bin/python"
+          "python.defaultInterpreterPath": "/opt/conda/bin/python"
         },
         "extensions": [
           "ms-python.python"
