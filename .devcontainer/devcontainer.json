@@ -20,5 +20,6 @@
           "ms-python.python"
         ]
       }
-    }
+    },
+    "postCreateCommand": "./.devcontainer/setupenv.sh"
   }
