@@ -933,7 +933,7 @@ u(x_i, y_j) = \sum_{m=0}^N \sum_{n=0}^N \hat{u}_{mn} P_m(x_i)P_n(y_j).
 <p>To this end we can make use of the Vandermonde matrix</p>
 <div class="math notranslate nohighlight">
 \[
-V = (P_j(x_i))_{i,j=0}^N,
+V = (P_i(x_j))_{i,j=0}^N,
 \]</div>
 <p>and then (since the mesh is the same in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions) we can simply compute</p>
 <div class="math notranslate nohighlight">
@@ -948,12 +948,12 @@ U = V \hat{U} V^T.
 <span class="n">U</span> <span class="o">=</span> <span class="n">V</span> <span class="o">@</span> <span class="n">uhat_ij</span> <span class="o">@</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span>
 <span class="n">xij</span><span class="p">,</span> <span class="n">yij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ueij</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">)</span>
-<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">ueij</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">ueij</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.519704442136278e-10
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.519704442136279e-11
 </pre></div>
 </div>
 </div>
@@ -1241,7 +1241,8 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.8 µs ± 11.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.39 times longer than the fastest. This could mean that an intermediate result is being cached.
+17.9 µs ± 14 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1253,7 +1254,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>129 µs ± 10.8 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>134 µs ± 11.6 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
