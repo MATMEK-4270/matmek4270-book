@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Suggested solutions weekly assignments - lectures 8 and 9 &#8212; Lecture notes MATMEK-4270</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"], "half": ["\\scriptstyle\\frac{1}{2}"]}, "extensions": ["cancel.js", "AMSmath.js"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures_8_9_solutions';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="2. Mandatory assignment due 8 November - 2024" href="mandatory2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/uio_logo.png" class="logo__image only-light" alt="Lecture notes MATMEK-4270 - Home"/>
+    <script>document.write(`<img src="_static/uio_logo.png" class="logo__image only-dark" alt="Lecture notes MATMEK-4270 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Suggested solutions weekly assignments - lectures 8 and 9</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lectures_8_9_solutions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Suggested solutions weekly assignments - lectures 8 and 9</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-either-legendre-or-chebyshev-polynomials">1.1. Use either Legendre or Chebyshev polynomials</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="suggested-solutions-weekly-assignments-lectures-8-and-9">
+<h1><span class="section-number">1. </span>Suggested solutions weekly assignments - lectures 8 and 9<a class="headerlink" href="#suggested-solutions-weekly-assignments-lectures-8-and-9" title="Link to this heading">#</a></h1>
+<p>Experiment with the Galerkin and collocation methods and approximate the global functions</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(u(x) = |x|, \quad x \in [-1, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(\sin(x)), \quad x \in [0, 2]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = x^{10}, \quad x \in [0, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the <a class="reference internal" href="#"><span class="xref myst">Bessel function</span></a> of the first kind. The Bessel function is available both in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.jv.html#scipy.special.jv">Scipy</a> and <a class="reference external" href="https://docs.sympy.org/latest/modules/functions/special.html#sympy.functions.special.bessel.besselj">Sympy</a>.</p>
+<p>Below I will use the Galerkin method with Legendre or Chebyshev polynomials and the collocation method using Chebyshev points. Note that the code is a bit slow because the collocation method is not implemented very efficiently.</p>
+<section id="use-either-legendre-or-chebyshev-polynomials">
+<h2><span class="section-number">1.1. </span>Use either Legendre or Chebyshev polynomials<a class="headerlink" href="#use-either-legendre-or-chebyshev-polynomials" title="Link to this heading">#</a></h2>
+<p>First create some functions that can compute the (weighted) inner product <span class="math notranslate nohighlight">\((u, v)_{\omega}\)</span> for any domain <span class="math notranslate nohighlight">\([a, b]\)</span> by mapping to the reference domain <span class="math notranslate nohighlight">\([-1, 1]\)</span>. Since the Legendre and Chebyshev polynomials use different weighting, the code will be a little bit different for the two.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span> 
+<span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span><span class="p">,</span> <span class="n">Chebyshev</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">from</span> <span class="nn">lagrange</span> <span class="kn">import</span> <span class="n">Lagrangebasis</span><span class="p">,</span> <span class="n">Lagrangefunction</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">BarycentricInterpolator</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">cj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+<span class="n">Tj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">sq_L2_norm</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="n">Legendre</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the square of the L2 norm for given basisfunction</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    j : int</span>
+<span class="sd">        The basis number</span>
+<span class="sd">    space : Class instance, optional</span>
+<span class="sd">        Either Chebyshev or Lagrange </span>
+<span class="sd">    </span>
+<span class="sd">    Return</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">    </span>
+<span class="sd">        \|\psi_i\|^2_{\omega}</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="n">Legendre</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">space</span> <span class="o">==</span> <span class="n">Chebyshev</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">cj</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Half</span>
+
+<span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="n">Legendre</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the inner product </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : Sympy function</span>
+<span class="sd">    i : int</span>
+<span class="sd">        The basis number</span>
+<span class="sd">    domain : 2-tuple</span>
+<span class="sd">        The true spatial domain</span>
+<span class="sd">    space : Class instance, optional</span>
+<span class="sd">        Either Chebyshev or Lagrange </span>
+<span class="sd">    </span>
+<span class="sd">    Return</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">    </span>
+<span class="sd">        (u, \psi_i)_{\omega}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">domain</span>
+    <span class="n">us</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">A</span><span class="p">))</span> 
+    <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="n">Legendre</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">Legendre</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">uv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">xj</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">space</span> <span class="o">==</span> <span class="n">Chebyshev</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">Tj</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">vs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">uv</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="o">*</span><span class="n">vs</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The solution for either Legendre or Chebyshev is now to compute</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{u}_i = \frac{(u, \psi_i)_{\omega}}{\|\psi_i\|_{\omega}^2}, \quad i=0,1,\ldots, N,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\psi_i(x)\)</span> is either the i’th Legendre or Chebyshev polynomial, whereas the weight <span class="math notranslate nohighlight">\(\omega\)</span> will be either 1 or <span class="math notranslate nohighlight">\((1-x^2)^{-1/2}\)</span>, respectively.</p>
+<p>A lambda function to compute the coefficients of any function <span class="math notranslate nohighlight">\(u(x), x \in [a, b]\)</span> for either Legendre or Chebyshev polynomials is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span> <span class="o">/</span> <span class="n">sq_L2_norm</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">space</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the collocation method we will may simply reuse code from <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-book/blob/main/lagrange.py">lagrange.py</a>, and evaluate using Chebyshev points <span class="math notranslate nohighlight">\(x_j = \cos (j \pi / N), j=0, \ldots, N\)</span>. However, since this implementation is not optimal in terms of roundoff errors (and it is not very efficient), we will instead make use of the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">BarycentricInterpolator</a> from Scipy.</p>
+<p>We also need a function that computes the <span class="math notranslate nohighlight">\(L^2\)</span> error norm for the different methods:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">domain</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">ues</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)</span>
+    <span class="n">uej</span> <span class="o">=</span> <span class="n">ues</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+    <span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="n">uhat</span><span class="p">(</span><span class="n">ue</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">Legendre</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+    <span class="n">u1</span> <span class="o">=</span> <span class="p">[</span><span class="n">uhat</span><span class="p">(</span><span class="n">ue</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">Chebyshev</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">uj</span> <span class="o">=</span> <span class="n">Legendre</span><span class="p">(</span><span class="n">u0</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">err</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">uj</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">u1</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">err</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">xX</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">xi</span><span class="o">-</span><span class="n">A</span><span class="p">)</span>
+        <span class="c1">#ll = Lagrangebasis(xX)</span>
+        <span class="c1">#ul = Lagrangefunction(ues(xX), ll)</span>
+        <span class="c1">#err[2, n] = np.sqrt(np.trapz((sp.lambdify(x, ul)(xj)-uej)**2, dx=xj[1]-xj[0])) </span>
+        <span class="n">ll</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xX</span><span class="p">,</span> <span class="n">ues</span><span class="p">(</span><span class="n">xX</span><span class="p">))</span>
+        <span class="n">err</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">ll</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  
+    <span class="k">return</span> <span class="n">err</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the collocation method needs to be recomputed altogether for each new n because the interpolation points changes, whereas Chebyshev/Legendre methods simply compute one coefficient for a given n. Note that it would be possible to use collocation with a mapping to the reference domain instead in order to save time.</p>
+<p>We are now ready to attack any of the 5 listed functions in the weekly assignments.</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(u(x) = |x|, \quad x \in [-1, 1]\)</span></p></li>
+</ol>
+<p>This is a discontinuous solution and as such global spectral methods will struggle to capture it well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># Max number of coefficients</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
+<span class="n">u</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># Exact solution</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x148f133b0&gt;
+</pre></div>
+</div>
+<img alt="_images/a0056f20c6454cfff43a707dbfd2bf16734f3e6bc9bb59e390e7521436399f4e.png" src="_images/a0056f20c6454cfff43a707dbfd2bf16734f3e6bc9bb59e390e7521436399f4e.png" />
+</div>
+</div>
+<p>The convergence is slow due to the discontinuity. The zigzag pattern is due to the function <span class="math notranslate nohighlight">\(u(x)=|x|\)</span> being <strong>even</strong>, such that all odd coefficients (Chebyshev/Legendre) are zero. Hence we get is the same error using <span class="math notranslate nohighlight">\(2n\)</span> or <span class="math notranslate nohighlight">\(2n+1\)</span> basis functions for Legendre/Chebyshev.</p>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(\sin(x)), \quad x \in [0, 2]\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># Max number of coefficients</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># true domain</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># Exact solution</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14aecd280&gt;
+</pre></div>
+</div>
+<img alt="_images/645dc174ab5042f26ca13dcdd5e324912e20ef04324cb9a3221fb217e4463b32.png" src="_images/645dc174ab5042f26ca13dcdd5e324912e20ef04324cb9a3221fb217e4463b32.png" />
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><span class="math notranslate nohighlight">\(u(x) = x^{10}, \quad x \in [0, 1]\)</span></p></li>
+</ol>
+<p>For this function we know that the polynomials methods should be exact for N=10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># Max number of coefficients</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Exact solution</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/assumptions.py:499,</span> in <span class="ni">make_property.&lt;locals&gt;.getit</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">499</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assumptions</span><span class="p">[</span><span class="n">fact</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span> <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+
+<span class="ne">KeyError</span>: &#39;zero&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Exact solution</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
+
+<span class="nn">Cell In[3], line 13,</span> in <span class="ni">L2_error</span><span class="nt">(N, ue, domain)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">uj</span> <span class="o">=</span> <span class="n">Legendre</span><span class="p">(</span><span class="n">u0</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">err</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">uj</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">u1</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">err</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/numpy/polynomial/_polybase.py:513,</span> in <span class="ni">ABCPolyBase.__call__</span><span class="nt">(self, arg)</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="n">off</span><span class="p">,</span> <span class="n">scl</span> <span class="o">=</span> <span class="n">pu</span><span class="o">.</span><span class="n">mapparms</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">512</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">off</span> <span class="o">+</span> <span class="n">scl</span><span class="o">*</span><span class="n">arg</span>
+<span class="ne">--&gt; </span><span class="mi">513</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_val</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/numpy/polynomial/chebyshev.py:1173,</span> in <span class="ni">chebval</span><span class="nt">(x, c, tensor)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1171</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1172</span>         <span class="n">tmp</span> <span class="o">=</span> <span class="n">c0</span>
+<span class="ne">-&gt; </span><span class="mi">1173</span>         <span class="n">c0</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">c1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1174</span>         <span class="n">c1</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="n">c1</span><span class="o">*</span><span class="n">x2</span>
+<span class="g g-Whitespace">   </span><span class="mi">1175</span> <span class="k">return</span> <span class="n">c0</span> <span class="o">+</span> <span class="n">c1</span><span class="o">*</span><span class="n">x</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/decorators.py:236,</span> in <span class="ni">_SympifyWrapper.make_wrapped.&lt;locals&gt;._func</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">expectedcls</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="k">return</span> <span class="n">retval</span>
+<span class="ne">--&gt; </span><span class="mi">236</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/decorators.py:106,</span> in <span class="ni">call_highest_priority.&lt;locals&gt;.priority_decorator.&lt;locals&gt;.binary_op_wrapper</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span>         <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>             <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">106</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/expr.py:208,</span> in <span class="ni">Expr.__sub__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="nd">@sympify_return</span><span class="p">([(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;Expr&#39;</span><span class="p">)],</span> <span class="bp">NotImplemented</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="nd">@call_highest_priority</span><span class="p">(</span><span class="s1">&#39;__rsub__&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span> <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>     <span class="k">return</span> <span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">-</span><span class="n">other</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/cache.py:72,</span> in <span class="ni">__cacheit.&lt;locals&gt;.func_wrapper.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">72</span>         <span class="n">retval</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;unhashable type:&#39;</span><span class="p">):</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/operations.py:98,</span> in <span class="ni">AssocOp.__new__</span><span class="nt">(cls, evaluate, _sympify, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">98</span> <span class="n">c_part</span><span class="p">,</span> <span class="n">nc_part</span><span class="p">,</span> <span class="n">order_symbols</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="n">is_commutative</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">nc_part</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_from_args</span><span class="p">(</span><span class="n">c_part</span> <span class="o">+</span> <span class="n">nc_part</span><span class="p">,</span> <span class="n">is_commutative</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/add.py:321,</span> in <span class="ni">Add.flatten</span><span class="nt">(cls, seq)</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="n">noncommutative</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">terms</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="c1"># 0*s</span>
+<span class="ne">--&gt; </span><span class="mi">321</span>     <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="k">continue</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>     <span class="c1"># 1*s</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/assumptions.py:503,</span> in <span class="ni">make_property.&lt;locals&gt;.getit</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assumptions</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_assumptions</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_assumptions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_assumptions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="n">_ask</span><span class="p">(</span><span class="n">fact</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/assumptions.py:566,</span> in <span class="ni">_ask</span><span class="nt">(fact, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="c1"># If we get a new value for fact_i then we should update our knowledge</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> <span class="c1"># of fact_i as well as any related facts that can be inferred using the</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span> <span class="c1"># inference rules connecting the fact_i and any other fact values that</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span> <span class="c1"># are already known.</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">if</span> <span class="n">fact_i_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">566</span>     <span class="n">assumptions</span><span class="o">.</span><span class="n">deduce_all_facts</span><span class="p">(((</span><span class="n">fact_i</span><span class="p">,</span> <span class="n">fact_i_value</span><span class="p">),))</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="c1"># Usually if assumptions[fact] is now not None then that is because of</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="c1"># the call to deduce_all_facts above. The handler for fact_i returned</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span> <span class="c1"># True or False and knowing fact_i (which is equal to fact in the first</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> <span class="c1"># called in another thread in a multithreaded context might have</span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># resulted in assumptions[fact] being set. Either way we return it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">575</span> <span class="n">fact_value</span> <span class="o">=</span> <span class="n">assumptions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fact</span><span class="p">)</span>
+
+<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/facts.py:633,</span> in <span class="ni">FactKB.deduce_all_facts</span><span class="nt">(self, facts)</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="k">for</span> <span class="n">bidx</span> <span class="ow">in</span> <span class="n">beta_maytrigger</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">bcond</span><span class="p">,</span> <span class="n">bimpl</span> <span class="o">=</span> <span class="n">beta_rules</span><span class="p">[</span><span class="n">bidx</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">633</span>     <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">bcond</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">634</span>         <span class="n">facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bimpl</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><span class="math notranslate nohighlight">\(u(x) = \exp(-(x-0.5)^2) - \exp(-0.25) \quad x \in [0, 1]\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># Max number of coefficients</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># Exact solution</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><span class="math notranslate nohighlight">\(u(x) = J_0(x), \quad x \in [0, 100]\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Max number of coefficients</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># true domain</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">besselj</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1"># Exact solution</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For all functions Legendre and Chebyshev are slightly better than collocation at low N. However, the roundoff error is very good for the collocation. The roundoff error is observed when the error cannot decrease any further. The good roundoff is mainly due to the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">BarycentricInterpolator</a> class, which is implemented very well.  You can read more about barycentric interpolation in the very nice <a class="reference external" href="https://people.maths.ox.ac.uk/trefethen/barycentric.pdf">paper by Berrut and Trefethen</a>. Note that the Chebyshev method would have better roundoff if we implemented a fast transform to the real space before computing the L2-error.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mandatory2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Mandatory assignment due 8 November - 2024</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-either-legendre-or-chebyshev-polynomials">1.1. Use either Legendre or Chebyshev polynomials</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mikael Mortensen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
