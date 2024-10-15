@@ -346,6 +346,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-either-legendre-or-chebyshev-polynomials">1.1. Use either Legendre or Chebyshev polynomials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-for-any-of-the-given-functions">1.2. Solve for any of the given functions</a></li>
 </ul>
             </nav>
         </div>
@@ -492,6 +493,9 @@ document.write(`
 </div>
 </div>
 <p>Note that the collocation method needs to be recomputed altogether for each new n because the interpolation points changes, whereas Chebyshev/Legendre methods simply compute one coefficient for a given n. Note that it would be possible to use collocation with a mapping to the reference domain instead in order to save time.</p>
+</section>
+<section id="solve-for-any-of-the-given-functions">
+<h2><span class="section-number">1.2. </span>Solve for any of the given functions<a class="headerlink" href="#solve-for-any-of-the-given-functions" title="Link to this heading">#</a></h2>
 <p>We are now ready to attack any of the 5 listed functions in the weekly assignments. Any of the 5 functions can now be solved and the L2-error plotted using the below function <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -513,9 +517,6 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">main</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/d0633be7caa1a0d0f3e3893789e9d6162bebc9ffea2f8a7c9eb2e7fc4e1f90a4.png" src="_images/d0633be7caa1a0d0f3e3893789e9d6162bebc9ffea2f8a7c9eb2e7fc4e1f90a4.png" />
 </div>
 </div>
 <p>The convergence is slow due to the discontinuity. The zigzag pattern is due to the function <span class="math notranslate nohighlight">\(u(x)=|x|\)</span> being <strong>even</strong>, such that all odd coefficients (Chebyshev/Legendre) are zero. Hence we get is the same error using <span class="math notranslate nohighlight">\(2n\)</span> or <span class="math notranslate nohighlight">\(2n+1\)</span> basis functions for Legendre/Chebyshev.</p>
@@ -579,6 +580,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-either-legendre-or-chebyshev-polynomials">1.1. Use either Legendre or Chebyshev polynomials</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-for-any-of-the-given-functions">1.2. Solve for any of the given functions</a></li>
 </ul>
   </nav></div>
 
