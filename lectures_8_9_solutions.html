@@ -357,7 +357,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="suggested-solutions-weekly-assignments-lectures-8-and-9">
+  <section class="tex2jax_ignore mathjax_ignore" id="suggested-solutions-weekly-assignments-lectures-8-and-9">
 <h1><span class="section-number">1. </span>Suggested solutions weekly assignments - lectures 8 and 9<a class="headerlink" href="#suggested-solutions-weekly-assignments-lectures-8-and-9" title="Link to this heading">#</a></h1>
 <p>Experiment with the Galerkin and collocation methods and approximate the global functions</p>
 <ol class="arabic simple">
@@ -384,7 +384,7 @@ document.write(`
 <span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 
 <span class="n">cj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
-<span class="n">Tj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">Tj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="n">sp</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">sq_L2_norm</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="n">Legendre</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute the square of the L2 norm for given basisfunction</span>
@@ -433,13 +433,15 @@ document.write(`
     <span class="k">if</span> <span class="n">space</span> <span class="o">==</span> <span class="n">Legendre</span><span class="p">:</span>
         <span class="n">v</span> <span class="o">=</span> <span class="n">Legendre</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
         <span class="n">uv</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">xj</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">space</span> <span class="o">==</span> <span class="n">Chebyshev</span><span class="p">:</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">Tj</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="n">us</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">vs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">simplify</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="n">uv</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="o">*</span><span class="n">vs</span><span class="p">)</span>
+        <span class="n">us</span> <span class="o">=</span> <span class="n">us</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">uv</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">us</span><span class="p">)</span>
         <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
-    <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;cos&#39;</span><span class="p">,</span> <span class="n">wvar</span><span class="o">=</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1">#v = Chebyshev.basis(i)</span>
+        <span class="c1">#uv = lambda xj: sp.lambdify(x, us)(xj)*v(xj)</span>
+        <span class="c1">#return quad(uv, A, B, weight=&#39;alg&#39;, wvar=(-0.5, -0.5))[0]</span>
 </pre></div>
 </div>
 </div>
@@ -505,12 +507,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x148f133b0&gt;
-</pre></div>
-</div>
-<img alt="_images/a0056f20c6454cfff43a707dbfd2bf16734f3e6bc9bb59e390e7521436399f4e.png" src="_images/a0056f20c6454cfff43a707dbfd2bf16734f3e6bc9bb59e390e7521436399f4e.png" />
-</div>
 </div>
 <p>The convergence is slow due to the discontinuity. The zigzag pattern is due to the function <span class="math notranslate nohighlight">\(u(x)=|x|\)</span> being <strong>even</strong>, such that all odd coefficients (Chebyshev/Legendre) are zero. Hence we get is the same error using <span class="math notranslate nohighlight">\(2n\)</span> or <span class="math notranslate nohighlight">\(2n+1\)</span> basis functions for Legendre/Chebyshev.</p>
 <ol class="arabic simple" start="2">
@@ -527,12 +523,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14aecd280&gt;
-</pre></div>
-</div>
-<img alt="_images/645dc174ab5042f26ca13dcdd5e324912e20ef04324cb9a3221fb217e4463b32.png" src="_images/645dc174ab5042f26ca13dcdd5e324912e20ef04324cb9a3221fb217e4463b32.png" />
-</div>
 </div>
 <ol class="arabic simple" start="3">
 <li><p><span class="math notranslate nohighlight">\(u(x) = x^{10}, \quad x \in [0, 1]\)</span></p></li>
@@ -540,120 +530,12 @@ document.write(`
 <p>For this function we know that the polynomials methods should be exact for N=10.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># Max number of coefficients</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># Max number of coefficients</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Exact solution</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Exact solution</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/assumptions.py:499,</span> in <span class="ni">make_property.&lt;locals&gt;.getit</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">499</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assumptions</span><span class="p">[</span><span class="n">fact</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">500</span> <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-
-<span class="ne">KeyError</span>: &#39;zero&#39;
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">u</span> <span class="o">=</span> <span class="n">u</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Exact solution</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)))</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Collocation&#39;</span><span class="p">])</span>
-
-<span class="nn">Cell In[3], line 13,</span> in <span class="ni">L2_error</span><span class="nt">(N, ue, domain)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">uj</span> <span class="o">=</span> <span class="n">Legendre</span><span class="p">(</span><span class="n">u0</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">err</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">uj</span> <span class="o">=</span> <span class="n">Chebyshev</span><span class="p">(</span><span class="n">u1</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">err</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/numpy/polynomial/_polybase.py:513,</span> in <span class="ni">ABCPolyBase.__call__</span><span class="nt">(self, arg)</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="n">off</span><span class="p">,</span> <span class="n">scl</span> <span class="o">=</span> <span class="n">pu</span><span class="o">.</span><span class="n">mapparms</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">512</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">off</span> <span class="o">+</span> <span class="n">scl</span><span class="o">*</span><span class="n">arg</span>
-<span class="ne">--&gt; </span><span class="mi">513</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_val</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">coef</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/numpy/polynomial/chebyshev.py:1173,</span> in <span class="ni">chebval</span><span class="nt">(x, c, tensor)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1171</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1172</span>         <span class="n">tmp</span> <span class="o">=</span> <span class="n">c0</span>
-<span class="ne">-&gt; </span><span class="mi">1173</span>         <span class="n">c0</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">c1</span>
-<span class="g g-Whitespace">   </span><span class="mi">1174</span>         <span class="n">c1</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="n">c1</span><span class="o">*</span><span class="n">x2</span>
-<span class="g g-Whitespace">   </span><span class="mi">1175</span> <span class="k">return</span> <span class="n">c0</span> <span class="o">+</span> <span class="n">c1</span><span class="o">*</span><span class="n">x</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/decorators.py:236,</span> in <span class="ni">_SympifyWrapper.make_wrapped.&lt;locals&gt;._func</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">expectedcls</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="k">return</span> <span class="n">retval</span>
-<span class="ne">--&gt; </span><span class="mi">236</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/decorators.py:106,</span> in <span class="ni">call_highest_priority.&lt;locals&gt;.priority_decorator.&lt;locals&gt;.binary_op_wrapper</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span>         <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>             <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">106</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/expr.py:208,</span> in <span class="ni">Expr.__sub__</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="nd">@sympify_return</span><span class="p">([(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span> <span class="s1">&#39;Expr&#39;</span><span class="p">)],</span> <span class="bp">NotImplemented</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="nd">@call_highest_priority</span><span class="p">(</span><span class="s1">&#39;__rsub__&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span> <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">208</span>     <span class="k">return</span> <span class="n">Add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">-</span><span class="n">other</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/cache.py:72,</span> in <span class="ni">__cacheit.&lt;locals&gt;.func_wrapper.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">72</span>         <span class="n">retval</span> <span class="o">=</span> <span class="n">cfunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;unhashable type:&#39;</span><span class="p">):</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/operations.py:98,</span> in <span class="ni">AssocOp.__new__</span><span class="nt">(cls, evaluate, _sympify, *args)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">98</span> <span class="n">c_part</span><span class="p">,</span> <span class="n">nc_part</span><span class="p">,</span> <span class="n">order_symbols</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span> <span class="n">is_commutative</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">nc_part</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span> <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_from_args</span><span class="p">(</span><span class="n">c_part</span> <span class="o">+</span> <span class="n">nc_part</span><span class="p">,</span> <span class="n">is_commutative</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/add.py:321,</span> in <span class="ni">Add.flatten</span><span class="nt">(cls, seq)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="n">noncommutative</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">terms</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="c1"># 0*s</span>
-<span class="ne">--&gt; </span><span class="mi">321</span>     <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">is_zero</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="k">continue</span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span>     <span class="c1"># 1*s</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/assumptions.py:503,</span> in <span class="ni">make_property.&lt;locals&gt;.getit</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assumptions</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_assumptions</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_assumptions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_assumptions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">503</span> <span class="k">return</span> <span class="n">_ask</span><span class="p">(</span><span class="n">fact</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/assumptions.py:566,</span> in <span class="ni">_ask</span><span class="nt">(fact, obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span> <span class="c1"># If we get a new value for fact_i then we should update our knowledge</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span> <span class="c1"># of fact_i as well as any related facts that can be inferred using the</span>
-<span class="g g-Whitespace">    </span><span class="mi">563</span> <span class="c1"># inference rules connecting the fact_i and any other fact values that</span>
-<span class="g g-Whitespace">    </span><span class="mi">564</span> <span class="c1"># are already known.</span>
-<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">if</span> <span class="n">fact_i_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">566</span>     <span class="n">assumptions</span><span class="o">.</span><span class="n">deduce_all_facts</span><span class="p">(((</span><span class="n">fact_i</span><span class="p">,</span> <span class="n">fact_i_value</span><span class="p">),))</span>
-<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="c1"># Usually if assumptions[fact] is now not None then that is because of</span>
-<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="c1"># the call to deduce_all_facts above. The handler for fact_i returned</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span> <span class="c1"># True or False and knowing fact_i (which is equal to fact in the first</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> <span class="c1"># called in another thread in a multithreaded context might have</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># resulted in assumptions[fact] being set. Either way we return it.</span>
-<span class="g g-Whitespace">    </span><span class="mi">575</span> <span class="n">fact_value</span> <span class="o">=</span> <span class="n">assumptions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fact</span><span class="p">)</span>
-
-<span class="nn">File /opt/anaconda3/envs/matmek4270/lib/python3.12/site-packages/sympy/core/facts.py:633,</span> in <span class="ni">FactKB.deduce_all_facts</span><span class="nt">(self, facts)</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="k">for</span> <span class="n">bidx</span> <span class="ow">in</span> <span class="n">beta_maytrigger</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span>     <span class="n">bcond</span><span class="p">,</span> <span class="n">bimpl</span> <span class="o">=</span> <span class="n">beta_rules</span><span class="p">[</span><span class="n">bidx</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">633</span>     <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="ow">is</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">bcond</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span>         <span class="n">facts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bimpl</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -663,7 +545,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># Max number of coefficients</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># Max number of coefficients</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># true domain</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="c1"># Exact solution</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
