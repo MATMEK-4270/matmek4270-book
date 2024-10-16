@@ -518,6 +518,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/d0633be7caa1a0d0f3e3893789e9d6162bebc9ffea2f8a7c9eb2e7fc4e1f90a4.png" src="_images/d0633be7caa1a0d0f3e3893789e9d6162bebc9ffea2f8a7c9eb2e7fc4e1f90a4.png" />
+</div>
 </div>
 <p>The convergence is slow due to the discontinuity. The zigzag pattern is due to the function <span class="math notranslate nohighlight">\(u(x)=|x|\)</span> being <strong>even</strong>, such that all odd coefficients (Chebyshev/Legendre) are zero. Hence we get is the same error using <span class="math notranslate nohighlight">\(2n\)</span> or <span class="math notranslate nohighlight">\(2n+1\)</span> basis functions for Legendre/Chebyshev.</p>
 <p>For all functions you should find that Legendre and Chebyshev are slightly better than collocation at low N. However, the roundoff error is very good for the collocation. The roundoff error is observed when the error cannot decrease any further. The good roundoff is mainly due to the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">BarycentricInterpolator</a> class, which is implemented very well.  You can read more about barycentric interpolation in the very nice <a class="reference external" href="https://people.maths.ox.ac.uk/trefethen/barycentric.pdf">paper by Berrut and Trefethen</a>. Note that the Chebyshev method would have better roundoff if we implemented a fast transform to the real space before computing the L2-error.</p>

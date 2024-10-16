@@ -557,6 +557,11 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.996206657474091
+</pre></div>
+</div>
+</div>
 </div>
 <p>We find that the minimum eigenvalue is -3.99620665 for a matrix of shape <span class="math notranslate nohighlight">\(50 \times 50\)</span>. If we use a larger matrix, then this number will approach -4 even further. Hence we get</p>
 <div class="math notranslate nohighlight">
@@ -790,11 +795,19 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/c78052313924db192fb3f892d219ff85e706c8d6e6b6cff67f458783e6b3a6ee.png" src="_images/c78052313924db192fb3f892d219ff85e706c8d6e6b6cff67f458783e6b3a6ee.png" />
+</div>
 </div>
 <p>The solution is nice and smooth and the time step is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum time step = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 2.1980578790345177e-05
 </pre></div>
 </div>
 </div>
@@ -806,6 +819,9 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">(),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cc8542b2c67cc99a2a426ba26f8cb30a691a7e8eff8b987a1f437f1f8dc8c9b1.png" src="_images/cc8542b2c67cc99a2a426ba26f8cb30a691a7e8eff8b987a1f437f1f8dc8c9b1.png" />
 </div>
 </div>
 <p>Obviously, the solver is now unstable and the solution diverges.</p>
@@ -851,10 +867,18 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/e1985bc29fef555b70ff1451b32f6546c6aa521525e3589943582c9659f7a8d7.png" src="_images/e1985bc29fef555b70ff1451b32f6546c6aa521525e3589943582c9659f7a8d7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Maximum time step = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 1.2332249161314778e-05
 </pre></div>
 </div>
 </div>
@@ -1047,10 +1071,18 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/7199606952aa55009d1caab132b7090c41150910c4b31657020a3cb82e8bf221.png" src="_images/7199606952aa55009d1caab132b7090c41150910c4b31657020a3cb82e8bf221.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum time step = </span><span class="si">{</span><span class="n">dt</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 0.006630321076742087
 </pre></div>
 </div>
 </div>

@@ -512,6 +512,10 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{1}{h} &amp; - \frac{1}{h}\\- \frac{1}{h} &amp; \frac{1}{h}\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p>If you now remember back to lecture 10 and the <a class="reference internal" href="lecture10.html#assemble-mass"><span class="std std-ref">assembly of the mass matrix</span></a>, you will notice that the code above is almost identical. The only difference is that the Lagrange basis functions are differentiated. Since we can easily differentiate as many times as we like, there is really no reason why we shouldn’t just as well implement a completely generic routine for any element matrix</p>
 <div class="math notranslate nohighlight">
@@ -579,12 +583,30 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 4. -4.  0.  0.  0.]
+ [-4.  8. -4.  0.  0.]
+ [ 0. -4.  8. -4.  0.]
+ [ 0.  0. -4.  8. -4.]
+ [ 0.  0.  0. -4.  4.]]
+</pre></div>
+</div>
+</div>
 </div>
 <p>The mass matrix is still the same as in lecture 10:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.08333333 0.04166667 0.         0.         0.        ]
+ [0.04166667 0.16666667 0.04166667 0.         0.        ]
+ [0.         0.04166667 0.16666667 0.04166667 0.        ]
+ [0.         0.         0.04166667 0.16666667 0.04166667]
+ [0.         0.         0.         0.04166667 0.08333333]]
 </pre></div>
 </div>
 </div>
@@ -627,6 +649,9 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;FEM d=1 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;FEM d=2 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/694ff6d09e819d5183d037fd93b9249f46b622913b0482dcedfb293f81e88dcf.png" src="_images/694ff6d09e819d5183d037fd93b9249f46b622913b0482dcedfb293f81e88dcf.png" />
 </div>
 </div>
 </section>
@@ -708,6 +733,9 @@ If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;FEM d=1 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;FEM d=2 N=</span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4ac9d69b3229de6df5fd7f25df01e05dbe7635efb623d686ff97643e623f6330.png" src="_images/4ac9d69b3229de6df5fd7f25df01e05dbe7635efb623d686ff97643e623f6330.png" />
 </div>
 </div>
 <div class="admonition note">

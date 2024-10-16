@@ -475,6 +475,9 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/014e23addf8ba79e168a658d1e321467aef5093b60c46e333ccae326be328e76.png" src="_images/014e23addf8ba79e168a658d1e321467aef5093b60c46e333ccae326be328e76.png" />
+</div>
 </div>
 <p>So all the internal basis functions, i.e., <span class="math notranslate nohighlight">\(\{\psi_j(x)\}_{j=1}^{4}\)</span>, are nonzero in two elements each and zero elsewhere. The two boundary basis functions <span class="math notranslate nohighlight">\(\psi_0(x)\)</span> and <span class="math notranslate nohighlight">\(\psi_5(x)\)</span> are only nonzero on one element each.</p>
 <p>Since we are using Lagrange polynomials all basis functions satisfy</p>
@@ -511,6 +514,9 @@ Note that an element in <a class="reference internal" href="#fem-1d-mesh-p1"><sp
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/dcf4b1b8f8c5fa4ece0a7d5412a98dd01f1283a9c013174cd28814a4ae5a92e1.png" src="_images/dcf4b1b8f8c5fa4ece0a7d5412a98dd01f1283a9c013174cd28814a4ae5a92e1.png" />
+</div>
 </div>
 <p>The flexibility when it comes to mesh is one of the major advantages of the finite element method, which can be used with any kind of <a class="reference external" href="https://en.wikipedia.org/wiki/Unstructured_grid">unstructured mesh</a>.</p>
 <p>For any 1D mesh we get the piecewise linear Lagrange basis functions</p>
@@ -621,6 +627,9 @@ a_{q(e,r),q(e, s)} \mathop{+}= \tilde{a}^{(e)}_{r,s}, \quad (r, s) \in \mathcal{
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/731507f45470b3b4ba0e50ad51525e8513c2a20d1e324bc58d2358c9315eb0bf.png" src="_images/731507f45470b3b4ba0e50ad51525e8513c2a20d1e324bc58d2358c9315eb0bf.png" />
+</div>
 </div>
 <p>So the basis functions always look the same regardless of domain, regardless of what <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> are. Hence it should be possible to perform the integration once, in a reference domain, and then reuse this result for all elements. This can be achieved by mapping to a reference domain, which has already been used for both Legendre and Chebyshev polynomials, but for slightly different reasons. For those two, we needed to map because the polynomials and weight functions were only defined on a reference domain.</p>
 <p>We will now use this linear (affine) mapping and the same reference domain <span class="math notranslate nohighlight">\([-1, 1]\)</span> as the Chebyshev/Legendre polynomials. In this domain the mapping  from physical coordinate <span class="math notranslate nohighlight">\(x \in \Omega^{(e)} = [x_{q(e,0)}, x_{q(e, d)}] = [x_L, x_R]\)</span> to computational (or reference) coordinate <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span> can be written as</p>
@@ -688,6 +697,9 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/0b948547bf67bfeda190571884716278cbe2d17d278c64e80a176ee49457f15a.png" src="_images/0b948547bf67bfeda190571884716278cbe2d17d278c64e80a176ee49457f15a.png" />
+</div>
 </div>
 <p>The mapping should now be used in a change of variables for the inner product:</p>
 <div class="math notranslate nohighlight">
@@ -734,6 +746,10 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{h}{3} &amp; \frac{h}{6}\\\frac{h}{6} &amp; \frac{h}{3}\end{matrix}\right]\end{split}\]</div>
+</div>
 </div>
 <p>Using quadratic elements, we get</p>
 <div class="cell docutils container">
@@ -746,6 +762,10 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 <span class="n">A2e</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \left[\begin{matrix}\frac{2 h}{15} &amp; \frac{h}{15} &amp; - \frac{h}{30}\\\frac{h}{15} &amp; \frac{8 h}{15} &amp; \frac{h}{15}\\- \frac{h}{30} &amp; \frac{h}{15} &amp; \frac{2 h}{15}\end{matrix}\right]\end{split}\]</div>
 </div>
 </div>
 <div class="admonition note">
@@ -791,6 +811,15 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.08333333 0.04166667 0.         0.         0.        ]
+ [0.04166667 0.16666667 0.04166667 0.         0.        ]
+ [0.         0.04166667 0.16666667 0.04166667 0.        ]
+ [0.         0.         0.04166667 0.16666667 0.04166667]
+ [0.         0.         0.         0.04166667 0.08333333]]
+</pre></div>
+</div>
+</div>
 </div>
 <p>The mass matrix for second order polynomials on a uniform mesh can be computed as</p>
 <div class="cell docutils container">
@@ -809,6 +838,9 @@ X_r = -1 + \frac{2r}{d}, \quad r = 0, 1, \ldots, d.
 <span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c9c7b7676e7cd708c7d29cb14b68a3a0404b961554ec1a8887e1d1125e099152.png" src="_images/c9c7b7676e7cd708c7d29cb14b68a3a0404b961554ec1a8887e1d1125e099152.png" />
 </div>
 </div>
 <p>Note that there is a big difference between nodes on the boundaries between elements and internal nodes. The rows in <span class="math notranslate nohighlight">\(A\)</span> above corresponding to internal nodes have only three nonzero items, whereas the nodes on element boundaries have 5. This is because the basis functions on the element boundaries belong to two elements, whereas the internal nodes only belong to one.</p>
@@ -894,6 +926,9 @@ b_i^{(e)} = \int_{\Omega^{(e)}} u(x) \psi_{i}(x) dx, \quad i = 0, 1, \ldots, N,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/dff3753c6ffa78c60d51844a622c17a9a0673fbb5493bfdd1124de071df21827.png" src="_images/dff3753c6ffa78c60d51844a622c17a9a0673fbb5493bfdd1124de071df21827.png" />
+</div>
 </div>
 <p>Not bad, but clearly not exact since the FEM solution is piecewise linear between the 5 mesh points. How about second order? We have implemented <code class="docutils literal notranslate"><span class="pre">assemble</span></code> to use higher order, so it should be straight forward. Just to check that a non-uniform mesh works as well we create a mesh where the element boundaries in the physical domain <span class="math notranslate nohighlight">\([1, 2]\)</span> are computed as</p>
 <div class="math notranslate nohighlight">
@@ -921,6 +956,9 @@ x_{2i+1} = \frac{x_{2i}+x_{2(i+1)}}{2}, \quad i = 0, 1, \ldots, N/2-1.
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;FEM 2nd order&#39;</span><span class="p">,</span> <span class="s1">&#39;Exact&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9e52ea0ce4817acb685030a66eb57273343fb01a131dace5dc4ba28e2299c64d.png" src="_images/9e52ea0ce4817acb685030a66eb57273343fb01a131dace5dc4ba28e2299c64d.png" />
 </div>
 </div>
 <p>But what happened here? The results still look like piecewise linear polynomials and it looks no better than before. The problem now is not accuracy of the FEM approximation, though, it has more to do with postprocessing and finite element evaluation. We compute and plot the finite element solution <span class="math notranslate nohighlight">\((\hat{u}_j)_{j=0}^N\)</span>, but then matplotlib simply fills in the gaps between the points with linear profiles. The correct approach would be to evaluate the finite element function</p>
@@ -1017,6 +1055,11 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.600000000000000, -0.6000000000000002)
+</pre></div>
+</div>
+</div>
 </div>
 <p>The solution is exact to machine precision because the interpolated function is a second order polynomial.</p>
 <p>A disadvantage is that <code class="docutils literal notranslate"><span class="pre">fe_evaluate</span></code> only works for single points. For efficiency we should vectorize it</p>
@@ -1043,6 +1086,14 @@ u_N(x) = \sum_{r=0}^d \hat{u}_{q(e, r)} \ell_{r}(X), \quad x \in \Omega^{(e)}.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 <span class="n">display</span><span class="p">(</span><span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">]),</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">display</span><span class="p">((</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mf">1.2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="mf">1.3</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.6, -0.1])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.6000000000000002, -0.09999999999999976)
 </pre></div>
 </div>
 </div>
@@ -1094,6 +1145,9 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="s1">&#39;FEM d=1&#39;</span><span class="p">,</span> <span class="s1">&#39;FEM d=2&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f2e674d2047dd776a86eb5a412c99eb4a04f10739963a53a5e0bc1318df4e491.png" src="_images/f2e674d2047dd776a86eb5a412c99eb4a04f10739963a53a5e0bc1318df4e491.png" />
 </div>
 </div>
 </section>
