@@ -193,7 +193,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 11/10-2024</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 8 November - 2024</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 13 November - 2024</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="nav bd-sidenav">
@@ -1078,14 +1078,14 @@ u(1) = u(x_N) = \sum_{j=0}^N \hat{u}_j \ell_j(x_N) = \hat{u}_N = b.
 <p>The derivatives of Lagrange polynomials <span class="math notranslate nohighlight">\(\ell^{(n)}_j\)</span> can be computed directly from the Sympy functions we have defined and used until now, as implemented in <a class="reference external" href="https://github.com/MATMEK-4270/matmek4270-book/blob/main/lagrange.py">lagrange.py</a>. However, these direct formulas are not very resistant towards round off errors and it turns out that it is much more efficient to use some ready made formulas. First the Lagrange polynomial can be written as</p>
 <div class="math notranslate nohighlight">
 \[
-\ell_j(x) = \theta(x) \frac{w_j}{x-x_j},
+\ell_j(x) = \ell(x) \frac{w_j}{x-x_j},
 \]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align*}
-\theta(x) &amp;= \prod^N_{\substack{i=0}}(x-x_i), \\
-w_j &amp;= \frac{1}{\prod^N_{\substack{i=0 \\ i \neq j}} (x_j - x_i)}, \quad j = 0, 1, \ldots, N.
+\ell(x) &amp;= \prod^N_{\substack{i=0}}(x-x_i), \\
+w_j &amp;= \frac{1}{\ell'(x_j)}= \frac{1}{\prod^N_{\substack{i=0 \\ i \neq j}} (x_j - x_i)}, \quad j = 0, 1, \ldots, N.
 \end{align*}
 \end{split}\]</div>
 <p>Here <span class="math notranslate nohighlight">\((w_j)_{j=0}^N\)</span> are often referred to as barycentric weights. These weights are readily available from <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BarycentricInterpolator.html">scipy.interpolate.BarycentricInterpolator</a>. We can then obtain the derivative matrix <span class="math notranslate nohighlight">\(d_{ij} = \ell'_j(x_i)\)</span> as</p>
@@ -1270,7 +1270,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/011a11eda7edd026a763980b355df89f3be9ce9598829475d75aeb75a1112037.png" src="_images/011a11eda7edd026a763980b355df89f3be9ce9598829475d75aeb75a1112037.png" />
+<img alt="_images/1ef27c36bba0e1b5c855a8706f00ca6d3c1417ef556e43d687d555154ebc1861.png" src="_images/1ef27c36bba0e1b5c855a8706f00ca6d3c1417ef556e43d687d555154ebc1861.png" />
 </div>
 </div>
 </section>
