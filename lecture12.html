@@ -198,6 +198,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="lectures_8_9_solutions.html">1. Suggested solutions weekly assignments - lectures 8 and 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture_10_solutions.html">2. Suggested solutions weekly assignments - lecture 10</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture_11_solutions.html">3. Suggested solutions weekly assignments - lecture 11</a></li>
 </ul>
 
     </div>
@@ -371,7 +373,7 @@ document.write(`
 <ul class="simple">
 <li><p>Basis functions are local</p></li>
 <li><p>We always use reference elements</p></li>
-<li><p>Matrices are assembled elementwise</p></li>
+<li><p>Matrices and vectors are assembled elementwise</p></li>
 <li><p>We will only use polynomials for basis functions</p></li>
 <li><p>PDEs are normally not solved using tensor products in multiple dimensions</p></li>
 </ul>
@@ -430,7 +432,7 @@ u(L) = u_N(x_N) = \sum_{j=0}^N \hat{u}_j \psi_j(x_N) = \psi_N(x_N) \hat{u}_N = \
 <p>So the two expansion coefficients <span class="math notranslate nohighlight">\(\hat{u}_0\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N\)</span> are known. That means that we only need to solve <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> for <span class="math notranslate nohighlight">\(i = 1, 2, \ldots, N-1\)</span>. And the boundary terms <span class="math notranslate nohighlight">\(u'_N(L)\psi_i(L) - u'_N(0)\psi_i(0)\)</span> are only (possibly) nonzero for <span class="math notranslate nohighlight">\(i=0\)</span> or <span class="math notranslate nohighlight">\(i=N\)</span>, because only <span class="math notranslate nohighlight">\(\psi_0\)</span> and <span class="math notranslate nohighlight">\(\psi_N\)</span> are nonzero at the edges (at <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(x_N\)</span>). That is, the only nonzero terms are <span class="math notranslate nohighlight">\(u'_N(L)\psi_N(L) - u'_N(0)\psi_0(0)\)</span> and as such the boundary terms will only enter the assembled equations <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> for the unknowns <span class="math notranslate nohighlight">\(i=0\)</span> and <span class="math notranslate nohighlight">\(i=N\)</span>. But these are not unknown, so with Dirichlet boundary conditions we can simply neglect the boundary terms! We will get back to these boundary term for Neumann boundary conditions though.</p>
 <div class="admonition note" id="sec-12-note1">
 <p class="admonition-title">Note</p>
-<p>Remember that in the linear algebra problem <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> each row represents a linear equation. And <span class="math notranslate nohighlight">\(i=0\)</span> represents the equation for the left boundary, whereas <span class="math notranslate nohighlight">\(i=N\)</span> represents the equation for the right boundary. Since Dirichlet boundary conditions dictate that <span class="math notranslate nohighlight">\(\hat{u}_0=a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N=b\)</span>, we ident the two rows and put <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> in the right hand side vector.</p>
+<p>Remember that in the linear algebra problem <a class="reference internal" href="#equation-eq-fem-poisson">(59)</a> each row represents a linear equation. And <span class="math notranslate nohighlight">\(i=0\)</span> represents the equation for the left boundary, whereas <span class="math notranslate nohighlight">\(i=N\)</span> represents the equation for the right boundary. Since Dirichlet boundary conditions dictate that <span class="math notranslate nohighlight">\(\hat{u}_0=a\)</span> and <span class="math notranslate nohighlight">\(\hat{u}_N=b\)</span>, we ident the two rows and put <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> in the right hand side vector. Using <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_j, \psi'_i)\)</span> and <span class="math notranslate nohighlight">\(f_i = (f, \psi_i)\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
@@ -450,9 +452,9 @@ s_{N-1, 0} &amp; s_{N-1, 1}&amp; s_{N-1, 2}&amp; \cdots &amp; s_{N-1,N} \\
 =
 \begin{bmatrix}
 a \\
-f_1 \\
+-f_1 \\
 \vdots \\
-f_{N-1} \\
+-f_{N-1} \\
 b
 \end{bmatrix}
 \end{split}\]</div>
@@ -619,8 +621,8 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 <span class="k">def</span> <span class="nf">fem_poisson</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">S</span> <span class="o">=</span> <span class="o">-</span><span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># ident first row for bc at u(0)</span>
-    <span class="n">S</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># ident last row for bc at u(L)</span>
+    <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># ident first row for bc at u(0)</span>
+    <span class="n">S</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># ident last row for bc at u(L)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">assemble_b</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
     <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>   <span class="c1"># specify u(0)</span>
     <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">bc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># specify u(L)</span>
@@ -820,7 +822,7 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 <p>in 2D and three sums over three basis functions in 3D.</p>
 <p>The multidimensional basis functions are usually defined on reference elements. Remember that we earlier in 1D mapped all elements to a <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture10.html#mapping-to-reference-domain">reference domain</a> <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span>. In 2D and 3D we use instead reference triangles and tetrahedra as shown in <a class="reference internal" href="#p1-1d2d3d"><span class="std std-numref">Fig. 6</span></a></p>
 <figure class="align-center" id="p1-1d2d3d">
-<a class="reference internal image-reference" href="P1-1d2d3d.png"><img alt="P1-1d2d3d.png" src="P1-1d2d3d.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/P1-1d2d3d.png"><img alt="_images/P1-1d2d3d.png" src="_images/P1-1d2d3d.png" style="width: 500px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 6 </span><span class="caption-text">P1 finite element reference elements in 1D, 2D and 3D. The dots are the nodes in the elements.</span><a class="headerlink" href="#p1-1d2d3d" title="Link to this image">#</a></p>
 </figcaption>
@@ -832,7 +834,7 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 \]</div>
 <p>for all nodes <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> in the computational mesh. This leads to the “tent” basis function that is nicely illustrated in <a class="reference internal" href="#basisfunc-2d"><span class="std std-numref">Fig. 7</span></a></p>
 <figure class="align-center" id="basisfunc-2d">
-<a class="reference internal image-reference" href="demo2D_basisfunc.png"><img alt="demo2D_basisfunc.png" src="demo2D_basisfunc.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/demo2D_basisfunc.png"><img alt="_images/demo2D_basisfunc.png" src="_images/demo2D_basisfunc.png" style="width: 500px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 7 </span><span class="caption-text">Illustration of one single basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span>, where the node in the center of the “tent” is <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> such that <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_j)=1\)</span> at this node only and zero on all the others.</span><a class="headerlink" href="#basisfunc-2d" title="Link to this image">#</a></p>
 </figcaption>
@@ -865,8 +867,8 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 <span class="eqno">(65)<a class="headerlink" href="#equation-eq-assembly1" title="Link to this equation">#</a></span>\[
 \int_{\Omega^{(e)}} \nabla \psi_j(\boldsymbol{x}) \cdot \nabla \psi_i(\boldsymbol{x}) \, d\Omega,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span> is the basis function <span class="math notranslate nohighlight">\(j\)</span> defined in physical space. Suppose that we now want to compute this integral using the reference elements <span class="math notranslate nohighlight">\(\tilde{\Omega}^{(r)}\)</span> and the reference basis functions <span class="math notranslate nohighlight">\(\tilde{\psi}_r(\boldsymbol{X}) = \psi_{q(e, r)}(\boldsymbol{x}) = \psi_j(\boldsymbol{x})\)</span>.</p>
-<p>A change of variables in the integral leads to a change in domain from <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span> to <span class="math notranslate nohighlight">\(\tilde{\Omega}^{(r)}\)</span>, and the volume element changes into</p>
+<p>where <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span> is the basis function <span class="math notranslate nohighlight">\(j\)</span> defined in physical space. Suppose that we now want to compute this integral using the reference elements <span class="math notranslate nohighlight">\(\tilde{\Omega}\)</span> and the reference basis functions <span class="math notranslate nohighlight">\(\tilde{\psi}_r(\boldsymbol{X}) = \psi_{q(e, r)}(\boldsymbol{x}) = \psi_j(\boldsymbol{x})\)</span>.</p>
+<p>A change of variables in the integral leads to a change in domain from <span class="math notranslate nohighlight">\(\Omega^{(e)}\)</span> to <span class="math notranslate nohighlight">\(\tilde{\Omega}\)</span>, and the volume element changes into</p>
 <div class="math notranslate nohighlight">
 \[
 d\Omega = \text{det}J \, d\tilde{\Omega},
@@ -874,8 +876,9 @@ d\Omega = \text{det}J \, d\tilde{\Omega},
 <p>where <span class="math notranslate nohighlight">\(J\)</span> is the Jacobian matrix of the transformation from <span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> to <span class="math notranslate nohighlight">\(\boldsymbol{X}\)</span>. The Jacobian and its inverse are defined as</p>
 <div class="math notranslate nohighlight">
 \[
-J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} = \frac{\partial X_j}{\partial x_i}.
+J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} = \frac{\partial X_j}{\partial x_i},
 \]</div>
+<p>where we use index form of the coordinates in order to use the Einstein summation convention with summation on repeated indices.</p>
 <p>We also need to transform the derivatives present in the integral <a class="reference internal" href="#equation-eq-assembly1">(65)</a>. The <span class="math notranslate nohighlight">\(i\)</span>’th component of the gradient in physical space can be written as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -910,7 +913,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
 <p>Inserted into <a class="reference internal" href="#equation-eq-assembly1">(65)</a> we get</p>
 <div class="math notranslate nohighlight">
 \[
-\int_{\Omega^{(e)}} \nabla \psi_{q(e, s)}(\boldsymbol{x}) \cdot \nabla \psi_{q(e, r)}(\boldsymbol{x}) \, d\Omega = \int_{\tilde{\Omega}^{(r)}} \left(J^{-1} \cdot \nabla_X \tilde{\psi}_s(\boldsymbol{X})\right) \cdot \left(J^{-1} \cdot \nabla_X \tilde{\psi}_r(\boldsymbol{X})\right) \, \text{det}J\, d\tilde{\Omega}.
+\int_{\Omega^{(e)}} \nabla \psi_{q(e, s)}(\boldsymbol{x}) \cdot \nabla \psi_{q(e, r)}(\boldsymbol{x}) \, d\Omega = \int_{\tilde{\Omega}} \left(J^{-1} \cdot \nabla_X \tilde{\psi}_s(\boldsymbol{X})\right) \cdot \left(J^{-1} \cdot \nabla_X \tilde{\psi}_r(\boldsymbol{X})\right) \, \text{det}J\, d\tilde{\Omega}.
 \]</div>
 <p>Quite complicated, but like for 1D you can compute the reference integral once and then reuse it for all future purposes.</p>
 <p>Implementing the finite element in two or three dimensions on unstructured grids is a bit too complex for this short course. But there are excellent software tools available for free that can help you implement very complex equations in even more complex domains. See, e.g.,</p>
