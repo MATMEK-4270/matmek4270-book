@@ -29,3 +29,9 @@ parts:
   chapters:
   - file: mandatory1
   - file: mandatory2
+- caption: Some suggested solutions
+  numbered: true
+  chapters:
+  - file: lectures_8_9_solutions
+  - file: lecture_10_solutions
+  - file: lecture_11_solutions
