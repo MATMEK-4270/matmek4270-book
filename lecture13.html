@@ -355,6 +355,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-stencil-matrix-for-the-implementation">Use a stencil matrix for the implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
 </ul>
@@ -399,7 +400,12 @@ u(\boldsymbol{x}, t) \approx u_N(\boldsymbol{x}, t) = \sum_{j=0}^N \hat{u}_j(t) 
 <span class="eqno">(67)<a class="headerlink" href="#equation-eq-forward-euler1" title="Link to this equation">#</a></span>\[
 \frac{u^{n+1}-u^n}{\Delta t}  = \mathcal{L}(u^n) + f^n,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(u^n = u(\boldsymbol{x}, t_n)\)</span>, <span class="math notranslate nohighlight">\(f^n = f(\boldsymbol{x}, t_n)\)</span> and <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span>. The solution <span class="math notranslate nohighlight">\(u^n\)</span> is known and <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown we are after. As always the Euler method needs to initialize the solution <span class="math notranslate nohighlight">\(u^0\)</span> in order to get started.</p>
+<p>where <span class="math notranslate nohighlight">\(u^n(\boldsymbol{x}) = u(\boldsymbol{x}, t_n)\)</span>, <span class="math notranslate nohighlight">\(f^n(\boldsymbol{x}) = f(\boldsymbol{x}, t_n)\)</span> and <span class="math notranslate nohighlight">\(t_n=n \Delta t\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For simplicity we normally drop the spatial dependence and write only <span class="math notranslate nohighlight">\(u^n\)</span> and <span class="math notranslate nohighlight">\(f^n\)</span>, even though we mean <span class="math notranslate nohighlight">\(u^n(\boldsymbol{x})\)</span> and <span class="math notranslate nohighlight">\(f^n(\boldsymbol{x})\)</span>.</p>
+</div>
+<p>The solution <span class="math notranslate nohighlight">\(u^n\)</span> is known and <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown we are after. As always the Euler method needs to initialize the solution <span class="math notranslate nohighlight">\(u^0\)</span> in order to get started.</p>
 <p>A residual can now be defined as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -410,7 +416,7 @@ u(\boldsymbol{x}, t) \approx u_N(\boldsymbol{x}, t) = \sum_{j=0}^N \hat{u}_j(t) 
 <p class="admonition-title">Note</p>
 <p>The notation <span class="math notranslate nohighlight">\(\mathcal{R}(u^{n+1}; u^n)\)</span> is used to indicate that <span class="math notranslate nohighlight">\(u^{n+1}\)</span> is the unknown and <span class="math notranslate nohighlight">\(u^n\)</span> (right of the semicolon) is known.</p>
 </div>
-<p>We now introduce the approximations to <span class="math notranslate nohighlight">\(u^{k} = u(\boldsymbol{x}, t_k)\)</span>, which for given integer <span class="math notranslate nohighlight">\(k\)</span> is found in the space <span class="math notranslate nohighlight">\(V_N\)</span></p>
+<p>We now introduce the approximations to <span class="math notranslate nohighlight">\(u^{k}(\boldsymbol{x}) = u(\boldsymbol{x}, t_k)\)</span>, which for given integer <span class="math notranslate nohighlight">\(k\)</span> is found in the space <span class="math notranslate nohighlight">\(V_N\)</span></p>
 <div class="math notranslate nohighlight">
 \[
 u(\boldsymbol{x}, t_k) \approx u^{k}_N = \sum_{j=0}^N \hat{u}^{k}_j \psi_j(\boldsymbol{x}).
@@ -454,12 +460,12 @@ u_j^{n+1} - u_j^n = {\Delta t}\mathcal{L}(\boldsymbol{u}^n)_j,
 <p>With the finite difference method we assume that the solution can be written as an exponential decay in time and periodic in space (the Fourier wave <span class="math notranslate nohighlight">\(e^{ikx_j}\)</span> is periodic in space)</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_j = (e^{a \Delta t})^n e^{ikx_j} \quad \text{and} \quad \boldsymbol{u}^{n+1} = (e^{a \Delta t})^n e^{ik\boldsymbol{x}}, 
+u^{n}_j = (e^{a \Delta t})^{n} e^{ikx_j} \quad \text{and} \quad \boldsymbol{u}^{n} = (e^{a \Delta t})^{n} e^{ik\boldsymbol{x}}, 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(i = \sqrt{-1}\)</span> and <span class="math notranslate nohighlight">\(k\)</span> is a wavenumber. The spatial mesh is <span class="math notranslate nohighlight">\( \boldsymbol{x} = (x_j)_{j=0}^N\)</span> and we will write this ansatz as</p>
 <div class="math notranslate nohighlight">
 \[
-u^{n+1}_j = g^n e^{ikx_j} = g^n u^0_j \quad \text{and} \quad \boldsymbol{u}^{n+1} = g^n e^{ik\boldsymbol{x}} = g^n \boldsymbol{u}^0,
+u^{n}_j = g^{n} e^{ikx_j} = g^{n} u^0_j \quad \text{and} \quad \boldsymbol{u}^{n} = g^{n} e^{ik\boldsymbol{x}} = g^{n} \boldsymbol{u}^0,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g=e^{a \Delta t}\)</span> is the amplification factor, which is independent of space and time, and only depends on <span class="math notranslate nohighlight">\(\Delta t\)</span> and <span class="math notranslate nohighlight">\(\Delta x\)</span>. We now let the operator <span class="math notranslate nohighlight">\(\mathcal{L}\)</span> be the finite difference <span class="math notranslate nohighlight">\(m\)</span>’th derivative operator <span class="math notranslate nohighlight">\(D^{(m)}=(d^{(m)}_{ij})_{i,j=0}^N\)</span>, such that</p>
 <div class="math notranslate nohighlight">
@@ -552,7 +558,7 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
 
-<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">Lambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">D2</span><span class="o">.</span><span class="n">toarray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Minimum eigenvalue = </span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">Lambda</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -560,12 +566,12 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.996206657474091
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -4.0
 </pre></div>
 </div>
 </div>
 </div>
-<p>We find that the minimum eigenvalue is -3.99620665 for a matrix of shape <span class="math notranslate nohighlight">\(50 \times 50\)</span>. If we use a larger matrix, then this number will approach -4 even further. Hence we get</p>
+<p>We find that the minimum eigenvalue is -4! And we get the same result using any odd <span class="math notranslate nohighlight">\(N\)</span>. Hence we get</p>
 <div class="math notranslate nohighlight">
 \[
 |1- 4\frac{\Delta t}{\Delta x^2}| \le 1.
@@ -578,7 +584,7 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 <p>First of all we make the same ansatz and assume that the solution <span class="math notranslate nohighlight">\(u_N^{n+1}\)</span> can be computed from <span class="math notranslate nohighlight">\(u_N^n\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-un-g">
 <span class="eqno">(72)<a class="headerlink" href="#equation-eq-un-g" title="Link to this equation">#</a></span>\[
-u_N^{n+1} = g u_N^n \quad \text{and thus} \quad u^{n}_N = g^n u^0_N. 
+u_N^{n+1} = g u_N^n \quad \text{and thus} \quad u^{n}_N = g^n u^0_N, 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g\)</span> is an amplification factor independent of spatial coordinate <span class="math notranslate nohighlight">\(x\)</span>. As always a stable method is one where <span class="math notranslate nohighlight">\(|g| &lt; 1\)</span>.</p>
 <p>For the forward Euler method we now consider the discretized Galerkin equation</p>
@@ -635,7 +641,7 @@ g = 1 + \lambda \Delta t
 <p>Consider the diffusion equation with Dirichlet boundary conditions and a prescribed initial condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-diffusion">
 <span class="eqno">(75)<a class="headerlink" href="#equation-eq-diffusion" title="Link to this equation">#</a></span>\[
-\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in (0, L) \times (0, T], \, u(0, t) = f(0), u(L, t) = p(L), u(x, 0) = p(x).
+\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}, \quad x, t \in (0, L) \times (0, T], \, u(0, t) = p(0), u(L, t) = p(L), u(x, 0) = p(x).
 \]</div>
 <p>In order to solve <a class="reference internal" href="#equation-eq-diffusion">(75)</a> we choose a global Galerkin method with mapped Legendre polynomials and basis functions <span class="math notranslate nohighlight">\(\psi_i(x)=P_i(X)-P_{i+2}(X)\)</span> such that <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span>. We then use Eq. <a class="reference internal" href="#equation-eq-euler-forward-gal">(73)</a> and create a linear algebra problem by inserting for <span class="math notranslate nohighlight">\(u^{n+1}_N, u^n_N\)</span> and <span class="math notranslate nohighlight">\(v=\psi_i\)</span> and using integrating by parts on the diffusion term:</p>
 <div class="math notranslate nohighlight">
@@ -667,21 +673,21 @@ x = L(1+X)/2\quad \text{and} \quad \frac{dx}{dX} = L/2.
 &amp;= \frac{L}{2}\left( (P_j, P_i) - (P_{j+2}, P_i) - (P_j, P_{i+2}) + (P_{j+2}, P_{i+2}) \right).
 \end{align*}
 \end{split}\]</div>
-<p>The mass matrix is symmetric and we know that <span class="math notranslate nohighlight">\((P_j, P_i) = |P_i|^2 \delta_{ij}\)</span>, where <span class="math notranslate nohighlight">\(|P_i|^2=\frac{2}{2i+1}\)</span> is the squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of <span class="math notranslate nohighlight">\(P_i\)</span>. Hence with <span class="math notranslate nohighlight">\(j = i\)</span> we get</p>
+<p>The mass matrix is symmetric and we know that <span class="math notranslate nohighlight">\((P_j, P_i) = \|P_i\|^2 \delta_{ij}\)</span>, where <span class="math notranslate nohighlight">\(\|P_i\|^2=\frac{2}{2i+1}\)</span> is the squared <span class="math notranslate nohighlight">\(L^2\)</span> norm of <span class="math notranslate nohighlight">\(P_i\)</span>. Hence with <span class="math notranslate nohighlight">\(j = i\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
-(\psi_i, \psi_i) = \frac{L}{2}((P_i, P_i) + (P_{i+2}, P_{i+2})) = \frac{L}{2}(|P_i|^2 + |P_{i+2}|^2),
+(\psi_i, \psi_i) = \frac{L}{2}((P_i, P_i) + (P_{i+2}, P_{i+2})) = \frac{L}{2}(\|P_i\|^2 + \|P_{i+2}\|^2),
 \]</div>
 <p>and with <span class="math notranslate nohighlight">\(j=i+2\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
-(\psi_{i+2}, \psi_i) = - \frac{L}{2}|P_{i+2}|^2.
+(\psi_{i+2}, \psi_i) = - \frac{L}{2}\|P_{i+2}\|^2.
 \]</div>
 <p>The mass matrix is as such</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-a_{ij} = a_{ji} = \frac{L}{2}\begin{cases} |P_i|^2+|P_{i+2}|^2, \quad &amp;i = j, \\
-- |P_{i+2}|^2, \quad  &amp;j = i+2, \\
+a_{ij} = a_{ji} = \frac{L}{2}\begin{cases} \|P_i\|^2+\|P_{i+2}\|^2, \quad &amp;i = j, \\
+- \|P_{i+2}\|^2, \quad  &amp;j = i+2, \\
 0, \quad &amp;\text{otherwise}.
 \end{cases}
 \end{split}\]</div>
@@ -905,6 +911,86 @@ T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2
 <p>Also note that because of the non-constant weight function <span class="math notranslate nohighlight">\(\omega(x)=1/\sqrt{1-x^2}\)</span> it is not common to use integration by parts with the Chebyshev basis.</p>
 </div>
 </section>
+<section id="use-a-stencil-matrix-for-the-implementation">
+<h3>Use a stencil matrix for the implementation<a class="headerlink" href="#use-a-stencil-matrix-for-the-implementation" title="Link to this heading">#</a></h3>
+<p>It is rather messy to work with composite basis functions. A very smart trick is thus to use a <strong>stencil matrix</strong> <span class="math notranslate nohighlight">\(S\)</span>, such that (summation on repeated <span class="math notranslate nohighlight">\(j\)</span> index)</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_i = P_i-P_{i+2} = s_{ij} P_j.
+\]</div>
+<p>This defines <span class="math notranslate nohighlight">\(S \in \mathbb{R}^{(N+1) \times (N+3)}\)</span> for the Dirichlet problem as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s_{ij} = \begin{cases} 1 \quad &amp;j=i \\
+-1 \quad &amp;j=i+2
+\end{cases},
+\quad S = \begin{bmatrix}
+1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 &amp; \cdots\\
+0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; \cdots\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; -1 &amp; \cdots\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots \\ 
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 &amp; -1
+\end{bmatrix}.
+\end{split}\]</div>
+<p>With <span class="math notranslate nohighlight">\(\boldsymbol{\psi} = \{\psi_i\}_{i=0}^N\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{P}=\{P_i\}_{i=0}^N\)</span> we get all basis functions in matrix form:</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{\psi} = S \boldsymbol{P}.
+\]</div>
+<p>But why is the stencil matrix so smart? Consider the mass matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+(\psi_j, \psi_i) &amp;= (P_j-P_{j+2}, P_i-P_{i+2}) \\ 
+&amp;= (P_j, P_i) - (P_j, P_{i+2}) - (P_{j+2}, P_i) + (P_{j+2}, P_{i+2}).
+\end{align*}
+\end{split}\]</div>
+<p>You need to sort out the four (diagonal) matrices on the right. This is not very difficult, since they are all diagonal, but you need to watch out for the indices in order for the mass matrix to turn out correctly. Now use stencil matrix instead (with summation on <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(l\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+(\psi_j, \psi_i) &amp;= (s_{jk}P_k, s_{il}P_l) \\ 
+&amp;= s_{il} (P_l, P_k) s_{jk}
+\end{align*}.
+\end{split}\]</div>
+<p>Here you only need the diagonal matrix <span class="math notranslate nohighlight">\(P = ((P_l, P_k))_{k,l=0}^{N,N}\)</span>, where <span class="math notranslate nohighlight">\((P_l, P_k)=\frac{2}{2l+1}\delta_{kl}\)</span>. The great advantage only becomes apparent in matrix form though</p>
+<div class="math notranslate nohighlight">
+\[
+A = ((\psi_j, \psi_i))_{i,j=0}^{N, N} = S P S^T
+\]</div>
+<p>And this works for any stencil matrix, not just the Dirichlet one. That is the main advantage of the stencil matrix approach. For the Neumann basis (see lecture 11)</p>
+<div class="math notranslate nohighlight">
+\[
+\psi_i(x) = P_i - \frac{i(i+1)}{(i+2)(i+3)}P_{i+2},
+\]</div>
+<p>the stencil matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+s_{ij} = \begin{cases} 1 \quad &amp;j=i \\
+-i(i+1)/((i+2)(i+3)) \quad &amp;j=i+2
+\end{cases},
+\quad S = \begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots\\
+0 &amp; 1 &amp; 0 &amp; -1/6 &amp; 0 &amp; \cdots\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; -3/10 &amp; \cdots\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots \\ 
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 &amp; -\alpha
+\end{bmatrix},
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha = N(N+1)/((N+2)(N+3))\)</span>. The stiffness matrix can also be computed through the stencil matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+(\psi''_j, \psi_i) &amp;= (s_{jk}P''_k, s_{il}P_l) \\ 
+&amp;= s_{il} (P''_l, P_k) s_{jk}
+\end{align*}
+\end{split}\]</div>
+<p>Again you need only the single matrix using orthogonal polynomials <span class="math notranslate nohighlight">\(q_{kl}=(P''_l, P_k) = -(P'_l, P'_k)\)</span> and the matrix form is again much simpler:</p>
+<div class="math notranslate nohighlight">
+\[
+M = ((\psi''_j, \psi_i))_{i,j=0}^{N, N} = S Q S^T
+\]</div>
+</section>
 <section id="backward-euler">
 <h3>Backward Euler<a class="headerlink" href="#backward-euler" title="Link to this heading">#</a></h3>
 <p>The forward Euler method requires a very short time step for the diffusion equation. How about the backward Euler method</p>
@@ -946,7 +1032,7 @@ g = \frac{1}{1+\Delta t \lambda}.
 \[
 \frac{\partial^2 u}{\partial t^2} = c^2 \frac{\partial^2 u}{\partial x^2}, \quad (x, t) \in (0, L) \times (0, T].
 \]</div>
-<p>As you may recall, we solved the wave equation with Dirichlet, Neumann and open boundary conditions. The two time derivatives also required that the solution was initialized at two time-steps, or more mathematically precise, that both <span class="math notranslate nohighlight">\(u(\boldsymbol{x}, 0)\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}(\boldsymbol{x}, 0)\)</span> were given.</p>
+<p>As you may recall, we solved the wave equation with Dirichlet, Neumann and open boundary conditions. The two time derivatives also required that the solution was initialized at two time-steps, or more mathematically precise, that both <span class="math notranslate nohighlight">\(u({x}, 0)\)</span> and <span class="math notranslate nohighlight">\(\frac{\partial u}{\partial t}({x}, 0)\)</span> were given.</p>
 <p>We now use finite differences in time such that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1186,6 +1272,7 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-stencil-matrix-for-the-implementation">Use a stencil matrix for the implementation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
 </ul>
