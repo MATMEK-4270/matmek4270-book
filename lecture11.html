@@ -8,45 +8,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lecture 11 &#8212; Lecture notes MATMEK-4270</title>
+    <title>Lecture 11 - Solving PDEs with the method of weighted residuals &#8212; Lecture notes MATMEK-4270</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=c73c0f3e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -63,8 +63,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 12" href="lecture12.html" />
-    <link rel="prev" title="Lecture 10" href="lecture10.html" />
+    <link rel="next" title="Lecture 12 - Solving PDEs with the finite element method" href="lecture12.html" />
+    <link rel="prev" title="Lecture 10 - Function approximation by the finite element method" href="lecture10.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -74,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -141,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -162,7 +165,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -173,22 +176,22 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1 - Algorithms and implementations for exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2 - Analysis of exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3 - A simple vibration problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4 - The finite difference method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5 - Finite difference methods for the wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6 - Two-dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7 - Postprocessing and interpolation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8 - Function approximation with global functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9 - Function approximation with Chebyshev polynomials and in 2 dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10 - Function approximation by the finite element method</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 11 - Solving PDEs with the method of weighted residuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12 - Solving PDEs with the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13 - Time-dependent variational methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -216,7 +219,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -225,14 +228,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,14 +324,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -339,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lecture 11</h1>
+    <h1>Lecture 11 - Solving PDEs with the method of weighted residuals</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -349,7 +352,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-method-of-weighted-residuals">The method of weighted residuals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-s-equation">Poisson’s equation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inhomogeneous-dirichlet">Inhomogeneous Dirichlet</a></li>
@@ -373,10 +376,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lecture-11">
-<h1>Lecture 11<a class="headerlink" href="#lecture-11" title="Link to this heading">#</a></h1>
-<section id="solving-pdes-with-the-method-of-weighted-residuals">
-<h2>Solving PDEs with the method of weighted residuals<a class="headerlink" href="#solving-pdes-with-the-method-of-weighted-residuals" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-11-solving-pdes-with-the-method-of-weighted-residuals">
+<h1>Lecture 11 - Solving PDEs with the method of weighted residuals<a class="headerlink" href="#lecture-11-solving-pdes-with-the-method-of-weighted-residuals" title="Link to this heading">#</a></h1>
+<section id="the-method-of-weighted-residuals">
+<h2>The method of weighted residuals<a class="headerlink" href="#the-method-of-weighted-residuals" title="Link to this heading">#</a></h2>
 <p>Up until now we have considered how to approximate a generic function <span class="math notranslate nohighlight">\(u(x)\)</span> in a function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>. We have considered both variational formulations (Galerkin and least squares) and collocation (interpolation). But the underlying original problem has simply been to find some function <span class="math notranslate nohighlight">\(u \approx u_N = \sum_{j=0}^N\hat{u}_j \psi_j\)</span>.</p>
 <p>We will now take it one step further and solve ordinary differential equations with a method that is almost identical. Instead of finding just a function <span class="math notranslate nohighlight">\(u\)</span>, we will now attempt to find the solution to</p>
 <div class="math notranslate nohighlight" id="equation-eq-l-op">
@@ -523,11 +526,11 @@ u(-1) &amp;= u(1) = 0,
 <p>Lets check the accuracy using the method of manufactured solutions and choose the even function <span class="math notranslate nohighlight">\(u(x) = (1-x^2)\exp(\cos(x))\)</span>, which satisfies the boundary conditions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 
@@ -556,7 +559,7 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f968f48bea28594c8c6c138cb9128b6e80b5408b21dcb99f1a3484edcd9e834d.png" src="_images/f968f48bea28594c8c6c138cb9128b6e80b5408b21dcb99f1a3484edcd9e834d.png" />
+<img alt="_images/c96973614a9f479048ada222c379e7898a0a9bf2af3efd179c541baff995f630.png" src="_images/c96973614a9f479048ada222c379e7898a0a9bf2af3efd179c541baff995f630.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -586,13 +589,13 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/706dbda1f425b5e832856e965f977903d9fcf78401b6b44a7b3cfd13191eb1c6.png" src="_images/706dbda1f425b5e832856e965f977903d9fcf78401b6b44a7b3cfd13191eb1c6.png" />
+<img alt="_images/0e64b3a2c180932b5be48efe38a593d5d777e0ac6c5245965c9b061130223bef.png" src="_images/0e64b3a2c180932b5be48efe38a593d5d777e0ac6c5245965c9b061130223bef.png" />
 </div>
 </div>
 <p>Lets solve the same problem with Legendre polynomials instead and basis functions <span class="math notranslate nohighlight">\(\psi_i(x) = P_i(x)-P_{i+2}(x)\)</span>. The first 4 of these basis functions are shown below. Note that even numbered basis functions 0 and 2 are even, whereas the odd numbered basis functions are odd.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.polynomial</span> <span class="kn">import</span> <span class="n">Legendre</span> <span class="k">as</span> <span class="n">Leg</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Legendre</span> <span class="k">as</span> <span class="n">Leg</span>
 <span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -603,7 +606,7 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/56e5fd11fe7ca1eb68ecf37800a501f12a659c7f26b239dde8e4817cab6a4285.png" src="_images/56e5fd11fe7ca1eb68ecf37800a501f12a659c7f26b239dde8e4817cab6a4285.png" />
+<img alt="_images/781ff7d5e732d4aa5c81b942abc7bdf1afdf01c69db3928bc980d89a31975787.png" src="_images/781ff7d5e732d4aa5c81b942abc7bdf1afdf01c69db3928bc980d89a31975787.png" />
 </div>
 </div>
 <p>The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now a subspace of <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. The subspace can also be denoted as <span class="math notranslate nohighlight">\(V_N=\{v \in \mathbb{P}_{N+2} | v(\pm 1)=0\}\)</span>. In order to solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(50)</a> we need to assemble the stiffness matrix and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
@@ -630,7 +633,7 @@ u(-1) &amp;= u(1) = 0,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
 <span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">))</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">uh</span> <span class="o">=</span> <span class="p">[]</span>
@@ -654,7 +657,7 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6127fffaf08c07308746fad9c949fcaf74c84296000f8fe0a1c94c3edc897bfe.png" src="_images/6127fffaf08c07308746fad9c949fcaf74c84296000f8fe0a1c94c3edc897bfe.png" />
+<img alt="_images/802394e05396daabb092ea84d032672799188172a8f47ab16fe1e4aa4eb72be1.png" src="_images/802394e05396daabb092ea84d032672799188172a8f47ab16fe1e4aa4eb72be1.png" />
 </div>
 </div>
 <p>We note that less than 30 Legendre basis functions are required for full machine precision (<span class="math notranslate nohighlight">\(\approx 10^{-16}\)</span>). And exactly like for the sine basis functions all the odd coefficients are zero.</p>
@@ -672,7 +675,7 @@ u(-1) &amp;= u(1) = 0,
 <p>We can use <a class="reference external" href="https://github.com/spectralDNS/shenfun">Shenfun</a> to implement the same problem with even less effort. For shenfun the function space is created with boundary conditions specified. If we write <code class="docutils literal notranslate"><span class="pre">bc=(a,</span> <span class="pre">b)</span></code> this is interpreted as two Dirichlet conditions at the two edges of the domain. In this case Shenfun makes use of the same basis functions as used above.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shenfun</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionSpace</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">Dx</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">VN</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -687,13 +690,13 @@ u(-1) &amp;= u(1) = 0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9af0dae3dfc960588420360748870cae51f5879dc0e7bc63edf30c490f5fd6a3.png" src="_images/9af0dae3dfc960588420360748870cae51f5879dc0e7bc63edf30c490f5fd6a3.png" />
+<img alt="_images/ef434a0b5aee506891180553a690851511e18bea7d601350860664e95c4a04c7.png" src="_images/ef434a0b5aee506891180553a690851511e18bea7d601350860664e95c4a04c7.png" />
 </div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sparse</span>
 <span class="n">Ss</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
 <span class="n">uh2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">spsolve</span><span class="p">(</span><span class="n">Ss</span><span class="p">,</span> <span class="n">b</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
 <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uh</span><span class="p">)[:</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">uh2</span><span class="p">)</span>
@@ -743,7 +746,7 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
 <span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">))</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">uh</span> <span class="o">=</span> <span class="p">[]</span>
@@ -756,10 +759,10 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 <p>We have now found <span class="math notranslate nohighlight">\(\tilde{u}_N\)</span> and we compute <span class="math notranslate nohighlight">\(u_N = \tilde{u} + B(x)\)</span> below. It is the same code as before, only with <span class="math notranslate nohighlight">\(B(x)\)</span> added. The result is also equally good, with the Legendre coefficients moving quickly to zero. However, since the solution now is neither odd nor even, all the Legendre coefficients are nonzero.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -781,7 +784,7 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1010513be8928769d4bde56723b30ee558a199c99d59b7e37974e94d56d6d22d.png" src="_images/1010513be8928769d4bde56723b30ee558a199c99d59b7e37974e94d56d6d22d.png" />
+<img alt="_images/db60ab8ce3cee96622fff2792b7c43f9086df5f1fe160ce4f98560fada99f66b.png" src="_images/db60ab8ce3cee96622fff2792b7c43f9086df5f1fe160ce4f98560fada99f66b.png" />
 </div>
 </div>
 </section>
@@ -854,10 +857,10 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 </div>
 <p>The solution can then be plotted along with the absolute value of the coefficients <span class="math notranslate nohighlight">\((|\hat{u}_j|)_{j=0}^N\)</span>, which shows how the series is converging.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">20</span>
@@ -876,7 +879,7 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c6081e46856afe633e32763fd0f281a3c70a8c901ead70c3546dffc77828e13a.png" src="_images/c6081e46856afe633e32763fd0f281a3c70a8c901ead70c3546dffc77828e13a.png" />
+<img alt="_images/3a73a77a4b968ceed8cba1920cd069da3732a2832cc8b591dc2564c2d36b7575.png" src="_images/3a73a77a4b968ceed8cba1920cd069da3732a2832cc8b591dc2564c2d36b7575.png" />
 </div>
 </div>
 <p>We can do the same for Legendre spaces <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(54)</a>. The stiffness matrix is then</p>
@@ -899,8 +902,8 @@ s_{ij} = \alpha(i) \delta_{ij},
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">-</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span><span class="o">*</span><span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">j</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">alpha</span><span class="p">(</span><span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">j</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">((</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">uhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">alpha</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">quad</span><span class="p">(</span><span class="n">uv</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="n">uh</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
@@ -911,10 +914,10 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">40</span>
@@ -933,7 +936,7 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/705471edf2312509fa825da14f4b51810f2c0a2a2627dfb5e6a6ee85e5d1751c.png" src="_images/705471edf2312509fa825da14f4b51810f2c0a2a2627dfb5e6a6ee85e5d1751c.png" />
+<img alt="_images/ce08fcfb35b1a5a686ad666ffcdaa6a873bf7fec776125afa4a8fbb80e95c43c.png" src="_images/ce08fcfb35b1a5a686ad666ffcdaa6a873bf7fec776125afa4a8fbb80e95c43c.png" />
 </div>
 </div>
 <p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi'_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
@@ -946,8 +949,8 @@ s_{ij} = \alpha(i) \delta_{ij},
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">Leg</span><span class="o">.</span><span class="n">basis</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
 <span class="n">fj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">uf</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">psi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">uf</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">fj</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">uv</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span> <span class="k">return</span> <span class="o">-</span><span class="n">psi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span> <span class="o">*</span> <span class="n">psi</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">.</span><span class="n">deriv</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">xj</span><span class="p">)</span>
 <span class="n">fhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">j</span><span class="p">:</span> <span class="n">quad</span><span class="p">(</span><span class="n">uf</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">,))[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
@@ -969,10 +972,10 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -993,7 +996,7 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a3b52cd1835ad35423545a5df43416f7b485a3ea63685c07daab89e9538cbecd.png" src="_images/a3b52cd1835ad35423545a5df43416f7b485a3ea63685c07daab89e9538cbecd.png" />
+<img alt="_images/f5a7f1855ade95ef4f4aa2d2b2574dbd6c9b7af5a3590d3d28c4f17e3aed6824.png" src="_images/f5a7f1855ade95ef4f4aa2d2b2574dbd6c9b7af5a3590d3d28c4f17e3aed6824.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1016,7 +1019,7 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b03f95d812115794e24a3d87c89269757dbec3a54a22db20dd921c2fa968186e.png" src="_images/b03f95d812115794e24a3d87c89269757dbec3a54a22db20dd921c2fa968186e.png" />
+<img alt="_images/b0a7c72809ac5373a77347f430e5467119167b1e414b3aeb1140c758cfc1a438.png" src="_images/b0a7c72809ac5373a77347f430e5467119167b1e414b3aeb1140c758cfc1a438.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1102,8 +1105,8 @@ d_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d_{ij}.
 <p>This derivative is implemented below using vectorized and efficient Python code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">BarycentricInterpolator</span>
-<span class="k">def</span> <span class="nf">Derivative</span><span class="p">(</span><span class="n">xj</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">BarycentricInterpolator</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Derivative</span><span class="p">(</span><span class="n">xj</span><span class="p">):</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">wi</span>
     <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
     <span class="n">X</span> <span class="o">=</span> <span class="n">xj</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
@@ -1189,7 +1192,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 <p>A vectorized implementation of this recursive algorithm is shown below in <code class="docutils literal notranslate"><span class="pre">PolyDerivative</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">wi</span>
     <span class="c1">#D = Derivative(xj) # compute it directly below because W and X are needed</span>
     <span class="n">W</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
@@ -1226,7 +1229,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 <p>where <span class="math notranslate nohighlight">\(\tilde{D}^{(-2)}\)</span> is the inverse matrix of <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">poisson_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># Get second derivative matrix</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>      <span class="c1"># ident first row</span>
@@ -1237,7 +1240,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
     <span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">uh</span><span class="p">,</span> <span class="n">D</span>
 
-<span class="k">def</span> <span class="nf">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">):</span>
     <span class="n">uj</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">N</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -1264,6 +1267,12 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94545/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return np.sqrt(np.trapz((uj(xj)-L(xj).astype(float))**2, dx=2./N))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1273,7 +1282,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/eaffe1993bd79f9785ffdffe34ce48ee36ef1d6f6902a905b73c9f045eb55f39.png" src="_images/eaffe1993bd79f9785ffdffe34ce48ee36ef1d6f6902a905b73c9f045eb55f39.png" />
+<img alt="_images/fbb9c5d776ac2932788787a06d2d967615cb36e0ad7e25c778ac1ed49ce4b7fb.png" src="_images/fbb9c5d776ac2932788787a06d2d967615cb36e0ad7e25c778ac1ed49ce4b7fb.png" />
 </div>
 </div>
 </section>
@@ -1340,7 +1349,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1349,7 +1358,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 10</p>
+        <p class="prev-next-title">Lecture 10 - Function approximation by the finite element method</p>
       </div>
     </a>
     <a class="right-next"
@@ -1357,7 +1366,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 12</p>
+        <p class="prev-next-title">Lecture 12 - Solving PDEs with the finite element method</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1377,7 +1386,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-method-of-weighted-residuals">Solving PDEs with the method of weighted residuals</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-method-of-weighted-residuals">The method of weighted residuals</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-s-equation">Poisson’s equation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
 <li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#inhomogeneous-dirichlet">Inhomogeneous Dirichlet</a></li>
@@ -1438,8 +1447,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

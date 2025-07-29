@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/anaconda3/envs/homepage/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np 
+import sympy as sp 
+import matplotlib.pyplot as plt
+from lagrange import Lagrangebasis
+from fem import get_element_length, local_to_global_map, assemble_b, fe_evaluate_v
+x, h = sp.symbols('x,h')
+
+def Ade(d=1):
+    Xj = lambda d: 2*(np.array([sp.Rational(i, d) for i in np.arange(d+1)]))-1 # np.linspace(-1, 1, d+1) only rational
+    ll = lambda d: Lagrangebasis(Xj(d))
+    qe = lambda l, r, s: sp.integrate(l[r]*l[s], (x, -1, 1))
+    A = np.zeros((d+1, d+1), dtype=object)
+    l = ll(d)
+    for r in range(d+1):
+        for s in range(d+1):
+            A[r, s] = qe(l, r, s)
+    return (h/2)*sp.Matrix(A)
+
+def assemble_mass(xj, d=1):
+    N = len(xj)-1
+    Ne = N//d
+    A = np.zeros((N+1, N+1))
+    Ad = Ade(d)
+    for elem in range(Ne):
+        hj = get_element_length(xj, elem, d=d)
+        s0 = local_to_global_map(elem, d=d)
+        A[s0, s0] += np.array(Ad.subs(h, hj), dtype=float)
+    return A
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m 
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01msympy[39;00m [38;5;28;01mas[39;00m [38;5;21;01msp[39;00m 
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'numpy'
+

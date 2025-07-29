@@ -8,45 +8,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lecture 6 &#8212; Lecture notes MATMEK-4270</title>
+    <title>Lecture 6 - Two-dimensional problems &#8212; Lecture notes MATMEK-4270</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=c73c0f3e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -63,8 +63,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 7" href="lecture7.html" />
-    <link rel="prev" title="Lecture 5" href="lecture5.html" />
+    <link rel="next" title="Lecture 7 - Postprocessing and interpolation" href="lecture7.html" />
+    <link rel="prev" title="Lecture 5 - Finite difference methods for the wave equation" href="lecture5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -74,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -141,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -162,7 +165,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -173,22 +176,22 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1 - Algorithms and implementations for exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2 - Analysis of exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3 - A simple vibration problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4 - The finite difference method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5 - Finite difference methods for the wave equation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 6 - Two-dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7 - Postprocessing and interpolation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8 - Function approximation with global functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9 - Function approximation with Chebyshev polynomials and in 2 dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10 - Function approximation by the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11 - Solving PDEs with the method of weighted residuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12 - Solving PDEs with the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13 - Time-dependent variational methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -216,7 +219,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -225,14 +228,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,14 +324,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -339,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lecture 6</h1>
+    <h1>Lecture 6 - Two-dimensional problems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -380,8 +383,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lecture-6">
-<h1>Lecture 6<a class="headerlink" href="#lecture-6" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-6-two-dimensional-problems">
+<h1>Lecture 6 - Two-dimensional problems<a class="headerlink" href="#lecture-6-two-dimensional-problems" title="Link to this heading">#</a></h1>
 <p>In lecture 6 we will move from one to two spatial dimensions and discuss how to discretize and solve a boundary value problem (Poisson’s equation). Important topics are</p>
 <ul class="simple">
 <li><p>The Cartesian product - definition and the use for computational meshes</p></li>
@@ -415,14 +418,14 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[u(x=0, y) = u(x=L_x, y) = u(x, y=0) = u(x, y=L_y) = 0\]</div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">8</span>
@@ -454,7 +457,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/e0501d4539f6487b86a61f0812b50182f053a9bdc74dee58e163023eecd316d0.png" src="_images/e0501d4539f6487b86a61f0812b50182f053a9bdc74dee58e163023eecd316d0.png" />
+<img alt="_images/2ab43ae5efec4b3367a6d1d1b62207ef445728e7d3b9f8ce03d1f44354e136d1.png" src="_images/2ab43ae5efec4b3367a6d1d1b62207ef445728e7d3b9f8ce03d1f44354e136d1.png" />
 </div>
 </div>
 </section>
@@ -483,7 +486,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 <p>In order to create a two-dimensional mesh, like the one seen above, we use a Cartesian product. The Cartesian product is most easily explained through an example. Consider the two arrays (or here <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html">lists</a>) <span class="math notranslate nohighlight">\(\boldsymbol{u}=[1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{v}=[4, 5]\)</span>. We can compute the Cartesian product of these two arrays using the Python package <a class="reference external" href="https://docs.python.org/3/library/itertools.html">itertools</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 <span class="n">u</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="n">v</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">uxv</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
@@ -517,10 +520,10 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 \]</div>
 <p>then a two-dimensional mesh would be all possible combinations of these arrays, as shown below.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -547,7 +550,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/019e99cd83c6122e497ab0c64093a18ac3390db7714c30f8aecf21658552bfa5.png" src="_images/019e99cd83c6122e497ab0c64093a18ac3390db7714c30f8aecf21658552bfa5.png" />
+<img alt="_images/ae37938b98ad6e53d240a54241f4581dc1302114a4a4efd0f2e7150b5a9f6f78.png" src="_images/ae37938b98ad6e53d240a54241f4581dc1302114a4a4efd0f2e7150b5a9f6f78.png" />
 </div>
 </div>
 <p>Note that there are <span class="math notranslate nohighlight">\(4 \cdot 3 = 12\)</span> pairs of numbers. If we drop <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span> from the pairs and use only the integers in front of them, we get with itertools:</p>
@@ -595,7 +598,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5c1abbfce25176e53f2a3841603f9ba9e67e065ac9b4bf8f49d13f205bc6d321.png" src="_images/5c1abbfce25176e53f2a3841603f9ba9e67e065ac9b4bf8f49d13f205bc6d321.png" />
+<img alt="_images/c0029ec9ffcf014cf8819a74440c17e7a2d6b56e0b6ccb9c8a5b1c58e43e5532.png" src="_images/c0029ec9ffcf014cf8819a74440c17e7a2d6b56e0b6ccb9c8a5b1c58e43e5532.png" />
 </div>
 </div>
 <p>Note that if this mesh was a two-dimensional matrix, then <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\((i, j)\)</span> would represent column and row, respectively, which is counterintuitive. We normally think about a matrix <span class="math notranslate nohighlight">\(A\)</span> with items <span class="math notranslate nohighlight">\(a_{ij}\)</span>, where the first index <span class="math notranslate nohighlight">\(i\)</span> represents row and the second index <span class="math notranslate nohighlight">\(j\)</span> represents column. This is a complicating factor for the Cartesian mesh that is important to be aware of. But it is not a mistake. The numbers in the plot above are not indices of a matrix, they represent <span class="math notranslate nohighlight">\((x, y)\)</span> in a Cartesian mesh.</p>
@@ -665,10 +668,10 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 <p>Hmmm. These arrays seem to be aligned very differently from the mesh that we have been looking at so far. <code class="docutils literal notranslate"><span class="pre">xij</span></code> has shape <span class="math notranslate nohighlight">\(4 \times 3\)</span> and the <span class="math notranslate nohighlight">\(x\)</span> value increases along a column. Likewise, the <code class="docutils literal notranslate"><span class="pre">yij</span></code> array has also shape <span class="math notranslate nohighlight">\(4 \times 3\)</span>, and the <span class="math notranslate nohighlight">\(y\)</span>-value increases along a row. So the ordering is as the following arrows show</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -680,15 +683,15 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/554e809834abb374a9f759d817294f762bd40b22b9bf99a8d554d6671c7d53e0.png" src="_images/554e809834abb374a9f759d817294f762bd40b22b9bf99a8d554d6671c7d53e0.png" />
+<img alt="_images/5bea02871753bb750271db638dfd60fb9a75ad4426a8a0472c50ea45c56f2baf.png" src="_images/5bea02871753bb750271db638dfd60fb9a75ad4426a8a0472c50ea45c56f2baf.png" />
 </div>
 </div>
 <p>This is opposite to a Cartesian mesh that has <span class="math notranslate nohighlight">\(x\)</span> varying along the horizontal direction and <span class="math notranslate nohighlight">\(y\)</span> varying along the vertical direction:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -700,7 +703,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/11c19dc24f1b5ab2974b56d506081a28141331cb318fd4af1ebcc3efeb113831.png" src="_images/11c19dc24f1b5ab2974b56d506081a28141331cb318fd4af1ebcc3efeb113831.png" />
+<img alt="_images/5bfc6954e573f6ef784a445adfbdd743a2f3293b04c4440f6638b80ec01a4f9f.png" src="_images/5bfc6954e573f6ef784a445adfbdd743a2f3293b04c4440f6638b80ec01a4f9f.png" />
 </div>
 </div>
 <p>However, there is no mistake. This is how matrices are stored, with the first index <span class="math notranslate nohighlight">\(i\)</span> representing <span class="math notranslate nohighlight">\(x\)</span> and the second index <span class="math notranslate nohighlight">\(j\)</span> representing <span class="math notranslate nohighlight">\(y\)</span>. And if we make contour plots using the meshes <code class="docutils literal notranslate"><span class="pre">xij</span></code> and <code class="docutils literal notranslate"><span class="pre">yij</span></code> it all comes out in a Cartesian plot exactly as expected. Below we create contour plots of both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and we notice that <span class="math notranslate nohighlight">\(x\)</span> increases along the horizontal axis, whereas <span class="math notranslate nohighlight">\(y\)</span> increases in the vertical direction. Just as expected:-)</p>
@@ -720,7 +723,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7305e99d3b084c4d2983a06780f463f824c6b2f3ebf81525f82350c6fb7b472c.png" src="_images/7305e99d3b084c4d2983a06780f463f824c6b2f3ebf81525f82350c6fb7b472c.png" />
+<img alt="_images/6b5df09e7b449156eec760814398a63a4e583bfc3e3d6e82f70fd057f530cf64.png" src="_images/6b5df09e7b449156eec760814398a63a4e583bfc3e3d6e82f70fd057f530cf64.png" />
 </div>
 </div>
 </section>
@@ -948,9 +951,9 @@ D_x^{(2)} = \frac{1}{\Delta x^2}\begin{bmatrix}
 <p>We compute the unscaled matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sparse</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sparse</span>
 
-<span class="k">def</span> <span class="nf">D2</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">D2</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
     <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">D</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span>
@@ -969,6 +972,9 @@ D_x^{(2)} = \frac{1}{\Delta x^2}\begin{bmatrix}
  [ 0.  0.  0.  0.  0.  1. -2.  1.  0.]
  [ 0.  0.  0.  0.  0.  0.  1. -2.  1.]
  [ 0.  0.  0.  0.  0. -1.  4. -5.  2.]]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1451,7 +1457,7 @@ D^{(2)} U
 <p>We implement the operator as</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">laplace</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">laplace</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">):</span>
     <span class="n">D2x</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">D2</span><span class="p">(</span><span class="n">Nx</span><span class="p">)</span>
     <span class="n">D2y</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">D2</span><span class="p">(</span><span class="n">Ny</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">sparse</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">D2x</span><span class="p">,</span> <span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span>
@@ -1468,7 +1474,7 @@ u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y)),
 <p>and use a computational domain <span class="math notranslate nohighlight">\(\Omega = [0, 1] \times [0, 1]\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,y&#39;</span><span class="p">)</span>
 <span class="n">ue</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
@@ -1486,7 +1492,7 @@ u(x, y) = x(1-x)y(1-y)\exp(\cos(4 \pi x)\sin(2 \pi y)),
 <p>Create the Cartesian 2D mesh using a function</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mesh2D</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mesh2D</span><span class="p">(</span><span class="n">Nx</span><span class="p">,</span> <span class="n">Ny</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Lx</span><span class="p">,</span> <span class="n">Nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ly</span><span class="p">,</span> <span class="n">Ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
@@ -1534,7 +1540,7 @@ u_{i, N_y} = 0 \quad i \in \{0, 1, \ldots, N_x\}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3a9e466c6f44d9a91207b78bbc7e9f351aba1554c75aa539b11a27201591f1e2.png" src="_images/3a9e466c6f44d9a91207b78bbc7e9f351aba1554c75aa539b11a27201591f1e2.png" />
+<img alt="_images/4f8c29aa9f5545cd053ab2684957281e052fd8136e2c361bf7296bb1845b9cb9.png" src="_images/4f8c29aa9f5545cd053ab2684957281e052fd8136e2c361bf7296bb1845b9cb9.png" />
 </div>
 </div>
 <p>Now find all the indices in the ravelled (vectorized) array <code class="docutils literal notranslate"><span class="pre">vec(B)</span></code> that equals 1.</p>
@@ -1603,7 +1609,7 @@ Ax = b,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0efaa3539f87fe64840881a2395b2d0cb783ee81584f150dc0d3178b97c4822b.png" src="_images/0efaa3539f87fe64840881a2395b2d0cb783ee81584f150dc0d3178b97c4822b.png" />
+<img alt="_images/ed82cf88b358c96d568774f03c1936bc3f1b4d5ce7a2c415f5bc54fc67a337a5.png" src="_images/ed82cf88b358c96d568774f03c1936bc3f1b4d5ce7a2c415f5bc54fc67a337a5.png" />
 </div>
 </div>
 <p>and check that the solution is close to the exact analytical solution</p>
@@ -1616,7 +1622,7 @@ Ax = b,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.00038807056403051686
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.00038807056403051686)
 </pre></div>
 </div>
 </div>
@@ -1664,7 +1670,7 @@ Ax = b,
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1673,7 +1679,7 @@ Ax = b,
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 5</p>
+        <p class="prev-next-title">Lecture 5 - Finite difference methods for the wave equation</p>
       </div>
     </a>
     <a class="right-next"
@@ -1681,7 +1687,7 @@ Ax = b,
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 7</p>
+        <p class="prev-next-title">Lecture 7 - Postprocessing and interpolation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1769,8 +1775,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

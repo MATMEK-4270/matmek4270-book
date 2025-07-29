@@ -8,45 +8,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lecture 12 &#8212; Lecture notes MATMEK-4270</title>
+    <title>Lecture 12 - Solving PDEs with the finite element method &#8212; Lecture notes MATMEK-4270</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=c73c0f3e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -63,8 +63,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 13" href="lecture13.html" />
-    <link rel="prev" title="Lecture 11" href="lecture11.html" />
+    <link rel="next" title="Lecture 13 - Time-dependent variational methods" href="lecture13.html" />
+    <link rel="prev" title="Lecture 11 - Solving PDEs with the method of weighted residuals" href="lecture11.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -74,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -141,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -162,7 +165,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -173,22 +176,22 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1 - Algorithms and implementations for exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2 - Analysis of exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3 - A simple vibration problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4 - The finite difference method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5 - Finite difference methods for the wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6 - Two-dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7 - Postprocessing and interpolation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8 - Function approximation with global functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9 - Function approximation with Chebyshev polynomials and in 2 dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10 - Function approximation by the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11 - Solving PDEs with the method of weighted residuals</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 12 - Solving PDEs with the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13 - Time-dependent variational methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -216,7 +219,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -225,14 +228,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,14 +324,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -339,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lecture 12</h1>
+    <h1>Lecture 12 - Solving PDEs with the finite element method</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -349,7 +352,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-finite-element-method">Solving PDEs with the finite element method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann boundary conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fem-in-multiple-dimensions">FEM in multiple dimensions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-element-matrices-in-2d-or-3d">Assembly of element matrices in 2D or 3D</a></li>
@@ -366,10 +368,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lecture-12">
-<h1>Lecture 12<a class="headerlink" href="#lecture-12" title="Link to this heading">#</a></h1>
-<section id="solving-pdes-with-the-finite-element-method">
-<h2>Solving PDEs with the finite element method<a class="headerlink" href="#solving-pdes-with-the-finite-element-method" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-12-solving-pdes-with-the-finite-element-method">
+<h1>Lecture 12 - Solving PDEs with the finite element method<a class="headerlink" href="#lecture-12-solving-pdes-with-the-finite-element-method" title="Link to this heading">#</a></h1>
 <p>The procedure for solving differential equations with the finite element method is much the same as for global basis functions. However</p>
 <ul class="simple">
 <li><p>Basis functions are local</p></li>
@@ -502,10 +502,10 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 <p>We can assemble the element stiffness matrix once and for all using Sympy:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">lagrange</span> <span class="kn">import</span> <span class="n">Lagrangebasis</span><span class="p">,</span> <span class="n">Lagrangefunction</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lagrange</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lagrangebasis</span><span class="p">,</span> <span class="n">Lagrangefunction</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,h&#39;</span><span class="p">)</span>
 <span class="n">l</span> <span class="o">=</span> <span class="n">Lagrangebasis</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -546,7 +546,7 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xj</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">)]))</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># np.linspace(-1, 1, d+1) only rational</span>
 <span class="n">ll</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">Lagrangebasis</span><span class="p">(</span><span class="n">Xj</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
 <span class="n">qe</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">sp</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">r</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="n">l</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">Qe</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Qe</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
     <span class="n">l</span> <span class="o">=</span> <span class="n">ll</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
@@ -560,9 +560,9 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 <p>In order to assemble the global matrix, we need to loop over all elements. This was done for the <a class="reference internal" href="lecture10.html#assemble-mass"><span class="std std-ref">mass matrix</span></a> in lecture 10 and it requires just a minor adjustment as shown below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fem</span> <span class="kn">import</span> <span class="n">get_element_boundaries</span><span class="p">,</span> <span class="n">get_element_length</span><span class="p">,</span> <span class="n">local_to_global_map</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_element_boundaries</span><span class="p">,</span> <span class="n">get_element_length</span><span class="p">,</span> <span class="n">local_to_global_map</span>
 
-<span class="k">def</span> <span class="nf">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">Ne</span> <span class="o">=</span> <span class="n">N</span><span class="o">//</span><span class="n">d</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
@@ -617,9 +617,9 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 <p>Since we now know how to assemble any matrix, we can also solve any (linear) ordinary differential equation. Let us try to solve Poisson’s equation with a manufactured solution <span class="math notranslate nohighlight">\(u(x) = J_0(x), \, x \in [0, 10]\)</span>, where <span class="math notranslate nohighlight">\(J_0(x)\)</span> is the 0 order Bessel function of the first kind. We first create a function <code class="docutils literal notranslate"><span class="pre">fem_poisson</span></code> that solves the problem using any order <span class="math notranslate nohighlight">\(d\)</span> and any right hand side function <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fem</span> <span class="kn">import</span> <span class="n">assemble_b</span><span class="p">,</span> <span class="n">fe_evaluate_v</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">assemble_b</span><span class="p">,</span> <span class="n">fe_evaluate_v</span>
 
-<span class="k">def</span> <span class="nf">fem_poisson</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fem_poisson</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">S</span> <span class="o">=</span> <span class="o">-</span><span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># ident first row for bc at u(0)</span>
@@ -654,10 +654,9 @@ s^{(e)}_{ij} = \int_{\Omega^{(e)}} \psi'_j \psi'_i d\Omega,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/694ff6d09e819d5183d037fd93b9249f46b622913b0482dcedfb293f81e88dcf.png" src="_images/694ff6d09e819d5183d037fd93b9249f46b622913b0482dcedfb293f81e88dcf.png" />
+<img alt="_images/4e3ca5175a565efe62dfa36cb64c5fc2c9c47972d18a5b0e9af21144e5ea7528.png" src="_images/4e3ca5175a565efe62dfa36cb64c5fc2c9c47972d18a5b0e9af21144e5ea7528.png" />
 </div>
 </div>
-</section>
 <section id="neumann-boundary-conditions">
 <h2>Neumann boundary conditions<a class="headerlink" href="#neumann-boundary-conditions" title="Link to this heading">#</a></h2>
 <p>We will now solve a Helmholtz equation with Neumann boundary conditions</p>
@@ -704,7 +703,7 @@ If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span>
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fem_poisson_neumann</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fem_poisson_neumann</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">S</span> <span class="o">=</span> <span class="o">-</span><span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">assemble_generic_matrix</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -738,7 +737,7 @@ If we first insert for <span class="math notranslate nohighlight">\(u_N\)</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4ac9d69b3229de6df5fd7f25df01e05dbe7635efb623d686ff97643e623f6330.png" src="_images/4ac9d69b3229de6df5fd7f25df01e05dbe7635efb623d686ff97643e623f6330.png" />
+<img alt="_images/37601bbec69323dd98576f41931138761f434f0d5642a2f3c9d5f89fa86a0291.png" src="_images/37601bbec69323dd98576f41931138761f434f0d5642a2f3c9d5f89fa86a0291.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -823,7 +822,8 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 <p>in 2D and three sums over three basis functions in 3D.</p>
 <p>The multidimensional basis functions are usually defined on reference elements. Remember that we earlier in 1D mapped all elements to a <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture10.html#mapping-to-reference-domain">reference domain</a> <span class="math notranslate nohighlight">\(X \in [-1, 1]\)</span>. In 2D and 3D we use instead reference triangles and tetrahedra as shown in <a class="reference internal" href="#p1-1d2d3d"><span class="std std-numref">Fig. 6</span></a></p>
 <figure class="align-center" id="p1-1d2d3d">
-<a class="reference internal image-reference" href="_images/P1-1d2d3d.png"><img alt="_images/P1-1d2d3d.png" src="_images/P1-1d2d3d.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/P1-1d2d3d.png"><img alt="_images/P1-1d2d3d.png" src="_images/P1-1d2d3d.png" style="width: 500px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 6 </span><span class="caption-text">P1 finite element reference elements in 1D, 2D and 3D. The dots are the nodes in the elements.</span><a class="headerlink" href="#p1-1d2d3d" title="Link to this image">#</a></p>
 </figcaption>
@@ -835,7 +835,8 @@ u_N(x, y) = \sum_{i=0}^M\sum_{j=0}^N \hat{u}_{ij}\psi_{i}(x) \varphi_j(y),
 \]</div>
 <p>for all nodes <span class="math notranslate nohighlight">\(\boldsymbol{x}_i\)</span> in the computational mesh. This leads to the “tent” basis function that is nicely illustrated in <a class="reference internal" href="#basisfunc-2d"><span class="std std-numref">Fig. 7</span></a></p>
 <figure class="align-center" id="basisfunc-2d">
-<a class="reference internal image-reference" href="_images/demo2D_basisfunc.png"><img alt="_images/demo2D_basisfunc.png" src="_images/demo2D_basisfunc.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/demo2D_basisfunc.png"><img alt="_images/demo2D_basisfunc.png" src="_images/demo2D_basisfunc.png" style="width: 500px;" />
+</a>
 <figcaption>
 <p><span class="caption-number">Fig. 7 </span><span class="caption-text">Illustration of one single basis function <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x})\)</span>, where the node in the center of the “tent” is <span class="math notranslate nohighlight">\(\boldsymbol{x}_j\)</span> such that <span class="math notranslate nohighlight">\(\psi_j(\boldsymbol{x}_j)=1\)</span> at this node only and zero on all the others.</span><a class="headerlink" href="#basisfunc-2d" title="Link to this image">#</a></p>
 </figcaption>
@@ -956,7 +957,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -965,7 +966,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 11</p>
+        <p class="prev-next-title">Lecture 11 - Solving PDEs with the method of weighted residuals</p>
       </div>
     </a>
     <a class="right-next"
@@ -973,7 +974,7 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 13</p>
+        <p class="prev-next-title">Lecture 13 - Time-dependent variational methods</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -993,7 +994,6 @@ J_{i,j} = \frac{\partial x_j}{\partial X_i} \quad \text{and} \quad J^{-1}_{i,j} 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-pdes-with-the-finite-element-method">Solving PDEs with the finite element method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neumann-boundary-conditions">Neumann boundary conditions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fem-in-multiple-dimensions">FEM in multiple dimensions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-element-matrices-in-2d-or-3d">Assembly of element matrices in 2D or 3D</a></li>
@@ -1047,8 +1047,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

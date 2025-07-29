@@ -14,39 +14,39 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=c73c0f3e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -74,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -141,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -162,7 +165,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -173,22 +176,22 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1 - Algorithms and implementations for exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2 - Analysis of exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3 - A simple vibration problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4 - The finite difference method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5 - Finite difference methods for the wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6 - Two-dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7 - Postprocessing and interpolation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8 - Function approximation with global functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9 - Function approximation with Chebyshev polynomials and in 2 dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10 - Function approximation by the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11 - Solving PDEs with the method of weighted residuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12 - Solving PDEs with the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture13.html">Lecture 13 - Time-dependent variational methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -216,7 +219,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -225,14 +228,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -364,12 +367,12 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 <p>Using first shenfun</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">shenfun</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shenfun</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span> 
 <span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
     <span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">family</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">ue</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">ue</span> 
     <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
@@ -389,13 +392,13 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/01ef5133868676e60ad51e8b8710d0167357ecc33128ec6d9b89a00c67802db7.png" src="_images/01ef5133868676e60ad51e8b8710d0167357ecc33128ec6d9b89a00c67802db7.png" />
+<img alt="_images/d8f1e9cdfa6db060123c6014275b142bf94246a5477710e24d5b3bdbccdb3377.png" src="_images/d8f1e9cdfa6db060123c6014275b142bf94246a5477710e24d5b3bdbccdb3377.png" />
 </div>
 </div>
 <p>Compute L2-error and plot it to show the spectral accuracy. Both for Legendre and Chebyshev. Note that with Chebyshev shenfun automatically chooses a weighted inner product with weight <span class="math notranslate nohighlight">\(1/\sqrt{1-x^2}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">L2_error</span><span class="p">(</span><span class="n">uN</span><span class="p">,</span> <span class="n">ul</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">L2_error</span><span class="p">(</span><span class="n">uN</span><span class="p">,</span> <span class="n">ul</span><span class="p">):</span>
     <span class="n">domain</span> <span class="o">=</span> <span class="n">uN</span><span class="o">.</span><span class="n">function_space</span><span class="p">()</span><span class="o">.</span><span class="n">domain</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">uN</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">uj</span> <span class="o">=</span> <span class="n">uN</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
@@ -413,6 +416,12 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94728/2384630451.py:6: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0]))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -422,7 +431,7 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f788a9efaf916340987380d11acb3da76f960c0e37251d3b7f18bc2c62385f76.png" src="_images/f788a9efaf916340987380d11acb3da76f960c0e37251d3b7f18bc2c62385f76.png" />
+<img alt="_images/f692198a979f8b36cb0010330bcc2737f596c5b289a3554d517c1763d12eb70c.png" src="_images/f692198a979f8b36cb0010330bcc2737f596c5b289a3554d517c1763d12eb70c.png" />
 </div>
 </div>
 <p>Now do the same thing with inhomogeneous boundary conditions. The accuracy should be approximately the same.</p>
@@ -439,6 +448,12 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94728/2384630451.py:6: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0]))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -448,7 +463,7 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8dab27ca5251930b2874ee4fd9a61bbf2e580a68ccc5010a77d575882bd1dbc7.png" src="_images/8dab27ca5251930b2874ee4fd9a61bbf2e580a68ccc5010a77d575882bd1dbc7.png" />
+<img alt="_images/d93208b35ea2f7b94f30d2bb0113867638abc84c557a54c3274eb71162d7a4e0.png" src="_images/d93208b35ea2f7b94f30d2bb0113867638abc84c557a54c3274eb71162d7a4e0.png" />
 </div>
 </div>
 <p>Note that the solution now contains the boundary conditions. In Shenfun the two boundary conditions of the inhomogeneous Dirichlet space are stored in the last two items of the array of unknowns <code class="docutils literal notranslate"><span class="pre">uN</span></code>.</p>
@@ -481,10 +496,10 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 <p>Now solve the same problem using collocation. Implement by modifying some code from lecture 11.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lagrange</span> <span class="kn">import</span> <span class="n">PolyDerivative</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">BarycentricInterpolator</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lagrange</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolyDerivative</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">BarycentricInterpolator</span> 
 
-<span class="k">def</span> <span class="nf">Helmholtz_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Helmholtz_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># Get second derivative matrix</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">D</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">M</span>
@@ -496,7 +511,7 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
     <span class="n">uh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">uh</span>
 
-<span class="k">def</span> <span class="nf">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ul</span><span class="p">,</span> <span class="n">xj</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">l2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ul</span><span class="p">,</span> <span class="n">xj</span><span class="p">):</span>
     <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">L</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">yi</span><span class="o">=</span><span class="n">uh</span><span class="p">)</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span>
@@ -521,6 +536,12 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94728/2760787852.py:21: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return np.sqrt(np.trapz((ul(xj)-L(xj).astype(float))**2, dx=2./N))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -529,10 +550,10 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x16c9cc5c0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x15bb204d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/97e04a33b510ed4ea87d90f98ccd42026a5beb9a611eda17c8db68b411259cf9.png" src="_images/97e04a33b510ed4ea87d90f98ccd42026a5beb9a611eda17c8db68b411259cf9.png" />
+<img alt="_images/0e5845dca2b85aedff4ca89cfe0bda2e934afdf5e71d5c9d9b46aeda40cf6744.png" src="_images/0e5845dca2b85aedff4ca89cfe0bda2e934afdf5e71d5c9d9b46aeda40cf6744.png" />
 </div>
 </div>
 <ol class="arabic simple" start="2">
@@ -550,7 +571,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 <p>For this problem we create a new shenfun solver, where the right hand side is simply zero. Test first with a relatively large epsilon:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solveCD</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">solveCD</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;Legendre&#39;</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)):</span>
     <span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">family</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
@@ -570,7 +591,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fb12c91c0d126d2d4994d402b7b2b4b925069449d223b4c6789aba24946a38aa.png" src="_images/fb12c91c0d126d2d4994d402b7b2b4b925069449d223b4c6789aba24946a38aa.png" />
+<img alt="_images/9413c6afa4d6fcaf700479e00ddb82a9d936f7a03ccdfffbb0d4d8b699d25139.png" src="_images/9413c6afa4d6fcaf700479e00ddb82a9d936f7a03ccdfffbb0d4d8b699d25139.png" />
 </div>
 </div>
 <p>Now check convergence for the most stiff epsilon=1/1000. For this we need quite a few degrees of freedom in order to resolve the sharp gradient of <span class="math notranslate nohighlight">\(u(x)\)</span>.</p>
@@ -587,6 +608,12 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94728/2384630451.py:6: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0]))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -596,13 +623,13 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bf4954de9c9a18d3ad541b425a2fa32ef53735360a91aee729de4cfeb0221852.png" src="_images/bf4954de9c9a18d3ad541b425a2fa32ef53735360a91aee729de4cfeb0221852.png" />
+<img alt="_images/709c6988d6c4edef023c743a4984f669bb4aa51af584841ec0bb718719e7a55a.png" src="_images/709c6988d6c4edef023c743a4984f669bb4aa51af584841ec0bb718719e7a55a.png" />
 </div>
 </div>
 <p>Now solve the same equation using collocation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">CD_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">CD_coll</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
     <span class="n">D2</span> <span class="o">=</span> <span class="n">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>      <span class="c1"># Get second derivative matrix</span>
     <span class="n">D1</span> <span class="o">=</span> <span class="n">PolyDerivative</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>      <span class="c1"># Get second derivative matrix</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">D2</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">epsilon</span><span class="o">*</span><span class="n">D1</span>
@@ -621,6 +648,12 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_94728/2760787852.py:21: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+  return np.sqrt(np.trapz((ul(xj)-L(xj).astype(float))**2, dx=2./N))
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,7 +662,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c7e272e741bbce565935f92b2ad08843ced4fc020ee6f3b44814846442ac07a8.png" src="_images/c7e272e741bbce565935f92b2ad08843ced4fc020ee6f3b44814846442ac07a8.png" />
+<img alt="_images/27e2081ec6a42d63a2377189b9321604060ea2a547d647250f6625e9e6ce8d5e.png" src="_images/27e2081ec6a42d63a2377189b9321604060ea2a547d647250f6625e9e6ce8d5e.png" />
 </div>
 </div>
 </section>
@@ -661,7 +694,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -688,8 +721,6 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -734,8 +765,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

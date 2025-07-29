@@ -8,45 +8,45 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lecture 13 &#8212; Lecture notes MATMEK-4270</title>
+    <title>Lecture 13 - Time-dependent variational methods &#8212; Lecture notes MATMEK-4270</title>
   
   
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=c73c0f3e"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Mandatory assignment due 11/10-2024" href="mandatory1.html" />
-    <link rel="prev" title="Lecture 12" href="lecture12.html" />
+    <link rel="prev" title="Lecture 12 - Solving PDEs with the finite element method" href="lecture12.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -74,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -141,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="intro.html">
   
@@ -162,7 +165,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -173,22 +176,22 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">The Finite Difference Method</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Lecture 1 - Algorithms and implementations for exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">Lecture 2 - Analysis of exponential decay models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">Lecture 3 - A simple vibration problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">Lecture 4 - The finite difference method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">Lecture 5 - Finite difference methods for the wave equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture6.html">Lecture 6 - Two-dimensional problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture7.html">Lecture 7 - Postprocessing and interpolation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variational methods</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 13</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture8.html">Lecture 8 - Function approximation with global functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture9.html">Lecture 9 - Function approximation with Chebyshev polynomials and in 2 dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture10.html">Lecture 10 - Function approximation by the finite element method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture11.html">Lecture 11 - Solving PDEs with the method of weighted residuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture12.html">Lecture 12 - Solving PDEs with the finite element method</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lecture 13 - Time-dependent variational methods</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
@@ -216,7 +219,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -225,14 +228,14 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,14 +324,14 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -339,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lecture 13</h1>
+    <h1>Lecture 13 - Time-dependent variational methods</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -349,18 +352,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-variational-methods">Time-dependent variational methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability">Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">Stability of the forward Euler method for finite difference spatial discretizations</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-variational-forms">Stability of the forward Euler method for variational forms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability">Stability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">Stability of the forward Euler method for finite difference spatial discretizations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-variational-forms">Stability of the forward Euler method for variational forms</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-stencil-matrix-for-the-implementation">Use a stencil matrix for the implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-stencil-matrix-for-the-implementation">Use a stencil matrix for the implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
             </nav>
@@ -373,10 +373,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lecture-13">
-<h1>Lecture 13<a class="headerlink" href="#lecture-13" title="Link to this heading">#</a></h1>
-<section id="time-dependent-variational-methods">
-<h2>Time-dependent variational methods<a class="headerlink" href="#time-dependent-variational-methods" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="lecture-13-time-dependent-variational-methods">
+<h1>Lecture 13 - Time-dependent variational methods<a class="headerlink" href="#lecture-13-time-dependent-variational-methods" title="Link to this heading">#</a></h1>
 <p>In <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture11.html">lecture 11</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture12.html">lecture 12</a> we have focused on the spatial discretization of steady (time-independent) differential equations. We will now add time-dependence and thus consider equations like</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -448,10 +446,10 @@ u(\boldsymbol{x}, t_k) \approx u^{k}_N = \sum_{j=0}^N \hat{u}^{k}_j \psi_j(\bold
 <p>By initializing <span class="math notranslate nohighlight">\(u_N^0(\boldsymbol{x})=u^0(\boldsymbol{x})\)</span>, we need to project <span class="math notranslate nohighlight">\(u^0(\boldsymbol{x})\)</span> to <span class="math notranslate nohighlight">\(V_N\)</span> and store the expansion coefficients <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}^0\)</span>. This is a regular function approximation, like in lectures <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture8.html">8</a> and <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture9.html">9</a>. For the finite difference method, on the other hand, initialization is simply to evaluate (interpolate) the solution on the computational mesh: <span class="math notranslate nohighlight">\((u^0(x_i))_{i=0}^N\)</span>. The finite element method can do either project or interpolate, because the FEM is using Lagrange polynomials such that <span class="math notranslate nohighlight">\(u_N(x_i) = \hat{u}_i\)</span>.</p>
 </div>
 <section id="stability">
-<span id="sec-stability-1"></span><h3>Stability<a class="headerlink" href="#stability" title="Link to this heading">#</a></h3>
+<span id="sec-stability-1"></span><h2>Stability<a class="headerlink" href="#stability" title="Link to this heading">#</a></h2>
 <p>Just like for the finite difference method we need to be very careful with the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, in order to obtain a stable solution. A stable solution is one that remains bounded as <span class="math notranslate nohighlight">\(t \longrightarrow \infty\)</span>. However, there is one major difference from the finite difference or collocation methods. The Galerkin method described above does not involve a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>! So the Courant number is not defined. How do we overcome this problem? In order to describe this problem it is helpful to first revisit the stability of the finite difference method.</p>
 <section id="stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">
-<h4>Stability of the forward Euler method for finite difference spatial discretizations<a class="headerlink" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations" title="Link to this heading">#</a></h4>
+<h3>Stability of the forward Euler method for finite difference spatial discretizations<a class="headerlink" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations" title="Link to this heading">#</a></h3>
 <p>We start by considering <a class="reference internal" href="#equation-eq-forward-euler1">(67)</a> with finite difference discretizations for both temporal and spatial derivatives:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -556,8 +554,8 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 <p>We can now compute the eigenvalues of <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sparse</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">D2</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
@@ -567,7 +565,7 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -4.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum eigenvalue = -3.9999999999999973
 </pre></div>
 </div>
 </div>
@@ -580,7 +578,7 @@ D^{(m)} \boldsymbol{u}^0 = \lambda \boldsymbol{u}^0.
 <p>which is the same result as <a class="reference internal" href="#equation-eq-limit0">(70)</a> if we set <span class="math notranslate nohighlight">\(\sin^2(k \Delta x/2)\)</span> to its maximum value of 1.</p>
 </section>
 <section id="stability-of-the-forward-euler-method-for-variational-forms">
-<h4>Stability of the forward Euler method for variational forms<a class="headerlink" href="#stability-of-the-forward-euler-method-for-variational-forms" title="Link to this heading">#</a></h4>
+<h3>Stability of the forward Euler method for variational forms<a class="headerlink" href="#stability-of-the-forward-euler-method-for-variational-forms" title="Link to this heading">#</a></h3>
 <p>As described in the start of <a class="reference internal" href="#sec-stability-1"><span class="std std-ref">Stability</span></a>, the variational methods do not include a mesh size <span class="math notranslate nohighlight">\(\Delta x\)</span>. However, we can use the eigenvalue approach described above without defining a mesh size and we will now use this to find stability limits for variational forms.</p>
 <p>First of all we make the same ansatz and assume that the solution <span class="math notranslate nohighlight">\(u_N^{n+1}\)</span> can be computed from <span class="math notranslate nohighlight">\(u_N^n\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-un-g">
@@ -638,7 +636,7 @@ g = 1 + \lambda \Delta t
 </section>
 </section>
 <section id="the-diffusion-equation">
-<h3>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Link to this heading">#</a></h3>
+<h2>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Link to this heading">#</a></h2>
 <p>Consider the diffusion equation with Dirichlet boundary conditions and a prescribed initial condition</p>
 <div class="math notranslate nohighlight" id="equation-eq-diffusion">
 <span class="eqno">(75)<a class="headerlink" href="#equation-eq-diffusion" title="Link to this equation">#</a></span>\[
@@ -706,15 +704,15 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <p>This means that for stability we need to choose a time step <span class="math notranslate nohighlight">\(\Delta t \le 2/\max(\lambda)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
-<span class="kn">from</span> <span class="nn">galerkin</span> <span class="kn">import</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">DirichletLegendre</span><span class="p">,</span> <span class="n">DirichletChebyshev</span><span class="p">,</span> \
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">galerkin</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">DirichletLegendre</span><span class="p">,</span> <span class="n">DirichletChebyshev</span><span class="p">,</span> \
     <span class="n">project</span><span class="p">,</span> <span class="n">inner</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x,t,c,L&#39;</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">FE_Diffusion</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FE_Diffusion</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for solving the diffusion equation with</span>
 
 <span class="sd">    Parameters</span>
@@ -728,7 +726,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <span class="sd">    u0 : Sympy function of x, t, c and L</span>
 <span class="sd">        Used for specifying initial condition</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">N</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">L0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="n">L0</span><span class="p">})</span>
@@ -739,10 +737,10 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
         <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_mats</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lu</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">splu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">())</span>
 
-    <span class="k">def</span> <span class="nf">get_function_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_function_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">DirichletLegendre</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bc</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_mats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mass and stiffness matrices</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
@@ -752,11 +750,11 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
         <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="o">*</span><span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csr&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">s</span>
 
-    <span class="k">def</span> <span class="nf">get_eigenvalues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_eigenvalues</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return eigenvalues of H=A^{-1}S&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">toarray</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve diffusion equation</span>
 
 <span class="sd">        Parameters</span>
@@ -796,7 +794,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <p>Lets solve the problem using initial condition <span class="math notranslate nohighlight">\(u(x, 0) = \cos(\pi x /L) + \cos(10 \pi x/L)\)</span> and <span class="math notranslate nohighlight">\(dt= 2/\max(\lambda)\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utilities</span> <span class="kn">import</span> <span class="n">plot_with_offset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_with_offset</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">FE_Diffusion</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">get_eigenvalues</span><span class="p">())</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">sol</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -805,7 +803,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c78052313924db192fb3f892d219ff85e706c8d6e6b6cff67f458783e6b3a6ee.png" src="_images/c78052313924db192fb3f892d219ff85e706c8d6e6b6cff67f458783e6b3a6ee.png" />
+<img alt="_images/ec1254918895ec8cfc92d8b47587c2a3591621e450dcb93358d97c461cfabe6c.png" src="_images/ec1254918895ec8cfc92d8b47587c2a3591621e450dcb93358d97c461cfabe6c.png" />
 </div>
 </div>
 <p>The solution is nice and smooth and the time step is</p>
@@ -816,7 +814,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 2.1980578790345177e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 2.198057879034515e-05
 </pre></div>
 </div>
 </div>
@@ -830,7 +828,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cc8542b2c67cc99a2a426ba26f8cb30a691a7e8eff8b987a1f437f1f8dc8c9b1.png" src="_images/cc8542b2c67cc99a2a426ba26f8cb30a691a7e8eff8b987a1f437f1f8dc8c9b1.png" />
+<img alt="_images/0d0bd83b56525a1034c11e3ec0db6c29217d8ddd288bda732faede1ea5b37209.png" src="_images/0d0bd83b56525a1034c11e3ec0db6c29217d8ddd288bda732faede1ea5b37209.png" />
 </div>
 </div>
 <p>Obviously, the solver is now unstable and the solution diverges.</p>
@@ -841,12 +839,12 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 <p>Changing from Legendre to Chebyshev makes the required time step even shorter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FE_Diffusion_Cheb</span><span class="p">(</span><span class="n">FE_Diffusion</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">FE_Diffusion_Cheb</span><span class="p">(</span><span class="n">FE_Diffusion</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">get_function_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_function_space</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">DirichletChebyshev</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">),</span> <span class="n">bc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bc</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_mats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_mats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return mass and stiffness matrices</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
@@ -855,7 +853,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
         <span class="n">a</span> <span class="o">=</span> <span class="n">inner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
         <span class="c1">#s2 = -inner(u.diff(2), v) # slow</span>
         <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="k">def</span> <span class="nf">diag</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">diag</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="p">[:</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -877,7 +875,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e1985bc29fef555b70ff1451b32f6546c6aa521525e3589943582c9659f7a8d7.png" src="_images/e1985bc29fef555b70ff1451b32f6546c6aa521525e3589943582c9659f7a8d7.png" />
+<img alt="_images/b2a71b7e91dd4a11af3ccff9384373795a5434f0fc7b8c9cdd8c7caa38ab9914.png" src="_images/b2a71b7e91dd4a11af3ccff9384373795a5434f0fc7b8c9cdd8c7caa38ab9914.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -887,7 +885,7 @@ A solver is created in the class <code class="docutils literal notranslate"><spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 1.2332249161314778e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 1.233224916131476e-05
 </pre></div>
 </div>
 </div>
@@ -913,7 +911,7 @@ T''_n = \sum_{\substack{j=0 \\ j+n \text{ even}}}^{n-2} \frac{1}{c_j} n (n^2-j^2
 </div>
 </section>
 <section id="use-a-stencil-matrix-for-the-implementation">
-<h3>Use a stencil matrix for the implementation<a class="headerlink" href="#use-a-stencil-matrix-for-the-implementation" title="Link to this heading">#</a></h3>
+<h2>Use a stencil matrix for the implementation<a class="headerlink" href="#use-a-stencil-matrix-for-the-implementation" title="Link to this heading">#</a></h2>
 <p>It is rather messy to work with composite basis functions. A very smart trick is thus to use a <strong>stencil matrix</strong> <span class="math notranslate nohighlight">\(S\)</span>, such that (summation on repeated <span class="math notranslate nohighlight">\(j\)</span> index)</p>
 <div class="math notranslate nohighlight">
 \[
@@ -993,7 +991,7 @@ M = ((\psi''_j, \psi_i))_{i,j=0}^{N, N} = S Q S^T
 \]</div>
 </section>
 <section id="backward-euler">
-<h3>Backward Euler<a class="headerlink" href="#backward-euler" title="Link to this heading">#</a></h3>
+<h2>Backward Euler<a class="headerlink" href="#backward-euler" title="Link to this heading">#</a></h2>
 <p>The forward Euler method requires a very short time step for the diffusion equation. How about the backward Euler method</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-backward-gal">
 <span class="eqno">(77)<a class="headerlink" href="#equation-eq-euler-backward-gal" title="Link to this equation">#</a></span>\[
@@ -1027,7 +1025,7 @@ g = \frac{1}{1+\Delta t \lambda}.
 <p>Since all time steps and eigenvalues are real numbers larger than 0, we find that <span class="math notranslate nohighlight">\(g\)</span> is always less than 1 and the backward Euler method is as such <em>unconditionally</em> stable.</p>
 </section>
 <section id="the-wave-equation">
-<h3>The Wave equation<a class="headerlink" href="#the-wave-equation" title="Link to this heading">#</a></h3>
+<h2>The Wave equation<a class="headerlink" href="#the-wave-equation" title="Link to this heading">#</a></h2>
 <p>Lets consider the wave equation from <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture5.html">lecture 5</a> in one spatial dimension</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1120,14 +1118,14 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 <p>Lets implement the wave equation using a global Galerkin method, homogeneous Dirichlet boundary conditions and an initial pulse <span class="math notranslate nohighlight">\(u(x, t) = \exp(-200(x-L/2+ct)^2)\)</span> used for both <span class="math notranslate nohighlight">\(t=0\)</span> and <span class="math notranslate nohighlight">\(t=\Delta t\)</span>. Since we are using the same matrices as the diffusion problem, we can create a solver by subclassing the <code class="docutils literal notranslate"><span class="pre">FE_Diffusion</span></code> class and thus reuse much code</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Wave</span><span class="p">(</span><span class="n">FE_Diffusion</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Wave</span><span class="p">(</span><span class="n">FE_Diffusion</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c0</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)):</span>
         <span class="n">u0</span> <span class="o">=</span> <span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">c</span><span class="p">:</span> <span class="n">c0</span><span class="p">})</span>
         <span class="n">FE_Diffusion</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">L0</span><span class="o">=</span><span class="n">L0</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="n">u0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">c0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uh_n</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Nt</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">save_step</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="c1"># Initialize</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uh_nm1</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">project</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="p">)</span> <span class="c1"># unm1 = u(x, 0)</span>
         <span class="n">xj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">V</span><span class="o">.</span><span class="n">mesh</span><span class="p">()</span>
@@ -1161,7 +1159,7 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7199606952aa55009d1caab132b7090c41150910c4b31657020a3cb82e8bf221.png" src="_images/7199606952aa55009d1caab132b7090c41150910c4b31657020a3cb82e8bf221.png" />
+<img alt="_images/a689712f0ae81fd6cd4294a548aec63aa65c6f88bc85a7987ea4add2316ef965.png" src="_images/a689712f0ae81fd6cd4294a548aec63aa65c6f88bc85a7987ea4add2316ef965.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1171,13 +1169,12 @@ g = \frac{\beta \pm \sqrt{\beta^2-4}}{2},
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 0.006630321076742087
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum time step = 0.006630321076742083
 </pre></div>
 </div>
 </div>
 </div>
 <p>This maximum time step should be compared with the maximum time step of a finite difference method. Remember the Courant number <span class="math notranslate nohighlight">\(C = c \Delta t/\Delta x\)</span> and the stability condition <span class="math notranslate nohighlight">\(C \le 1\)</span>. For our case, with <span class="math notranslate nohighlight">\(c=1\)</span>, this limit is <span class="math notranslate nohighlight">\(\Delta t \le \Delta x\)</span>. So with <span class="math notranslate nohighlight">\(N=40\)</span> and <span class="math notranslate nohighlight">\(\Delta x = 2/N\)</span>, we get <span class="math notranslate nohighlight">\(\Delta t \le 0.05\)</span>. Again, the finite difference method can take much longer time steps than the global Galerkin method. But remember, the global Galerkin method is using a much more accurate spatial discretization and can actually get away with using a much lower <span class="math notranslate nohighlight">\(N\)</span>.</p>
-</section>
 </section>
 <section id="weekly-assignments">
 <h2>Weekly assignments<a class="headerlink" href="#weekly-assignments" title="Link to this heading">#</a></h2>
@@ -1229,7 +1226,7 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -1238,7 +1235,7 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lecture 12</p>
+        <p class="prev-next-title">Lecture 12 - Solving PDEs with the finite element method</p>
       </div>
     </a>
     <a class="right-next"
@@ -1266,18 +1263,15 @@ suggested by <a class="reference external" href="https://royalsocietypublishing.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-variational-methods">Time-dependent variational methods</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability">Stability</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">Stability of the forward Euler method for finite difference spatial discretizations</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-variational-forms">Stability of the forward Euler method for variational forms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stability">Stability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-finite-difference-spatial-discretizations">Stability of the forward Euler method for finite difference spatial discretizations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-forward-euler-method-for-variational-forms">Stability of the forward Euler method for variational forms</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-stencil-matrix-for-the-implementation">Use a stencil matrix for the implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-diffusion-equation">The diffusion equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-a-stencil-matrix-for-the-implementation">Use a stencil matrix for the implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-euler">Backward Euler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wave-equation">The Wave equation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-assignments">Weekly assignments</a></li>
 </ul>
   </nav></div>
@@ -1327,8 +1321,8 @@ By Mikael Mortensen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
