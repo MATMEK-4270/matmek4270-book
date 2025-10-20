@@ -137,7 +137,7 @@ class Wave1D:
             Initial conditions
             - 0 Specify un = u(x, t=0) and unm1 = u(x, t=-dt)
             - 1 Specify unm1 = u(x, t=0) and u_t(x, t=0) = 0 using ghost node and PDE for un=u(x, dt)
-            - 2 Specify unm1 = u(x, t=0) and u_t(x, t=0) = 0 using 0.5*(I(x+c*dt)+I(x-c*dt)) for un=u(x, dt) 
+            - 2 Specify unm1 = u(x, t=0) and u_t(x, t=0) = 0 using 0.5*(I(x+c*dt)+I(x-c*dt)) for un=u(x, dt)
         save_step : int, optional
             Save solution every save_step time step
 
@@ -163,7 +163,7 @@ class Wave1D:
         elif: # use u_t = 0 for un = u(x, dt)
             self.un[:] = self.unm1 + 0.5*C**2* (D @ self.unm1)
             self.apply_bcs(bc, self.un)
-        
+
         else:
             u0 = sp.lambdify(x, self.u0.subs({L: self.L, c: self.c, t: 0}))
             self.un[:] = 0.5*(u0(self.x+self.c*dt)+u0(self.x-self.c*dt))

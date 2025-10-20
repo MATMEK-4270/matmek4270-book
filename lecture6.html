@@ -408,15 +408,17 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[(x, y) \in [0, L_x] \times [0, L_y],\]</div>
 <p>and Dirichlet boundary conditions. A Dirichlet boundary condition means that the solution is known (or fixed) at the boundary. There are now 4 sides to a rectangle and the solutions needs to be fixed at all these boundaries since there are two derivatives in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. We need to fix:</p>
-<div class="math notranslate nohighlight">
-\[\color{red}{ u(x=0, y)}, \quad \color{green}{u(x=L_x, y)}\]</div>
-<div class="math notranslate nohighlight">
-\[\color{blue}{u(x, y=0)}, \quad \color{magenta}{u(x, y=L_y)}\]</div>
+<p>\begin{align*}
+\color{red}{ u(x=0, y)},&amp; \quad \color{green}{u(x=L_x, y)} \
+\color{blue}{u(x, y=0)},&amp; \quad \color{magenta}{u(x, y=L_y)}
+\end{align*}</p>
 <p>In the figure below the locations of these Dirichlet conditions are plotted in color.</p>
 <p>Note that the conditions at the two sides <span class="math notranslate nohighlight">\(x=0\)</span> and <span class="math notranslate nohighlight">\(x=L_x\)</span> can be functions of the other coordinate <span class="math notranslate nohighlight">\(y\)</span>. Likewise, for the two boundaries with constant <span class="math notranslate nohighlight">\(y\)</span> the condition may be a function of <span class="math notranslate nohighlight">\(x\)</span>. Also note that the boundary conditions need to be consistent in the corners, because each corner belongs to two sides.</p>
 <p>We will at first simply use a constant value 0 along all boundaries since this is easiest. In that case</p>
 <div class="math notranslate nohighlight">
-\[u(x=0, y) = u(x=L_x, y) = u(x, y=0) = u(x, y=L_y) = 0\]</div>
+\[
+u(x=0, y) = u(x=L_x, y) = u(x, y=0) = u(x, y=L_y) = 0
+\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -500,7 +502,7 @@ y_j = j \Delta y, \quad j = 0, 1, \ldots, N_y
 </div>
 </div>
 </div>
-<p>So we get a list containing all possible pairs of items, one from <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and one from <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>. Since there are 3 items in <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and 2 in <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> we get a total of <span class="math notranslate nohighlight">\(2 \cdot 3 = 6\)</span> pairs of numbers.</p>
+<p>So we get a list containing all possible pairs of items, the first item from <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and the second from <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span>. Since there are 3 items in <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> and 2 in <span class="math notranslate nohighlight">\(\boldsymbol{v}\)</span> we get a total of <span class="math notranslate nohighlight">\(2 \cdot 3 = 6\)</span> pairs of numbers.</p>
 <p>The Cartesian product <span class="math notranslate nohighlight">\(\boldsymbol{u} \times \boldsymbol{v}\)</span> can be described mathematically as</p>
 <div class="math notranslate nohighlight">
 \[

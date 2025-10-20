@@ -814,6 +814,11 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 \end{align*}
 \end{split}\]</div>
 <p>because they all satisfy <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>. However, note that for both the cosine and the Legendre bases we get that <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> since <span class="math notranslate nohighlight">\(\cos(0) = P_0 = 1\)</span>. This basis function is such that <span class="math notranslate nohighlight">\(\psi'_0=0\)</span> and it will as such lead to a zero column in  the stiffness matrix since <span class="math notranslate nohighlight">\((\psi''_0, \psi_i) = 0\)</span>. Hence this basis function cannot be used for solving Poisson’s equation directly. It can, however, be used to fix the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(53)</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Legendre polynomials satisfy <span class="math notranslate nohighlight">\(P'_j(\pm 1) = (-1)^{j+1} \frac{j(j+1)}{2}\)</span>. Use this to verify that <span class="math notranslate nohighlight">\(\psi_j(x) &amp;= P_j - \frac{j(j+1)}{(j+2)(j+3)}P_{j+2}\)</span> leads to <span class="math notranslate nohighlight">\(\psi'_j(\pm 1) = 0\)</span>.</p>
+<p>Chebyshev polynomials satisfy <span class="math notranslate nohighlight">\(T'_j(\pm 1) = (\pm 1)^{j+1} j^2\)</span>. What is a Neumann basis function based on Chebyshev polynomials?</p>
+</div>
 <p>We solve the Neumann problem with the function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span>, but in order to also specify the constraint <a class="reference internal" href="#equation-eq-neumann-constraint">(53)</a> we will need to use a modified function space <span class="math notranslate nohighlight">\(\{u_N \in V_N | (u_N, 1) = c \}\)</span>. Since <span class="math notranslate nohighlight">\((\psi_j, 1) = 0\)</span> for all <span class="math notranslate nohighlight">\(j \in \{1, 2, \ldots, N\}\)</span>, we get that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1268,7 +1273,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_64731/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_43188/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   return np.sqrt(np.trapz((uj(xj)-L(xj).astype(float))**2, dx=2./N))
 </pre></div>
 </div>
@@ -1282,7 +1287,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f98e655491a50b5b1e9260dc2842fa8579a6d29764cd0e59bc7b49e03b2adc99.png" src="_images/f98e655491a50b5b1e9260dc2842fa8579a6d29764cd0e59bc7b49e03b2adc99.png" />
+<img alt="_images/204552b01e22a5653ec1950ec6697caf01fbe75471c93cf02c1d574762527951.png" src="_images/204552b01e22a5653ec1950ec6697caf01fbe75471c93cf02c1d574762527951.png" />
 </div>
 </div>
 </section>
