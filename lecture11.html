@@ -1274,7 +1274,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_7179/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_11083/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   return np.sqrt(np.trapz((uj(xj)-L(xj).astype(float))**2, dx=2./N))
 </pre></div>
 </div>
@@ -1288,7 +1288,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d47848ba6279a096c6c9046ff3473d5dec13439c4edf2dce757a2b84e590536c.png" src="_images/d47848ba6279a096c6c9046ff3473d5dec13439c4edf2dce757a2b84e590536c.png" />
+<img alt="_images/318880d74b1e7b393c48a3d52cebf002ad552564695766d45a4dfcaec6e2c753.png" src="_images/318880d74b1e7b393c48a3d52cebf002ad552564695766d45a4dfcaec6e2c753.png" />
 </div>
 </div>
 </section>
@@ -1383,7 +1383,7 @@ u_N(x, y) = \sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} \psi_i(x) \psi_j(y),
 <p>for all <span class="math notranslate nohighlight">\(p, q = 0, 1, \ldots, N\)</span>. On matrix form this can be written as</p>
 <div class="math notranslate nohighlight">
 \[
--(S U M^T + M U S^T) = F,
+-(S^T U M + M^T U S) = F,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(U = (\hat{u}_{ij})_{i,j=0}^N\)</span> is the matrix of unknown expansion coefficients and <span class="math notranslate nohighlight">\(F = ( (f, \psi_p(x) \psi_q(y)))_{p,q=0}^N\)</span> is the right hand side matrix. Here <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(M\)</span> are the one-dimensional stiffness and mass matrices, respectively. Note that since both <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(M\)</span> are symmetric, we have that <span class="math notranslate nohighlight">\(S^T = S\)</span> and <span class="math notranslate nohighlight">\(M^T = M\)</span>.</p>
 <p>This matrix equation is known as a Sylvester equation and there are efficient methods for solving it. However, we will here use a more straightforward approach based on the Kronecker product. We first rewrite the matrix equation as a linear algebra problem by applying the vec-operator to both sides of the equation, just like in lecture 9. We get</p>
@@ -1424,7 +1424,7 @@ u_N(x, y) = \sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} \psi_i(x) \psi_j(y),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x15c5ee750&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x168c4bc20&gt;
 </pre></div>
 </div>
 <img alt="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" src="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" />
