@@ -1274,7 +1274,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5280/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5914/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   return np.sqrt(np.trapz((uj(xj)-L(xj).astype(float))**2, dx=2./N))
 </pre></div>
 </div>
@@ -1288,7 +1288,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fe4b0a1dfa4cb10470982d451044195434078adab4e4ed3351effe34655a6ef2.png" src="_images/fe4b0a1dfa4cb10470982d451044195434078adab4e4ed3351effe34655a6ef2.png" />
+<img alt="_images/c8db743c1c7ebecf021c4f88173a02e610b8e0e074788a23af3e4c5f45ca8afe.png" src="_images/c8db743c1c7ebecf021c4f88173a02e610b8e0e074788a23af3e4c5f45ca8afe.png" />
 </div>
 </div>
 </section>
@@ -1331,10 +1331,11 @@ W_N = V_N \otimes V_N = \text{span }\{\psi_i(x) \psi_j(y)\}_{i,j=0}^N.
 \]</div>
 <p>Note the use of <span class="math notranslate nohighlight">\(L^2(\partial \Omega)\)</span> for the line- or surface-integral.</p>
 </div>
-<p>Using Green’s theorem we get after eliminating the boundary term (since all basis functions are zero on the boundary)
-$<span class="math notranslate nohighlight">\(
+<p>Using Green’s theorem we get after eliminating the boundary term (since all basis functions are zero on the boundary)</p>
+<div class="math notranslate nohighlight">
+\[
 -\left(\nabla u_N, \nabla v \right) = \left(f, v \right), \quad \forall \, v \in W_N.
-\)</span>$</p>
+\]</div>
 <p>We now insert the expansion</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1423,7 +1424,7 @@ u_N(x, y) = \sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} \psi_i(x) \psi_j(y),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x154c8c2f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x153f43e60&gt;
 </pre></div>
 </div>
 <img alt="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" src="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" />
