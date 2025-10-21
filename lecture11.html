@@ -1274,7 +1274,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_4609/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_5280/2006747313.py:19: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
   return np.sqrt(np.trapz((uj(xj)-L(xj).astype(float))**2, dx=2./N))
 </pre></div>
 </div>
@@ -1288,7 +1288,7 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a740b7e130458212f7ab72c9578da16fdad06c81c90fb6286b4e1972065606e8.png" src="_images/a740b7e130458212f7ab72c9578da16fdad06c81c90fb6286b4e1972065606e8.png" />
+<img alt="_images/fe4b0a1dfa4cb10470982d451044195434078adab4e4ed3351effe34655a6ef2.png" src="_images/fe4b0a1dfa4cb10470982d451044195434078adab4e4ed3351effe34655a6ef2.png" />
 </div>
 </div>
 </section>
@@ -1301,14 +1301,16 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 \[
 \nabla^2 u = f, \quad (x, y) \in \Omega,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\Omega = (-1, 1) \times (-1, 1)\)</span> is the computational domain. We will consider homogeneous Dirichlet boundary conditions on all sides of the domain. Note that the equation is now a partial differential equation (PDE) since we have more than one independent variable. The equation can also be written as
-$<span class="math notranslate nohighlight">\(
+<p>where <span class="math notranslate nohighlight">\(\Omega = (-1, 1) \times (-1, 1)\)</span> is the computational domain. We will consider homogeneous Dirichlet boundary conditions on all sides of the domain. Note that the equation is now a partial differential equation (PDE) since we have more than one independent variable. The equation can also be written as</p>
+<div class="math notranslate nohighlight">
+\[
 \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = f, \quad (x, y) \in \Omega.
-\)</span>$</p>
-<p>In order to solve this problem with the Galerkin method we first create a one-dimensional function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span> as before, where the basis functions satisfy <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span>. The two-dimensional function space is then the tensor product space
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>In order to solve this problem with the Galerkin method we first create a one-dimensional function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_i\}_{i=0}^N\)</span> as before, where the basis functions satisfy <span class="math notranslate nohighlight">\(\psi_i(\pm 1) = 0\)</span>. The two-dimensional function space is then the tensor product space</p>
+<div class="math notranslate nohighlight">
+\[
 W_N = V_N \otimes V_N = \text{span }\{\psi_i(x) \psi_j(y)\}_{i,j=0}^N.
-\)</span>$</p>
+\]</div>
 <p>The variational form of the two-dimensional Poisson problem is: find <span class="math notranslate nohighlight">\(u_N \in W_N\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1333,53 +1335,62 @@ W_N = V_N \otimes V_N = \text{span }\{\psi_i(x) \psi_j(y)\}_{i,j=0}^N.
 $<span class="math notranslate nohighlight">\(
 -\left(\nabla u_N, \nabla v \right) = \left(f, v \right), \quad \forall \, v \in W_N.
 \)</span>$</p>
-<p>We now insert the expansion
-$<span class="math notranslate nohighlight">\(
+<p>We now insert the expansion</p>
+<div class="math notranslate nohighlight">
+\[
 u_N(x, y) = \sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} \psi_i(x) \psi_j(y),
-\)</span><span class="math notranslate nohighlight">\(
-and choose the test function \)</span>v(x, y) = \psi_p(x) \psi_q(y)<span class="math notranslate nohighlight">\(, which leads to
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>and choose the test function <span class="math notranslate nohighlight">\(v(x, y) = \psi_p(x) \psi_q(y)\)</span>, which leads to</p>
+<div class="math notranslate nohighlight">
+\[
 -\sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} \left(\nabla (\psi_i(x) \psi_j(y)), \nabla (\psi_p(x) \psi_q(y)) \right) = \left(f, \psi_p(x) \psi_q(y) \right).
-\)</span>$</p>
-<p>Using that
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>Using that</p>
+<div class="math notranslate nohighlight">
+\[
 \nabla (\psi_i(x) \psi_j(y)) = \left(\frac{\partial}{\partial x} \psi_i(x) \psi_j(y), \frac{\partial}{\partial y} \psi_i(x) \psi_j(y) \right) = \left(\psi'_i(x) \psi_j(y), \psi_i(x) \psi'_j(y) \right),
-\)</span><span class="math notranslate nohighlight">\(
-we get that
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>we get that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 \left(\nabla (\psi_i(x) \psi_j(y)), \nabla (\psi_p(x) \psi_q(y)) \right) &amp;= \left(\psi'_i(x) \psi_j(y), \psi'_p(x) \psi_q(y) \right) \\
 &amp;+ \left(\psi_i(x) \psi'_j(y), \psi_p(x) \psi'_q(y) \right),
 \end{align*}
-\)</span>$
-where the prime here denotes differentiation with respect to the (single) argument.</p>
-<p>Using the separability of the basis functions and the <span class="math notranslate nohighlight">\(L^2\)</span> inner product we get that
-$<span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>where the prime here denotes differentiation with respect to the (single) argument.</p>
+<p>Using the separability of the basis functions and the <span class="math notranslate nohighlight">\(L^2\)</span> inner product we get that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \begin{align*}
 \left(\psi'_i(x) \psi_j(y), \psi'_p(x) \psi_q(y) \right) &amp;= \left(\psi'_i(x), \psi'_p(x) \right) \left(\psi_j(y), \psi_q(y) \right), \\
 \left(\psi_i(x) \psi'_j(y), \psi_p(x) \psi'_q(y) \right) &amp;= \left(\psi_i(x), \psi_p(x) \right) \left(\psi'_j(y), \psi'_q(y) \right).
 \end{align*}
-\)</span><span class="math notranslate nohighlight">\(
-In order to simplify we introduce the mass matrix \)</span>m_{ij} = (\psi_i, \psi_j)<span class="math notranslate nohighlight">\( and the stiffness matrix \)</span>s_{ij} = (\psi’_i, \psi’_j)<span class="math notranslate nohighlight">\(. With this notation we get that
-\)</span><span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>In order to simplify we introduce the mass matrix <span class="math notranslate nohighlight">\(m_{ij} = (\psi_i, \psi_j)\)</span> and the stiffness matrix <span class="math notranslate nohighlight">\(s_{ij} = (\psi'_i, \psi'_j)\)</span>. With this notation we get that</p>
+<div class="math notranslate nohighlight">
+\[
 \begin{align*}
 \left(\nabla (\psi_i(x) \psi_j(y)), \nabla (\psi_p(x) \psi_q(y)) \right) &amp;= s_{ip} m_{jq} + m_{ip} s_{jq}.
 \end{align*}
-\)</span>$</p>
-<p>The two-dimensional problem can now be written as: find <span class="math notranslate nohighlight">\(u_N \in W_N\)</span> such that
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>The two-dimensional problem can now be written as: find <span class="math notranslate nohighlight">\(u_N \in W_N\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
 -\sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} (s_{ip} m_{jq} + m_{ip} s_{jq}) = \left(f, \psi_p(x) \psi_q(y) \right),
-\)</span><span class="math notranslate nohighlight">\(
-for all \)</span>p, q = 0, 1, \ldots, N<span class="math notranslate nohighlight">\(. On matrix form this can be written as
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>for all <span class="math notranslate nohighlight">\(p, q = 0, 1, \ldots, N\)</span>. On matrix form this can be written as</p>
+<div class="math notranslate nohighlight">
+\[
 -(S U M^T + M U S^T) = F,
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>U = (\hat{u}<em>{ij})</em>{i,j=0}^N<span class="math notranslate nohighlight">\( is the matrix of unknown expansion coefficients and \)</span>F = ( (f, \psi_p(x) \psi_q(y)))_{p,q=0}^N<span class="math notranslate nohighlight">\( is the right hand side matrix. Here \)</span>S<span class="math notranslate nohighlight">\( and \)</span>M<span class="math notranslate nohighlight">\( are the one-dimensional stiffness and mass matrices, respectively. Note that since both \)</span>S<span class="math notranslate nohighlight">\( and \)</span>M<span class="math notranslate nohighlight">\( are symmetric, we have that \)</span>S^T = S<span class="math notranslate nohighlight">\( and \)</span>M^T = M$.</p>
-<p>This matrix equation is known as a Sylvester equation and there are efficient methods for solving it. However, we will here use a more straightforward approach based on the Kronecker product. We first rewrite the matrix equation as a linear algebra problem by applying the vec-operator to both sides of the equation, just like in lecture 9. We get
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(U = (\hat{u}_{ij})_{i,j=0}^N\)</span> is the matrix of unknown expansion coefficients and <span class="math notranslate nohighlight">\(F = ( (f, \psi_p(x) \psi_q(y)))_{p,q=0}^N\)</span> is the right hand side matrix. Here <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(M\)</span> are the one-dimensional stiffness and mass matrices, respectively. Note that since both <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(M\)</span> are symmetric, we have that <span class="math notranslate nohighlight">\(S^T = S\)</span> and <span class="math notranslate nohighlight">\(M^T = M\)</span>.</p>
+<p>This matrix equation is known as a Sylvester equation and there are efficient methods for solving it. However, we will here use a more straightforward approach based on the Kronecker product. We first rewrite the matrix equation as a linear algebra problem by applying the vec-operator to both sides of the equation, just like in lecture 9. We get</p>
+<div class="math notranslate nohighlight">
+\[
 -(M \otimes S + S \otimes M) \boldsymbol{u} = \boldsymbol{f},
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\boldsymbol{u} = \text{vec}(U)<span class="math notranslate nohighlight">\( and \)</span>\boldsymbol{f} = \text{vec}(F)<span class="math notranslate nohighlight">\( are the vectorized forms of \)</span>U<span class="math notranslate nohighlight">\( and \)</span>F<span class="math notranslate nohighlight">\(, respectively. The Kronecker product matrices \)</span>M \otimes S<span class="math notranslate nohighlight">\( and \)</span>S \otimes M<span class="math notranslate nohighlight">\( are of shape \)</span>((N+1)^2 \times (N+1)^2)<span class="math notranslate nohighlight">\( and the total system matrix is dense. However, for moderate \)</span>N$ this is not a problem and we can simply assemble and solve the linear algebra problem directly as</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{u} = \text{vec}(U)\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{f} = \text{vec}(F)\)</span> are the vectorized forms of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(F\)</span>, respectively. The Kronecker product matrices <span class="math notranslate nohighlight">\(M \otimes S\)</span> and <span class="math notranslate nohighlight">\(S \otimes M\)</span> are of shape <span class="math notranslate nohighlight">\(((N+1)^2 \times (N+1)^2)\)</span> and the total system matrix is dense. However, for moderate <span class="math notranslate nohighlight">\(N\)</span> this is not a problem and we can simply assemble and solve the linear algebra problem directly as</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">kron</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
@@ -1412,7 +1423,7 @@ where \)</span>\boldsymbol{u} = \text{vec}(U)<span class="math notranslate nohig
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x16b9a01a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x154c8c2f0&gt;
 </pre></div>
 </div>
 <img alt="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" src="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" />
