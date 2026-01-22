@@ -491,13 +491,13 @@ g^{n+1}\boldsymbol{u}^0 - g^n \boldsymbol{u}^0 = {\Delta t} g^n D^{(m)} \boldsym
 <div class="math notranslate nohighlight" id="equation-eq-d2-dir">
 <span class="eqno">(69)<a class="headerlink" href="#equation-eq-d2-dir" title="Link to this equation">#</a></span>\[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
--2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 1  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-0 &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-1 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+-2 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0  \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp;\vdots \\
+0 &amp; 0 &amp; \cdots &amp;  1&amp; -2&amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp;  1&amp; -2&amp; 1 \\
+1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0&amp; 1&amp; -2&amp;
 \end{bmatrix}
 \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(h=\Delta x\)</span> and <span class="math notranslate nohighlight">\(D^{(2)} = {h^{-2}} \tilde{D}^{(2)}\)</span>, where <span class="math notranslate nohighlight">\(\tilde{D}^{(2)}\)</span> is the matrix in <a class="reference internal" href="#equation-eq-d2-dir">(69)</a> without the <span class="math notranslate nohighlight">\(h^{-2}\)</span> scaling. We get</p>
@@ -924,9 +924,9 @@ s_{ij} = \begin{cases} 1 \quad &amp;j=i \\
 -1 \quad &amp;j=i+2
 \end{cases},
 \quad S = \begin{bmatrix}
-1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 &amp; \cdots\\
-0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; \cdots\\
-0 &amp; 0 &amp; 1 &amp; 0 &amp; -1 &amp; \cdots\\
+1 &amp; 0 &amp; -1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; -1 &amp; \cdots &amp; 0\\
 \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots \\ 
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 &amp; -1
 \end{bmatrix}.
@@ -969,9 +969,9 @@ s_{ij} = \begin{cases} 1 \quad &amp;j=i \\
 -i(i+1)/((i+2)(i+3)) \quad &amp;j=i+2
 \end{cases},
 \quad S = \begin{bmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots\\
-0 &amp; 1 &amp; 0 &amp; -1/6 &amp; 0 &amp; \cdots\\
-0 &amp; 0 &amp; 1 &amp; 0 &amp; -3/10 &amp; \cdots\\
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; -1/6 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; -3/10 &amp; \cdots &amp; 0\\
 \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \ddots &amp; \ddots \\ 
 0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1 &amp; 0 &amp; -\alpha
 \end{bmatrix},

@@ -584,13 +584,13 @@ u^{n+1}, u^n, u^{n-1}.
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D^{(2)} = \begin{bmatrix}
--2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+-2 &amp; 1 &amp; 0 &amp; 0  &amp; 0  &amp; \cdots &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0  &amp; \cdots &amp; 0 \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0  &amp; \cdots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp;\vdots \\
+0 &amp; \cdots &amp; 0 &amp;   1&amp; -2&amp; 1&amp; 0 \\
+0 &amp; \cdots &amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; \cdots &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>which does not include <span class="math notranslate nohighlight">\(\Delta x\)</span>. We may now simply write the recursive formula as</p>
@@ -706,13 +706,13 @@ u^1 = u^0 + \frac{\underline{c}^2}{2}D^{(2)}u^0 + V \Delta t.
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix}
--2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+-2 &amp; 1 &amp; 0 &amp; 0  &amp; 0  &amp; \cdots &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0  &amp; \cdots &amp; 0 \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0  &amp; \cdots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp;\vdots \\
+0 &amp; \cdots &amp; 0 &amp;   1&amp; -2&amp; 1&amp; 0 \\
+0 &amp; \cdots &amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; \cdots &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
 \end{bmatrix}
 \begin{bmatrix}
 u^n_0 \\
@@ -813,13 +813,13 @@ u^{n+1}_N= 2u^{n}_N - u^{n-1}_N + \underline{c}^2 (2u^{n}_{N-1}-2 u^{n}_N).
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D^{(2)}_N = \begin{bmatrix}
--2 &amp; 2 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 2 &amp; -2 \\
+-2 &amp; 2 &amp; 0 &amp; 0  &amp; 0  &amp; \cdots &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0  &amp; \cdots &amp; 0 \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0  &amp; \cdots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp;\vdots \\
+0 &amp; \cdots &amp; 0 &amp;   1&amp; -2&amp; 1&amp; 0 \\
+0 &amp; \cdots &amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
+0 &amp; \cdots &amp; 0  &amp; 0 &amp; 0 &amp; 2 &amp; -2 \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>Now the following equation will be valid for all nodes, and not just the internal:</p>
@@ -917,21 +917,20 @@ u^{n}_0 = u^n_{N}.
 \[
 u^{n+1}_0 = 2u^{n}_0 - u^{n-1}_0 + \underline{c}^2 (u^n_1-2 u^n_0 + u^n_{N-1}).
 \]</div>
-<p>So the matrix <span class="math notranslate nohighlight">\(D^{(2)}\)</span> can be modified as</p>
+<p>So the matrix <span class="math notranslate nohighlight">\(D^{(2)} \in \mathbb{R}^{(N+1) \times (N+1)}\)</span> can be modified as <span class="math notranslate nohighlight">\(D_p^{(2)} \in \mathbb{R}^{N \times N}\)</span> (<span class="math notranslate nohighlight">\(u^{n+1}_N\)</span> is no longer an unknown, since <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D_p^{(2)} = \begin{bmatrix}
--2 &amp; 1 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; 0  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 0 &amp; 1 &amp; -2 \\
+-2 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 &amp; 1  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0  \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; \cdots &amp; 0 &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp;\vdots \\
+0 &amp; 0 &amp; \cdots &amp;  1&amp; -2&amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; \cdots &amp; 0 &amp;  1&amp; -2&amp; 1 \\
+1 &amp; 0 &amp; \cdots &amp; 0 &amp; 0&amp; 1&amp; -2&amp;
 \end{bmatrix}
 \end{split}\]</div>
-<p>and we can use the vector approach for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span> and then in addition we can set <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span>.</p>
-<p>Note that the last row in the matrix <span class="math notranslate nohighlight">\(D^{(2)}_p\)</span> is not used, because we solve the PDE for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span>.</p>
+<p>and we can use the vector approach for <span class="math notranslate nohighlight">\(j=0, 1, \ldots, N-1\)</span> and then in addition we can set <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span>. It is also possible to keep <span class="math notranslate nohighlight">\(D_p^{(2)}\)</span> as an <span class="math notranslate nohighlight">\((N+1) \times (N+1)\)</span> matrix (and work with the entire vector <span class="math notranslate nohighlight">\((u^{n+1}_j)_{j=0}^N\)</span>), simply by adding a column of zeros and row of zeros to the end of the matrix.</p>
 <p>The condition <span class="math notranslate nohighlight">\(u^{n+1}_N = u^{n+1}_0\)</span> should be set in <code class="docutils literal notranslate"><span class="pre">Wave1D.apply_bcs</span></code>.</p>
 </section>
 </section>
@@ -1075,7 +1074,7 @@ D_p^{(2)} = \begin{bmatrix}
             <span class="n">u0</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">u0</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">L</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">dt</span><span class="p">}))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">u0</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
-        <span class="k">elif</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
+        <span class="k">elif</span> <span class="n">ic</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">C</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">unm1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">apply_bcs</span><span class="p">(</span><span class="n">bc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">un</span><span class="p">)</span>
 
@@ -1112,14 +1111,6 @@ D_p^{(2)} = \begin{bmatrix}
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">136</span>
-    <span class="k">elif</span><span class="p">:</span> <span class="c1"># use u_t = 0 for un = u(x, dt)</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
 </div>
 <p>Let us try the solver for an initial pulse <span class="math notranslate nohighlight">\(u(x, t) = \exp(-200(x-L/2+ct)^2)\)</span>. We choose 100 time steps with a Courant (CFL) number of unity. Also, we store the result of the simulation avery 10’th time step and plot 10 solutions with offset in the same figure. Notice that the solution flips sign when it reaches the boundaries.</p>
 <div class="cell docutils container">
@@ -1129,6 +1120,9 @@ D_p^{(2)} = \begin{bmatrix}
 <span class="n">sol</span><span class="o">.</span><span class="n">plot_with_offset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/60d1538d5d721a27ed25aa918ab5106af224d5a5cc899de5b9e2c45527d74095.png" src="_images/60d1538d5d721a27ed25aa918ab5106af224d5a5cc899de5b9e2c45527d74095.png" />
 </div>
 </div>
 </section>

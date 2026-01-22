@@ -618,7 +618,7 @@ I
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N</span> 
+<span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;lil&#39;</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -667,13 +667,13 @@ u''(t_n) = \frac{u^{n+1}-2u^n + u^{n-1}}{h^2}  + \frac{h^2}{12}u'''' +
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D^{(2)} = \frac{1}{h^2} \begin{bmatrix}
-? &amp; ? &amp; ? &amp; ?  &amp; ? &amp; ? &amp; ? &amp; ?  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-? &amp; ? &amp; ? &amp; ?  &amp; ? &amp; ? &amp; ? &amp; ? \\
+? &amp; ? &amp; ? &amp; ?  &amp; ?  &amp; \cdots &amp; ?  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0  &amp; \cdots &amp; 0 \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0  &amp; \cdots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp; \vdots \\
+0 &amp; \cdots &amp; 0 &amp; 1 &amp; -2 &amp; 1&amp; 0 \\
+0 &amp; \cdots &amp; 0 &amp; 0 &amp; 1&amp; -2&amp; 1 \\
+? &amp; \cdots &amp; ? &amp; ? &amp; ? &amp; ? &amp; ? \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>where the first and last rows are open because the stencil in row 0 requires <span class="math notranslate nohighlight">\(u^{-1}\)</span> and for the row <span class="math notranslate nohighlight">\(N\)</span> it requires <span class="math notranslate nohighlight">\(u^{N+1}\)</span>. For these two rows we need to use a different stencil.</p>
@@ -702,13 +702,13 @@ u'' = \frac{-u^{n+3} + 4u^{n+2} - 5u^{n+1} + 2u^n}{h^2} + \frac{11 h^2}{12} u'''
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D^{(2)} = \frac{1}{h^2}\begin{bmatrix}
-2 &amp; -5 &amp; 4 &amp; -1  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
-1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  1&amp; -2&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; 1&amp; -2&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; -1 &amp; 4 &amp; -5 &amp; 2 \\
+2 &amp; -5 &amp; 4 &amp; -1  &amp; 0 &amp; \cdots &amp; 0  \\
+1 &amp; -2 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; 1 &amp; -2 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots &amp; &amp;\vdots \\
+0 &amp; \cdots &amp; 0 &amp; 1 &amp; -2&amp; 1&amp; 0 \\
+0 &amp; \cdots &amp; 0 &amp; 0 &amp; 1&amp; -2&amp; 1 \\
+0 &amp; \cdots &amp; 0 &amp; -1 &amp; 4 &amp; -5 &amp; 2 \\
 \end{bmatrix}
 \end{split}\]</div>
 <p>Let us assemble this matrix in Python</p>
@@ -858,13 +858,13 @@ u'(t_n) = \frac{-u^{n+2}+4u^{n+1}-3u^n}{2h} + \frac{h^2}{3}u''' +
 <div class="math notranslate nohighlight">
 \[\begin{split}
 D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
--3 &amp; 4 &amp; -1 &amp; 0  &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
--1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; \cdots \\
-\vdots &amp; &amp; &amp; \ddots &amp;  &amp; &amp; &amp;\cdots \\
-\vdots &amp; 0 &amp; 0 &amp; 0 &amp;  -1&amp; 0&amp; 1&amp; 0 \\
-\vdots &amp; 0 &amp; 0&amp; 0&amp; 0&amp; -1&amp; 0&amp; 1 \\
-0 &amp; 0 &amp; 0 &amp; 0  &amp; 0 &amp; 1 &amp; -4 &amp; 3 \\
+-3 &amp; 4 &amp; -1 &amp; 0  &amp; 0 &amp; \cdots &amp; 0  \\
+-1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \\
+\vdots &amp; &amp; \ddots &amp; \ddots &amp; \ddots  &amp; &amp;\vdots \\
+0 &amp; \cdots &amp; 0 &amp;  -1&amp; 0&amp; 1&amp; 0 \\
+0 &amp; \cdots &amp; 0 &amp; 0 &amp; -1&amp; 0&amp; 1 \\
+0 &amp; \cdots &amp; 0 &amp; 0 &amp; 1 &amp; -4 &amp; 3 \\
 \end{bmatrix}
 \end{split}\]</div>
 <div class="cell docutils container">
@@ -915,7 +915,7 @@ D^{(1)} = \frac{1}{2 h}\begin{bmatrix}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x127b182f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x10d5a03e0&gt;
 </pre></div>
 </div>
 <img alt="_images/ff3c2c4292f51819498ee6c17fb0cc3bd791eeaa98a6517e087b11bba0b47777.png" src="_images/ff3c2c4292f51819498ee6c17fb0cc3bd791eeaa98a6517e087b11bba0b47777.png" />
@@ -1169,7 +1169,7 @@ du_2 = \sum_{i=0}^2 c_{2i} u^{n-i-1}.
 <span class="sd">  .. math::</span>
 
 <span class="sd">    c_{p0+p, i} = (pi)^{i}/i! \in \mathbb{R}^{M+1 \times M+1}</span>
-<span class="sd">      </span>
+
 <span class="sd">    where p = (p0, p0+1, ..., p0+M) and i = 0, 1, ..., M-1</span>
 
 <span class="sd">  Parameters</span>
@@ -1186,7 +1186,7 @@ du_2 = \sum_{i=0}^2 c_{2i} u^{n-i-1}.
   <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span> <span class="n">p0</span><span class="o">+</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-      <span class="n">C</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">**</span><span class="n">i</span> <span class="o">/</span> <span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> 
+      <span class="n">C</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">**</span><span class="n">i</span> <span class="o">/</span> <span class="n">sp</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">sp</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 </pre></div>
 </div>
