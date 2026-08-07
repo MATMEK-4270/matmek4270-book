@@ -71,6 +71,10 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+# Jupyter Book
+_build/
+.jupyter_cache/
+
 # PyBuilder
 .pybuilder/
 target/

@@ -1,13 +1,13 @@
 # Book settings
-# Learn more at https://jupyterbook.org/customize/config.html
+# Learn more at https://jupyterbook.org/v1/customize/config.html
 
 title: Lecture notes MATMEK-4270
 author: Mikael Mortensen
-copyright: '2024'
+copyright: '2026'
 logo: uio_logo.png
 
 # Force re-execution of notebooks on each build.
-# See https://jupyterbook.org/content/execute.html
+# See https://jupyterbook.org/v1/content/execute.html
 execute:
   execute_notebooks: auto
 
@@ -27,7 +27,7 @@ repository:
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
-# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+# See https://jupyterbook.org/v1/customize/config.html#add-a-link-to-your-repository
 html:
   use_issues_button: true
   use_repository_button: true
