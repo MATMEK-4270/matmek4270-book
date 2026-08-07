@@ -195,8 +195,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 10/10-2025</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 14 November - 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 8 October - 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 12 November - 2026</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="current nav bd-sidenav">
@@ -403,7 +403,7 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">uN</span><span class="p">)</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
     <span class="n">uj</span> <span class="o">=</span> <span class="n">uN</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
     <span class="n">uej</span> <span class="o">=</span> <span class="n">ul</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="n">ue</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">Half</span><span class="p">))</span>
 <span class="n">ul</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ue</span><span class="p">)</span>
@@ -413,12 +413,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
     <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
         <span class="n">uN</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">)</span>
         <span class="n">error</span><span class="p">[</span><span class="n">family</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uN</span><span class="p">,</span> <span class="n">ul</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82685/2384630451.py:6: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0]))
 </pre></div>
 </div>
 </div>
@@ -445,12 +439,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
     <span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
         <span class="n">uN</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">ue</span><span class="p">)</span>
         <span class="n">error2</span><span class="p">[</span><span class="n">family</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uN</span><span class="p">,</span> <span class="n">ul</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82685/2384630451.py:6: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0]))
 </pre></div>
 </div>
 </div>
@@ -516,7 +504,7 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
     <span class="n">L</span> <span class="o">=</span> <span class="n">BarycentricInterpolator</span><span class="p">(</span><span class="n">xj</span><span class="p">,</span> <span class="n">yi</span><span class="o">=</span><span class="n">uh</span><span class="p">)</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span>
     <span class="n">xj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xj</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">ul</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="n">L</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">2.</span><span class="o">/</span><span class="n">N</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">((</span><span class="n">ul</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">-</span><span class="n">L</span><span class="p">(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">2.</span><span class="o">/</span><span class="n">N</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -536,12 +524,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82685/2760787852.py:21: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz((ul(xj)-L(xj).astype(float))**2, dx=2./N))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -550,10 +532,10 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1657f2d20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x149959850&gt;]
 </pre></div>
 </div>
-<img alt="_images/83b0a11c1ff9231fae2e5e1a5d69294a3bec1ee85f5735e833ef70ea81d131de.png" src="_images/83b0a11c1ff9231fae2e5e1a5d69294a3bec1ee85f5735e833ef70ea81d131de.png" />
+<img alt="_images/cf1c9cbcd2bd968dfe36f8b268f10aaf019880eb1f27cf202e966c5a17137322.png" src="_images/cf1c9cbcd2bd968dfe36f8b268f10aaf019880eb1f27cf202e966c5a17137322.png" />
 </div>
 </div>
 <ol class="arabic simple" start="2">
@@ -608,12 +590,6 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82685/2384630451.py:6: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0]))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -648,12 +624,6 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82685/2760787852.py:21: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz((ul(xj)-L(xj).astype(float))**2, dx=2./N))
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,7 +632,7 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aeecc6add3546b09206c345967ffeccaa69c3b97d750b67bf859602fcf0ba421.png" src="_images/aeecc6add3546b09206c345967ffeccaa69c3b97d750b67bf859602fcf0ba421.png" />
+<img alt="_images/a28f5b400e85812fd866759a3fdc186fbf80eb3495fe3487aa4dea9b80c0ab87.png" src="_images/a28f5b400e85812fd866759a3fdc186fbf80eb3495fe3487aa4dea9b80c0ab87.png" />
 </div>
 </div>
 </section>

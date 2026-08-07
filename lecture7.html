@@ -195,8 +195,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 10/10-2025</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 14 November - 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 8 October - 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 12 November - 2026</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="nav bd-sidenav">
@@ -1002,7 +1002,10 @@ L(x, y) = \sum_{m=0}^k\sum_{n=0}^k u^{m,n} \ell_{m}(x) \ell_{n}(y),
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0227500000000000 -0.0227500000000000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.0227500000000000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> -0.0227500000000000
 </pre></div>
 </div>
 </div>
@@ -1171,20 +1174,16 @@ The integral required for the <span class="math notranslate nohighlight">\(L^2\)
 </div>
 </div>
 <p>which is less accurate than the midpoint rule, but still useful as an error measure. (Note that this <span class="math notranslate nohighlight">\(\ell^2\)</span> norm is not really supposed to represent the integral exactly, and as such it makes little sense to compare the number to the integral.)</p>
-<p>You can also use nested <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.trapz.html">trapz</a> or  <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html">Simpson’s rule</a> for the integration:</p>
+<p>You can also use nested <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.trapezoid.html">trapezoid</a> or  <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html">Simpson’s rule</a> for the integration:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">L2_error_trapz</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">dy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="p">))</span>
-<span class="n">L2_error_trapz</span><span class="p">(</span><span class="n">u2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">L2_error_trapezoid</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">dy</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="p">))</span>
+<span class="n">L2_error_trapezoid</span><span class="p">(</span><span class="n">u2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82619/4021080097.py:2: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz(np.trapz(u**2, dx=dy, axis=1), dx=dx))
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.09592899344305951)
 </pre></div>
 </div>
@@ -1212,17 +1211,13 @@ The integral required for the <span class="math notranslate nohighlight">\(L^2\)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">integrate_x</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dx</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">integrate_x</span><span class="p">(</span><span class="n">u2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82619/1693027423.py:2: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.trapz(u, dx=dx, axis=0)
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.        , 0.02183109, 0.04131248, 0.05840408, 0.07307749,
        0.08531604, 0.09511478, 0.10248041, 0.10743121, 0.10999687,
        0.11021837, 0.10814768, 0.10384757, 0.09739127, 0.08886213,
@@ -1236,17 +1231,13 @@ The integral required for the <span class="math notranslate nohighlight">\(L^2\)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">integrate_boundary_x</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">integrate_boundary_x</span><span class="p">(</span><span class="n">u2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82619/345090187.py:2: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.trapz(u[:, j], dx=dx, axis=0)
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.0)
 </pre></div>
 </div>
@@ -1261,15 +1252,11 @@ The integral required for the <span class="math notranslate nohighlight">\(L^2\)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">duy</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">u2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">u2</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">u2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">duy</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">duy</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82619/1824253925.py:2: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  np.trapz(duy, dx=1/N)
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.46011886423778525)
 </pre></div>
 </div>
@@ -1667,42 +1654,42 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img4596c455b692453296191ab763bf313a">
+  <img id="_anim_img340ca72b4b944ddeb9ff91f5704498af">
   <div class="anim-controls">
-    <input id="_anim_slider4596c455b692453296191ab763bf313a" type="range" class="anim-slider"
+    <input id="_anim_slider340ca72b4b944ddeb9ff91f5704498af" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim4596c455b692453296191ab763bf313a.set_frame(parseInt(this.value));">
+           oninput="anim340ca72b4b944ddeb9ff91f5704498af.set_frame(parseInt(this.value));">
     <div class="anim-buttons">
-      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim4596c455b692453296191ab763bf313a.slower()">
+      <button title="Decrease speed" aria-label="Decrease speed" onclick="anim340ca72b4b944ddeb9ff91f5704498af.slower()">
           <i class="fa fa-minus"></i></button>
-      <button title="First frame" aria-label="First frame" onclick="anim4596c455b692453296191ab763bf313a.first_frame()">
+      <button title="First frame" aria-label="First frame" onclick="anim340ca72b4b944ddeb9ff91f5704498af.first_frame()">
         <i class="fa fa-fast-backward"></i></button>
-      <button title="Previous frame" aria-label="Previous frame" onclick="anim4596c455b692453296191ab763bf313a.previous_frame()">
+      <button title="Previous frame" aria-label="Previous frame" onclick="anim340ca72b4b944ddeb9ff91f5704498af.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button title="Play backwards" aria-label="Play backwards" onclick="anim4596c455b692453296191ab763bf313a.reverse_animation()">
+      <button title="Play backwards" aria-label="Play backwards" onclick="anim340ca72b4b944ddeb9ff91f5704498af.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button title="Pause" aria-label="Pause" onclick="anim4596c455b692453296191ab763bf313a.pause_animation()">
+      <button title="Pause" aria-label="Pause" onclick="anim340ca72b4b944ddeb9ff91f5704498af.pause_animation()">
           <i class="fa fa-pause"></i></button>
-      <button title="Play" aria-label="Play" onclick="anim4596c455b692453296191ab763bf313a.play_animation()">
+      <button title="Play" aria-label="Play" onclick="anim340ca72b4b944ddeb9ff91f5704498af.play_animation()">
           <i class="fa fa-play"></i></button>
-      <button title="Next frame" aria-label="Next frame" onclick="anim4596c455b692453296191ab763bf313a.next_frame()">
+      <button title="Next frame" aria-label="Next frame" onclick="anim340ca72b4b944ddeb9ff91f5704498af.next_frame()">
           <i class="fa fa-step-forward"></i></button>
-      <button title="Last frame" aria-label="Last frame" onclick="anim4596c455b692453296191ab763bf313a.last_frame()">
+      <button title="Last frame" aria-label="Last frame" onclick="anim340ca72b4b944ddeb9ff91f5704498af.last_frame()">
           <i class="fa fa-fast-forward"></i></button>
-      <button title="Increase speed" aria-label="Increase speed" onclick="anim4596c455b692453296191ab763bf313a.faster()">
+      <button title="Increase speed" aria-label="Increase speed" onclick="anim340ca72b4b944ddeb9ff91f5704498af.faster()">
           <i class="fa fa-plus"></i></button>
     </div>
-    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select4596c455b692453296191ab763bf313a"
+    <form title="Repetition mode" aria-label="Repetition mode" action="#n" name="_anim_loop_select340ca72b4b944ddeb9ff91f5704498af"
           class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_4596c455b692453296191ab763bf313a"
+      <input type="radio" name="state" value="once" id="_anim_radio1_340ca72b4b944ddeb9ff91f5704498af"
              >
-      <label for="_anim_radio1_4596c455b692453296191ab763bf313a">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_4596c455b692453296191ab763bf313a"
+      <label for="_anim_radio1_340ca72b4b944ddeb9ff91f5704498af">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_340ca72b4b944ddeb9ff91f5704498af"
              checked>
-      <label for="_anim_radio2_4596c455b692453296191ab763bf313a">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_4596c455b692453296191ab763bf313a"
+      <label for="_anim_radio2_340ca72b4b944ddeb9ff91f5704498af">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_340ca72b4b944ddeb9ff91f5704498af"
              >
-      <label for="_anim_radio3_4596c455b692453296191ab763bf313a">Reflect</label>
+      <label for="_anim_radio3_340ca72b4b944ddeb9ff91f5704498af">Reflect</label>
     </form>
   </div>
 </div>
@@ -1712,9 +1699,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img4596c455b692453296191ab763bf313a";
-    var slider_id = "_anim_slider4596c455b692453296191ab763bf313a";
-    var loop_select_id = "_anim_loop_select4596c455b692453296191ab763bf313a";
+    var img_id = "_anim_img340ca72b4b944ddeb9ff91f5704498af";
+    var slider_id = "_anim_slider340ca72b4b944ddeb9ff91f5704498af";
+    var loop_select_id = "_anim_loop_select340ca72b4b944ddeb9ff91f5704498af";
     var frames = new Array(35);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAYAAAA10dzkAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -65566,7 +65553,7 @@ ACSEEEIImWAoABJCCCGETDAUAAkhhBBCJpj/B+Nku94/mgHVAAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim4596c455b692453296191ab763bf313a = new Animation(frames, img_id, slider_id, 400.0,
+        anim340ca72b4b944ddeb9ff91f5704498af = new Animation(frames, img_id, slider_id, 400.0,
                                  loop_select_id);
     }, 0);
   })()

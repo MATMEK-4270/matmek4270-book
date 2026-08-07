@@ -195,8 +195,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 10/10-2025</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 14 November - 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 8 October - 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 12 November - 2026</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="nav bd-sidenav">
@@ -689,18 +689,12 @@ uj = lambda u, j: (2*j+1) * innern(u, sp.legendre(j, x))/2
     <span class="n">err</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">uh</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
         <span class="n">uj</span> <span class="o">=</span> <span class="n">space</span><span class="p">(</span><span class="n">uh</span><span class="p">[:(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)])(</span><span class="n">xj</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-        <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+        <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">((</span><span class="n">uj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">xj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xj</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
     <span class="k">return</span> <span class="n">err</span>
 
 <span class="n">errc</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">uc</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">Chebyshev</span><span class="p">)</span>
 <span class="n">errl</span> <span class="o">=</span> <span class="n">L2_error</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">Legendre</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;./err_u&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">errc</span><span class="p">,</span> <span class="n">errl</span><span class="p">]))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82632/3566146242.py:9: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  err.append(np.sqrt(np.trapz((uj-uej)**2, dx=xj[1]-xj[0])))
 </pre></div>
 </div>
 </div>
@@ -991,17 +985,11 @@ U = V \hat{U} V^T.
     <span class="n">xij</span><span class="p">,</span> <span class="n">yij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ueij</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">)</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">xi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">U</span><span class="o">-</span><span class="n">ueij</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">h</span><span class="p">),</span> <span class="n">dx</span><span class="o">=</span><span class="n">h</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">((</span><span class="n">U</span><span class="o">-</span><span class="n">ueij</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">h</span><span class="p">),</span> <span class="n">dx</span><span class="o">=</span><span class="n">h</span><span class="p">))</span>
 
 <span class="n">error</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
     <span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convergence</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82632/1651715329.py:15: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz(np.trapz((U-ueij)**2, dx=h), dx=h))
 </pre></div>
 </div>
 </div>
@@ -1263,7 +1251,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.4 μs ± 11.2 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>16.5 μs ± 11.9 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>
@@ -1275,7 +1263,7 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>136 μs ± 8.94 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141 μs ± 8.98 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>

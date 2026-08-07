@@ -195,8 +195,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 10/10-2025</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 14 November - 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 8 October - 2026</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory2.html">2. Mandatory assignment due 12 November - 2026</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="nav bd-sidenav">
@@ -1122,7 +1122,7 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
     <span class="n">yj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">xj</span><span class="p">))</span>
     <span class="n">uhj</span> <span class="o">=</span> <span class="n">fe_evaluate_v</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">yj</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
     <span class="n">uej</span> <span class="o">=</span> <span class="n">ue</span><span class="p">(</span><span class="n">yj</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">((</span><span class="n">uhj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">yj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">((</span><span class="n">uhj</span><span class="o">-</span><span class="n">uej</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">yj</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">yj</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">ue</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
@@ -1137,12 +1137,6 @@ u(x) = \exp(\cos x), \quad x \in [-1, 1].
     <span class="n">uh2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span> <span class="o">@</span> <span class="n">b2</span>
     <span class="n">err</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">err2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">L2_error</span><span class="p">(</span><span class="n">uh2</span><span class="p">,</span> <span class="n">ue</span><span class="p">,</span> <span class="n">xj</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ql/nly59sfj4dd3spkth6lk0kjw0000gn/T/ipykernel_82541/387443513.py:5: DeprecationWarning: `trapz` is deprecated. Use `trapezoid` instead, or one of the numerical integration functions in `scipy.integrate`.
-  return np.sqrt(np.trapz((uhj-uej)**2, dx=yj[1]-yj[0]))
 </pre></div>
 </div>
 </div>

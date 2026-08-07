@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Mandatory assignment due 14 November - 2025 &#8212; Lecture notes MATMEK-4270</title>
+    <title>2. Mandatory assignment due 12 November - 2026 &#8212; Lecture notes MATMEK-4270</title>
   
   
   
@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="1. Suggested solutions weekly assignments - lectures 8 and 9" href="lectures_8_9_solutions.html" />
-    <link rel="prev" title="1. Mandatory assignment due 10/10-2025" href="mandatory1.html" />
+    <link rel="prev" title="1. Mandatory assignment due 8 October - 2026" href="mandatory1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -193,8 +193,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mandatory assignments</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 10/10-2025</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Mandatory assignment due 14 November - 2025</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mandatory1.html">1. Mandatory assignment due 8 October - 2026</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Mandatory assignment due 12 November - 2026</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Some suggested solutions</span></p>
 <ul class="nav bd-sidenav">
@@ -338,7 +338,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Mandatory assignment due 14 November - 2025</h1>
+    <h1>Mandatory assignment due 12 November - 2026</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,14 +352,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mandatory-assignment-due-14-november-2025">
-<h1><span class="section-number">2. </span>Mandatory assignment due 14 November - 2025<a class="headerlink" href="#mandatory-assignment-due-14-november-2025" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mandatory-assignment-due-12-november-2026">
+<h1><span class="section-number">2. </span>Mandatory assignment due 12 November - 2026<a class="headerlink" href="#mandatory-assignment-due-12-november-2026" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Please organize you project in a fork of the repository at: <a class="github reference external" href="https://github.com/MATMEK-4270/mandatory2">MATMEK-4270/mandatory2</a>. You should start by changing the badge in the README to reflect your own work.</p></li>
 <li><p>Collaboration/discussion among students is encouraged, but each student need an individual fork of the repository.</p></li>
 <li><p>You need a green badge in order to pass the mandatory assignment.</p></li>
 </ul>
-<p>This mandatory assignment is probably mostly about reading and understanding code. The assignment’s repository contains one single Python module <a class="reference external" href="https://github.com/MATMEK-4270/mandatory2/blob/main/galerkin.py">galerkin.py</a> of approximately 400 lines of code plus some tests. In these lines the module implements a software framework for the Galerkin method that can be used both for function approximation and for solving ordinary differential equations (of order up to 2). The framework is very similar to <a class="reference external" href="https://github.com/spectralDNS/shenfun">shenfun</a>, but highly simplified since it only works for one-dimensional ordinary differential equations of order less than or equal to two. The framework is also quite similar to the finite element framework <a class="reference external" href="https://fenicsproject.org">FEniCS</a>. You will find a lot of the implemented methods have a direct analogy in both frameworks. For example, <a class="reference external" href="https://github.com/MATMEK-4270/mandatory2/blob/main/galerkin.py#L60">evaluate_basis_function</a>, has an analog method called <code class="docutils literal notranslate"><span class="pre">evaluate_basis</span></code> both in <a class="reference external" href="https://bitbucket.org/fenics-project/dolfin/src/fd662efc1c0ddefa341c1dac753f717f6b6292a8/dolfin/fem/FiniteElement.h?at=master#lines-104">FEniCS</a> and <a class="reference external" href="https://github.com/spectralDNS/shenfun/blob/master/shenfun/spectralbase.py#L341">shenfun</a>. There are also analog methods to <code class="docutils literal notranslate"><span class="pre">evaluate_basis_all</span></code> and <code class="docutils literal notranslate"><span class="pre">evaluate_derivative_basis_function</span></code> in both the frameworks.</p>
+<p>This mandatory assignment is probably mostly about reading and understanding code. The assignment’s repository contains one single Python module <a class="reference external" href="https://github.com/MATMEK-4270/mandatory2/blob/main/galerkin.py">galerkin.py</a> of approximately 600 lines of code plus some tests. In these lines the module implements a software framework for the Galerkin method that can be used both for function approximation and for solving ordinary differential equations (of order up to 2). The framework is very similar to <a class="reference external" href="https://github.com/spectralDNS/shenfun">shenfun</a>, but highly simplified since it only works for one-dimensional ordinary differential equations of order less than or equal to two. The framework is also quite similar to the finite element framework <a class="reference external" href="https://fenicsproject.org">FEniCS</a>. You will find a lot of the implemented methods have a direct analogy in both frameworks. For example, <a class="reference external" href="https://github.com/MATMEK-4270/mandatory2/blob/main/galerkin.py#L60">evaluate_basis_function</a>, has an analog method called <code class="docutils literal notranslate"><span class="pre">evaluate_basis</span></code> both in <a class="reference external" href="https://bitbucket.org/fenics-project/dolfin/src/fd662efc1c0ddefa341c1dac753f717f6b6292a8/dolfin/fem/FiniteElement.h?at=master#lines-104">FEniCS</a> and <a class="reference external" href="https://github.com/spectralDNS/shenfun/blob/master/shenfun/spectralbase.py#L341">shenfun</a>. There are also analog methods to <code class="docutils literal notranslate"><span class="pre">evaluate_basis_all</span></code> and <code class="docutils literal notranslate"><span class="pre">evaluate_derivative_basis_function</span></code> in both the frameworks.</p>
 <p>The implemented framework in <a class="reference external" href="https://github.com/MATMEK-4270/mandatory2/blob/main/galerkin.py">galerkin.py</a> is meant to illustrate that the Galerkin method is a highly structured method, where everything falls out of choosing basis functions. Most of the framework is in place, but you need to fill in some of the methods in order for all the tests to pass. The intention is that you need to read and understand the code in order to add the correct methods. You do not need to add more methods than those that are already missing (raise NotImplementedError), but it does not hurt either.</p>
 <p>The assignment is passed when the badge turns green. Good luck:-)</p>
 </section>
@@ -400,7 +400,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 10/10-2025</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Mandatory assignment due 8 October - 2026</p>
       </div>
     </a>
     <a class="right-next"
