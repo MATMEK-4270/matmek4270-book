@@ -381,7 +381,7 @@ document.write(`
 <ul class="simple">
 <li><p>Please organize you project in a fork of the repository at: <a class="github reference external" href="https://github.com/MATMEK-4270/mandatory1">MATMEK-4270/mandatory1</a>. You should start by changing the badge in the README to reflect your own work.</p></li>
 <li><p>Collaboration/discussion among students is encouraged, but each student need an individual fork of the repository. Please send me an email about your github username if it is not obvious who you are from this username. I can see all the forks, but I cannot necessarily understand who is who.</p></li>
-<li><p>You need a green badge in order to pass the mandatory assignment. You also need to answer a few questions in a report and to place a movie (see <code class="xref std std-numref docutils literal notranslate"><span class="pre">assign-6</span></code>) where I can easily see it on <a class="reference external" href="http://github.com">github.com</a> (without downloading).</p></li>
+<li><p>You need a green badge in order to pass the mandatory assignment. You also need to answer a few questions in a report and to place a movie (see <a class="reference internal" href="#assign-6"><span class="std std-numref">Section 1.2.6</span></a>) where I can easily see it on <a class="reference external" href="http://github.com">github.com</a> (without downloading).</p></li>
 </ul>
 <section id="poisson-s-equation">
 <span id="sec-poisson"></span><h2><span class="section-number">1.1. </span>Poisson’s equation<a class="headerlink" href="#poisson-s-equation" title="Link to this heading">#</a></h2>
@@ -418,7 +418,7 @@ document.write(`
 \frac{\partial^2 u}{\partial t^2} = c^2 \nabla^2 u,
 \end{equation}
 \]</div>
-<p>in a two-dimensional spatial domain <span class="math notranslate nohighlight">\(\Omega = [0, 1]^2\)</span> and in time <span class="math notranslate nohighlight">\(t \in [0, T]\)</span>. Use a uniform mesh for the finite difference method in both space and time. Use the same spatial discretization in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions, such that the mesh can be described as in <code class="xref std std-numref docutils literal notranslate"><span class="pre">sec-poisson</span></code> for <span class="math notranslate nohighlight">\(L=1\)</span>. Time is discretized as <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span> for <span class="math notranslate nohighlight">\(n \in 0, 1, \ldots, N_t\)</span>, and <span class="math notranslate nohighlight">\(\Delta t = T/N_t\)</span>. The CFL number <span class="math notranslate nohighlight">\(C\)</span> is defined as</p>
+<p>in a two-dimensional spatial domain <span class="math notranslate nohighlight">\(\Omega = [0, 1]^2\)</span> and in time <span class="math notranslate nohighlight">\(t \in [0, T]\)</span>. Use a uniform mesh for the finite difference method in both space and time. Use the same spatial discretization in both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>-directions, such that the mesh can be described as in <a class="reference internal" href="#sec-poisson"><span class="std std-numref">Section 1.1</span></a> for <span class="math notranslate nohighlight">\(L=1\)</span>. Time is discretized as <span class="math notranslate nohighlight">\(t_n = n \Delta t\)</span> for <span class="math notranslate nohighlight">\(n \in 0, 1, \ldots, N_t\)</span>, and <span class="math notranslate nohighlight">\(\Delta t = T/N_t\)</span>. The CFL number <span class="math notranslate nohighlight">\(C\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{equation}
@@ -462,25 +462,25 @@ u(t, x, y) = \cos(k_x x) \cos(k_y y) \cos(\omega t).
 <p>Here <span class="math notranslate nohighlight">\(k_x=m_x\pi\)</span> and <span class="math notranslate nohighlight">\(k_y=m_y\pi\)</span>, where <span class="math notranslate nohighlight">\(m_x\)</span> and <span class="math notranslate nohighlight">\(m_y\)</span> are arbitrary integers, and <span class="math notranslate nohighlight">\(\omega\)</span> is the dispersion coefficient.</p>
 <section id="the-dirichlet-problem">
 <span id="assign-1"></span><h3><span class="section-number">1.2.1. </span>The Dirichlet problem<a class="headerlink" href="#the-dirichlet-problem" title="Link to this heading">#</a></h3>
-<p>There is the beginning of a solver class <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L8">Wave2D</a> for the homogeneous Dirichlet problem using the standing wave in Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-sin">()</a> as initial condition.</p>
+<p>There is the beginning of a solver class <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L8">Wave2D</a> for the homogeneous Dirichlet problem using the standing wave in Eq. <a class="reference internal" href="#equation-eq-sin">(1.4)</a> as initial condition.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>A solver for the Dirichlet problem was implemented in <a class="reference external" href="https://matmek-4270.github.io/matmek4270-book/lecture7.html#the-wave-equation-in-2d-plus-time">lecture 7</a>.</p>
 </div>
-<p>Complete the implementation of the <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L8">Wave2D</a> solver and verify the implementation using the analytical solution in <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-sin">()</a>. Compute the error using the <span class="math notranslate nohighlight">\(\ell^{2}\)</span> norm</p>
+<p>Complete the implementation of the <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L8">Wave2D</a> solver and verify the implementation using the analytical solution in <a class="reference internal" href="#equation-eq-sin">(1.4)</a>. Compute the error using the <span class="math notranslate nohighlight">\(\ell^{2}\)</span> norm</p>
 <div class="math notranslate nohighlight">
 \[
 E = \|e^n\|_{\ell^2} = \sqrt{h^2 \sum_{i=0}^N \sum_{j=0}^N (e_{ij}^{n})^2}
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(e^n = U^n - U^n_e\)</span>, <span class="math notranslate nohighlight">\(U^n\)</span> is the solution at time <span class="math notranslate nohighlight">\(n \Delta t\)</span> and <span class="math notranslate nohighlight">\(U^n_e\)</span> here is the analytical solution Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-sin">()</a> at the mesh at the same time. The solver is verified when <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L189">test_convergence_wave2d</a> passes.</p>
+<p>where <span class="math notranslate nohighlight">\(e^n = U^n - U^n_e\)</span>, <span class="math notranslate nohighlight">\(U^n\)</span> is the solution at time <span class="math notranslate nohighlight">\(n \Delta t\)</span> and <span class="math notranslate nohighlight">\(U^n_e\)</span> here is the analytical solution Eq. <a class="reference internal" href="#equation-eq-sin">(1.4)</a> at the mesh at the same time. The solver is verified when <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L189">test_convergence_wave2d</a> passes.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
-<p>Use either <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-cos">()</a> or <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-sin">()</a> as an exact solution of <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-wave">()</a> and find the dispersion coefficient <span class="math notranslate nohighlight">\(\omega\)</span> as a function of <span class="math notranslate nohighlight">\(c, k_x\)</span> and <span class="math notranslate nohighlight">\(k_y\)</span>. Implement the solution in the property method <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L46"><code class="docutils literal notranslate"><span class="pre">w</span></code></a>.</p>
+<p>Use either <a class="reference internal" href="#equation-eq-cos">(1.5)</a> or <a class="reference internal" href="#equation-eq-sin">(1.4)</a> as an exact solution of <a class="reference internal" href="#equation-eq-wave">(1.2)</a> and find the dispersion coefficient <span class="math notranslate nohighlight">\(\omega\)</span> as a function of <span class="math notranslate nohighlight">\(c, k_x\)</span> and <span class="math notranslate nohighlight">\(k_y\)</span>. Implement the solution in the property method <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L46"><code class="docutils literal notranslate"><span class="pre">w</span></code></a>.</p>
 </div>
 </section>
 <section id="the-neumann-problem">
 <span id="assign-2"></span><h3><span class="section-number">1.2.2. </span>The Neumann problem<a class="headerlink" href="#the-neumann-problem" title="Link to this heading">#</a></h3>
-<p>There is also the beginning of a solver for the wave equation with Neumann boundary conditions in <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L178">Wave2D_Neumann</a>. This solver should use the standing wave in Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-cos">()</a> as initial condition and exact solution. Modify the three class methods that are included in order to make <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L195">test_convergence_wave2d_neumann</a> pass.</p>
+<p>There is also the beginning of a solver for the wave equation with Neumann boundary conditions in <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L178">Wave2D_Neumann</a>. This solver should use the standing wave in Eq. <a class="reference internal" href="#equation-eq-cos">(1.5)</a> as initial condition and exact solution. Modify the three class methods that are included in order to make <a class="reference external" href="https://github.com/MATMEK-4270/mandatory1/blob/main/Wave2D.py#L195">test_convergence_wave2d_neumann</a> pass.</p>
 <p>For the remaining questions, please answer in a report placed in the report folder. You can use a notebook or a PDF.</p>
 </section>
 <section id="exact-solution">
@@ -492,11 +492,11 @@ E = \|e^n\|_{\ell^2} = \sqrt{h^2 \sum_{i=0}^N \sum_{j=0}^N (e_{ij}^{n})^2}
 u(t,x,y) = e^{\imath (k_x x + k_y y - \omega t)}
 \end{equation}
 \]</div>
-<p>where the imaginary unit <span class="math notranslate nohighlight">\(\imath = \sqrt{-1}\)</span>. Show that Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-exp">()</a> satisfies the wave equation.</p>
+<p>where the imaginary unit <span class="math notranslate nohighlight">\(\imath = \sqrt{-1}\)</span>. Show that Eq. <a class="reference internal" href="#equation-eq-exp">(1.6)</a> satisfies the wave equation.</p>
 </section>
 <section id="dispersion-coefficient">
 <span id="assign-4"></span><h3><span class="section-number">1.2.4. </span>Dispersion coefficient<a class="headerlink" href="#dispersion-coefficient" title="Link to this heading">#</a></h3>
-<p>Assume that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> such that <span class="math notranslate nohighlight">\(k_x=k_y=k\)</span>. A discrete version of Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-exp">()</a> will then read</p>
+<p>Assume that <span class="math notranslate nohighlight">\(m_x=m_y\)</span> such that <span class="math notranslate nohighlight">\(k_x=k_y=k\)</span>. A discrete version of Eq. <a class="reference internal" href="#equation-eq-exp">(1.6)</a> will then read</p>
 <div class="math notranslate nohighlight" id="equation-eq-exp-disc">
 <span class="eqno">(1.7)<a class="headerlink" href="#equation-eq-exp-disc" title="Link to this equation">#</a></span>\[
 \begin{equation}
@@ -504,7 +504,7 @@ u^n_{ij} = e^{\imath (kh(i+j) - \tilde{\omega} n\Delta t)}
 \end{equation}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\tilde{\omega}\)</span> is a numerical dispersion coefficient, i.e., the numerical approximation of the exact <span class="math notranslate nohighlight">\(\omega\)</span>.
-Insert Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-exp-disc">()</a> into the discretized Eq. <a class="reference internal" href="oldfiles/mandatory1_2025.html#equation-eq-wave-disc">()</a> and show that for CFL number <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> we get <span class="math notranslate nohighlight">\(\tilde{\omega} = \omega\)</span>.</p>
+Insert Eq. <a class="reference internal" href="#equation-eq-exp-disc">(1.7)</a> into the discretized Eq. <a class="reference internal" href="#equation-eq-wave-disc">(1.3)</a> and show that for CFL number <span class="math notranslate nohighlight">\(C=1/\sqrt{2}\)</span> we get <span class="math notranslate nohighlight">\(\tilde{\omega} = \omega\)</span>.</p>
 </section>
 <section id="test-for-exact-solution">
 <span id="assign-5"></span><h3><span class="section-number">1.2.5. </span>Test for exact solution<a class="headerlink" href="#test-for-exact-solution" title="Link to this heading">#</a></h3>
