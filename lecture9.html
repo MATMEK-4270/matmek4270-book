@@ -435,9 +435,6 @@ T_{j+1}(x) &amp;= 2xT_{j}(x) - T_{j-1}(x).
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/3a6223f7b14cff8604fc112039f348a0fc6884b50729cb20fc0b9d76b9c7bd96.png" src="_images/3a6223f7b14cff8604fc112039f348a0fc6884b50729cb20fc0b9d76b9c7bd96.png" />
-</div>
 </div>
 <p>It is noteworthy that all polynomials oscillate between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. And all polynomials (<span class="math notranslate nohighlight">\(j&gt;0\)</span>) have maximum and minimum values of exactly 1 and -1. All the <span class="math notranslate nohighlight">\(N+1\)</span> extrema points of <span class="math notranslate nohighlight">\(T_N(x)\)</span> are</p>
 <div class="math notranslate nohighlight" id="equation-eq-chebpoints">
@@ -583,11 +580,6 @@ u(x(X)) = 10\left(a+\frac{b-a}{B-A}(X-A) -1 \right)^2-1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(11/4, 5, 5/4, 0, 0)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Note that just like for Legendre 3 coefficients are enough to capture the second order polynomial exactly. For plotting we can use the Numpy class <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.polynomial.chebyshev.Chebyshev.html#numpy.polynomial.chebyshev.Chebyshev">Chebyshev</a> with the computed expansion coefficients</p>
 <div class="cell docutils container">
@@ -603,9 +595,6 @@ u(x(X)) = 10\left(a+\frac{b-a}{B-A}(X-A) -1 \right)^2-1
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$10(x-1)^2-1$&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">C2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">C3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/51ba28cf4e7c6b42279a9ec4e72cec33c376691e8d548c344ce3dc75078bdb65.png" src="_images/51ba28cf4e7c6b42279a9ec4e72cec33c376691e8d548c344ce3dc75078bdb65.png" />
 </div>
 </div>
 <p>Lets try the more difficult function</p>
@@ -674,9 +663,6 @@ uj = lambda u, j: (2*j+1) * innern(u, sp.legendre(j, x))/2
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/c8b89cd16551501183aad21240e3da0f99663ecdfd9c3429ec48f1464ee85f55.png" src="_images/c8b89cd16551501183aad21240e3da0f99663ecdfd9c3429ec48f1464ee85f55.png" />
-</div>
 </div>
 <p>We note that the Chebyshev coefficients are smaller than the Legendre. This is an indication that the Chebyshev polynomials are performing better. However, to say something about the true accuracy we really need to compute the <span class="math notranslate nohighlight">\(L^2\)</span> error norm. Below we compute the <span class="math notranslate nohighlight">\(L^2\)</span> error norm (note, not a weighted norm) for both Legendre and Chebyshev as a function of <span class="math notranslate nohighlight">\(N\)</span>.</p>
 <div class="cell docutils container">
@@ -707,9 +693,6 @@ uj = lambda u, j: (2*j+1) * innern(u, sp.legendre(j, x))/2
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">,</span> <span class="s1">&#39;Legendre&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/5ab5ca7bebff6a9a4da4b41a99ae490bf8a96a4b804f0a21c214b8cd7f079664.png" src="_images/5ab5ca7bebff6a9a4da4b41a99ae490bf8a96a4b804f0a21c214b8cd7f079664.png" />
 </div>
 </div>
 <p>So there is hardly any difference at all in accuracy.</p>
@@ -838,12 +821,6 @@ The function space <span class="math notranslate nohighlight">\(W\)</span> has a
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 y]
- [x x*y]]
-</pre></div>
-</div>
-</div>
 </div>
 <p>This is exactly</p>
 <div class="math notranslate nohighlight">
@@ -962,11 +939,6 @@ U = V \hat{U} V^T.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(7.519704442136279e-11)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Not bad at all. Lets try for a range of resolutions and plot the <span class="math notranslate nohighlight">\(L^2\)</span> error norm as a function of N</p>
 <div class="cell docutils container">
@@ -1000,9 +972,6 @@ U = V \hat{U} V^T.
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">error</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/571961a1244493d57473b117ad63f6bc4bcc3d46ad2930f0c1046b96c4831a31.png" src="_images/571961a1244493d57473b117ad63f6bc4bcc3d46ad2930f0c1046b96c4831a31.png" />
 </div>
 </div>
 <p>Note the extremely fast convergence. Doubling the number of points in each direction from <span class="math notranslate nohighlight">\(N=10\)</span> to <span class="math notranslate nohighlight">\(N=20\)</span> leads to an error that descreses with 5 decades! This is spectral accuracy. At <span class="math notranslate nohighlight">\(N&gt;20\)</span> the solution does no longer improve because of roundoff errors and machine precision.</p>
@@ -1046,9 +1015,6 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/2b5e7f235841a91e6bf2f941f43d20f6cf4d6b870f2c8a2c4a1d80c98f52f4b8.png" src="_images/2b5e7f235841a91e6bf2f941f43d20f6cf4d6b870f2c8a2c4a1d80c98f52f4b8.png" />
-</div>
 </div>
 <p>Notice how the error oscillates all throughout the domain. This is typical of spectral methods.</p>
 <p>Lets do exactly the same for Chebyshev polynomials:</p>
@@ -1072,9 +1038,6 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/9aa011bbee4d28b3d6cfa01ddf6320858fb9c49dc7a96c1eb04f7dc1457df6f2.png" src="_images/9aa011bbee4d28b3d6cfa01ddf6320858fb9c49dc7a96c1eb04f7dc1457df6f2.png" />
-</div>
 </div>
 <p>We see that the error is very similar to the Legendre, but slightly better towards the edges.</p>
 <p>Two- and three-dimensional problems can also be solved using shenfun and tensor products. Lets try to approximate <span class="math notranslate nohighlight">\(u(x, y) = \exp(-(x^2+2(y-0.5)^2)\)</span> using Legendre polynomials in both directions and a tensor product function space.</p>
@@ -1097,18 +1060,10 @@ u = \frac{1}{1+16x^2}, \quad x \in [-1, 1]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/1ee812aae6fa9aae5263e0bf958bad0059e7b878e0cabfc4a4bc2cf26b05b141.png" src="_images/1ee812aae6fa9aae5263e0bf958bad0059e7b878e0cabfc4a4bc2cf26b05b141.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">uh</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">)</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">ue</span><span class="p">)(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(7.165905224632915e-10)
 </pre></div>
 </div>
 </div>
@@ -1149,15 +1104,6 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.   ,  1.   ,  1.   ,  1.   ,  1.   ,  1.   ],
-       [ 1.   ,  0.707,  0.   , -0.707, -1.   , -0.707],
-       [ 1.   ,  0.   , -1.   , -0.   ,  1.   ,  0.   ],
-       [ 1.   , -0.707, -0.   ,  0.707, -1.   ,  0.707],
-       [ 1.   , -1.   ,  1.   , -1.   ,  1.   , -1.   ]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now the column <span class="math notranslate nohighlight">\(j\)</span> in <span class="math notranslate nohighlight">\(\text{T}\)</span> represents the numbers <span class="math notranslate nohighlight">\((T_j(x_i))_{i=0}^N\)</span>, that is, the basis function <span class="math notranslate nohighlight">\(T_j\)</span> evaluated on the mesh points <span class="math notranslate nohighlight">\((x_i)_{i=0}^N\)</span>.</p>
 <p>We can now evaluate <a class="reference internal" href="#equation-eq-chebvander">(36)</a> for any <span class="math notranslate nohighlight">\(\boldsymbol{\hat{u}}\)</span> simply as</p>
@@ -1165,11 +1111,6 @@ u(x_i) = \sum_{j=0}^N \hat{u}_j T_j(x_i), \quad i = 0, 1, \ldots, N.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="n">T</span> <span class="o">@</span> <span class="n">uhat</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3.   , -0.707,  0.   ,  0.707, -3.   ])
 </pre></div>
 </div>
 </div>
@@ -1250,21 +1191,10 @@ u(\boldsymbol{x}) = \frac{DCT^{1}(\boldsymbol{\hat{u}}) + \hat{u}_0 + I_m \hat{u
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The slowest run took 4.36 times longer than the fastest. This could mean that an intermediate result is being cached.
-17.2 μs ± 13.4 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 uj = T @ uhat
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>132 μs ± 17.3 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </pre></div>
 </div>
 </div>

@@ -417,9 +417,6 @@ u_N(x) = \sum_{j=0}^N \hat{u}_j \psi_j(x).
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/cb0fe56b77b729a600cfb89921087cc3af759734ebf83729b7e57aeb3bac7464.png" src="_images/cb0fe56b77b729a600cfb89921087cc3af759734ebf83729b7e57aeb3bac7464.png" />
-</div>
 </div>
 <p>Now create a functionspace consisting of all straight lines</p>
 <div class="math notranslate nohighlight">
@@ -490,23 +487,12 @@ E = (e, e).
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 2 u_{0} + 3 u_{1} - \frac{14}{3} = 0\]</div>
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle 3 u_{0} + \frac{14 u_{1}}{3} - \frac{26}{3} = 0\]</div>
-</div>
 </div>
 <p>Solve the two equations for the two unknown <code class="docutils literal notranslate"><span class="pre">u0</span></code> and <code class="docutils literal notranslate"><span class="pre">u1</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uhat</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">eq1</span><span class="p">,</span> <span class="n">eq2</span><span class="p">),</span> <span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">))</span>
 <span class="n">uhat</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{u0: -38/3, u1: 10}
 </pre></div>
 </div>
 </div>
@@ -519,9 +505,6 @@ E = (e, e).
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$u_</span><span class="si">{N}</span><span class="s1">(x)$&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/9dc0c5b2fa3479510105f7725d8df942a986600bb1365b18b4ac8c89b83c71da.png" src="_images/9dc0c5b2fa3479510105f7725d8df942a986600bb1365b18b4ac8c89b83c71da.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -556,21 +539,10 @@ E = (e, e).
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle - u_{0} - \frac{3 u_{1}}{2} + \frac{7}{3} = 0\]</div>
-<div class="output text_latex math notranslate nohighlight">
-\[\displaystyle - \frac{3 u_{0}}{2} - \frac{7 u_{1}}{3} + \frac{13}{3} = 0\]</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">((</span><span class="n">eq1</span><span class="p">,</span> <span class="n">eq2</span><span class="p">),</span> <span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{u0: -38/3, u1: 10}
 </pre></div>
 </div>
 </div>
@@ -690,9 +662,6 @@ P_2(x) &amp;= \frac{1}{2}(3x^2-1), \\
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<img alt="_images/6ae81dc6f037f00cc89e723da4630ab2885adacaa01a256ee954efd72c8df303.png" src="_images/6ae81dc6f037f00cc89e723da4630ab2885adacaa01a256ee954efd72c8df303.png" />
-</div>
 </div>
 <p>The Legendre polynomials are <span class="math notranslate nohighlight">\(L^2\)</span> orthogonal on <span class="math notranslate nohighlight">\(\Omega=[-1, 1]\)</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-legortho">
@@ -785,11 +754,6 @@ X = A + \frac{B-A}{b-a}(x-a).
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 5)
-</pre></div>
-</div>
-</div>
 </div>
 <p>We can thus plot the function</p>
 <div class="math notranslate nohighlight">
@@ -809,9 +773,6 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/ae1c10d96646ff7382b6f78cc9a6aa2ec1b142c6868dadafa501e71d5534a124.png" src="_images/ae1c10d96646ff7382b6f78cc9a6aa2ec1b142c6868dadafa501e71d5534a124.png" />
-</div>
 </div>
 <p>We see that the result is exactly as before, which is not so strange since the span of this Legendre basis is still the space of all linear functions. But add one more Legendre coefficient and the approximation becomes exact because <span class="math notranslate nohighlight">\(u(x)\)</span> is a second order polynomial.</p>
 <div class="cell docutils container">
@@ -823,9 +784,6 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$10(x-1)^2-1$&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Legendre</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/f82c331053adfe2a53140909705caaeaecfe918f45cffa0a091c29bf1559929b.png" src="_images/f82c331053adfe2a53140909705caaeaecfe918f45cffa0a091c29bf1559929b.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -850,14 +808,6 @@ u_N(x) = \frac{7}{3}P_0(X) + 5 P_1(X)
 <span class="n">uhatn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">ninner</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">legendre</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
 <span class="n">display</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">uhatn</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
 <span class="n">display</span><span class="p">((</span><span class="n">uhat</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">uhatn</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7/3, 2.3333333333333335)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5, 5.0)
 </pre></div>
 </div>
 </div>
@@ -931,9 +881,6 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/34d1277055f21f73df499324a6225d984fc8fcecd331dbb93372d9ff097583cb.png" src="_images/34d1277055f21f73df499324a6225d984fc8fcecd331dbb93372d9ff097583cb.png" />
-</div>
 </div>
 <p>So this seems to be less accurate than the Galerkin method or the least squares method. However, we have not done any integration, and the lower accuracy has come very easily. We can also very easily use one more point and end up with a perfect approximation:</p>
 <div class="cell docutils container">
@@ -947,9 +894,6 @@ u_N(x) = u(x_0) \ell_0(x) + u(x_1) \ell_1(x).
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;$(x_0, x_1, x_2) = (1, 1.5, 2)$&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/a78d648c581ec1acb75964273a68d25762ac674e214357bcb0bf7f39fe868ede.png" src="_images/a78d648c581ec1acb75964273a68d25762ac674e214357bcb0bf7f39fe868ede.png" />
 </div>
 </div>
 <p>Lets consider a more difficult function</p>
@@ -983,9 +927,6 @@ u(x) = \frac{1}{1+16x^2}, \quad x \in [-1, 1],
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/8832cf80e01f6f5f805e725a0befc8d4cbc5522f800ffd7b94fc8783ce09f553.png" src="_images/8832cf80e01f6f5f805e725a0befc8d4cbc5522f800ffd7b94fc8783ce09f553.png" />
-</div>
 </div>
 <p>Ok, so that did not work out well! Large over and under-shoots in between the mesh points. So Lagrange polynomials are bad, right?</p>
 <p>It turns out that due to something called <a class="reference external" href="https://en.wikipedia.org/wiki/Runge%27s_phenomenon">Runge’s phenomenon</a> it is a very bad idea to interpolate on a uniform mesh.</p>
@@ -1007,9 +948,6 @@ x_j = \cos(j \pi / N), \quad j \in \{0, 1, \ldots, N\}.
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yj</span><span class="p">,</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">)(</span><span class="n">yj</span><span class="p">),</span> <span class="s1">&#39;r:&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/ad1b1923dd4594ae53e2a9417e422b562296dc0e0cdd41b2827e48a966e9155c.png" src="_images/ad1b1923dd4594ae53e2a9417e422b562296dc0e0cdd41b2827e48a966e9155c.png" />
 </div>
 </div>
 <p>The agreement is now much better. And the agreement will become better and better the more points you use. Whereas for a uniform grid the agreement will become worse and worse the more points you use.</p>
@@ -1035,9 +973,6 @@ x_j = \cos(j \pi / N), \quad j \in \{0, 1, \ldots, N\}.
 <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ul</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/bccc8a8e535f9622687dad2aa223cab143d9a144c9b778968402873be36e3559.png" src="_images/bccc8a8e535f9622687dad2aa223cab143d9a144c9b778968402873be36e3559.png" />
 </div>
 </div>
 <p>Notice that the Legendre coefficients are decreasing. This is because the series is converging.</p>
@@ -1074,9 +1009,6 @@ x_j = -1 + \frac{2j}{N} \quad \text{and} \quad x_j = \cos(j \pi / N), \quad j=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/fe3f8797ae85c0ac4f822ddeb710c5239c49360cf9a2e4e5c4bb094910522c6e.png" src="_images/fe3f8797ae85c0ac4f822ddeb710c5239c49360cf9a2e4e5c4bb094910522c6e.png" />
-</div>
 </div>
 <p>We see that Chebyshev points are clustered near the edges. Lets construct <span class="math notranslate nohighlight">\(p_N(x)\)</span> using either the uniform mesh or Chebyshev nodes.</p>
 <div class="cell docutils container">
@@ -1090,9 +1022,6 @@ x_j = -1 + \frac{2j}{N} \quad \text{and} \quad x_j = \cos(j \pi / N), \quad j=0,
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Uniform grid&#39;</span><span class="p">);</span> <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Chebyshev grid&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/2e18fccc8984ace9141c70976ab583316c58fa03b45c0cf8bcc7b2cfbe1f478a.png" src="_images/2e18fccc8984ace9141c70976ab583316c58fa03b45c0cf8bcc7b2cfbe1f478a.png" />
 </div>
 </div>
 <p>We note that a uniform mesh leads to large oscillations near the edges, whereas Chebyshev points leads to a polynomial with near uniform oscillations.
@@ -1141,9 +1070,6 @@ u(x) = 10(x-1)^2 -1, \quad x \in [0, 1]
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;$u(x)$&#39;</span><span class="p">,</span> <span class="s1">&#39;N=3&#39;</span><span class="p">,</span> <span class="s1">&#39;N=12&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/875b6952fec4734ff9a21e1675712ea8992b53baf5a8e084707539a8356350cf.png" src="_images/875b6952fec4734ff9a21e1675712ea8992b53baf5a8e084707539a8356350cf.png" />
 </div>
 </div>
 <p>Evidently, we get large oscillations and the solution does not seem to converge. The problem is that the basis functions are all such that</p>
@@ -1206,9 +1132,6 @@ u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)= B(x) + \tilde{u}_N(x),
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/10258728a6d4340369eb46d061909a446198071a24e8450b9071ed06e3a67329.png" src="_images/10258728a6d4340369eb46d061909a446198071a24e8450b9071ed06e3a67329.png" />
-</div>
 </div>
 <p>Notice the very good agreement. The expansion coefficients are now converging, which we can see by printing out the 15 computed values</p>
 <div class="cell docutils container">
@@ -1217,26 +1140,11 @@ u_N(x) = B(x) + \sum_{j=0}^N \hat{u}_j \sin((j+1) \pi x)= B(x) + \tilde{u}_N(x),
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.58012275e+00  0.00000000e+00 -9.55601020e-02  0.00000000e+00
- -2.06409820e-02  0.00000000e+00 -7.52222377e-03  0.00000000e+00
- -3.53926304e-03  0.00000000e+00 -1.93848441e-03  0.00000000e+00
- -1.17438450e-03  0.00000000e+00 -7.64480816e-04]
-</pre></div>
-</div>
-</div>
 </div>
 <p>These should be compared with the expansion coefficients without the boundary adjustment:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ul</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.51283542 3.18309886 1.60209262 1.59154943 0.99795065 1.06103295
- 0.72004323 0.79577472 0.56234498 0.63661977 0.46105771 0.53051648
- 0.39059163 0.45472841 0.33876606]
 </pre></div>
 </div>
 </div>
@@ -1256,11 +1164,6 @@ P_j(-1) = (-1)^j \quad \text{and} \quad P_j(1) = 1.
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
     <span class="n">uL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">uhat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">uL</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[7/3, -5, 5/3, 0, 0, 0]
 </pre></div>
 </div>
 </div>

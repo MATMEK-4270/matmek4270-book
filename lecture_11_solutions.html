@@ -391,9 +391,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/d8f1e9cdfa6db060123c6014275b142bf94246a5477710e24d5b3bdbccdb3377.png" src="_images/d8f1e9cdfa6db060123c6014275b142bf94246a5477710e24d5b3bdbccdb3377.png" />
-</div>
 </div>
 <p>Compute L2-error and plot it to show the spectral accuracy. Both for Legendre and Chebyshev. Note that with Chebyshev shenfun automatically chooses a weighted inner product with weight <span class="math notranslate nohighlight">\(1/\sqrt{1-x^2}\)</span>.</p>
 <div class="cell docutils container">
@@ -424,9 +421,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/f692198a979f8b36cb0010330bcc2737f596c5b289a3554d517c1763d12eb70c.png" src="_images/f692198a979f8b36cb0010330bcc2737f596c5b289a3554d517c1763d12eb70c.png" />
-</div>
 </div>
 <p>Now do the same thing with inhomogeneous boundary conditions. The accuracy should be approximately the same.</p>
 <div class="cell docutils container">
@@ -450,9 +444,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/d93208b35ea2f7b94f30d2bb0113867638abc84c557a54c3274eb71162d7a4e0.png" src="_images/d93208b35ea2f7b94f30d2bb0113867638abc84c557a54c3274eb71162d7a4e0.png" />
-</div>
 </div>
 <p>Note that the solution now contains the boundary conditions. In Shenfun the two boundary conditions of the inhomogeneous Dirichlet space are stored in the last two items of the array of unknowns <code class="docutils literal notranslate"><span class="pre">uN</span></code>.</p>
 <div class="cell docutils container">
@@ -462,21 +453,11 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.07329913 2.40507854]
-</pre></div>
-</div>
-</div>
 </div>
 <p>The exact boundary values are:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">(),</span> <span class="n">ue</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">n</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.07329912758172 2.40507854457258
 </pre></div>
 </div>
 </div>
@@ -531,12 +512,6 @@ u'' + \alpha u = f, \quad x \in (-1, 1), u(\pm 1)=0,
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x16b94a660&gt;]
-</pre></div>
-</div>
-<img alt="_images/ccc430380a18859f74bb1050a3088067b171101fc0b0c8e451a6e959ef5f9016.png" src="_images/ccc430380a18859f74bb1050a3088067b171101fc0b0c8e451a6e959ef5f9016.png" />
-</div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Solve the convection-diffusion equation in the domain <span class="math notranslate nohighlight">\(x \in [0, 1]\)</span> and vary the parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> such that <span class="math notranslate nohighlight">\(\epsilon \in (1, 0.1, 0.01, 0.001)\)</span>:</p></li>
@@ -572,9 +547,6 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/9413c6afa4d6fcaf700479e00ddb82a9d936f7a03ccdfffbb0d4d8b699d25139.png" src="_images/9413c6afa4d6fcaf700479e00ddb82a9d936f7a03ccdfffbb0d4d8b699d25139.png" />
-</div>
 </div>
 <p>Now check convergence for the most stiff epsilon=1/1000. For this we need quite a few degrees of freedom in order to resolve the sharp gradient of <span class="math notranslate nohighlight">\(u(x)\)</span>.</p>
 <div class="cell docutils container">
@@ -597,9 +569,6 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
            <span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">error</span><span class="p">[</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">],</span> <span class="s1">&#39;r+&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/709c6988d6c4edef023c743a4984f669bb4aa51af584841ec0bb718719e7a55a.png" src="_images/709c6988d6c4edef023c743a4984f669bb4aa51af584841ec0bb718719e7a55a.png" />
 </div>
 </div>
 <p>Now solve the same equation using collocation.</p>
@@ -630,9 +599,6 @@ u(x) = \frac{\exp(-x/\epsilon)-1}{\exp(-1/\epsilon)-1}.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">err</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/ef20bbff69e96de464c13bc33428548ba09e5ec6f8c92472da19bf1b04e1663f.png" src="_images/ef20bbff69e96de464c13bc33428548ba09e5ec6f8c92472da19bf1b04e1663f.png" />
 </div>
 </div>
 </section>
