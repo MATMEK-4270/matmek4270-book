@@ -726,7 +726,7 @@ t= 8.000 u=7.0838e-05
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<h2 class="rubric" id="vectorization">Vectorization</h2>
+<p>Vectorization</p>
 <p><strong>Vectorization</strong> refers to the process of converting iterative operations on individual elements of an array (or other data structures) into batch operations on entire arrays.</p>
 </div>
 <p>For example, you have three arrays</p>
@@ -764,8 +764,8 @@ w_i = u_i \cdot v_i, \quad \forall \, i=0, 1, \ldots, N
 <p>Numpy is heavily vectorized! So much so that mult, add, div, etc are vectorized by default!</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<h2 class="rubric" id="vectorization-warning">Vectorization warning</h2>
-<p>Pretty much all the code you will see and get access to in this course will be vectorized!</p>
+<p>Vectorization warning
+Pretty much all the code you will see and get access to in this course will be vectorized!</p>
 </div>
 <p>Now lets get rid of the for-loop!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>                  <span class="c1"># assign initial condition</span>
@@ -861,7 +861,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.38 μs ± 70.1 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.33 μs ± 40.8 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -873,7 +873,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.95 μs ± 31.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.99 μs ± 58.5 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -912,7 +912,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.53 μs ± 55 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.49 μs ± 30.7 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -924,7 +924,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 19.2 μs ± 653 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 18.6 μs ± 324 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -951,7 +951,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.76 μs ± 990 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.81 μs ± 1.13 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -963,7 +963,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 198 μs ± 4.88 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 199 μs ± 2.4 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
