@@ -566,6 +566,10 @@ u'(t_n) \approx \frac{u^{n}-u^{n-1}}{t_{n}-t_{n-1}}
 \[
 u^{n+1} = \frac{1}{1+ a(t_{n+1}-t_n)} u^n
 \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use <span class="math notranslate nohighlight">\(u^{n+1}\)</span> as unknown and rename <span class="math notranslate nohighlight">\(u^n \longrightarrow u^{n+1}\)</span> and <span class="math notranslate nohighlight">\(u^{n-1} \longrightarrow u^{n}\)</span></p>
+</div>
 </section>
 <section id="a-centered-difference">
 <h3>A centered difference<a class="headerlink" href="#a-centered-difference" title="Link to this heading">#</a></h3>
@@ -837,7 +841,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.35 μs ± 33.1 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.33 μs ± 46.5 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -849,7 +853,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.94 μs ± 27 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.95 μs ± 34.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -888,7 +892,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.5 μs ± 39.3 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.49 μs ± 58 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -900,7 +904,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 18.1 μs ± 173 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 18.3 μs ± 207 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -927,7 +931,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.78 μs ± 1.09 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.87 μs ± 1.09 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -939,7 +943,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 193 μs ± 2.75 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 190 μs ± 1.69 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
