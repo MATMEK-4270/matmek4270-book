@@ -540,6 +540,21 @@ A simple, recursive, finite difference method for solving the vibration equation
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([np.float64(1.9588768683386768),
+  np.float64(2.012815118570204),
+  np.float64(2.005023881055473)],
+ [np.float64(3.0276628089765527),
+  np.float64(0.7788015566949965),
+  np.float64(0.19297857027753343),
+  np.float64(0.04807693295792429)],
+ [2.857142857142857,
+  1.4285714285714286,
+  0.7142857142857143,
+  0.35714285714285715])
+</pre></div>
+</div>
+</div>
 </div>
 <p>These last two lists are the errors and timesteps af all the <span class="math notranslate nohighlight">\(m\)</span> levels. We can plot the error as a function of timestep and show that the discretization scheme is second order.</p>
 <div class="cell docutils container">
@@ -556,6 +571,9 @@ A simple, recursive, finite difference method for solving the vibration equation
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/12bf3b87a173c9ef089f2220da0c800ab6b4ac079e4c20437a62d5716f60fd67.png" src="_images/12bf3b87a173c9ef089f2220da0c800ab6b4ac079e4c20437a62d5716f60fd67.png" />
 </div>
 </div>
 <p>We see that the error has the same slope as <span class="math notranslate nohighlight">\(\Delta t^2\)</span>.</p>
@@ -634,6 +652,9 @@ A simple, recursive, finite difference method for solving the vibration equation
 <span class="n">slope_marker</span><span class="p">((</span><span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bf0e0a9c8b859fdb9e7557537171b3e47f41506173ade77bd5bbb8553e1540b8.png" src="_images/bf0e0a9c8b859fdb9e7557537171b3e47f41506173ade77bd5bbb8553e1540b8.png" />
 </div>
 </div>
 </section>

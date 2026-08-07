@@ -474,6 +474,9 @@ u(t) = I \exp(-at).
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/05725c8ae0f4c1db38c10dcc56bae765e4901f7225905be2457e06af8f46b590.png" src="_images/05725c8ae0f4c1db38c10dcc56bae765e4901f7225905be2457e06af8f46b590.png" />
+</div>
 </div>
 </section>
 <section id="step-2-fulfilling-the-equation-at-discrete-time-points">
@@ -705,6 +708,21 @@ the <span class="math notranslate nohighlight">\(\theta\)</span>-rule formula</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t= 0.000 u=1
+t= 0.800 u=0.384615
+t= 1.600 u=0.147929
+t= 2.400 u=0.0568958
+t= 3.200 u=0.021883
+t= 4.000 u=0.00841653
+t= 4.800 u=0.00323713
+t= 5.600 u=0.00124505
+t= 6.400 u=0.000478865
+t= 7.200 u=0.000184179
+t= 8.000 u=7.0838e-05
+</pre></div>
+</div>
+</div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -797,6 +815,11 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 4, 8])
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="why-vectorization">
@@ -835,10 +858,20 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.46 μs ± 25.1 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -q -o -n 1000 f1(u, I, theta, a, dt)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 2.19 μs ± 54.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -847,6 +880,11 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Length of u = </span><span class="si">{</span><span class="n">u</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of u = 11
 </pre></div>
 </div>
 </div>
@@ -859,6 +897,11 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of u = 101
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -866,10 +909,20 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.67 μs ± 85.9 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -q -o -n 100 f1(u, I, theta, a, dt)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 20.5 μs ± 614 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -883,6 +936,11 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Length of u = 1001
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -890,10 +948,20 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 4.21 μs ± 1.14 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -q -o -n 100 f1(u, I, theta, a, dt)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 219 μs ± 5 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -913,6 +981,9 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/7f5987b7403c07bb44fc0f032aab299094b506cea7f1b8f9432ce019ec6939a1.png" src="_images/7f5987b7403c07bb44fc0f032aab299094b506cea7f1b8f9432ce019ec6939a1.png" />
+</div>
 </div>
 <p>Add legends, titles, exact solution, etc. Make the plot nice:-)</p>
 <div class="cell docutils container">
@@ -930,6 +1001,9 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/4c171a648a8bc202a6aead419d15da0ad60ba2fd091c8041178812e1d2ad6a1d.png" src="_images/4c171a648a8bc202a6aead419d15da0ad60ba2fd091c8041178812e1d2ad6a1d.png" />
+</div>
 </div>
 </section>
 <section id="plotly-is-a-very-good-alternative">
@@ -943,6 +1017,8 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 <span class="n">pfig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
 </div>
 </div>
 </section>
@@ -1102,6 +1178,11 @@ E = ||e^n||_{\ell^2}  = \sqrt{\Delta t\sum_{n=0}^{N} (e^n)^2}
 <span class="n">en</span> <span class="o">=</span> <span class="n">u_exact</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="n">u</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">en</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Errornorm = </span><span class="si">{</span><span class="n">E</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Errornorm = 0.1953976935916231
 </pre></div>
 </div>
 </div>

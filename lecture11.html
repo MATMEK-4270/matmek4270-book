@@ -559,6 +559,9 @@ u(-1) &amp;= u(1) = 0,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/c96973614a9f479048ada222c379e7898a0a9bf2af3efd179c541baff995f630.png" src="_images/c96973614a9f479048ada222c379e7898a0a9bf2af3efd179c541baff995f630.png" />
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -586,6 +589,9 @@ u(-1) &amp;= u(1) = 0,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/0e64b3a2c180932b5be48efe38a593d5d777e0ac6c5245965c9b061130223bef.png" src="_images/0e64b3a2c180932b5be48efe38a593d5d777e0ac6c5245965c9b061130223bef.png" />
+</div>
 </div>
 <p>Lets solve the same problem with Legendre polynomials instead and basis functions <span class="math notranslate nohighlight">\(\psi_i(x) = P_i(x)-P_{i+2}(x)\)</span>. The first 4 of these basis functions are shown below. Note that even numbered basis functions 0 and 2 are even, whereas the odd numbered basis functions are odd.</p>
 <div class="cell docutils container">
@@ -599,6 +605,9 @@ u(-1) &amp;= u(1) = 0,
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">r</span><span class="s1">&#39;$P_0-P_2$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$P_1-P_3$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$P_2-P_4$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$P_3-P_5$&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/781ff7d5e732d4aa5c81b942abc7bdf1afdf01c69db3928bc980d89a31975787.png" src="_images/781ff7d5e732d4aa5c81b942abc7bdf1afdf01c69db3928bc980d89a31975787.png" />
 </div>
 </div>
 <p>The function space <span class="math notranslate nohighlight">\(V_N = \text{span}\{P_i-P_{i+2}\}_{i=0}^N\)</span> is now a subspace of <span class="math notranslate nohighlight">\(\mathbb{P}_{N+2}\)</span> since <span class="math notranslate nohighlight">\(\psi_N=P_N-P_{N+2}\)</span>, and <span class="math notranslate nohighlight">\(P_{N+2}\)</span> is a polynomial of order <span class="math notranslate nohighlight">\(N+2\)</span>. The subspace can also be denoted as <span class="math notranslate nohighlight">\(V_N=\{v \in \mathbb{P}_{N+2} | v(\pm 1)=0\}\)</span>. In order to solve Eq. <a class="reference internal" href="#equation-eq-poisson-gal-ibp">(50)</a> we need to assemble the stiffness matrix and to this end we will also make use of the following formula, which is only valid for Legendre polynomials</p>
@@ -648,6 +657,9 @@ u(-1) &amp;= u(1) = 0,
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/802394e05396daabb092ea84d032672799188172a8f47ab16fe1e4aa4eb72be1.png" src="_images/802394e05396daabb092ea84d032672799188172a8f47ab16fe1e4aa4eb72be1.png" />
+</div>
 </div>
 <p>We note that less than 30 Legendre basis functions are required for full machine precision (<span class="math notranslate nohighlight">\(\approx 10^{-16}\)</span>). And exactly like for the sine basis functions all the odd coefficients are zero.</p>
 <p>So why are the Legendre basis functions so much better here than the Sines? The reason has to do with the sine functions <span class="math notranslate nohighlight">\(\psi_j=\sin(\pi (j+1)(x+1)/2)\)</span> that are such that all even derivatives are zero at the 2 boundaries</p>
@@ -677,6 +689,9 @@ u(-1) &amp;= u(1) = 0,
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ef434a0b5aee506891180553a690851511e18bea7d601350860664e95c4a04c7.png" src="_images/ef434a0b5aee506891180553a690851511e18bea7d601350860664e95c4a04c7.png" />
 </div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">S</span></code> is the stiffness matrix, which has a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method. It is possible to transform this matrix into a regular Scipy sparse matrix and solve the problem this way:</p>
@@ -769,6 +784,9 @@ B(x) = \frac{b}{2}(1+x) + \frac{a}{2}(1-x).
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/db60ab8ce3cee96622fff2792b7c43f9086df5f1fe160ce4f98560fada99f66b.png" src="_images/db60ab8ce3cee96622fff2792b7c43f9086df5f1fe160ce4f98560fada99f66b.png" />
+</div>
 </div>
 </section>
 <section id="neumann-boundary-conditions">
@@ -866,6 +884,9 @@ u'' = f, \quad x \in (-1, 1), \, u'(\pm 1) = 0.
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/3a73a77a4b968ceed8cba1920cd069da3732a2832cc8b591dc2564c2d36b7575.png" src="_images/3a73a77a4b968ceed8cba1920cd069da3732a2832cc8b591dc2564c2d36b7575.png" />
+</div>
 </div>
 <p>We can do the same for Legendre spaces <span class="math notranslate nohighlight">\(V_N = \text{span}\{\psi_j\}_{j=0}^N\)</span> and <span class="math notranslate nohighlight">\(\tilde{V}_N = \text{span}\{\psi_j\}_{j=1}^N\)</span>, where the basis functions are as given in <a class="reference internal" href="#equation-eq-basis-neumann">(54)</a>. The stiffness matrix is then</p>
 <div class="math notranslate nohighlight">
@@ -920,6 +941,9 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/ce08fcfb35b1a5a686ad666ffcdaa6a873bf7fec776125afa4a8fbb80e95c43c.png" src="_images/ce08fcfb35b1a5a686ad666ffcdaa6a873bf7fec776125afa4a8fbb80e95c43c.png" />
+</div>
 </div>
 <p>Above we solved the Neumann problem with basis functions that satisfied <span class="math notranslate nohighlight">\(\psi'_j(\pm 1)=0\)</span>. However, this was not really necessary, because the boundary condition was already fixed through the variational form using <a class="reference internal" href="#sec-integration-by-parts"><span class="std std-ref">integration by parts</span></a> on the stiffness matrix</p>
 <div class="math notranslate nohighlight">
@@ -977,6 +1001,9 @@ s_{ij} = \alpha(i) \delta_{ij},
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<img alt="_images/f5a7f1855ade95ef4f4aa2d2b2574dbd6c9b7af5a3590d3d28c4f17e3aed6824.png" src="_images/f5a7f1855ade95ef4f4aa2d2b2574dbd6c9b7af5a3590d3d28c4f17e3aed6824.png" />
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -996,6 +1023,9 @@ s_{ij} = \alpha(i) \delta_{ij},
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">uh</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b0a7c72809ac5373a77347f430e5467119167b1e414b3aeb1140c758cfc1a438.png" src="_images/b0a7c72809ac5373a77347f430e5467119167b1e414b3aeb1140c758cfc1a438.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1109,6 +1139,19 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3]])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1],
+       [2],
+       [3]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now multiply <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span> <span class="pre">*</span> <span class="pre">w[:,</span> <span class="pre">None]</span></code> and obtain a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix.</p>
 <div class="cell docutils container">
@@ -1117,11 +1160,28 @@ W_{ij} = \frac{w_j}{w_i}, \quad (i, j) \in \mathcal{I}_N^2.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [2, 4, 6],
+       [3, 6, 9]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Here <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> are first broadcasted to the two <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrices that are constant along the first and second axis, respectively. The matrices are extruded along the axis that contains <code class="docutils literal notranslate"><span class="pre">None</span></code>. So <code class="docutils literal notranslate"><span class="pre">w[None,</span> <span class="pre">:]</span></code> is extruded along the first axis and <code class="docutils literal notranslate"><span class="pre">w[:,</span> <span class="pre">None]</span></code> along the second.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">w</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[1, 2, 3],
+        [1, 2, 3],
+        [1, 2, 3]]),
+ array([[1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3]]))
 </pre></div>
 </div>
 </div>
@@ -1220,6 +1280,9 @@ d^{(n)}_{ii} &amp;= -\sum_{\substack{j=0 \\ j \ne i}}^N d^{(n)}_{ij}.
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">err</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/470b25415109c045111c0014ae169007bfc72d9fc5730dbb3d98c317572013dd.png" src="_images/470b25415109c045111c0014ae169007bfc72d9fc5730dbb3d98c317572013dd.png" />
 </div>
 </div>
 </section>
@@ -1353,6 +1416,12 @@ u_N(x, y) = \sum_{i=0}^N \sum_{j=0}^N \hat{u}_{ij} \psi_i(x) \psi_j(y),
 <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xij</span><span class="p">,</span> <span class="n">yij</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.contour.QuadContourSet at 0x16a133560&gt;
+</pre></div>
+</div>
+<img alt="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" src="_images/2359b4dd6c371eaddb6c04b11f16d35fe4d15c694dcaa27e58ee56a6b35bda5a.png" />
 </div>
 </div>
 </section>
