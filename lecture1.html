@@ -724,6 +724,11 @@ t= 8.000 u=7.0838e-05
 </div>
 </div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<h2 class="rubric" id="vectorization">Vectorization</h2>
+<p><strong>Vectorization</strong> refers to the process of converting iterative operations on individual elements of an array (or other data structures) into batch operations on entire arrays.</p>
+</div>
 <p>For example, you have three arrays</p>
 <div class="math notranslate nohighlight">
 \[
@@ -757,6 +762,11 @@ w_i = u_i \cdot v_i, \quad \forall \, i=0, 1, \ldots, N
 </div>
 </div>
 <p>Numpy is heavily vectorized! So much so that mult, add, div, etc are vectorized by default!</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<h2 class="rubric" id="vectorization-warning">Vectorization warning</h2>
+<p>Pretty much all the code you will see and get access to in this course will be vectorized!</p>
+</div>
 <p>Now lets get rid of the for-loop!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>                  <span class="c1"># assign initial condition</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>     <span class="c1"># n=0,1,...,N-1</span>
@@ -778,7 +788,17 @@ u^{N_t} &amp;= A u^{N-1}
 \end{align*}
 \end{split}\]</div>
 <p>Because we have this exact numerical solution we can implement</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>                  <span class="c1"># assign initial condition</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>     <span class="c1"># n=0,1,...,Nt-1</span>
+    <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">theta</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>                  <span class="c1"># assign initial condition</span>
+<span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">theta</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="n">u</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>     
+</pre></div>
+</div>
 <p>because</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -841,7 +861,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.33 μs ± 46.5 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.38 μs ± 70.1 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -853,7 +873,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.95 μs ± 34.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.95 μs ± 31.4 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -892,7 +912,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.49 μs ± 58 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 1.53 μs ± 55 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -904,7 +924,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 18.3 μs ± 207 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 19.2 μs ± 653 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -931,7 +951,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.87 μs ± 1.09 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 3.76 μs ± 990 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -943,7 +963,7 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 190 μs ± 1.69 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;TimeitResult : 198 μs ± 4.88 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)&gt;
 </pre></div>
 </div>
 </div>
@@ -1014,6 +1034,11 @@ u^{N_t} &amp;= A u^{N-1} = A^{N} u^0
 </ul>
 <section id="comparison-with-exact-numerical-solution">
 <h4>Comparison with exact numerical solution<a class="headerlink" href="#comparison-with-exact-numerical-solution" title="Link to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h2 class="rubric" id="what-is-exact">What is exact?</h2>
+<p>There is a difference between exact numerical solution and exact solution!</p>
+</div>
 <p>Repeated use of the <span class="math notranslate nohighlight">\(\theta\)</span>-rule gives exact numerical solution:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -1042,6 +1067,10 @@ u^n = IA^n
 \max_n |u^n - IA^n| &lt; \epsilon\sim 10^{-15}
 \]</div>
 <p>for a few precalculated steps.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure you understand what <span class="math notranslate nohighlight">\(n\)</span> in <span class="math notranslate nohighlight">\(u^n\)</span> and in <span class="math notranslate nohighlight">\(A^n\)</span> means! <span class="math notranslate nohighlight">\(n\)</span> is not used as a power in <span class="math notranslate nohighlight">\(u^n\)</span>, but it is a power in <span class="math notranslate nohighlight">\(A^n\)</span>!</p>
+</div>
 </section>
 <section id="run-a-few-numerical-steps-by-hand">
 <h4>Run a few numerical steps by hand<a class="headerlink" href="#run-a-few-numerical-steps-by-hand" title="Link to this heading">#</a></h4>
@@ -1085,6 +1114,10 @@ u^3 &amp;=Au^2= 0.00265290804728
 </pre></div>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We do not use the <strong>exact</strong> solution because the numerical solution will not equal the exact!</p>
 </div>
 </section>
 </section>
