@@ -541,13 +541,11 @@ A simple, recursive, finite difference method for solving the vibration equation
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([np.float64(1.9588768683386768),
-  np.float64(2.012815118570204),
-  np.float64(2.005023881055473)],
- [np.float64(3.0276628089765527),
-  np.float64(0.7788015566949965),
-  np.float64(0.19297857027753343),
-  np.float64(0.04807693295792429)],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1.9588768683386768, 2.012815118570204, 2.005023881055473],
+ [3.0276628089765527,
+  0.7788015566949965,
+  0.19297857027753343,
+  0.04807693295792429],
  [2.857142857142857,
   1.4285714285714286,
   0.7142857142857143,
@@ -699,7 +697,7 @@ u^{''} + \omega^2 u = f, \, t \in (0, T], \, u(0)=I, u'(0) = 0,
 \[\begin{split}
 \begin{align*}
   u^0 &amp;= I\\
-  u^{1} &amp;= u^0 - \frac{1}{2}\Delta t^2 \omega^2 u^0 + \frac{\Delta}{2} t^2 f^0 \\
+  u^{1} &amp;= u^0 - \frac{1}{2}\Delta t^2 \omega^2 u^0 + \frac{\Delta t^2}{2}  f^0 \\
   u^{n+1} &amp;= 2u^n - u^{n-1} - \Delta t^2 \omega^2 u^{n} + \Delta t^2 f^n, \quad n = 1, 2, \ldots, N_t-1,
 \end{align*}
 \end{split}\]</div>
@@ -716,16 +714,16 @@ u^{''} + \omega^2 u = f, \, t \in (0, T], \, u(0)=I, u'(0) = 0,
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "matmek4270-25"
         },
         kernelOptions: {
-            name: "python3",
+            name: "matmek4270-25",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'matmek4270-25'</script>
 
                 </article>
               
